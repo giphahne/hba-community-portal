@@ -194,7 +194,7 @@ def test_dev_mode_generates_and_reuses_keys(fake, tmp_path):
 
 def test_session_cookie_flags_and_size(tmp_path):
     from fastapi.testclient import TestClient
-    from conftest import FakeSupabase
+    from fake_supabase import FakeSupabase
     fake = FakeSupabase(token_padding=1400)   # a Supabase JWT with user metadata is roughly 1–1.5 KB
     web = TestClient(fresh_app(tmp_path, fake).app)
     fake.add_user("res@example.org", "resident")
