@@ -2,6 +2,7 @@
 import hashlib
 import io
 import json
+import os
 import re
 import subprocess
 import tempfile
@@ -21,7 +22,8 @@ C = {}
 BUSY = set()
 MUTEX = Lock()
 KINDS = {"event", "budget", "agenda", "decision", "work", "house_history", "history", "governing", "permit"}
-MODEL = "gpt_5_4"
+# Same setting as research_ai.py: OPENAI_MODEL for a direct OpenAI key; "gpt_5_4" is the Perplexity-hosted default.
+MODEL = os.environ.get("OPENAI_MODEL", "").strip() or "gpt_5_4"
 FIELDS = {
  "event":{"title","series_title","event_date","event_time","rain_date","location","detail","state","planning_only"},
  "budget":{"title","year","category_code","amount","detail"},
