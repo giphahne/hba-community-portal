@@ -94,16 +94,18 @@
     e.preventDefault();if(busy||!form.reportValidity())return;
     busy=true;++epoch;$('login-submit').disabled=true;$('login-mode').disabled=true;
     status(signup?'Requesting your account…':'Signing in…');
+    const submitLabel=$('login-submit').textContent;$('login-submit').textContent=signup?'Sending your request…':'Signing in…';
     try{
       const fd=new FormData(form);
       const body=signup?signupBody(fd):{email:fd.get('email'),password:fd.get('password')};
       const result=await api('/api/auth/'+(signup?'signup':'login'),body);
       if(!signup)await rememberLogin(body.email,body.password);
       form.elements.password.value='';$('show-password').checked=false;form.elements.password.type='password';
-      if(signup){status(result.message);return;}
+      if(signup){requestSent(body);return;}
       session=result;show();status(approved(session)?'':'Your account must be approved before viewing any data.');
     }catch(err){form.elements.password.value='';status(err.message,true);}
-    finally{busy=false;$('login-submit').disabled=false;$('login-mode').disabled=false;}
+    finally{busy=false;$('login-submit').disabled=false;$('login-mode').disabled=false;
+      if(/…$/.test($('login-submit').textContent))$('login-submit').textContent=submitLabel;}
   };
   $('login-mode').onclick=()=>{
     signup=!signup;$('signup-name').hidden=!signup;$('signup-fields').hidden=!signup;$('signup-sms').hidden=!signup;form.elements.display_name.required=signup;$('save-password-row').hidden=signup;$('save-password-help').hidden=signup||!saveBox.checked;
@@ -114,6 +116,22 @@
     $('login-submit').textContent=signup?'Request an account':'Sign in';
     $('login-mode').textContent=signup?'Already registered? Sign in':'New resident? Request an account';
     status('');
+  };
+  // A clear "request sent" page replaces the form, so nobody is left wondering whether the request went through.
+  function requestSent(body){
+    for(const name of ['password','display_name','request_note','sms_phone'])form.elements[name].value='';
+    form.elements.requested_household_uid.selectedIndex=0;form.elements.sms_consent.checked=false;
+    form.querySelectorAll('input[name=sms_topics]').forEach(i=>i.checked=false);
+    form.hidden=true;status('');
+    $('login-title').textContent='Request sent.';$('login-intro').textContent='';
+    $('signup-done-email').textContent=body.email;$('signup-done-sms').hidden=!body.sms_phone;
+    const done=$('signup-done');done.hidden=false;
+    $('login-title').scrollIntoView({block:'start'});done.focus({preventScroll:true});
+  }
+  $('signup-done-signin').onclick=()=>{
+    $('signup-done').hidden=true;form.hidden=false;
+    if(signup)$('login-mode').onclick();
+    form.elements.password.focus();
   };
   $('show-password').onchange=e=>form.elements.password.type=e.target.checked?'text':'password';
   $('login-forgot').onclick=()=>{form.hidden=true;$('forgot-help').hidden=false;status('');};

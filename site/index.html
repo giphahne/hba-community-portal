@@ -50,6 +50,17 @@
       <button type="button" id="login-forgot" class="secondary">Forgot password?</button>
     </form>
     <div id="forgot-help" hidden><p>Contact a board member to reset your password. They can give you a temporary password in person or by phone; you choose your own password the next time you sign in.</p><button type="button" id="forgot-close" class="secondary">Back to sign in</button></div>
+    <section id="signup-done" hidden tabindex="-1" aria-labelledby="login-title">
+      <p class="signup-done-badge"><span aria-hidden="true">&#10003;</span> Your request was sent</p>
+      <p>We received the request for <strong id="signup-done-email"></strong>. What happens next:</p>
+      <ol>
+        <li><strong>Confirm your email.</strong> Open the message we just sent and click its link. Check your spam folder if it does not arrive within a few minutes.</li>
+        <li><strong>A board member reviews it.</strong> They check your address and approve the request.</li>
+        <li><strong>Sign in.</strong> Use the email and password you just chose. Until approval you will see a short waiting page.</li>
+      </ol>
+      <p class="login-hint" id="signup-done-sms" hidden>Your text-alert choices are saved and start once your account is approved.</p>
+      <button type="button" id="signup-done-signin">Go to sign in</button>
+    </section>
     <form id="password-change" hidden>
       <p>Your password was reset by a board member. Choose a new password of your own before continuing.</p>
       <label>Temporary password<input name="current_password" type="password" autocomplete="current-password" required maxlength="200"></label>
