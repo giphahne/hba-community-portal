@@ -101,3 +101,20 @@ body.summer-show-details .summer-line>strong{font-size:12pt}body.summer-show-det
   .poster-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
   .poster-tile{break-inside:avoid}
 }
+/* Administrator editor for the usual summer events */
+.summer-editor{max-width:90ch;margin:0 auto;font-size:16px;line-height:1.5;color:var(--text)}
+.summer-editor h3{font-size:22px;margin:4px 0 6px}
+.summer-edit-list{list-style:none;margin:16px 0;padding:0;display:grid;gap:16px}
+.summer-edit-row fieldset{margin:0;padding:14px 16px 16px;border:1px solid var(--panel-border);border-radius:10px;background:rgba(255,255,255,.03);display:grid;gap:12px}
+.summer-edit-row legend{padding:0 6px;font-weight:700;font-size:17px}
+.summer-editor label{display:grid;gap:6px;font-weight:500}
+.summer-edit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.summer-editor input,.summer-editor select,.summer-editor textarea{font:16px Satoshi,sans-serif;padding:10px;min-height:44px;width:100%;box-sizing:border-box;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);border-radius:6px}
+.summer-editor textarea{min-height:84px;resize:vertical}
+.summer-editor input:focus-visible,.summer-editor select:focus-visible,.summer-editor textarea:focus-visible{outline:3px solid #8FC1B5;outline-offset:2px}
+.summer-edit-preview{margin:0;padding:8px 10px;border-left:3px solid #C9A227;background:rgba(201,162,39,.08)}
+.summer-edit-row-actions,.summer-edit-actions{display:flex;flex-wrap:wrap;gap:8px}
+.summer-edit-actions{position:sticky;bottom:0;padding:12px 0;background:var(--panel);border-top:1px solid var(--panel-border)}
+#summer-edit-save{border-color:#C9A227;background:#C9A227;color:#0B2545;font-weight:700}
+.summer-edit-row [data-remove]{border-color:#B23A48}
+.summer-shell button:disabled{opacity:.45;cursor:not-allowed}

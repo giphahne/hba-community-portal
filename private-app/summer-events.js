@@ -7,36 +7,67 @@
   const pad=n=>String(n).padStart(2,'0');
   const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   const nth=(y,m,wd,ord)=>window.HBAEventDates.nthWeekday(y,m,wd,ord);
-  // Each rule: how the date is normally chosen, the usual time and place, and the details printed in 2026.
-  const RULES=[
-    {key:'welcome',title:'Adult Welcome Back Party',when:'Third Saturday of June',date:y=>nth(y,6,6,3),time:'17:30',location:'36 Algelo Ave.',
+  // The usual pattern, as data. The administrator can change it in the app (Edit usual events); it is stored in the
+  // public_summer_rules setting. These defaults are the 2026 Summer Events sheet supplied by the board.
+  // rule: 'nth' = ordinal weekday of a month (ordinal -1 = last), 'fixed' = month/day, 'tide' = Fishing Derby pick,
+  // 'tbd' = date set each summer. Weekdays: 0 Sunday … 6 Saturday.
+  const DEFAULT_RULES=[
+    {key:'welcome',title:'Adult Welcome Back Party',rule:'nth',month:6,weekday:6,ordinal:3,time:'17:30',location:'36 Algelo Ave.',icon:'chairs',
       details:'Come and catch up with your neighbors. Bring an appetizer or dessert to share, the beverage of your choice, and a chair.'},
-    {key:'assoc',title:'Association Meeting',when:'Last Sunday of June',date:y=>nth(y,6,0,-1),time:'10:00',location:'Algelo & Surf',
+    {key:'assoc',title:'Association Meeting',rule:'nth',month:6,weekday:0,ordinal:-1,time:'10:00',location:'Algelo & Surf',icon:'sun',
       details:'Bring a chair and participate in the first meeting of the year.'},
-    {key:'july4',title:'July 4th Beach Events & Bike Parade',when:'July 4',date:y=>new Date(y,6,4),time:'10:00',location:'Side Beach',
+    {key:'july4',title:'July 4th Beach Events & Bike Parade',rule:'fixed',month:7,day:4,time:'10:00',location:'Side Beach',icon:'flag',
       details:'Games for children of all ages, then a bike (carriage, scooter, etc.) parade around the island starting at Reynolds and Worrall. Decorate your “vehicle” and celebrate the 4th. A cool treat is offered at the end.'},
-    {key:'derby',title:'Kids’ Fishing Derby',when:'A Saturday in July or August when 11 AM is about mid tide, going out',date:null,time:'10:00',end:'12:00',location:'Side Beach',tide:true,
+    {key:'derby',title:'Kids’ Fishing Derby',rule:'tide',time:'10:00',end:'12:00',location:'Side Beach',icon:'fish',
       details:'Kids of all ages bring a fishing pole to the point. Extra poles are available and worms are supplied. Prizes awarded. Hot dogs and water after the event.'},
-    {key:'bingo1',title:'Adult Bingo',when:'Third Friday of July',date:y=>nth(y,7,5,3),time:'18:00',location:'Corner of Pilgrim & Worrall',
+    {key:'bingo1',title:'Adult Bingo',rule:'nth',month:7,weekday:5,ordinal:3,time:'18:00',location:'Corner of Pilgrim & Worrall',icon:'bingo',
       details:'Registration at 5:45, games start at 6:00. Bingo cards 10 for $20 (cash). Bring a chair, a pen or marker, beverage and snacks. Items to bid on, so bring some extra cash.'},
-    {key:'kickoff',title:'Summer Kickoff',when:'Second Saturday of June (from 2027; Kids’ Day was the third Saturday of July through 2026)',date:y=>y<=2026?nth(y,7,6,3):nth(y,6,6,2),time:'11:00',location:'Side Beach',
-      legacy:{until:2026,title:'Kids’ Day',when:'Third Saturday of July',details:'Games for all ages with prizes. Hot dogs and water served.'},
+    {key:'kickoff',title:'Summer Kickoff',rule:'nth',month:6,weekday:6,ordinal:2,time:'11:00',location:'Side Beach',icon:'ball',
+      when_note:'from 2027; Kids’ Day was the third Saturday of July through 2026',
+      legacy:{until:2026,title:'Kids’ Day',when:'Third Saturday of July',details:'Games for all ages with prizes. Hot dogs and water served.',month:7,weekday:6,ordinal:3},
       details:'The season opens with games for all ages on Side Beach: limbo, long jump, water relay, water balloon toss, obstacle course, hula hoop contest, a musical-chairs scavenger hunt, Simon Says and tug of war (parents join the second round). Prizes for every game. Hot dogs and water served.'},
-    {key:'music',title:'Jane & John’s Music Night',when:'Third Saturday of July',date:y=>nth(y,7,6,3),time:'19:00',end:'22:00',location:'On Surf',
+    {key:'music',title:'Jane & John’s Music Night',rule:'nth',month:7,weekday:6,ordinal:3,time:'19:00',end:'22:00',location:'On Surf',icon:'music',
       details:'Come dance in the street. Thee Midnight Society performs. Bring a chair, your beverage and snacks. Donations accepted.'},
-    {key:'art',title:'Art Day',when:'First Saturday of August',date:y=>nth(y,8,6,1),time:'13:00',location:'Algelo & Surf',
+    {key:'art',title:'Art Day',rule:'nth',month:8,weekday:6,ordinal:1,time:'13:00',location:'Algelo & Surf',icon:'palette',
       details:'Art projects for children of all ages: tie-dye (bring your own shirt), shell painting, sand art, corn husk dolls, foam animals, rainbow postcards and cookie decorating. Supplies and water provided.'},
-    {key:'spook',title:'Summer Spooktacular',when:'First Saturday of August (same day as Art Day)',date:y=>nth(y,8,6,1),time:'18:30',end:'19:30',location:'Island parade',
+    {key:'spook',title:'Summer Spooktacular',rule:'nth',month:8,weekday:6,ordinal:1,time:'18:30',end:'19:30',location:'Island parade',icon:'pumpkin',when_note:'same day as Art Day',
       details:'Children parade around the island in costume from 6:30 to 7:30. Homeowners may set up a candy table near the street; children will not knock on doors. No prizes.'},
-    {key:'golf',title:'Golf Tournament',when:'Third Saturday of August',date:y=>nth(y,8,6,3),time:'07:30',location:'Southers Marsh, Plymouth',
+    {key:'golf',title:'Golf Tournament',rule:'nth',month:8,weekday:6,ordinal:3,time:'07:30',location:'Southers Marsh, Plymouth',icon:'golf',
       details:'Sign up by August 1. $90 per player; foursomes and individuals welcome. Checks to HBA. Rain or shine.'},
-    {key:'supper',title:'Spaghetti Supper',when:'Third Saturday of August; the following Saturday is the rain date',date:y=>nth(y,8,6,3),rain:y=>{const d=nth(y,8,6,3);return new Date(d.getFullYear(),d.getMonth(),d.getDate()+7);},time:'17:30',location:'Algelo & Glen',
+    {key:'supper',title:'Spaghetti Supper',rule:'nth',month:8,weekday:6,ordinal:3,rain_offset_days:7,time:'17:30',location:'Algelo & Glen',icon:'pasta',
       details:'Bring your table, chairs, beverages and snacks; a DJ plays all night. Dinner $7 adults, $4 children. Raffle tickets: kids’ table 20 for $5, adult 10 for $10.'},
-    {key:'bingo2',title:'Adult Bingo',when:'Last Friday of August',date:y=>nth(y,8,5,-1),time:'18:00',location:'Corner of Pilgrim & Worrall',
+    {key:'bingo2',title:'Adult Bingo',rule:'nth',month:8,weekday:5,ordinal:-1,time:'18:00',location:'Corner of Pilgrim & Worrall',icon:'bingo',
       details:'Registration at 5:45, games start at 6:00. Bingo cards 10 for $20 (cash). Bring a chair, a pen or marker, beverage and snacks.'},
-    {key:'annual',title:'Annual Meeting',when:'Fourth Sunday of August',date:y=>nth(y,8,0,4),time:'10:00',location:'Algelo & Surf',details:''},
-    {key:'movie',title:'Movie Night',when:'Date set each summer',date:null,time:null,location:'',details:'More information each summer.',tbd:true}
+    {key:'annual',title:'Annual Meeting',rule:'nth',month:8,weekday:0,ordinal:4,time:'10:00',location:'Algelo & Surf',icon:'anchor',details:''},
+    {key:'movie',title:'Movie Night',rule:'tbd',location:'',details:'More information each summer.',icon:'popcorn'}
   ];
+  const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const WEEKDAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const ORDINALS={1:'First',2:'Second',3:'Third',4:'Fourth',5:'Fifth','-1':'Last'};
+  // The plain-English "when" printed on the sheet, written from the rule so it always matches the dates.
+  function whenText(r){
+    let w=r.rule==='nth'?`${ORDINALS[r.ordinal]} ${WEEKDAYS[r.weekday]} of ${MONTHS[r.month-1]}`
+      :r.rule==='fixed'?`${MONTHS[r.month-1]} ${r.day}`
+      :r.rule==='tide'?'A Saturday in July or August when 11 AM is about mid tide, going out':'Date set each summer';
+    if(r.rain_offset_days)w+=r.rain_offset_days===7?'; the following Saturday is the rain date':`; rain date ${r.rain_offset_days} days later`;
+    return r.when_note?`${w} (${r.when_note})`:w;
+  }
+  // Turn stored rules into the shape the schedule uses (date and rain-date functions).
+  function compile(list){
+    return list.map(r=>{
+      const date=r.rule==='nth'?y=>nth(y,r.month,r.weekday,r.ordinal):r.rule==='fixed'?y=>new Date(y,r.month-1,r.day):null;
+      const lg=r.legacy?{...r.legacy,date:y=>nth(y,r.legacy.month,r.legacy.weekday,r.legacy.ordinal)}:null;
+      return {...r,when:whenText(r),date:lg?y=>(y<=lg.until?lg.date(y):date(y)):date,
+        rain:r.rain_offset_days&&date?y=>{const d=date(y);return new Date(d.getFullYear(),d.getMonth(),d.getDate()+r.rain_offset_days);}:null,
+        end:r.end||undefined,time:r.time||null,tide:r.rule==='tide',tbd:r.rule==='tbd',legacy:lg};
+    });
+  }
+  let storedRules=null;// the administrator's saved pattern, when there is one
+  let RULES=compile(DEFAULT_RULES);
+  function useStoredRules(settings){
+    let list=null;try{const v=JSON.parse(settings?.public_summer_rules||'null');if(Array.isArray(v)&&v.length)list=v;}catch{}
+    storedRules=list;RULES=compile(list||DEFAULT_RULES);
+  }
   // The 2026 sheet as printed, so this year's sheet matches it exactly (including the derby date the board chose).
   const KNOWN={2026:{welcome:'2026-06-20',assoc:'2026-06-28',july4:'2026-07-04',derby:'2026-07-11',bingo1:'2026-07-17',kickoff:'2026-07-18',music:'2026-07-18',art:'2026-08-01',spook:'2026-08-01',golf:'2026-08-15',supper:'2026-08-15',bingo2:'2026-08-28',annual:'2026-08-23'}};
   const fmtTime=t=>{if(!t)return '';const [h,m]=t.split(':').map(Number);return new Date(2000,0,1,h,m).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});};
@@ -78,12 +109,12 @@
     };
     const out=RULES.map((r,i)=>{
       const rec=match(r);
-      if(rec){used.add(rec.id);return {key:r.key,n:i+1,title:rec.title,date:window.HBAEventDates.effective(rec),rain:rec.rain_date||null,time:rec.event_time?rec.event_time.slice(0,5):r.time,end:r.end,location:rec.location||r.location,details:(rec.planning_only||!rec.description)?r.details:rec.description,source:rec.planning_only?'planned':'recorded',when:r.when,record:rec};}
+      if(rec){used.add(rec.id);return {key:r.key,icon:r.icon,n:i+1,title:rec.title,date:window.HBAEventDates.effective(rec),rain:rec.rain_date||null,time:rec.event_time?rec.event_time.slice(0,5):r.time,end:r.end,location:rec.location||r.location,details:(rec.planning_only||!rec.description)?r.details:rec.description,source:rec.planning_only?'planned':'recorded',when:r.when,record:rec};}
       let date=null;
       if(KNOWN[year]?.[r.key])date=KNOWN[year][r.key];
       else if(r.date){const d=r.date(year);date=d?iso(d):null;}
       const lg=r.legacy&&year<=r.legacy.until?r.legacy:null;
-      return {key:r.key,n:i+1,title:lg?.title||r.title,date,rain:r.rain?iso(r.rain(year)):null,time:r.time,end:r.end,location:r.location,details:lg?.details||r.details,source:r.tbd?'tbd':KNOWN[year]?.[r.key]?'printed':'predicted',when:lg?.when||r.when,tide:r.tide};
+      return {key:r.key,icon:r.icon,n:i+1,title:lg?.title||r.title,date,rain:r.rain?iso(r.rain(year)):null,time:r.time,end:r.end,location:r.location,details:lg?.details||r.details,source:r.tbd?'tbd':KNOWN[year]?.[r.key]?'printed':'predicted',when:lg?.when||r.when,tide:r.tide};
     });
     const derby=out.find(x=>x.key==='derby');
     if(derby){
@@ -126,7 +157,7 @@
     try{
       const C=window.HBACommunity;
       const [d,t]=await Promise.all([C.api('/api/community'),C.api('/api/summer/tides?year='+year).catch(e=>({error:e.message}))]);
-      events=d.events||[];window.HBASummer.series=d.series||[];tides[year]=t;status=t.error?('Tide predictions unavailable: '+t.error):'';
+      events=d.events||[];window.HBASummer.series=d.series||[];useStoredRules(d.settings);tides[year]=t;status=t.error?('Tide predictions unavailable: '+t.error):'';
     }catch(e){status=e.message;}
     busy=false;render();
   }
@@ -164,12 +195,12 @@
   };
   const ICON_FOR={welcome:'chairs',assoc:'sun',july4:'flag',derby:'fish',bingo1:'bingo',bingo2:'bingo',kickoff:'ball',music:'music',art:'palette',spook:'pumpkin',golf:'golf',supper:'pasta',annual:'anchor',movie:'popcorn'};
   const BANDS=['#E07A2F','#1D8A8A','#B23A48','#3C8D4F','#6B4FA3','#2E6DB4','#C9A227'];
-  const icon=(key,size=56)=>`<svg class="poster-icon" viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true">${ICON[ICON_FOR[key]||'star']}</svg>`;
+  const icon=(name,size=56)=>`<svg class="poster-icon" viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true">${ICON[name]||ICON[ICON_FOR[name]]||ICON.star}</svg>`;
   function posterHTML(rows,y){
     const predicted=rows.some(r=>['predicted','tide','planned'].includes(r.source));
     const tile=(r,i)=>{const c=BANDS[i%BANDS.length];const bits=[r.location||'',r.rain?`Rain date ${monthDay(r.rain)}`:''].filter(Boolean);
       return `<li class="poster-tile${r.date?'':' is-tbd'}" style="--band:${c}"><div class="poster-band"><span class="poster-num">${r.n??'·'}</span><h3>${esc(r.title)}${['predicted','tide','planned'].includes(r.source)?'<sup class="summer-flag">*</sup>':''}</h3></div>
-        <div class="poster-body">${icon(r.key)}<p class="poster-when"><strong>${r.date?esc(dayName(r.date)+', '+monthDay(r.date)):'Date to be announced'}</strong>${r.time?`<span>${esc(fmtRange(r.time,r.end))}</span>`:''}${bits.length?`<span>${esc(bits.join(' · '))}</span>`:''}</p>${r.details?`<p class="poster-details">${esc(r.details)}</p>`:''}</div></li>`;};
+        <div class="poster-body">${icon(r.icon||r.key)}<p class="poster-when"><strong>${r.date?esc(dayName(r.date)+', '+monthDay(r.date)):'Date to be announced'}</strong>${r.time?`<span>${esc(fmtRange(r.time,r.end))}</span>`:''}${bits.length?`<span>${esc(bits.join(' · '))}</span>`:''}</p>${r.details?`<p class="poster-details">${esc(r.details)}</p>`:''}</div></li>`;};
     return `<article class="summer-sheet summer-poster" aria-label="Summer events ${y}">
       <header class="poster-head"><p>${icon('annual',22)} Hamilton Beach Association ${icon('annual',22)}</p><h1>Summer Events <span>${y}</span></h1></header>
       <ol class="poster-grid">${rows.map(tile).join('')}</ol>
@@ -196,8 +227,119 @@
       <ul class="summer-roles">${KICKOFF_ROLES.map(r=>`<li><strong>${esc(r.role)}</strong><small>${esc(r.when)}</small><span>${esc(r.what)}</span></li>`).join('')}</ul>
       <p class="summer-small"><strong>Supplies to bring:</strong> ${esc(KICKOFF_SUPPLIES)}</p></section>`;
   }
+  // ---- Editing the usual pattern (administrator only; the database also refuses anyone else) ---------------
+  let editing=null;// working copy while the editor is open
+  const isAdmin=()=>window.HBACommunity?.member?.role==='admin';
+  const ICON_LABELS={chairs:'Chairs',sun:'Sun',flag:'Flag',fish:'Fish',bingo:'Bingo balls',ball:'Beach ball',music:'Music',palette:'Paint palette',pumpkin:'Pumpkin',golf:'Golf flag',pasta:'Pasta',anchor:'Anchor',popcorn:'Popcorn',star:'Star'};
+  const opt=(value,label,current)=>`<option value="${esc(value)}"${String(value)===String(current??'')?' selected':''}>${esc(label)}</option>`;
+  function previewText(r){
+    try{
+      const [c]=compile([r]),y=new Date().getFullYear()+(summerOver?1:0);
+      const d=c.date?.(y);
+      return `${c.when}${d?` · ${y}: ${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}`:''}`;
+    }catch{return 'Choose the date rule';}
+  }
+  function rowHTML(r,i,count){
+    const rule=r.rule||'nth';
+    const nthFields=rule==='nth'?`<label>Week<select data-f="ordinal">${Object.entries(ORDINALS).sort((a,b)=>(+a[0]<0)-(+b[0]<0)||a[0]-b[0]).map(([v,l])=>opt(v,l,r.ordinal)).join('')}</select></label>
+        <label>Day<select data-f="weekday">${WEEKDAYS.map((w,n)=>opt(n,w,r.weekday)).join('')}</select></label>
+        <label>Month<select data-f="month">${MONTHS.map((m,n)=>opt(n+1,m,r.month)).join('')}</select></label>`:'';
+    const fixedFields=rule==='fixed'?`<label>Month<select data-f="month">${MONTHS.map((m,n)=>opt(n+1,m,r.month)).join('')}</select></label>
+        <label>Day<input data-f="day" type="number" min="1" max="31" value="${esc(r.day??'')}" required></label>`:'';
+    const dated=rule==='nth'||rule==='fixed';
+    return `<li class="summer-edit-row" data-i="${i}"><fieldset><legend>${i+1}. ${esc(r.title||'New event')}</legend>
+      <label class="summer-edit-wide">Event name<input data-f="title" maxlength="120" value="${esc(r.title||'')}" required></label>
+      <div class="summer-edit-grid">
+        <label>Date rule<select data-f="rule" data-rerender>${opt('nth','A weekday of a month (e.g. third Saturday of July)',rule)}${opt('fixed','The same date every year (e.g. July 4)',rule)}${opt('tide','Fishing Derby: chosen by the tides',rule)}${opt('tbd','Date set each summer',rule)}</select></label>
+        ${nthFields}${fixedFields}
+        ${dated?`<label>Rain date, days later<input data-f="rain_offset_days" type="number" min="1" max="60" placeholder="None" value="${esc(r.rain_offset_days??'')}"></label>`:''}
+        <label>Starts<input data-f="time" type="time" value="${esc(r.time||'')}"></label>
+        <label>Ends (optional)<input data-f="end" type="time" value="${esc(r.end||'')}"></label>
+        <label>Picture<select data-f="icon">${Object.entries(ICON_LABELS).map(([v,l])=>opt(v,l,r.icon||'star')).join('')}</select></label>
+      </div>
+      <label class="summer-edit-wide">Location<input data-f="location" maxlength="200" value="${esc(r.location||'')}"></label>
+      <label class="summer-edit-wide">Details printed on the sheet<textarea data-f="details" rows="3" maxlength="2000">${esc(r.details||'')}</textarea></label>
+      <label class="summer-edit-wide">Note after the date (optional)<input data-f="when_note" maxlength="300" value="${esc(r.when_note||'')}" placeholder="e.g. same day as Art Day"></label>
+      ${r.legacy?`<p class="summer-small">Earlier name kept for past sheets: ${esc(r.legacy.title)} until ${esc(r.legacy.until)}.</p>`:''}
+      <p class="summer-edit-preview" aria-live="polite"><strong>Prints as:</strong> ${esc(previewText(r))}</p>
+      <div class="summer-edit-row-actions">
+        <button type="button" data-move="-1"${i===0?' disabled':''}>Move up</button>
+        <button type="button" data-move="1"${i===count-1?' disabled':''}>Move down</button>
+        <button type="button" data-remove>Remove</button>
+      </div></fieldset></li>`;
+  }
+  function editorHTML(){
+    return `<form id="summer-editor" class="summer-editor" novalidate>
+      <h3>Edit the usual summer events</h3>
+      <p class="summer-small">This pattern predicts each summer’s dates and fills the printed sheet. Dates recorded in the Calendar always take priority. Everyone sees your changes once you save.</p>
+      <ol class="summer-edit-list">${editing.map((r,i)=>rowHTML(r,i,editing.length)).join('')}</ol>
+      <p><button type="button" id="summer-edit-add">Add an event</button></p>
+      <p id="summer-edit-status" class="summer-status" role="status"></p>
+      <div class="summer-edit-actions">
+        <button type="submit" id="summer-edit-save">Save for everyone</button>
+        <button type="button" id="summer-edit-cancel">Cancel</button>
+        <button type="button" id="summer-edit-reset">Restore the standard 14 events</button>
+      </div></form>`;
+  }
+  // Copy what is typed in the editor back into the working list.
+  function readEditor(){
+    const form=dialog.querySelector('#summer-editor');if(!form)return;
+    form.querySelectorAll('.summer-edit-row').forEach(li=>{
+      const r=editing[Number(li.dataset.i)];
+      li.querySelectorAll('[data-f]').forEach(el=>{
+        const f=el.dataset.f,v=el.value.trim();
+        if(['month','weekday','ordinal','day','rain_offset_days'].includes(f))r[f]=v===''?undefined:Number(v);
+        else r[f]=v;
+      });
+    });
+  }
+  function cleanRule(r){
+    const out={key:r.key,title:r.title,rule:r.rule,icon:r.icon||'star',location:r.location||'',details:r.details||''};
+    if(r.rule==='nth')Object.assign(out,{month:r.month??6,weekday:r.weekday??6,ordinal:r.ordinal||1});
+    if(r.rule==='fixed')Object.assign(out,{month:r.month??7,day:r.day});
+    if((r.rule==='nth'||r.rule==='fixed')&&r.rain_offset_days)out.rain_offset_days=r.rain_offset_days;
+    if(r.time)out.time=r.time;if(r.time&&r.end)out.end=r.end;
+    if(r.when_note)out.when_note=r.when_note;
+    if(r.legacy)out.legacy=r.legacy;
+    return out;
+  }
+  function renderEditor(message){
+    readEditor();
+    const host=dialog.querySelector('#summer-sheet-host');
+    host.innerHTML=editorHTML();dialog.querySelector('#summer-notes').innerHTML='';
+    dialog.querySelector('#summer-board-actions').innerHTML='';
+    const form=host.querySelector('#summer-editor'),say=t=>{form.querySelector('#summer-edit-status').textContent=t||'';};
+    say(message);
+    form.querySelectorAll('[data-rerender]').forEach(el=>el.onchange=()=>renderEditor());
+    form.addEventListener('input',e=>{const li=e.target.closest('.summer-edit-row');if(!li)return;readEditor();
+      const r=editing[Number(li.dataset.i)];li.querySelector('.summer-edit-preview').innerHTML=`<strong>Prints as:</strong> ${esc(previewText(cleanRule(r)))}`;
+      if(e.target.dataset.f==='title')li.querySelector('legend').textContent=`${Number(li.dataset.i)+1}. ${r.title||'New event'}`;});
+    form.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>{readEditor();const i=Number(b.closest('.summer-edit-row').dataset.i),j=i+Number(b.dataset.move);
+      [editing[i],editing[j]]=[editing[j],editing[i]];renderEditor();dialog.querySelector(`.summer-edit-row[data-i="${j}"] [data-move]`)?.focus();});
+    form.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{readEditor();const i=Number(b.closest('.summer-edit-row').dataset.i);
+      if(!confirm(`Remove “${editing[i].title||'this event'}” from the usual summer events? Dates already in the Calendar stay there.`))return;
+      editing.splice(i,1);renderEditor('Removed. Save to apply it for everyone.');});
+    form.querySelector('#summer-edit-add').onclick=()=>{readEditor();
+      editing.push({key:'e-'+Date.now().toString(36),title:'',rule:'nth',month:7,weekday:6,ordinal:1,icon:'star',location:'',details:''});
+      renderEditor();const last=dialog.querySelector('.summer-edit-row:last-child [data-f="title"]');last?.focus();last?.scrollIntoView({block:'center'});};
+    form.querySelector('#summer-edit-cancel').onclick=()=>{editing=null;render();};
+    form.querySelector('#summer-edit-reset').onclick=()=>{editing=JSON.parse(JSON.stringify(DEFAULT_RULES));renderEditor('The standard 14 events are back in the editor. Save to apply them for everyone.');};
+    form.onsubmit=async e=>{
+      e.preventDefault();readEditor();
+      const missing=editing.findIndex(r=>!r.title||(r.rule==='fixed'&&!r.day));
+      if(missing>=0){say(`Event ${missing+1}: give it a name${editing[missing].rule==='fixed'?' and a day':''}.`);dialog.querySelector(`.summer-edit-row[data-i="${missing}"] [data-f="title"]`)?.focus();return;}
+      const save=form.querySelector('#summer-edit-save');save.disabled=true;say('Saving…');
+      try{
+        const res=await window.HBACommunity.api('/api/content/summer-events',{method:'PUT',body:JSON.stringify({events:editing.map(cleanRule)})});
+        storedRules=res.events;RULES=compile(storedRules);editing=null;status='Usual summer events saved. Everyone now sees the new pattern.';
+        document.dispatchEvent(new CustomEvent('hba-data-change'));render();
+      }catch(err){say(err.message);save.disabled=false;}
+    };
+  }
+  function openEditor(){editing=JSON.parse(JSON.stringify(storedRules||DEFAULT_RULES));renderEditor();dialog.querySelector('#summer-editor [data-f="title"]')?.focus();}
   function render(){
     if(!dialog?.open)return;
+    if(editing){renderEditor();return;}
     const rows=schedule(year,events,tides[year]);
     dialog.querySelector('#summer-status').textContent=status;
     dialog.querySelector('#summer-sheet-host').innerHTML=sheetHTML(rows,year);
@@ -227,7 +369,9 @@
       root.querySelector('#summer-poll')?.addEventListener('click',()=>E.openPoll());
       E.bindSignups(root,()=>E.refreshSignupNodes(root,board));E.loadSignups().then(()=>{if(dialog.open)E.refreshSignupNodes(root,board);});}
     const act=dialog.querySelector('#summer-board-actions');
-    act.innerHTML=board&&predicted.length?`<button type="button" id="summer-record"${busy?' disabled':''}>Record ${predicted.length} predicted date${predicted.length===1?'':'s'} in the calendar</button>`:'';
+    act.innerHTML=(board&&predicted.length?`<button type="button" id="summer-record"${busy?' disabled':''}>Record ${predicted.length} predicted date${predicted.length===1?'':'s'} in the calendar</button>`:'')
+      +(isAdmin()?'<button type="button" id="summer-edit">Edit usual events</button>':'');
+    act.querySelector('#summer-edit')?.addEventListener('click',openEditor);
     act.querySelector('#summer-record')?.addEventListener('click',()=>recordAll(predicted));
   }
   async function recordAll(predicted){
@@ -252,6 +396,6 @@
   }
   function open(y){ensure();focusBefore=document.activeElement;if(y){year=Number(y);dialog.querySelector('#summer-year').value=year;}if(!dialog.open)dialog.showModal();load();}
   document.addEventListener('hba-data-change',()=>{if(dialog?.open)load();});
-  window.HBASummer={open,schedule,RULES,derbyCandidates,pickDerby,series:[],KICKOFF_ROLES};
+  window.HBASummer={open,schedule,get RULES(){return RULES;},DEFAULT_RULES,whenText,derbyCandidates,pickDerby,series:[],KICKOFF_ROLES};
   window.openHBASummer=open;
 })();

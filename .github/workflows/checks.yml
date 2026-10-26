@@ -20,6 +20,8 @@ jobs:
         run: python -m py_compile server/*.py
       - name: Event-date rules
         run: node tools/tests/test-event-dates.cjs
+      - name: Summer events pattern
+        run: node tools/tests/test-summer-rules.cjs
       - name: Bank reconciliation math
         run: |
           pip install -q -r server/requirements.txt

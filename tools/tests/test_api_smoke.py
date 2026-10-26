@@ -336,3 +336,58 @@ def test_production_refuses_to_invent_secrets(fake, tmp_path, monkeypatch):
     with pytest.raises(SystemExit, match="HBA_SESSION_KEY is not set"):
         fresh_app(tmp_path, fake, secrets=False)
     assert not (tmp_path / "data").exists()
+
+
+# ---- Admin-editable content: the usual summer events pattern.
+
+SUMMER = {"events": [
+    {"key": "welcome", "title": "Adult  Welcome Back Party", "rule": "nth", "month": 6, "weekday": 6, "ordinal": 3,
+     "time": "17:30", "location": "36 Algelo Ave.", "details": "Bring a chair.", "icon": "chairs"},
+    {"key": "july4", "title": "July 4th", "rule": "fixed", "month": 7, "day": 4, "icon": "flag"},
+    {"key": "derby", "title": "Kids' Fishing Derby", "rule": "tide", "time": "10:00", "end": "12:00", "icon": "fish"},
+    {"key": "supper", "title": "Spaghetti Supper", "rule": "nth", "month": 8, "weekday": 6, "ordinal": 3,
+     "rain_offset_days": 7, "icon": "pasta"},
+    {"key": "movie", "title": "Movie Night", "rule": "tbd", "icon": "popcorn"},
+]}
+
+
+def test_admin_saves_summer_events(web, fake):
+    import json
+    fake.add_user("admin@example.org", "admin")
+    s = sign_in(web, "admin@example.org")
+    r = web.put("/api/content/summer-events", json=SUMMER, headers=proof(s))
+    assert r.status_code == 200, r.text
+    saved = [body for _, table, body in fake.writes if table.startswith("hba_settings")][-1]
+    assert saved["key"] == "public_summer_rules"
+    events = json.loads(saved["value"])
+    assert [e["key"] for e in events] == ["welcome", "july4", "derby", "supper", "movie"]
+    assert events[0]["title"] == "Adult Welcome Back Party"   # whitespace tidied
+    assert "month" not in events[2]                            # unset fields are not stored
+
+
+def test_board_cannot_edit_summer_events(web, fake):
+    fake.add_user("board@example.org", "board")
+    s = sign_in(web, "board@example.org")
+    assert web.put("/api/content/summer-events", json=SUMMER, headers=proof(s)).status_code == 403
+
+
+@pytest.mark.parametrize("bad, message", [
+    ({"key": "x", "title": "No month", "rule": "nth", "weekday": 6, "ordinal": 3}, "choose the week, the day and the month"),
+    ({"key": "x", "title": "No day", "rule": "fixed", "month": 7}, "choose the month and the day"),
+    ({"key": "x", "title": "End only", "rule": "tbd", "end": "12:00"}, "an end time needs a start time"),
+    ({"key": "x", "title": "Bad time", "rule": "tbd", "time": "25:00"}, "time"),
+])
+def test_summer_event_validation_is_readable(web, fake, bad, message):
+    fake.add_user("admin@example.org", "admin")
+    s = sign_in(web, "admin@example.org")
+    r = web.put("/api/content/summer-events", json={"events": [bad]}, headers=proof(s))
+    assert r.status_code == 400 and message in r.json()["detail"], r.text
+    assert isinstance(r.json()["detail"], str)
+
+
+def test_summer_event_keys_must_be_unique(web, fake):
+    fake.add_user("admin@example.org", "admin")
+    s = sign_in(web, "admin@example.org")
+    twice = {"events": [SUMMER["events"][1], SUMMER["events"][1]]}
+    r = web.put("/api/content/summer-events", json=twice, headers=proof(s))
+    assert r.status_code == 400 and "same key" in r.json()["detail"]

@@ -874,7 +874,7 @@ create table public.hba_settings (
   updated_at timestamptz not null default now(),
   constraint hba_settings_pkey PRIMARY KEY (key),
   constraint hba_settings_key_check CHECK ((key ~ '^[a-z_]{3,60}$'::text)),
-  constraint hba_settings_value_check CHECK ((length(value) <= 2000))
+  constraint hba_settings_value_check CHECK ((length(value) <= 100000))
 );
 create table public.hba_sms_consent_log (
   id uuid not null default gen_random_uuid(),
