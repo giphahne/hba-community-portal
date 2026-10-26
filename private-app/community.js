@@ -67,6 +67,11 @@
     if(!isMember()){$('#community-content').innerHTML=blank(session.member.role==='pending'?'Your account is awaiting approval':'Member access is unavailable','A board member must approve resident access. The administrator controls board permissions. You can refresh here after approval.');return;}
     if(!data){$('#community-content').innerHTML=blank('Archive not loaded','Use Refresh to retry.');return;}
     if(boardOnly.has(view)&&!isBoard())view='overview';
+    // The archive's sections (minutes, votes, finance, …) load the first time the dialog shows one (lazy.js).
+    if(window.HBALazy&&!window.HBALazy.ready('community-tools')){
+      if(dlg.open){$('#community-content').innerHTML=blank('Opening the archive…','One moment while this section loads.');window.HBALazy.need('community-tools').then(()=>{if(dlg.open)render();},()=>{$('#community-content').innerHTML=blank('This section could not load','Check your connection, then use Refresh to try again.');});}
+      return;
+    }
     const availableTabs=tabs.filter(([v])=>!boardOnly.has(v)||isBoard());
     const tabLabel=(v,label)=>v==='issues'&&isBoard()?'Neighborhood issues':v==='bank'&&!isBoard()?'Financial updates':label;
     // With the dashboard as the base layer the tab strip is hidden, so the header names the open section.
@@ -715,6 +720,8 @@
   async function openCommunity(target='overview',uid=''){
     lastFocus=document.activeElement;view=target;if(uid){if(target==='work')workId=uid;else homeUid=uid;}
     if(!dlg.open)dlg.showModal();await refresh();
+    // Resolve once the section has drawn: render() waits for the archive's sections to load the first time.
+    if(isMember()&&data&&window.HBALazy)await window.HBALazy.need('community-tools').catch(()=>{});
   }
   $('#community-close').onclick=()=>dlg.close();dlg.addEventListener('close',()=>lastFocus?.focus?.({preventScroll:true}));
   $('#community-refresh').onclick=refresh;

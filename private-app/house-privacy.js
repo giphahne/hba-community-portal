@@ -73,7 +73,8 @@
   // The "Browse all property reports" button in the map panel is for the administrator.
   function browseButton(){const b=document.getElementById('home-browse-reports');if(b)b.hidden=!isAdmin();}
   document.addEventListener('hba-account-change',async()=>{await refresh();browseButton();});
-  window.HBAHousePrivacy={isAdmin,allowed:i=>allowed(i),own:()=>[...own],ownIndexes,refresh};
+  // popupAllowed: whether a parcel popup keeps its full content (the same test as the popupopen handler above).
+  window.HBAHousePrivacy={isAdmin,allowed:i=>allowed(i),own:()=>[...own],ownIndexes,refresh,async popupAllowed(i){await index();if(!role)await refresh();return allowed(i);}};
   wrap();hookMap();index();refresh().then(browseButton);
   setTimeout(()=>{wrap();hookMap();},0);
   const panel=document.getElementById('panel');

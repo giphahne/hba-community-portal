@@ -15,6 +15,11 @@ Thank you for helping the Hamilton Beach Association portal. A few ground rules 
    `cd server && ./run.sh`. One address serves the sign-in page (/), the member app (/app/) and the API (/api/).
 3. Before pushing: `python -m pytest tools/tests` (no database needed). Backend code lives in `server/hba/`;
    add routes to the matching module in `server/hba/routers/`.
+4. Member-app tools load the first time they are opened. A new tool's scripts and stylesheets go in a bundle in
+   `private-app/lazy.js` (with the `window.open…` functions it defines), and its stylesheet's place in
+   `private-app/index.html` is a `<template data-lazy-css="…">` line. Only code the dashboard or map needs at
+   start-up gets a `<script>` tag. After regenerating `title-trace.js` or `road-wording.js`, run
+   `python tools/split-map-data.py` to refresh the start-up summary the map uses.
 
 ## Database changes
 - Add a new file `supabase/migrations/NNN-short-name.sql` (create the folder on first use) rather than editing `schema.sql`.

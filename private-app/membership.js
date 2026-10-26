@@ -18,7 +18,7 @@
       t.layer.eachLayer(child=>{child.__hbaMembershipIndex=Number(index);});
       if(!visible(index)){if(map.hasLayer(t.layer))map.removeLayer(t.layer);}
       else{
-        const cls=TITLE_TRACE[index]?.approved_classification||DEED_AUDIT[index]?.cls;
+        const cls=window.HBA_MAP_SUMMARY.trace[index]?.approved_classification||DEED_AUDIT[index]?.cls;
         const legend=document.querySelector(`[data-layer="${cls}"]`);
         if(legend&&!legend.classList.contains('off')&&!map.hasLayer(t.layer))t.layer.addTo(map);
       }
