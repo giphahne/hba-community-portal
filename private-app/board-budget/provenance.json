@@ -1,0 +1,13 @@
+{
+  "feature": "HBA Budget Simulator",
+  "source_asset": "2f30d806-098d-4979-bbfc-b252c5c22dd1",
+  "source_title": "HBA Road Fund Board Dashboard",
+  "model": "Scheduled capital cash flow, 2027–2041",
+  "extraction": "Capital model and screen extracted from existing source; formula parity checked across 144 input combinations.",
+  "default": "Balanced: 625 starting dues, 105 paying households, 20 percent paving gifts, 3 percent annual escalation, Worrall overlay with drainage.",
+  "removed": "Budget conversation transcript, planning brief, superseded street-savings screens, sample payment roster.",
+  "dues": "Shared Supabase board-only manual registry; residents cannot read household payment statuses. The mapped property roster is not a verified HBA membership list.",
+  "one_time_contribution": "Optional proposed payment, default off; preset or custom amount, collection year and participating households. Added once, without escalation, separately from dues and paving gifts. Does not bill or alter household statuses.",
+  "beach_cleaning": "No contract price is embedded in this public model. Cleaning is excluded from public scenarios. Authenticated board accounts can load a private unsigned-sample allowance from the protected backend; exports from those scenarios are confidential. No automatic renewal; check operating-budget overlap.",
+  "scenario_files": "Version 3 saves both new allowances. Older v1/v2 files without cleaning fields load with cleaning off to preserve their saved assumptions."
+}

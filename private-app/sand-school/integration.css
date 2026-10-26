@@ -1,0 +1,7 @@
+.learning-context{display:flex;align-items:center;gap:20px;padding:12px max(18px,calc((100vw - 1180px)/2));background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}
+.learning-context p{margin:0;font:13px/1.5 "General Sans",sans-serif;max-width:90ch}
+.learning-context button{min-height:44px;flex:none;max-width:100%;font:600 13px/1.4 "General Sans",sans-serif;cursor:pointer;padding:10px 12px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:5px}
+.learning-context :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+section[id]{scroll-margin-top:84px}
+.simulation-load-error{padding:14px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:var(--surface);font-size:14px}
+@media(max-width:640px){.learning-context{display:none}.top nav{scrollbar-width:thin}}

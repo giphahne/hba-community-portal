@@ -1,0 +1,38 @@
+#bb-simulator{flex:1;min-height:0;display:flex;flex-direction:column}
+.dues-intro h3{margin-top:0}.dues-intro p{color:var(--muted);font-size:14px}
+.dues-filters{display:grid;grid-template-columns:110px minmax(220px,1fr) 190px 160px;gap:12px;margin:18px 0}
+.dues-filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.dues-filters input,.dues-filters select{width:100%;font-size:14px!important}
+.dues-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.dues-file{display:inline-flex;align-items:center;cursor:pointer;border:1px solid var(--panel-border);border-radius:5px;padding:9px 12px;min-height:44px}
+.dues-toggle{font-size:14px;display:flex;align-items:center;gap:8px;margin-left:auto}
+#board-budget-dialog .dues-toggle input{min-height:0;padding:0}
+.dues-storage,#dues-save-status,#dues-count{font-size:12px;color:var(--muted)}
+#dues-save-status.dues-error{color:var(--text);border-left:3px solid #c45b62;padding-left:12px}
+.dues-key{display:flex;align-items:center;gap:8px;font-size:12px;margin:12px 0}
+.dues-dot{width:24px;height:24px;border-radius:50%;display:inline-flex;justify-content:center;align-items:center;border:2px solid white;box-shadow:0 0 0 1px #13315C55;font:700 13px/1 Satoshi,sans-serif;flex:none;color:white}
+.dues-dot.paid{background:#1f7059}.dues-dot.unpaid{background:#ad3041}.dues-dot.unknown{background:#536474}
+.dues-marker{background:none;border:0}.dues-marker .dues-dot{box-shadow:0 1px 5px #0008}
+.dues-map-key{background:var(--panel);border:1px solid var(--panel-border);color:var(--text);padding:10px 12px;border-radius:8px;font:12px/1.5 Satoshi,sans-serif;box-shadow:0 3px 12px #0005}
+.dues-map-key strong,.dues-map-key small{display:block}.dues-map-key small{color:var(--muted);font-size:12px}.dues-map-key>div{display:flex;gap:6px;align-items:center;margin:6px 0}
+.dues-map-key[hidden]{display:none}
+.dues-table-wrap{overflow:auto;border-block:1px solid var(--panel-border);margin-top:12px}
+.dues-table{width:100%;border-collapse:collapse;font-size:14px}
+.dues-table th{text-align:left;font-size:12px;color:var(--muted)}
+.dues-table td,.dues-table th{vertical-align:top;padding:14px 12px;border-bottom:1px solid var(--panel-border)}
+.dues-table td:first-child{min-width:180px}.dues-table td:nth-child(2){min-width:260px;max-width:480px}
+.dues-table td small{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.dues-unverified{font-weight:700}
+.dues-status-cell{display:flex;align-items:center;gap:8px}
+.dues-status-cell select{min-width:125px;font-size:14px!important}
+.dues-row-actions{display:flex;gap:6px}
+.dues-scope{margin-top:24px;color:var(--muted);font-size:14px}
+.dues-scope summary{cursor:pointer;min-height:44px;color:var(--text);font-weight:700}
+#dues-import-review{padding:16px;border:1px solid var(--panel-border);margin:12px 0}
+.dues-popup strong,.home-summary strong{font-size:15px}.dues-popup small,.home-summary small{font-size:12px}
+.dues-popup button,.home-summary button{margin:4px 4px 0 0;min-height:40px;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);border-radius:4px;padding:6px}
+.dues-popup label{display:flex;flex-direction:column;gap:4px}.dues-popup select{font:14px Satoshi,sans-serif;min-height:44px}
+.home-summary summary{min-height:44px;padding:12px 0;cursor:pointer}
+@media(max-width:850px){.dues-filters{grid-template-columns:110px 1fr}.dues-table{display:block}.dues-table thead{display:none}.dues-table tbody{display:block}.dues-table tr{display:grid;grid-template-columns:1fr 1fr;padding:12px 0;border-bottom:1px solid var(--panel-border);gap:12px}.dues-table td{border:0;padding:0;min-width:0!important;max-width:none!important}.dues-table td:nth-child(2){grid-column:1/-1;grid-row:2}.dues-table td:nth-child(3){grid-column:1;grid-row:3}.dues-table td:nth-child(4){grid-column:2;grid-row:3}.dues-row-actions{justify-content:end}.dues-toggle{margin-left:0;width:100%}}
+@media(max-width:480px){.dues-filters{grid-template-columns:90px minmax(0,1fr)}.dues-toolbar button,.dues-file{font-size:12px!important}.dues-key{gap:6px}.dues-map-key{max-width:260px}.dues-map-key small{max-width:230px}.dues-intro h3{font-size:20px}.dues-table td:first-child{grid-column:1/-1}}
+@media(max-height:650px){#bb-simulator{height:650px;flex:none}}

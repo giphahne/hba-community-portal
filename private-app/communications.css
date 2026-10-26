@@ -1,0 +1,48 @@
+.communications-check{display:flex!important;align-items:flex-start;gap:var(--space-3,12px);font-weight:400!important;line-height:1.55}
+.communications-check input{flex:0 0 20px!important;width:20px!important;min-height:20px!important;margin-top:3px}
+.communications-topics{padding-left:var(--space-5,20px);line-height:1.8}
+.communications-sms-preview{white-space:pre-wrap;border-left:3px solid var(--color-primary,#01696f);padding:var(--space-4,16px);overflow-wrap:anywhere}
+.news-reader{max-width:78ch}
+.news-reader>p{line-height:1.7}
+#community-editor fieldset{border:1px solid var(--line);border-radius:8px;padding:var(--space-4,16px)}
+#community-content [disabled]{cursor:not-allowed;opacity:.65}
+.volunteer-task-photo{display:block;max-width:100%;width:520px;max-height:360px;object-fit:contain;object-position:left center;margin:var(--space-4,16px) 0}
+#volunteer-public{padding:0;width:min(1080px,96vw);max-width:96vw;height:min(900px,94dvh);max-height:94dvh;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text)}
+#volunteer-public::backdrop{background:#0009}
+#volunteer-public .community-shell{height:100%;display:flex;flex-direction:column}
+#volunteer-public .community-content{min-height:0;overflow-y:auto}
+.membership-controls{padding:var(--space-4,16px) 0;border-top:1px solid var(--panel-border);font-size:13px}
+.membership-controls h2{font:700 16px Satoshi,sans-serif;margin:0 0 12px}
+.membership-controls>label{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;line-height:1.5}
+.membership-controls input{margin-top:3px;accent-color:var(--accent)}
+.membership-controls p,.membership-controls details{line-height:1.6}
+.membership-controls summary{cursor:pointer;min-height:36px}
+.history-simple-summary{max-width:72ch}
+.history-simple-summary dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;margin:20px 0}
+.history-simple-summary dt{font-weight:700}
+.history-simple-summary dd{margin:0;overflow-wrap:anywhere}
+.history-transaction-nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:16px 0}
+#history-membership-outside{width:auto!important;min-height:0!important}
+.finance-table-wrap{overflow-x:auto;margin:var(--space-4,16px) 0}
+.finance-table{border-collapse:collapse;width:100%;font-size:14px;text-align:left}
+.finance-table th,.finance-table td{padding:12px;border-bottom:1px solid var(--panel-border);vertical-align:top;min-width:110px}
+.finance-table small{display:block;font-weight:400;line-height:1.5}
+.finance-audit{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}
+#volunteer-public{background:var(--ink);color:var(--text);font:16px/1.55 Satoshi,sans-serif;border-color:var(--panel-border)}
+[data-theme="light"] #volunteer-public{background:#F4F1E8}
+#volunteer-public button{font:500 14px/1.4 Satoshi,sans-serif;min-height:44px;border:1px solid var(--panel-border);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:5px;cursor:pointer}
+.research-source{margin:16px 0;border-top:1px solid var(--panel-border);padding-top:12px}
+.research-source summary{min-height:44px;cursor:pointer;font-weight:700}
+#research-form{display:grid;gap:16px}
+#research-form textarea{box-sizing:border-box;width:100%;font:16px/1.55 Satoshi,sans-serif;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);padding:12px}
+.research-citation{display:inline-flex!important;min-height:28px!important;padding:2px 7px!important;font-size:12px!important}
+.assessor-card{border:1px solid var(--panel-border);border-radius:10px;padding:20px;margin:0 0 24px;background:var(--panel);color:var(--text)}
+.assessor-card h4{margin:0 0 14px}.assessor-card figure{margin:0 0 16px}.assessor-card img{display:block;width:100%;max-height:330px;object-fit:contain;background:#e9e6df;border-radius:6px}
+.assessor-card figcaption,.assessor-note{font-size:12px;line-height:1.5;color:var(--muted,#666)}
+.assessor-card dl{display:grid;grid-template-columns:minmax(100px,1fr) 2fr;gap:8px 16px}.assessor-card dt{font-weight:600}.assessor-card dd{margin:0;overflow-wrap:anywhere}.assessor-card details{margin:16px 0}.assessor-card summary{cursor:pointer;font-weight:600}
+.assessor-table{overflow-x:auto;max-width:100%;margin:12px 0}.assessor-table table{width:100%;border-collapse:collapse;font-size:13px}.assessor-table th,.assessor-table td{text-align:left;padding:8px;border-bottom:1px solid #b5b1a7;white-space:normal;min-width:80px}
+@media(max-width:640px){.assessor-card{padding:14px}.assessor-card dl{grid-template-columns:1fr}.assessor-card dd{margin-bottom:7px}}
+@media(max-width:640px){#community-tabs{max-height:145px;overflow-y:auto;flex-shrink:0}#community-dialog .community-account{font-size:12px}#community-dialog .community-head{padding:12px 14px}}
+.communications-suggest h4{margin:8px 0 6px;font-size:1.1rem}
+.communications-suggest .communications-sms-preview{margin:0 0 8px}
+.communications-drafts-head{margin:28px 0 8px;font-size:1.15rem}

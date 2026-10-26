@@ -1,0 +1,49 @@
+/* Resident-first reading and navigation. Technical evidence stays expandable. */
+[data-theme="light"]{--accent:#865600}
+.panel .src{color:var(--muted)}.panel .src a{color:var(--text);text-decoration:underline}
+.leaflet-control-attribution a{color:#065979}
+.history-list button[aria-current=true] small,.history-instruments button[aria-pressed=true] small{color:var(--text)}
+.calendar-label-short,.calendar-mobile-key{display:none}
+@media(max-width:640px){
+  #community-dialog .community-day{padding:7px 3px;min-height:88px}
+  #community-dialog .community-day .calendar-label-full{display:none}
+  #community-dialog .community-day .calendar-label-short{display:block;font-size:12px;overflow-wrap:normal}
+  .calendar-mobile-key{display:block;font-size:15px;line-height:1.6}
+  .community-quick-nav button{min-width:0;overflow-wrap:anywhere}
+}
+.community-notice,#community-editor .community-notice{color:var(--text)}
+#community-editor .community-form p{font-size:16px;line-height:1.6}
+#community-editor .communications-check{flex-direction:row!important;min-height:48px;align-items:flex-start}
+#community-editor .communications-check input{height:24px!important;min-height:24px!important;flex-basis:24px!important;width:24px!important}
+[data-theme="dark"] .community-error{color:#F2A5AE!important}
+.home-welcome{font:400 16px/1.55 Satoshi,sans-serif;max-width:36ch}
+#home-reading-size{font:500 15px Satoshi,sans-serif;min-height:48px;padding:10px 14px;border-radius:5px;border:1px solid var(--panel-border);background:var(--panel);color:var(--text);cursor:pointer}
+.home-main .home-search-label{font-size:16px;margin-top:16px}
+.home-main #search{font-size:17px;min-height:50px}
+.home-main>.home-nav button{font-size:17px;line-height:1.4;min-height:92px;padding:14px}
+.home-main>.home-nav button span{display:block;font-size:14px;line-height:1.5}
+.home-group .home-nav button{font-size:16px;min-height:68px}.home-group .home-nav button span{display:block;font-size:13px}
+.home-archive>summary{font-size:16px;min-height:52px;line-height:1.5}
+.home-short-note{font-size:14px;line-height:1.6}.panel .sub{font-size:14px;line-height:1.5}
+.panel>.collapse-btn{width:85px;height:44px;top:7px;right:7px;font:500 14px Satoshi,sans-serif}.panel h1{padding-right:70px}
+.panel .home-inner-details>summary{font-size:16px}
+#community-tabs{display:flex;flex-wrap:nowrap;align-items:end;gap:16px;overflow:visible;max-height:none;padding:10px 24px}
+.community-section-chooser{display:grid;gap:5px;font-size:14px;flex:1;min-width:180px;max-width:420px}
+.community-section-chooser select{font:16px/1.4 Satoshi,sans-serif;min-height:48px;width:100%;padding:10px;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);border-radius:5px}
+.community-quick-nav{display:flex;flex-wrap:wrap;gap:6px}
+#community-dialog .community-card p,#community-dialog .community-story p,#community-dialog .community-notice,#community-dialog .community-empty p{font-size:16px;line-height:1.65}
+#community-dialog button,#community-editor button,#community-viewer button{font-size:16px;min-height:48px}
+#community-editor label,.community-form>label{font-size:16px}
+#community-content>section>label,#finance-content>label{font-size:16px}
+#bank-workspace>.community-fields{display:flex;flex-wrap:wrap;gap:16px;margin:18px 0}
+#bank-workspace .community-fields label{display:grid;gap:8px;flex:1;min-width:200px}
+#bank-workspace input,#bank-workspace select{font:16px Satoshi,sans-serif;min-height:48px;padding:10px;color:var(--text);background:var(--panel);border:1px solid var(--panel-border);border-radius:5px;width:100%}
+#history-dialog{font-size:16px;line-height:1.65}.history-simple-summary h4{font-size:21px}.history-simple-summary p,.assessor-card p,.assessor-card dl{font-size:16px;line-height:1.6}
+#history-dialog button{min-height:48px;font-size:16px}.history-story-list p{max-width:70ch}
+.history-nav label{font-size:16px}.history-nav small,.assessor-card figcaption,.assessor-note{font-size:14px}
+.hba-large-text #panel p,.hba-large-text .home-nav button,.hba-large-text .home-nav button span,.hba-large-text .home-archive>summary{font-size:18px;line-height:1.65}
+.hba-large-text #community-dialog .community-content p,.hba-large-text #community-dialog button,.hba-large-text #community-editor label,.hba-large-text #history-dialog p,.hba-large-text #history-dialog dd,.hba-large-text #history-dialog dt{font-size:19px}
+:is(#panel,#community-dialog,#community-editor,#history-dialog,#town-history-dialog) :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:700px){#community-tabs{display:grid;grid-template-columns:1fr;padding:10px 14px;gap:8px}.community-section-chooser{max-width:none}.community-quick-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.community-quick-nav button{padding:8px 3px!important;font-size:14px!important}.community-head h2{font-size:25px}#community-dialog .community-account{font-size:12px;padding:8px 14px}#community-status{padding:8px 14px}.home-main>.home-nav button{font-size:16px;min-height:96px;padding:12px}.home-main>.home-nav button span{font-size:13px;display:block}.home-group .home-nav{grid-template-columns:1fr}.home-group .home-nav button{min-height:60px}#home-reading-size{width:100%}.panel .sub{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:640px){#panel.panel:not(.collapsed){max-height:90dvh}.panel h1{font-size:21px;padding-right:72px}.panel.collapsed h1{font-size:18px}.home-welcome{margin:12px 0}.panel .sub{max-width:30ch}}

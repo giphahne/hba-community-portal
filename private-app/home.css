@@ -1,0 +1,25 @@
+.home-main{margin-top:16px}
+.home-search-label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
+#home-search-slot .search-box{font-size:14px;margin:0 0 8px;min-height:44px}
+.home-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.home-nav button{display:block;min-height:74px;border:1px solid var(--panel-border);background:var(--panel);color:var(--text);border-radius:6px;text-align:left;padding:12px;font:700 14px/1.3 Satoshi,sans-serif;cursor:pointer}
+.home-nav button span{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:5px;line-height:1.4}
+.home-nav button:hover{border-color:var(--accent)}
+.home-nav button:focus-visible,.home-archive button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.home-nav button[hidden],.home-dues-switch[hidden]{display:none!important}
+.home-dues-switch{font-size:13px;display:flex;gap:8px;align-items:center;min-height:44px;color:var(--text)}
+.home-short-note{font-size:12px;line-height:1.5;color:var(--muted);margin:8px 0 16px}
+.home-archive{border-top:1px solid var(--panel-border);margin-top:10px;padding-top:4px;color:var(--text)}
+.home-archive>summary{cursor:pointer;min-height:48px;display:list-item;padding:12px 0;font:700 14px/1.5 Satoshi,sans-serif}
+.home-archive>p{font-size:13px;color:var(--muted);line-height:1.5}
+.home-archive-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.home-archive-actions button{min-height:44px;border:1px solid var(--panel-border);background:transparent;color:var(--text);border-radius:5px;padding:8px 10px;font:14px Satoshi,sans-serif;cursor:pointer}
+.home-inner-details{border-top:1px solid var(--panel-border);margin-top:10px}
+.home-inner-details>summary{cursor:pointer;font-size:14px;padding:12px 0;min-height:44px}
+.home-legacy[hidden]{display:none!important}
+.panel>.logo{display:none}
+.panel>.theme-btn{margin:10px 0 0;min-height:36px}
+.panel h1{font-size:26px}
+#history-dues-back{min-height:44px}
+@media(max-width:640px){.home-nav button{min-height:68px;padding:10px}.home-main{margin-top:12px}.home-nav{margin-top:8px}.panel h1{font-size:22px}.home-nav button span{font-size:12px}.dues-map-key{margin-bottom:8px!important}}
+@media(max-width:640px){#panel.panel{max-height:60dvh}.home-nav button{min-height:44px;padding:8px;font-size:13px}.home-nav button span{display:none}.home-nav{gap:6px}.home-short-note{margin-top:12px}}

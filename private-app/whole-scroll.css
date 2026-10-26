@@ -1,0 +1,39 @@
+/* Tool dialogs scroll as one page: the heading moves up with the text instead of staying pinned and
+   taking room. Loaded after every other stylesheet. A floating "Dashboard" button (whole-scroll.js)
+   appears once the heading has scrolled out of view. */
+#community-dialog,#team-dialog,#summer-dialog,#town-history-dialog,#rules-dialog,#storms-dialog,
+#hosting-dialog,#poll-dialog,#nourishment-guide-dialog,#budget-output-dialog,#nourishment-dialog,
+#research-dialog,#volunteer-public{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+
+/* Shells grow with their content; the inner regions stop scrolling on their own. */
+.community-shell,.team-shell,.summer-shell,.town-shell,.rules-shell,.st-shell,.eng-shell,
+#nourishment-guide-dialog .ng-shell,#budget-output-dialog .bo-shell,.nourish-shell,.rt-shell{height:auto;min-height:100%}
+.community-content,#community-auth,.team-content,.summer-scroll,.town-scroll,.rules-scroll,.st-main,.eng-scroll,
+#nourishment-guide-dialog .ng-content,#budget-output-dialog .bo-content,.nourish-content,.rt-content{overflow:visible;flex:none;min-height:0;max-height:none}
+#volunteer-public .community-content{overflow:visible}
+.rt-road-nav{position:static;max-height:none}
+
+/* Dialogs that were given a fixed height now size to their content, up to the viewport. */
+#summer-dialog,#town-history-dialog,#rules-dialog,#nourishment-guide-dialog,#budget-output-dialog{height:auto}
+
+/* Floating shortcuts once the heading has gone: "Top" and the dialog's own back button. */
+.ws-back{position:fixed;right:max(18px,calc((100vw - 1450px)/2 + 28px));bottom:22px;z-index:5;display:flex;gap:8px;
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.ws-back.is-on{opacity:1;transform:none;pointer-events:auto}
+/* !important: each dialog styles its own buttons by id (e.g. transparent backgrounds); these must stay solid. */
+.ws-back button{min-height:48px!important;padding:10px 18px!important;border-radius:999px!important;border:1px solid #C9A227!important;background:#0B2545!important;color:#F4F1E8!important;
+  font:600 16px/1.2 Satoshi,sans-serif!important;box-shadow:0 6px 20px #0008!important;cursor:pointer;margin:0!important;width:auto!important;min-width:0!important}
+.ws-back .ws-top{background:#13315C!important;border-color:#D9C49A!important}
+.ws-back button:hover,.ws-back button:focus-visible{border-color:#F4F1E8!important;outline:none}
+@media (max-width:640px){.ws-back{right:12px;bottom:12px;gap:6px}.ws-back button{padding:10px 14px!important;font-size:15px!important}}
+@media print{.ws-back{display:none}}
+@media (prefers-reduced-motion:reduce){.ws-back{transition:none}}
+#volunteer-public{height:auto}
+#volunteer-public .community-shell{height:auto;min-height:100%}
+/* Keep wide tables from making the whole dialog scroll sideways on phones. */
+#community-dialog,#team-dialog,#summer-dialog,#town-history-dialog,#rules-dialog,#storms-dialog,
+#nourishment-guide-dialog,#budget-output-dialog,#nourishment-dialog,#research-dialog,#volunteer-public{overflow-x:hidden}
+@media (max-width:640px){.summer-tides{display:block;overflow-x:auto;white-space:nowrap}.summer-tides th,.summer-tides td{padding:8px 6px;font-size:14px}}
+/* Room under the last line so the floating buttons never cover it. */
+.community-shell,.team-shell,.summer-shell,.town-shell,.rules-shell,.st-shell,.eng-shell,
+#nourishment-guide-dialog .ng-shell,#budget-output-dialog .bo-shell,.nourish-shell,.rt-shell{padding-bottom:72px}

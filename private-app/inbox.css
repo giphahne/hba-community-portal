@@ -1,0 +1,32 @@
+/* Messages center on the dashboard */
+.cap-inbox{margin:18px 0 6px;padding:20px 22px;background:#0B2545;border:1px solid #B9A77E55;border-radius:16px;color:#F4F1E8;scroll-margin-top:12px}
+.cap-inbox:empty{display:none}
+.inbox-head{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.inbox-head h2{margin:2px 0 6px;font:700 26px/1.2 Georgia,serif}
+.inbox-sub{margin:0;max-width:60ch;font-size:16px;color:#d9d4c8}
+.inbox-badge{display:inline-block;padding:0 12px;margin-left:8px;border-radius:999px;background:#B23A48;color:#fff;font:700 16px/30px Satoshi,sans-serif;vertical-align:middle}
+.inbox-actions{display:flex;gap:10px;flex-wrap:wrap}
+.hba-dashboard .cap-inbox .inbox-actions button{min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid #D9C49A;background:transparent;color:#F4F1E8;font:600 15px Satoshi,sans-serif;cursor:pointer}
+.hba-dashboard .cap-inbox .inbox-actions button:hover{border-color:#C9A227}
+.inbox-empty{margin:0;font-size:17px;color:#d9d4c8}
+.inbox-day{margin:14px 0 6px;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#C9A227}
+.inbox-list{display:grid;gap:8px}
+.inbox-item{display:grid;grid-template-columns:132px 1fr auto;gap:12px;align-items:start;width:100%;text-align:left;padding:12px 14px;border-radius:12px;border:1px solid #2a4a74;background:#13315C;color:#F4F1E8;font:inherit;cursor:pointer}
+.inbox-item:hover,.inbox-item:focus-visible{background:#1a3f72;outline:3px solid #8FC1B5;outline-offset:1px}
+.inbox-item.is-unread{border-left:6px solid #C9A227}
+.inbox-item.is-action{border-color:#C9A227}
+.inbox-kind{font-size:14px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#8FC1B5;padding-top:3px}
+.inbox-kind-account,.inbox-kind-issue,.inbox-kind-message,.inbox-kind-payment,.inbox-kind-bid{color:#C9A227}
+.inbox-text{display:grid;gap:3px;min-width:0}
+.inbox-text strong{font-size:18px;line-height:1.35}
+.inbox-text span{font-size:15.5px;color:#d9d4c8;line-height:1.45}
+.inbox-time{font-size:15px;color:#c9c4b8;white-space:nowrap;padding-top:3px}
+.inbox-more{margin-top:12px;min-height:46px;padding:0 18px;border-radius:8px;border:1px solid #D9C49A;background:transparent;color:#F4F1E8;font:600 16px Satoshi,sans-serif;cursor:pointer}
+@media (max-width:640px){.cap-inbox{padding:16px}.inbox-item{grid-template-columns:1fr;gap:4px}.inbox-time{padding-top:0}.inbox-head h2{font-size:22px}}
+.inbox-tabs{display:flex;gap:8px;margin:0 0 12px;border-bottom:1px solid #2a4a74;padding-bottom:10px}
+.hba-dashboard .cap-inbox .inbox-tabs button{min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid #2a4a74;background:transparent;color:#F4F1E8;font:600 16px Satoshi,sans-serif;cursor:pointer}
+.hba-dashboard .cap-inbox .inbox-tabs button[aria-selected="true"]{background:#F4F1E8;color:#0B2545;border-color:#F4F1E8}
+.inbox-tabs .inbox-badge{font-size:14px;line-height:24px;padding:0 9px;margin-left:6px}
+.inbox-item time{font-size:15px;color:#c9c4b8;white-space:nowrap;padding-top:3px}
+.inbox-kind-notice,.inbox-kind-approval,.inbox-kind-poll,.inbox-kind-reply,.inbox-kind-host{color:#C9A227}
+.inbox-body{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}

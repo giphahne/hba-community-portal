@@ -1,0 +1,26 @@
+#sand-school-dialog{position:fixed;inset:18px;width:calc(100vw - 36px);height:calc(100dvh - 36px);max-width:1560px;max-height:none;margin:auto;padding:0;border:1px solid var(--panel-border);border-radius:12px;background:var(--ink);color:var(--text);font:14px/1.5 Satoshi,sans-serif;box-shadow:0 18px 60px #0008}
+#sand-school-dialog::backdrop{background:#07192Fd9}
+.sand-school-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+.sand-school-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 22px;border-bottom:1px solid var(--panel-border);flex:none}
+.sand-school-top p{font-size:12px;color:var(--muted);margin:0 0 3px}
+.sand-school-top h2{font:700 26px/1.2 Boska,Georgia,serif;margin:0}
+.sand-school-navigation{display:flex;align-items:center;gap:8px}
+.sand-school-navigation label{font-size:12px;color:var(--muted)}
+#sand-school-dialog button,#sand-school-dialog select{min-height:44px;border:1px solid var(--panel-border);border-radius:5px;color:var(--text);background:var(--ink);padding:9px 12px;font:inherit;cursor:pointer}
+#sand-school-dialog select{max-width:270px}
+#sand-school-dialog :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sand-school-scope{flex:none;margin:0;padding:10px 22px;background:var(--panel-border);font-size:12px;color:var(--muted)}
+.sand-school-body{flex:1;min-height:0;position:relative}
+#sand-school-frame{width:100%;height:100%;border:0;display:block;background:#f6f5ef}
+#sand-school-loading{position:absolute;z-index:2;top:12px;left:12px;right:12px;margin:0;padding:16px;background:var(--ink);border:1px solid var(--panel-border);border-radius:6px;color:var(--text)}
+#sand-school-loading[hidden]{display:none}
+:root[data-theme=light] #sand-school-dialog{--ink:#F4F1E8;--text:#13315C;--muted:#47616d;--accent:#855917;--panel-border:rgba(19,49,92,.13)}
+@media(max-width:800px){.sand-school-top{flex-wrap:wrap;gap:10px}.sand-school-navigation{width:100%;justify-content:space-between}.sand-school-navigation select{max-width:none;flex:1;min-width:0}}
+@media(max-width:640px){
+  #sand-school-dialog{inset:0;width:100vw;height:100dvh;border:0;border-radius:0}
+  .sand-school-top{padding:12px 14px}.sand-school-top h2{font-size:24px}.sand-school-top>div:first-child{width:100%}
+  .sand-school-navigation{flex-wrap:wrap;gap:6px}.sand-school-navigation label{display:none}
+  #sand-school-dialog select{width:100%;max-width:none;flex:none}
+  #sand-school-close{width:100%}
+  .sand-school-scope{padding:8px 14px;line-height:1.4}
+}

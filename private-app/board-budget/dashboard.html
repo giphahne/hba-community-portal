@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HBA Budget Simulator</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=general-sans@500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="simulator.css">
+<script src="../sand-school/vendor/chart.umd.min.js"></script></head>
+<body><main class="simulator-page"><header class="simulator-top"><div><h1>HBA Budget Simulator</h1><p class="muted">The scheduled 2027–2041 capital model from your board dashboard.</p></div>
+<div class="btn-row"><button class="btn btn-ghost" id="sim-save" type="button">Save scenario</button><label class="btn btn-ghost" for="sim-open">Open scenario</label><input type="file" id="sim-open" accept=".json,application/json" hidden></div></header>
+<div class="sim-presets"><span>Start with</span><button type="button" class="btn btn-ghost" data-preset="balanced">Balanced $625</button><button type="button" class="btn btn-ghost" data-preset="lean">Lean $600</button><button type="button" class="btn btn-ghost" data-preset="dues">Dues-led $650</button></div>
+<p class="note" id="sim-save-state" role="status">What-if inputs only; actual household payment statuses do not change this model automatically.</p>
+<section class="view active" id="view-capital">
+      <div class="sim">
+        <div class="card sim-controls">
+          <div class="card-head"><div><h2>Worrall Ave decision</h2><p class="muted">Last road in the program (2036)</p></div><button class="btn btn-ghost btn-sm" id="capReset">Reset</button></div>
+          <div class="ctl-group">
+            <h3>Worrall treatment</h3>
+            <div class="radio-cards" id="capOption">
+              <label><input type="radio" name="capopt" value="A"><span><b>Option A: Mill + drainage</b><small>Mill and 3.5-inch asphalt ($83,200 quote) plus a one-time $30,000 drainage repair</small></span></label>
+              <label><input type="radio" name="capopt" value="B"><span><b>Option B: Overlay</b><small>1.5-inch overlay over existing asphalt ($34,600 quote)</small></span></label>
+            </div>
+            <label class="check"><input type="checkbox" id="capDrainB"> Also repair drainage with the overlay</label>
+          </div>
+          <div class="ctl-group">
+            <h3>Dues and fundraising</h3>
+            <label class="check" style="margin-bottom:var(--space-3)"><input type="checkbox" id="capAutoDues"> Use recommended dues for the selected option</label>
+            <div class="form-grid">
+              <label>Starting 2027 dues<input type="number" id="capDues" min="400" max="1200" step="5"></label>
+              <label>Paying households<input type="number" id="capHH" min="50" max="112" step="1"></label>
+              <label>Resident share of paving<select id="capFund"><option value="0">0% (dues only)</option><option value="0.1">10%</option><option value="0.2">20%</option><option value="0.3">30%</option></select></label>
+              <label>Annual escalation<select id="capEsc"><option value="0.02">2%</option><option value="0.03">3%</option><option value="0.04">4%</option></select></label>
+            </div>
+          </div>
+          <div class="ctl-group" id="cap-clean-private" hidden>
+            <h3>Three-year beach cleaning allowance</h3>
+            <label class="check"><input type="checkbox" id="capCleanEnabled"> Include beach cleaning contract allowance</label>
+            <div class="form-grid">
+              <label>Quoted amount ($)<input id="capCleanAmount" type="number" min="0" max="1000000" step="0.01"></label>
+              <label>Price covers<select id="capCleanBasis"><option value="annual">Each year</option><option value="total">All three years</option></select></label>
+              <label>Provisional first year<select id="capCleanYear"></select></label>
+            </div>
+            <p class="note" id="capCleanSummary"></p>
+            <p class="note">Board-only planning from an unsigned sample agreement. The private source provides a fixed per-cleaning price and eight cleanings per season. No escalation or automatic renewal is applied. Rescheduling does not reduce the eight-cleaning annual allowance. Check operating-budget overlap before adoption. Exported board scenarios may include private costs; do not share them publicly.</p>
+          </div>
+          <div class="ctl-group">
+            <h3>Proposed one-time resident payment</h3>
+            <label class="check"><input type="checkbox" id="capOnceEnabled"> Include a proposed one-time contribution</label>
+            <div class="form-grid">
+              <label>Amount preset<select id="capOncePreset"><option value="250">$250</option><option value="500">$500</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="custom">Custom amount</option></select></label>
+              <label>Payment per household ($)<input type="number" id="capOnceAmount" min="0" max="1000000" step="0.01"></label>
+              <label>Collection year<select id="capOnceYear"></select></label>
+              <label>Participating households<input type="number" id="capOnceHH" min="0" max="1000" step="1"></label>
+            </div>
+            <p class="note" id="capOnceSummary" role="status"></p>
+            <p class="note">Scenario only, not an adopted charge or assessment. This contribution is collected once, without escalation, separately from annual dues and paving campaigns. Participation is an assumption, not a membership count. It creates no bills and changes no household payment statuses. Confirm any required approvals against the governing documents.</p>
+          </div>
+
+          <p class="note">Dues rise by the escalation rate each year after 2027. Sand ($16,000) every two years from 2027, Reynolds overlay 2028, jetty ($100,000) 2031, Algelo overlay 2032, Worrall 2036. Road quotes include a 20% contingency. The $30,000 drainage repair is one payment in 2036, adjusted for inflation like every other cost. Balances exclude the protected $15,000 emergency reserve.</p>
+        </div>
+
+        <div class="sim-results">
+          <div class="kpis kpis-4" id="capKpis"></div>
+
+          <div class="card">
+            <div class="card-head"><div><h2>Worrall options side by side</h2><p class="muted">Each option at its recommended dues, with the same fundraising and escalation settings</p></div></div>
+            <div class="tbl-scroll"><table class="tbl compact" id="capCompare"></table></div>
+            <div class="callouts" id="capCallouts"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><div><h2>Year-end project capital</h2><p class="muted">Both Worrall options at their recommended dues, 2027–2041</p></div></div>
+            <div class="chart-wrap tall"><canvas id="chartCapital" aria-label="Year-end project capital by Worrall option"></canvas></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><div><h2>Dues test</h2><p class="muted">Lowest year-end balance at each starting dues level</p></div></div>
+            <div class="tbl-scroll"><table class="tbl compact" id="capDuesTest"></table></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><div><h2>Cash flow</h2><p class="muted" id="capFlowSub"></p></div></div>
+            <div class="tbl-scroll"><table class="tbl compact" id="capFlow"></table></div>
+          </div>
+        </div>
+      </div>
+    </section>
+<details class="sim-assumptions"><summary>Model assumptions and limits</summary><p>Opening capital $53,292.78; operating base $32,195; annual net event proceeds $1,605.30; 105 paying households by default. Sand $16,000 every two years from 2027; Reynolds overlay 2028; one $100,000 jetty 2031; Algelo overlay 2032; Worrall drainage and paving 2036. Base estimates are in 2026 dollars. Paving has 20% contingency. The separate $15,000 emergency reserve is excluded.</p><p>Automatic recommended dues use a $40,000 year-end capital cushion and $25 increments. These are modeling assumptions, not board-adopted dues or reserve policy. No monthly cash-flow, interest, second jetty, storm costs, current quotes, engineering approvals or permit validity is established.</p></details>
+</main><script src="app.js"></script></body></html>

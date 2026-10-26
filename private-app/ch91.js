@@ -1,0 +1,90 @@
+const CH91_GIS="https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Ch91_License_Permit_Pts_ViewerLayer/FeatureServer/4";
+const CH91_PORTAL="https://eplace.eea.mass.gov/EEAPublicApp/";
+const CH91_GREEN_HISTORY={
+  id:"DPW003102",licensee:"Olive M. Green",location:"Hamilton Beach; modern parcel unresolved",
+  issued:"DPW November 2, 1948; Governor and Council November 3, 1948",
+  pdf:"ch91/DPW003102.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/06_DPW_2001-4000_(1938-1957)/DPW003102.pdf",
+  detail:"104-foot timber pier, float, two jetties, marsh excavation and hydraulic sand replacement. Six-page original includes approved plan on page 5. License recorded November 3, 1949 in Book 2073, Pages 172–173; plan in Book 8, Page 40. Later amendments, present validity and modern parcel match unverified. User supplied an alternate six-page copy; same license, not counted twice. Historical attachment only; no inferred map point."
+};
+const CH91_SUPPLIED=[
+  {id:"DPW003146",location:"Hamilton Beach Association · five jetties",licensee:"Hamilton Beach Association, Inc.",issued:"June 14, 1949",kind:"Issued historical Chapter 91 license",
+   pdf:"ch91/DPW003146.pdf",pages:"6 PDF pages; text 1–3, plan 5",
+   detail:"Build and maintain five stone jetties at Hamilton Beach, each extending 30 feet from mean high water, three feet wide on top. License and plan require recording within one year. Current Association ownership at 50F/1049 is candidate context only, not a match of all five jetty footprints. Recording and present validity remain unresolved."},
+  {id:"DPW003455",location:"Bertram E. Besse · ditch filling",licensee:"Bertram E. Besse",issued:"June 10, 1952",kind:"Issued historical Chapter 91 license · drainage condition",
+   pdf:"ch91/DPW003455.pdf",pages:"6 PDF pages; text 1–3, plan 5",
+   detail:"Maintain about 130 feet of existing ditch fill and add fill in about 258 feet northwest and 62 feet south to Wareham River. Page 2 makes the licensee responsible for maintaining north/east ditches to remove standing water from his and adjacent lands resulting from the filling. Not an outfall authorization. Monahan/Smith boundaries in the plan suggest comparison with Pierce Salt Meadow in deed 53025/83, parcel three, but this remains a tentative lead. Modern parcel match, recording and validity unresolved."},
+  {id:"DPW003540",location:"Dorothy F. Day · Hamilton Beach seawall and jetty",licensee:"Dorothy F. Day",issued:"April 21, 1953",kind:"Issued historical Chapter 91 license",
+   pdf:"ch91/DPW003540.pdf",pages:"6 PDF pages; text 1–3, plan 5",
+   detail:"Maintain a 50-foot concrete seawall and construct riprap plus a 50-foot-long, three-foot-wide stone jetty. Historical lot 16 strongly matches current 7 Worrall Avenue, Map 50F/16, through deed 47936/130 parcel one and the assessor. Recorded license begins 2322/62; plan 9/632 bears January 26, 1954 stamp. Full successor title chain, amendments and present validity remain unverified; no guessed structure point."},
+  {id:"DEP005655",location:"Historical 30 Algelo Road · current lot match: 28 Algelo Avenue",licensee:"Michael J. Pirolli",issued:"June 10, 1996",kind:"Issued Chapter 91 license · present validity unverified",
+   pdf:"ch91/DEP005655.pdf",pages:"7 PDF pages; text 1–4, plans 6–7",
+   detail:"Maintain an existing seawall and construct/maintain a stone erosion barrier on Broad Marsh River. Seawall term 99 years; barrier term 30 years. June 10, 2026 is only unadjusted arithmetic, not a verified expiration: qualifying Chapter 91 approvals may receive the 2024 statutory two-year extension, and prior extensions may also matter. Recorded 14438/345, June 14, 1996, associated Plan 391/1996 (not separately image-reviewed). Historical lot 40 strongly matches current 28 Algelo, Map 50F/40; deed 39477/164 identifies lots 40 and 41. No formal address-renumbering record or surveyed footprint inferred."},
+  {id:"DEP005305",location:"1A Worrall Avenue · recorded Interim Approval 5305",licensee:"Nick Nicolau",issued:"February 20, 1996",kind:"INTERIM APPROVAL ONLY · current status unresolved",
+   pdf:"ch91/DEP005305-recorded.pdf",pages:"6 recorded pages; text 1–3, approved plan sheets 4–6",sourceLabel:"Plymouth Registry screen-copy packet, October 5, 2026; unofficial, watermark retained",
+   detail:"Actual approval recovered and all six pages read: Book 14203, Pages 133–138, recorded March 13, 1996, document 22853. Maintain existing pier, stairs, riprap and groin. Plan explicitly identifies 1A Worrall. Stated 30-year term, but expires one year after transfer for valuable consideration. The 2020 deed to TAKE A LAP LLC states $1; its legal effect on this condition is unresolved, not proof of 2021 expiry. Applicable statutory extensions/replacement licenses also unverified. Page 2 requires signs on both sides of the groin and applicable lateral passage; states issuance fulfills then-applicable compliance-certificate obligation."},
+  {id:"NOI-2020-FILING",location:"1A Worrall Avenue · 2020 NOI filing",licensee:"Duane Nicolau / Eleanor L. Nicolau Living Revocable Trust",issued:"Cover letter June 29, 2020",kind:"Wetlands application ONLY · not an issued Chapter 91 license",
+   pdf:"ch91/NOI-FILING-6.29.20-redacted.pdf",pages:"20 PDF pages; banking image page 20 redacted",
+   detail:"Proposes deck/stair replacement and repair of an existing stone groin. Lists Map 50F lots 16D, 1047 and 1048. Cover letter references Interim Approval 5305 dated February 20, 1996; the actual recorded approval is now separately attached, with current status unresolved. Original attachment preserved; collection copy redacts the check-image page. No 2020 permit approval or completed repair inferred."},
+  {id:"NOI-2020-PLAN",location:"1A Worrall Avenue · groin/deck repair plan",licensee:"Eleanor L. Nicolau",issued:"June 2020 supplied plan",kind:"NOI permit-set plan · NOT FOR CONSTRUCTION",
+   pdf:"ch91/NOI-Plan-JETTI-6-25-20.pdf",pages:"1 PDF plan sheet",
+   detail:"G.A.F. Engineering plan for deck/stairs and stone-groin repair; shows Glenda and Worrall avenues and a drainage easement. Note 1 references Interim Approval 5305, February 20, 1996, recorded Book 14203/Page 133 on March 13, 1996. That recorded approval has now been independently read and separately attached. The NOI plan remains an application plan, not a license or proof of repair approval. No connection to a specific drainage license inferred."},
+  {id:"DPW003102-ALTERNATE",location:"Olive Green · user-supplied alternate scan",licensee:"Olive M. Green",issued:"1948",kind:"Alternate copy of existing License 3102 · not a new license",
+   pdf:"ch91/DPW003102-user-supplied.pdf",pages:"6 PDF pages",
+   detail:"Additional scan of the already-collected License 3102 and Hamilton Beach plan; preserved alongside the previously retrieved MassDEP copy, not counted as another authorization."}
+];
+const CH91_VERIFICATION={
+  DPW003146:{parcelIndex:70,match:"Candidate ownership context ONLY: 0 Worrall Avenue Off, 50F/1049; five individual jetty footprints not matched.",assessor:"https://gis.vgsi.com/warehamma/Parcel.aspx?pid=7402",recording:"Not located in name-index results inspected; no nonrecording conclusion.",status:"Recording, amendments and present validity unresolved.",button:"Show candidate Association parcel"},
+  DPW003455:{match:"Modern parcel unresolved. Tentative Pierce Salt Meadow boundary lead in deed 53025/83, parcel three.",recording:"Not located in inspected 1951–1954 Besse index results.",status:"Recording and present validity unresolved; not an outfall authorization."},
+  DPW003540:{parcelIndex:63,match:"Strong historical lot match: 7 Worrall Avenue, 50F/16, Vision PID 7257; full Day-to-present title chain not completed.",assessor:"https://gis.vgsi.com/warehamma/Parcel.aspx?pid=7257",recording:"2322/62, continuation 63; January 26, 1954. Plan 9/632 independently inspected.",status:"Recorded historical license; current validity not confirmed.",button:"Show matched lot 16"},
+  DEP005655:{parcelIndex:33,match:"Strong historical lot match: 28 Algelo Avenue, 50F/40, PID 7284; current deed includes lots 40–41. Address renumbering not independently documented.",assessor:"https://gis.vgsi.com/warehamma/Parcel.aspx?pid=7284",recording:"14438/345, June 14, 1996; doc 59244. Plan 391/1996 reference only.",status:"Seawall/barrier terms differ. 2024 statutory extension may apply; no verified expiration or site-specific renewal.",button:"Show matched Pirolli parcel"},
+  DEP005305:{parcelIndex:80,match:"Confirmed address/locus match: 1A Worrall, 50F/16D, PID 7261. Structure footprint not allocated separately among 16D/1047/1048.",assessor:"https://gis.vgsi.com/warehamma/Parcel.aspx?pid=7261",recording:"14203/133–138, March 13, 1996; all six pages visually read.",status:"Interim only. Transfer condition, extensions and replacement license unresolved.",button:"Show matched 1A Worrall parcel"}
+};
+const CH91_HISTORY={
+  id:"DPW001667",location:"Broad Marsh River water-main crossing",issued:"April 2, 1935; Governor and Council approval April 3, 1935",
+  pdf:"ch91/DPW001667.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/05_DPW_0001-2000_(1919-1938)/DPW001667.pdf",
+  detail:"Wareham Fire District: lay and maintain an 8-inch water main from Wareham Neck to Swift's Neck. DEP003276 expressly retains this earlier license's conditions. The 1993 plan identifies its existing crossing between Pinehurst Beach and Hamilton Beach. Historical attachment only; no independent 1935 GIS point or inferred pipe line."
+};
+const CH91=[
+  {id:"WW01-0000829",location:"19 Worrall Avenue",group:"beach",kind:"Issued water-dependent license",objectId:13505,lat:41.74211483207233,lng:-70.71133430542717,
+    licensee:"David F. Cloud and Paula Cloud",issued:"September 2, 2026",term:"30 years from issuance; recording, appeal finality and compliance not verified.",
+    detail:"Repair and maintain a stone and concrete seawall and stone armor for shoreline stabilization. Original PDF includes issuance letter, license, signage specifications and three plan sheets.",
+    access:"License page 2 requires public passage around intertidal structures where applicable rights exist, signs at both property lines, and dawn-to-dusk on-foot passage for any purpose seaward of the high-water mark, subject to the stated conditions. This is not a beach-wide ownership or access determination.",
+    caution:"The GIS address is spelled WORRAL; the signed license says Worrall. The portal's authorization page displayed 'Under review', while the signed license and issuance email establish issuance. Current validity is not certified.",
+    pdf:"ch91/WW01-0000829.pdf",source:CH91_PORTAL,pages:"11 PDF pages; license starts on PDF page 4; plans on pages 9–11",extra:[{label:"Issuance email",url:"ch91/WW01-0000829-issuance-email.pdf"}]},
+  {id:"DEP014300",location:"22 Algelo Avenue",group:"beach",kind:"Issued waterways license",objectId:3000,lat:41.74472471763085,lng:-70.71209154884482,
+    licensee:"John J. Bennett",issued:"February 24, 2017",term:"30-year stated term. Included Certificate of Compliance states February 24, 2047; later changes not researched.",
+    detail:"Construct and maintain a pier, ramp and float for noncommercial docking and boating access on Broad Marsh River. Complete downloaded file includes five plan sheets and a 2018 Certificate of Compliance.",
+    access:"Special conditions require lateral passage, public access signs, and dawn-to-dusk on-foot passage seaward of the high-water mark. The May 31, 2018 compliance certificate specifies, in lieu of stairs, an unobstructed public access path around the pier no farther than 15–20 feet from the mean annual high-water line. See license page 2 and PDF page 10.",
+    caution:"License locus only, not a survey of the dock footprint or a determination of rights across adjacent upland.",
+    pdf:"ch91/DEP014300.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/17_DEP_14001-16000_(2015-PRESENT)/DEP014300.pdf",pages:"11 PDF pages",extra:[]},
+  {id:"DEP006099",location:"36 Algelo Avenue",group:"beach",kind:"Interim approval ONLY",objectId:4128,lat:41.74469499139364,lng:-70.71035924366376,
+    licensee:"Ann M. Ladouceur",issued:"November 13, 1996",term:"30-year stated term, but expires one year after transfer for valuable consideration. Transfer history and any replacement license are unverified.",
+    detail:"Maintain a seawall and steps for shoreline stabilization and beach access. The actual document is prominently marked INTERIM APPROVAL ONLY, despite the GIS license identifier.",
+    access:"Standard condition 3 preserves public fishing, fowling, navigation and natural derivatives on private tidelands between high and low water marks. Do not substitute the broader passage clause found in other licenses.",
+    caution:"Do not treat this document as proof of a presently valid standard license. Its plan expressly identifies Hamilton Beach.",
+    pdf:"ch91/DEP006099.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/13_DEP_6001-8000_(1996-1999)/DEP006099.pdf",pages:"4 PDF pages",extra:[]},
+  {id:"DEP003276",location:"Pinehurst Beach–Hamilton Beach waterline",group:"utility",kind:"Issued waterways license + historical link",objectId:8718,lat:41.745569123156656,lng:-70.71017172828417,
+    licensee:"Wareham Fire District",issued:"April 29, 1993",term:"No fixed expiration term identified in the attached license; current compliance not verified.",
+    detail:"Construct and maintain a 12-inch waterline under Broad Marsh River. Plan sheet 2 explicitly labels Pinehurst Beach, Hamilton Beach, 36 and 40 Algelo Avenue, and Reynolds Street. Page 2 preserves the conditions of DPW License 1667.",
+    access:"Regulatory authorization for conveyance of water, not a stormwater outfall license.",
+    caution:"GIS indexes the northern landing as off 110 Pinehurst Drive. This marker is that official locus point, not the full route or the Hamilton-side landing.",
+    pdf:"ch91/DEP003276.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/11_DEP_2001-4000_(1989-1994)/DEP003276.pdf",pages:"8 PDF pages; plan sheet 2 is PDF page 7",extra:[{label:"1935 predecessor license DPW001667",url:"ch91/DPW001667.pdf"}]},
+  {id:"DEP007582",location:"Beach Street / Glenda Avenue creek crossing",group:"utility",kind:"Issued waterways license",objectId:2805,lat:41.74167987470511,lng:-70.71381266201932,
+    licensee:"Wareham Fire District",issued:"September 30, 1998",term:"Unlimited term stated in license page 2; current compliance not verified.",
+    detail:"Install and maintain a water main under an unnamed creek of Wareham River. The attached plan shows a proposed 20-inch main, existing 8-inch mains, and Glenda Avenue at the eastern tie-in.",
+    access:"Water-supply infrastructure crossing; not authorization for a stormwater drain.",
+    caution:"GIS indexes the locus as 0 Beach Street and names the Fire Department; the signed document's licensee is Wareham Fire District. Do not infer pipe connections to the mapped stormwater network.",
+    pdf:"ch91/DEP007582.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/13_DEP_6001-8000_(1996-1999)/DEP007582.pdf",pages:"7 PDF pages",extra:[]},
+  {id:"DEP011726",location:"4 Point Road · adjacent shoreline",group:"adjacent",kind:"Issued license with 2021 minor modification",objectId:91,lat:41.743932884421575,lng:-70.71492920744379,
+    licensee:"Charles & Keely O'Neil; 2021 modification names Edward & Susan Cabral",issued:"May 30, 2007; minor modification September 1, 2021",term:"30-year stated original term; current validity and later changes not certified.",
+    detail:"Reconstruct and maintain seawall and fill. The complete file also contains the 2021 minor-project-modification letter and three replacement-wall plan sheets. That letter says a new or amended license is not required for the described vinyl-sheeting modification.",
+    access:"Original special conditions require lateral passage, signs and dawn-to-dusk on-foot passage seaward of the high-water mark. See full license page 2.",
+    caution:"Included as an adjacent Point Road record, not assigned to Hamilton Beach Association land.",
+    pdf:"ch91/DEP011726.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/15_DEP_10001-12000_(2004-2008)/DEP011726.pdf",pages:"10 PDF pages",extra:[]},
+  {id:"DEP012004",location:"6 Point Road · adjacent shoreline",group:"adjacent",kind:"Historical simplified license · renewal unverified",objectId:1407,lat:41.74425583031959,lng:-70.71450206184926,
+    licensee:"Roberta I. Benedict",issued:"January 7, 2008",term:"15-year stated original term, nominally January 7, 2023. No renewal or extension located in this search; present validity unverified.",
+    detail:"Maintain an existing pre-1984 seawall/retaining wall and stairs for shoreline stabilization. The signed and numbered simplified license is attached, not just an application form.",
+    access:"Contains lateral-passage/signage conditions and dawn-to-dusk on-foot passage seaward of the high-water mark, subject to its terms.",
+    caution:"Included as adjacent context, not automatically within Hamilton Beach. Do not treat its original term as proof that no statutory extension or later renewal exists.",
+    pdf:"ch91/DEP012004.pdf",source:"https://s3.amazonaws.com/eea-public/dep/ch91/16_DEP_12001-14000_(2008-2015)/DEP012004.pdf",pages:"7 PDF pages",extra:[]}
+];

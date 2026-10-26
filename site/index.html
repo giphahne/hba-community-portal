@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sign in · Hamilton Beach Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0B2545">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Hamilton Beach">
+<link rel="stylesheet" href="login.css?v=202610251030">
+<script>window.__HBA_GATE_API__='__PORT_3003__';</script>
+<script src="login.js?v=202610251030" defer></script>
+</head>
+<body>
+<main id="login-screen">
+  <section class="login-card" aria-labelledby="login-title">
+    <figure class="login-photo"><img src="gate-beach.jpg?v=202610251030" alt="Photograph: a rainbow over Hamilton Beach after a shower, with chairs waiting on the grass" width="921" height="1230" decoding="async" fetchpriority="high"><figcaption>Photograph · Hamilton Beach after a shower, shared by a resident</figcaption></figure>
+    <div class="login-body">
+    <p class="login-kicker"><img class="login-emblem" src="emblem.jpg?v=202610251030" alt="" width="240" height="240" decoding="async"> Hamilton Beach Association</p>
+    <h1 id="login-title">Welcome back.</h1>
+    <p id="login-intro">Sign in to view the map, island history and association information.</p>
+    <p id="login-status" role="status" aria-live="polite">Checking your sign-in…</p>
+    <form id="login-form" hidden>
+      <label>Email address<input name="email" type="email" autocomplete="username" required maxlength="254" inputmode="email"></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="200"></label>
+      <label class="login-check"><input id="show-password" type="checkbox"> Show password</label>
+      <label class="login-check" id="save-password-row"><input id="save-password" type="checkbox"> Save my password on this device</label>
+      <p class="login-hint" id="save-password-help" hidden>Your email is remembered here, and your device’s password keeper (iCloud Keychain, Google or Samsung Pass) is asked to save the password so it fills in next time. Tick this only on your own phone, tablet or computer.</p>
+      <label id="signup-name" hidden>Your name<input name="display_name" type="text" autocomplete="name" maxlength="120"></label>
+      <fieldset id="signup-fields" hidden>
+        <legend>Your household</legend>
+        <label>Hamilton Beach address<select name="requested_household_uid"><option value="">Choose your address…</option></select></label>
+        <label>Note for the board <span class="login-hint">(optional: owner, renter, co-owner, or an address not listed)</span><textarea name="request_note" rows="2" maxlength="1000"></textarea></label>
+      </fieldset>
+      <fieldset id="signup-sms" hidden>
+        <legend>Text message alerts <span class="login-hint">(optional)</span></legend>
+        <p class="login-hint">Choose what you want to be texted about. Nothing is sent until the board approves your account and switches texting on; message and data rates may apply.</p>
+        <label>Mobile number<input name="sms_phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="(508) 555-0123"></label>
+        <div id="sms-topic-menu" class="login-topics" role="group" aria-label="Text alert topics"></div>
+        <label class="login-check"><input name="sms_consent" type="checkbox" value="yes"> I agree to receive HBA text messages about the topics I chose. Reply STOP to end at any time.</label>
+      </fieldset>
+      <button type="submit" id="login-submit">Sign in</button>
+      <button type="button" id="login-mode" class="secondary">New resident? Request an account</button>
+      <button type="button" id="login-forgot" class="secondary">Forgot password?</button>
+    </form>
+    <div id="forgot-help" hidden><p>Contact a board member to reset your password. They can give you a temporary password in person or by phone; you choose your own password the next time you sign in.</p><button type="button" id="forgot-close" class="secondary">Back to sign in</button></div>
+    <form id="password-change" hidden>
+      <p>Your password was reset by a board member. Choose a new password of your own before continuing.</p>
+      <label>Temporary password<input name="current_password" type="password" autocomplete="current-password" required maxlength="200"></label>
+      <label>New password<input name="new_password" type="password" autocomplete="new-password" required minlength="10" maxlength="200"></label>
+      <label>New password again<input name="repeat_password" type="password" autocomplete="new-password" required minlength="10" maxlength="200"></label>
+      <label class="login-check"><input id="show-new-passwords" type="checkbox"> Show passwords</label>
+      <button type="submit" id="password-change-submit">Save new password</button>
+      <button type="button" id="password-change-signout" class="secondary">Sign out</button>
+    </form>
+    <div id="pending-account" hidden><p>Thank you for your request. Your email is confirmed; a board member now reviews the request, links your household and approves access. Nothing in the HBA archive opens until then.</p><button type="button" id="login-refresh">Check approval</button><button type="button" id="pending-signout" class="secondary">Sign out</button></div>
+    <details id="login-help"><summary>Need help signing in?</summary><p>Use the email address registered with HBA. Contact the board if you need account or password-recovery help. An app account does not establish voting eligibility or property ownership.</p></details>
+    <p class="login-privacy">Approved residents and board members only. Individual household dues, financial records and board-only information retain their separate permissions.</p>
+    </div>
+  </section>
+</main>
+<section id="app-screen" hidden aria-label="Signed-in HBA portal">
+  <header class="portal-bar"><strong>Hamilton Beach Association</strong><span id="portal-role">Signed in</span><div id="portal-view-switch" hidden role="group" aria-label="Choose portal view"><button type="button" id="portal-board-view" aria-pressed="true">Board view</button><button type="button" id="portal-resident-view" aria-pressed="false">Resident view</button></div><button type="button" id="portal-signout">Sign out</button></header>
+  <div id="app-frame-slot"></div>
+</section>
+</body>
+</html>

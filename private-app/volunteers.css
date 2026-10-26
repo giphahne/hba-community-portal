@@ -1,0 +1,30 @@
+/* Volunteer board: two category buttons with live figures. Nautical palette from :root. */
+.vol-board{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:18px 0 10px}
+.vol-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.vol-btn{display:flex;flex-direction:column;align-items:stretch;gap:0;width:100%;padding:0;border:2px solid var(--rope);border-radius:16px;background:var(--navy-2);color:var(--sail);font:inherit;text-align:left;cursor:pointer;overflow:hidden;box-shadow:0 12px 32px #00000055;transition:border-color .15s ease,box-shadow .15s ease}
+.vol-btn:hover{border-color:var(--brass)}
+.vol-btn:focus-visible{outline:3px solid var(--seafoam);outline-offset:3px}
+.vol-btn[aria-pressed=true]{border-color:var(--brass);box-shadow:0 0 0 3px #C9A22744,0 12px 32px #00000055}
+.vol-art{display:block;width:100%;height:auto;aspect-ratio:200/120;background:var(--navy)}
+.vol-btn-text{display:flex;flex-direction:column;gap:4px;padding:14px 18px 16px;border-top:3px solid transparent;border-image:repeating-linear-gradient(90deg,var(--rope) 0 10px,transparent 10px 16px) 1}
+.vol-btn-text strong{font:700 24px/1.2 Boska,Georgia,serif;color:var(--sail)}
+.vol-btn-text span{font-size:15.5px;line-height:1.45;color:#D5DCE3}
+.vol-btn[aria-pressed=true] .vol-btn-text strong{color:var(--brass)}
+.vol-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin:0;padding:14px 16px;border:1px solid rgba(217,196,154,.35);border-radius:12px;background:var(--navy)}
+.vol-stats div{min-width:0}
+.vol-stats .vol-wide{grid-column:1/-1}
+.vol-stats dt{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--rope);margin:0 0 3px}
+.vol-stats dd{margin:0;font-size:18px;line-height:1.35;color:var(--sail);overflow-wrap:anywhere}
+.vol-stats dd small{font-size:14.5px;color:#D5DCE3}
+.vol-urgent{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--signal-red);color:var(--sail);font-size:13.5px;font-weight:700;vertical-align:middle}
+.vol-bar{position:relative;height:12px;margin-top:8px;border-radius:999px;background:#07192F;border:1px solid rgba(217,196,154,.35);overflow:hidden}
+.vol-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--seafoam),var(--brass));transition:width .6s ease}
+.vol-bar-urgent span{background:linear-gradient(90deg,var(--signal-red),var(--brass))}
+.vol-filter{font-size:15.5px;color:#D5DCE3;margin:14px 0 6px}
+.vol-link{background:none;border:0;padding:0;min-height:0;color:var(--brass);font:inherit;text-decoration:underline;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.vol-btn,.vol-bar span{transition:none}}
+@media(max-width:600px){.vol-board{grid-template-columns:1fr;gap:16px}.vol-btn-text strong{font-size:22px}}
+/* Dashboard tile for the volunteer board */
+.hba-dashboard .cap-card.cap-card-nautical{background:linear-gradient(160deg,#13315C 0%,#0B2545 70%);border:2px solid var(--rope)}
+.hba-dashboard .cap-card.cap-card-nautical::after{width:40px;height:20px;background-image:var(--mark-flags);opacity:1}
+.hba-dashboard .cap-card.cap-card-nautical .cap-card-title{color:var(--brass)}

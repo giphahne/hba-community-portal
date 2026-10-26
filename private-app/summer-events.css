@@ -1,0 +1,103 @@
+/* Summer events sheet dialog */
+#summer-dialog{width:min(1100px,96vw);height:min(940px,94dvh);max-width:96vw;max-height:94dvh;padding:0;border:1px solid var(--panel-border);border-radius:12px;background:var(--panel);color:var(--text)}
+#summer-dialog::backdrop{background:#0009}
+.summer-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+.summer-shell header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px;border-bottom:1px solid var(--panel-border)}
+.summer-eyebrow{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#C9A227}
+.summer-shell h2{font:700 26px/1.2 Georgia,serif;margin:4px 0 6px}
+.summer-sub{margin:0;max-width:70ch;font-size:16px}
+.summer-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;padding:14px 20px;border-bottom:1px solid var(--panel-border)}
+.summer-controls label{display:grid;gap:6px;font-size:14px}
+.summer-controls select{font:16px Satoshi,sans-serif;padding:10px;min-height:44px;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);border-radius:6px}
+.summer-shell button{min-height:44px;padding:10px 14px;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);border-radius:6px;font:500 16px Satoshi,sans-serif;cursor:pointer}
+.summer-shell button:hover{border-color:#C9A227}
+#summer-print{background:#C9A227;color:#0B2545;border-color:#C9A227;font-weight:700}
+#summer-record{border-color:#8FC1B5}
+.summer-status{margin:0;padding:8px 20px;font-size:15px;min-height:1.4em}
+.summer-status:empty{display:none}
+.summer-scroll{overflow-y:auto;min-height:0;padding:16px 20px 28px;background:#1a1a1a}
+#summer-notes{max-width:90ch;margin:22px auto 0;font-size:16px;line-height:1.5;color:var(--text)}
+#summer-notes h3{font-size:20px;margin:22px 0 6px}
+.summer-tides{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0}
+.summer-tides th,.summer-tides td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--panel-border);vertical-align:top}
+.summer-tides tr.is-pick td{background:#13315C;font-weight:600}
+.summer-rules{padding-left:22px;display:grid;gap:6px}
+.summer-small{font-size:14px;opacity:.85}
+/* The sheet itself: paper look on screen, exactly what prints */
+.summer-sheet{box-sizing:border-box;width:8.5in;max-width:100%;min-height:11in;margin:0 auto;padding:.5in .55in .45in;background:#FFFDF7;color:#0B2545;font-family:Georgia,'Times New Roman',serif;box-shadow:0 8px 30px #0008;display:flex;flex-direction:column}
+.summer-shell header.summer-sheet-head,.summer-sheet-head{display:block;text-align:center;border-bottom:3px double #0B2545;padding-bottom:10px;margin-bottom:12px}
+.summer-sheet-head p{margin:0 0 4px;font:600 12pt/1.3 Satoshi,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#13315C}
+.summer-sheet-head h1{margin:0;font:700 32pt/1.1 Georgia,serif;letter-spacing:.01em;white-space:nowrap}
+.summer-sheet-head h1 span{color:#B23A48}
+.summer-list{list-style:none;margin:0;padding:0;flex:1}
+.summer-row{display:grid;grid-template-columns:30px 82px 1fr;gap:0 12px;align-items:start;padding:5px 0;border-bottom:1px solid #D9C49A}
+.summer-row.is-tbd{color:#4a5a73}
+.summer-num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#0B2545;color:#F4F1E8;font:700 12pt/1 Satoshi,Arial,sans-serif;margin-top:2px}
+.summer-row.is-tbd .summer-num{background:#8a94a6}
+.summer-date{display:grid;line-height:1.1}
+.summer-date strong{font:700 14pt/1.1 Satoshi,Arial,sans-serif;color:#B23A48}
+.summer-date small{font:600 10.5pt/1.3 Satoshi,Arial,sans-serif;color:#13315C}
+.summer-what{display:grid;gap:1px;min-width:0}
+.summer-line{display:block}.summer-line>strong{font:700 13.5pt/1.2 Georgia,serif}
+.summer-time{font:600 12.5pt/1.2 Satoshi,Arial,sans-serif;color:#13315C}
+.summer-what small{font:11pt/1.3 Satoshi,Arial,sans-serif;color:#2d3f5c}
+.summer-flag{color:#B23A48;font-size:11pt;margin-left:2px}
+.summer-details{display:none;font:10.5pt/1.35 Satoshi,Arial,sans-serif;color:#33425c;margin-top:2px}
+body.summer-show-details .summer-details{display:block}
+body.summer-show-details .summer-row{padding:2px 0}
+body.summer-show-details .summer-line>strong{font-size:12pt}body.summer-show-details .summer-time{font-size:11pt}body.summer-show-details .summer-what small{font-size:10pt}body.summer-show-details .summer-details{font-size:8.8pt;line-height:1.28}body.summer-show-details .summer-line{display:inline}body.summer-show-details .summer-what small{display:inline;margin-left:6px}body.summer-show-details .summer-what small:before{content:'· '}body.summer-show-details .summer-what{display:block}body.summer-show-details .summer-details{display:block}body.summer-show-details .summer-date strong{font-size:12.5pt}body.summer-show-details .summer-num{width:22px;height:22px;font-size:10.5pt}body.summer-show-details .summer-sheet-head h1{font-size:22pt}body.summer-show-details .summer-sheet-head{padding-bottom:5px;margin-bottom:6px}body.summer-show-details .summer-sheet-head p{font-size:10pt}body.summer-show-details .summer-foot-note{font-size:8.5pt !important}body.summer-show-details .summer-sheet-foot{margin-top:4px;padding-top:4px}body.summer-show-details .summer-sheet-foot p{font-size:10pt}
+.summer-sheet-foot{margin-top:8px;border-top:3px double #0B2545;padding-top:8px;text-align:center}
+.summer-sheet-foot p{margin:0 0 4px;font:11.5pt/1.35 Satoshi,Arial,sans-serif}
+.summer-foot-note{font-size:9.5pt !important;color:#4a5a73}
+@media (max-width:700px){.summer-sheet{padding:.3in .22in}.summer-row{grid-template-columns:24px 60px 1fr;gap:0 8px}.summer-sheet-head h1{font-size:22pt;white-space:normal}.summer-sheet-head p{font-size:10pt;letter-spacing:.06em}}
+@media print{
+  @page{size:letter portrait;margin:.3in}
+  html,body{background:#fff !important;height:auto !important;overflow:visible !important}
+  body>*:not(#summer-dialog){display:none !important}
+  #summer-dialog{position:static !important;display:block !important;width:auto !important;height:auto !important;max-width:none !important;max-height:none !important;border:0 !important;background:#fff !important;color:#0B2545 !important;overflow:visible !important}
+  #summer-dialog::backdrop{display:none}
+  .summer-shell>header,.summer-controls,.summer-status,#summer-notes{display:none !important}
+  .summer-shell,.summer-scroll{display:block !important;height:auto !important;overflow:visible !important;padding:0 !important;background:#fff !important}
+  .summer-sheet{box-shadow:none;width:auto;min-height:0;margin:0;padding:0;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .summer-row{break-inside:avoid}
+}
+/* ---- Poster sheet (October 2026): colored tiles with icons, after the printed 2026 poster ---- */
+.summer-view{display:inline-flex;gap:4px;padding:3px;border:1px solid #D9C49A66;border-radius:999px}
+.summer-view button{min-height:40px;padding:6px 16px;border:0;border-radius:999px;background:transparent;color:#F4F1E8;font:600 15px Satoshi,Arial,sans-serif;cursor:pointer}
+.summer-view button[aria-pressed="true"]{background:#E3CF8A;color:#0B2545}
+.summer-poster{width:11in;min-height:8.5in;padding:.35in .4in .3in;background:#FBF6E9 radial-gradient(circle at 50% 0,#fff8 0,#fff0 60%)}
+.summer-shell header.poster-head,.poster-head{display:block;text-align:center;margin:0 0 10px;padding-bottom:8px;border-bottom:3px solid #0B2545}
+.poster-head p{display:flex;justify-content:center;align-items:center;gap:10px;margin:0 0 2px;font:700 13pt/1.2 Satoshi,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#0B2545}
+.poster-head h1{margin:0;font:italic 700 40pt/1.05 Georgia,serif;color:#13315C;letter-spacing:.01em}
+.poster-head h1 span{color:#B23A48;font-style:normal}
+.poster-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.poster-tile{display:flex;flex-direction:column;border:2px solid var(--band);border-radius:10px;overflow:hidden;background:#fff;break-inside:avoid}
+.poster-tile.is-tbd{--band:#8a94a6}
+.poster-band{display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--band);color:#fff;min-height:44px}
+.poster-band h3{margin:0;font:700 12.5pt/1.1 Georgia,serif;text-transform:uppercase;letter-spacing:.01em;text-shadow:0 1px 1px #0005}
+.poster-num{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#fff;color:var(--band);font:700 11pt/1 Satoshi,Arial,sans-serif}
+.poster-body{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 8px;padding:8px;color:#0B2545;flex:1}
+.poster-icon{grid-row:1/3;width:52px;height:52px}
+.poster-when{margin:0;display:grid;gap:1px;font:600 9.5pt/1.25 Satoshi,Arial,sans-serif}
+.poster-when strong{font:700 11pt/1.2 Georgia,serif;color:var(--band);filter:saturate(.9) brightness(.85)}
+.poster-details{grid-column:1/-1;margin:2px 0 0;font:9pt/1.3 Georgia,serif;color:#1c2b3a}
+.poster-foot{margin-top:10px;border-top:2px solid #0B2545;padding-top:8px;text-align:center}
+.poster-foot p{margin:0 0 3px;font:600 11pt/1.3 Satoshi,Arial,sans-serif;color:#0B2545}
+.poster-foot p strong{color:#B23A48}
+.poster-foot .summer-foot-note{font:8.5pt/1.3 Georgia,serif;color:#3b4a5a}
+.summer-kickoff{margin-top:18px;padding:16px 18px;border:1px solid #D9C49A66;border-radius:14px}
+.summer-kickoff h3{margin:0 0 6px}
+.summer-roles{list-style:none;margin:10px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.summer-roles li{display:grid;gap:3px;padding:12px 14px;border-radius:12px;background:#13315C}
+.summer-roles strong{font-size:17px;color:#E3CF8A}
+.summer-roles small{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#8FC1B5}
+.summer-roles span{font-size:15px;line-height:1.5;color:#F4F1E8}
+@media (max-width:1180px){.summer-poster{width:100%;min-height:0}.poster-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:820px){.poster-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.poster-head h1{font-size:28pt}}
+@media (max-width:520px){.summer-poster{padding:.25in .2in}.poster-grid{grid-template-columns:1fr}.poster-body{grid-template-columns:44px minmax(0,1fr)}.poster-icon{width:44px;height:44px}.poster-head h1{font-size:24pt}}
+@media print{
+  .summer-poster{width:auto;min-height:0;padding:0;background:#FBF6E9}
+  body.summer-print-landscape #summer-dialog{width:auto}
+  .poster-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  .poster-tile{break-inside:avoid}
+}

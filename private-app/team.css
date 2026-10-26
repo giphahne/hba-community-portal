@@ -1,0 +1,67 @@
+/* Contact our team, Message my governor, board inbox */
+#team-dialog,#governor-message-dialog,#team-edit-dialog{background:#0B2545;color:#F4F1E8;border:1px solid #D9C49A66;border-radius:12px;padding:0;font:16px/1.55 Satoshi,sans-serif}
+#team-dialog{position:fixed;inset:16px;margin:auto;width:calc(100vw - 32px);height:calc(100dvh - 32px);max-width:1320px;max-height:none}
+#governor-message-dialog,#team-edit-dialog{width:min(640px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+#team-dialog::backdrop,#governor-message-dialog::backdrop,#team-edit-dialog::backdrop{background:#07192Fd9}
+.team-shell{height:100%;display:flex;flex-direction:column;min-height:0}
+.team-head{display:flex;gap:16px;align-items:center;justify-content:space-between;border-bottom:1px solid #D9C49A44;padding:16px 26px;flex:none}
+.team-head p{font-size:13px;color:#B9C8D2;margin:0 0 3px}
+.team-head h2{font:700 30px/1.15 Boska,Georgia,serif;margin:0}
+.team-head-actions{display:flex;gap:8px}
+#team-dialog button,#governor-message-dialog button,#team-edit-dialog button{font:600 15px/1.4 Satoshi,sans-serif;min-height:46px;border:1px solid #D9C49A88;background:#13315C;color:#F4F1E8;padding:10px 16px;border-radius:7px;cursor:pointer}
+#team-dialog button:hover,#governor-message-dialog button:hover,#team-edit-dialog button:hover{border-color:#C9A227}
+#team-dialog button:disabled{opacity:.6;cursor:wait}
+#team-dialog :focus-visible,#governor-message-dialog :focus-visible,#team-edit-dialog :focus-visible{outline:3px solid #C9A227;outline-offset:2px}
+#team-close,.team-primary{background:linear-gradient(135deg,#C9A227,#C9A227)!important;color:#0B2545!important;border-color:#C9A227!important}
+#team-status{margin:0;padding:8px 26px;font-size:14px;color:#B9C8D2;flex:none}
+#team-status:empty{display:none}
+.team-error{color:#F2A5AE!important}
+.team-content{overflow:auto;min-height:0;flex:1;padding:22px clamp(16px,4vw,48px) 50px}
+.team-content section{margin:0 0 30px}
+.team-content h3{font:700 23px/1.3 Georgia,serif;margin:0 0 8px;color:#F4F1E8}
+.team-intro{display:grid;grid-template-columns:minmax(220px,380px) minmax(0,1fr);gap:22px;align-items:center;margin:0 0 26px}
+.team-art{position:relative;margin:0;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background-size:cover;border:1px solid #8FC1B533}
+.team-art img{display:block;width:100%;height:100%;object-fit:cover}
+.team-art figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px 12px 8px;font-size:12.5px;color:#F4F1E8;background:linear-gradient(180deg,transparent,#07192Fcc)}
+.team-lede{font-size:17px;line-height:1.55;margin:0 0 12px;max-width:60ch}
+.team-mine{padding:18px;border:1px solid #C9A22766;border-radius:14px;background:#13315C}
+.team-mine>p{margin:0 0 12px;color:#D5DCE3}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.team-card{position:relative;display:flex;flex-direction:column;gap:3px;padding:16px;border:1px solid #D9C49A55;border-radius:12px;background:#13315C;animation:team-in .4s ease both}
+.team-card-mine{border-color:#C9A227;box-shadow:0 0 0 3px #C9A22722}
+.team-badge{position:absolute;top:-10px;right:14px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#C9A227;color:#0B2545;font-weight:700}
+.team-position{margin:0;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#A8C9C0}
+.team-card h4{margin:0 0 4px;font:700 21px/1.25 Georgia,serif;color:#F4F1E8}
+.team-line{display:block;font-size:15px;line-height:1.5;color:#E6E3DA}
+.team-link{color:#E8CB6A;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.team-muted{color:#B9C8D2;font-size:14px;line-height:1.5}
+.team-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.team-section-head p{margin:0 0 12px;color:#B9C8D2;font-size:14.5px}
+.team-msg{padding:14px 16px;border:1px solid #D9C49A44;border-left:5px solid #D9C49A88;border-radius:10px;background:#0f2531;margin:0 0 10px}
+.team-msg-new{border-left-color:#C9A227}.team-msg-replied{border-left-color:#6daa45}
+.team-msg-mine{background:#13315C}
+.team-msg-head{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px}
+.team-tag{font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid #D9C49A88;color:#D5DCE3}
+.team-msg h4{margin:8px 0 2px;font-size:18px}
+.team-from{margin:0 0 6px;font-size:14px;color:#B9C8D2}
+.team-body{margin:0;white-space:pre-wrap;line-height:1.55}
+.team-note{margin:8px 0 0;padding:8px 10px;border-radius:6px;background:#1a3a2a;font-size:14px}
+.team-footnote{font-size:13.5px;line-height:1.55;color:#B9C8D2;border-top:1px solid #D9C49A33;padding-top:12px}
+.team-form{padding:18px 22px 24px}
+.team-form header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 8px}
+.team-form h3{margin:0;font:700 24px/1.2 Georgia,serif}
+.team-form p{font-size:15px;line-height:1.55;color:#D5DCE3}
+.team-form label{display:flex;flex-direction:column;gap:5px;font-size:14px;margin:12px 0;color:#B9C8D2}
+.team-form input,.team-form select,.team-form textarea{font:16px/1.4 Satoshi,sans-serif;min-height:46px;padding:10px 12px;border:1px solid #D9C49A88;border-radius:7px;background:#0B2545;color:#F4F1E8}
+.team-form textarea{min-height:120px;resize:vertical}
+.team-check{flex-direction:row!important;align-items:center;gap:10px!important;color:#F4F1E8!important}
+.team-check input{width:22px;height:22px;min-height:0}
+#gm-status,#te-status{min-height:1.4em}
+@keyframes team-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:760px){
+  #team-dialog{inset:0;width:100vw;height:100dvh;border-radius:0}
+  .team-head{padding:12px 16px}.team-head h2{font-size:24px}
+  .team-intro{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.team-card{animation:none}}

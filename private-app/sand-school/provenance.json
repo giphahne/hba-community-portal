@@ -1,0 +1,9 @@
+{
+  "name": "How to Save Our Beach (formerly Sand School)",
+  "source_session": "bef481ac-1e2e-4ece-9858-f316917e6ac8",
+  "source_checkpoint": "2026-10-12: pre-dumped-sand adjustment added",
+  "archive_sha256": "c7d5b4900275c37202254adce82bde960dfbdce5f878e6b66d84d66d447ee98a",
+  "integration": "Existing app imported as a separate learning section within the Hamilton Beach research map. Exported preview-edit helper removed; simulations and source links retained.",
+  "angle_review": "2026-10-17: replaced shared shoreline-normal drawing with separate image-bearing estimates: existing A approximately 160 degrees, C1 approximately 158 degrees, C2 approximately 169 degrees, clockwise from image north. Controls allow orientation sensitivity checks. Historical endpoints visually digitized; modern crop registration does not validate historical georeferencing.",
+  "limitation": "Illustrative educational models, not a surveyed shoreline forecast, approved engineering design or determination of property rights. Angles are photo/plan estimates, not transcribed survey bearings. Cross-shore projection is a heuristic, not a calibrated angle-specific hydrodynamic model. No measured placement or angular error bound."
+}

@@ -1,0 +1,26 @@
+name: Checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax check the browser code
+        run: for f in private-app/*.js site/*.js; do node --check "$f"; done
+      - name: Syntax check the backend
+        run: python -m py_compile server/*.py
+      - name: Event-date rules
+        run: node tools/tests/test-event-dates.cjs
+      - name: Bank reconciliation math
+        run: |
+          pip install -q -r server/requirements.txt
+          python tools/tests/test-bank-math.py

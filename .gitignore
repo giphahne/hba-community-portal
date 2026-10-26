@@ -1,0 +1,36 @@
+# Secrets and private data — never commit these
+.env
+.env.*
+!.env.example
+server/.env.community
+server/hba-storage.json
+server/app-url.txt
+community-private-data/
+server/community-private-data/
+*.key
+*.pem
+*.sqlite
+*.sqlite3
+*.log
+
+# Resident personal data
+**/winter-residents*.csv
+**/roster*.csv
+**/qa-fixtures.json
+
+# Large public-record scans (distributed separately as hba-portal-record-scans.zip)
+private-app/assessor-photos/
+private-app/deeds/
+private-app/ch91/
+private-app/history-scans/
+private-app/road-scans/
+private-app/title-trace/
+
+# Local copies and build output
+server/private-app/
+dist/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

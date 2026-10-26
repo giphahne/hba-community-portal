@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hamilton Beach, Wareham — Beach Rights Research Map</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=boska@500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="property-history.css">
+<link rel="stylesheet" href="research-tools.css">
+<link rel="stylesheet" href="sand-school.css">
+<link rel="stylesheet" href="nourishment.css">
+<link rel="stylesheet" href="island-history.css">
+<link rel="stylesheet" href="storms-history.css">
+<link rel="stylesheet" href="board-budget.css">
+<link rel="stylesheet" href="dues-registry.css">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="community.css">
+<link rel="stylesheet" href="bulletin.css">
+<link rel="stylesheet" href="inbox.css">
+<link rel="stylesheet" href="summer-events.css">
+<link rel="stylesheet" href="town-rules.css">
+<link rel="stylesheet" href="engagement.css">
+<link rel="stylesheet" href="ch91-landmarks.css">
+<link rel="stylesheet" href="app-practice.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root {
+    /* Nautical palette: centralized so every tool shares the same hull, sail, brass and rope colours. */
+    --navy: #0B2545;
+    --navy-2: #13315C;
+    --sail: #F4F1E8;
+    --brass: #C9A227;
+    --seafoam: #8FC1B5;
+    --signal-red: #B23A48;
+    --signal-red-text: #F2A5AE;
+    --rope: #D9C49A;
+    --ink: var(--navy);
+    --panel: rgba(11, 37, 69, 0.94);
+    --panel-border: rgba(217, 196, 154, 0.35);
+    --text: var(--sail);
+    --muted: #B9C8D2;
+    --accent: var(--brass);
+    --blue: var(--seafoam);
+    --paper: var(--sail);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif; }
+  #map { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: #0B2545; }
+
+  .panel {
+    position: absolute; z-index: 1000;
+    top: 14px; left: 14px;
+    width: 390px; max-width: calc(100vw - 28px);
+    max-height: calc(100vh - 28px);
+    overflow-y: auto;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 18px 20px 16px;
+    color: var(--text);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+  }
+  .panel.collapsed { max-height: 62px; overflow: hidden; }
+  .panel.collapsed > :not(h1):not(.collapse-btn) {display:none}
+  .panel.collapsed h1 {font-size:20px;white-space:nowrap;margin:0}
+  .panel h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px; line-height: 1.2; margin: 0 0 2px;
+    color: var(--paper);
+  }
+  .panel .sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .count-row { display: flex; gap: 10px; margin: 10px 0 4px; flex-wrap: wrap; }
+  .stat {
+    flex: 1 1 45%; background: rgba(255,255,255,0.06);
+    border: 1px solid var(--panel-border); border-radius: 8px; padding: 8px 10px;
+  }
+  .stat b { display: block; font-size: 24px; line-height: 1.1; }
+  .stat span { font-size: 11px; color: var(--muted); }
+  .stat.s1 b { color: #7fc4e8; }
+  .stat.s2 b { color: #b9a7e8; }
+  .stat.s3 b { color: #B9C8D2; }
+  .stat.s4 b { color: var(--accent); }
+  .legend { margin: 12px 0 6px; font-size: 12.5px; }
+  .legend .row { display: flex; align-items: center; gap: 8px; margin: 5px 0; cursor: pointer; user-select: none; }
+  .legend .row.off { opacity: 0.38; }
+  .swatch { width: 15px; height: 15px; border-radius: 3px; flex: 0 0 auto; border: 1px solid rgba(0,0,0,0.35); }
+  .note { font-size: 12px; line-height: 1.5; color: var(--muted); }
+  .note b { color: var(--text); }
+  .quote {
+    font-family: Georgia, serif; font-style: italic; font-size: 12.5px; line-height: 1.5;
+    border-left: 3px solid var(--accent); padding: 4px 10px; margin: 10px 0;
+    color: #dce8ec; background: rgba(255,255,255,0.04); border-radius: 0 6px 6px 0;
+  }
+  .src { font-size: 10.5px; color: #7f9aa4; line-height: 1.6; margin-top: 10px; border-top: 1px solid var(--panel-border); padding-top: 8px; }
+  .src a { color: #9fc6d8; }
+  .collapse-btn {
+    position: absolute; top: 12px; right: 12px; z-index: 1001;
+    background: rgba(255,255,255,0.1); color: var(--text); border: 1px solid var(--panel-border);
+    border-radius: 6px; width: 26px; height: 26px; font-size: 15px; line-height: 1; cursor: pointer;
+  }
+  .leaflet-popup-content { font-size: 12.5px; line-height: 1.45; }
+  .leaflet-popup-content b { font-size: 13px; }
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 9px; font-size: 10.5px; font-weight: 600; margin-top: 3px; }
+  .tag.orig { background: #2b8cbe; color: #fff; }
+  .tag.taxrec { background: #7a6bb5; color: #fff; }
+  .tag.other { background: #8fa3ab; color: #fff; }
+  .tag.beach { background: #C9A227; color: #3a2c05; }
+  .tag.grant {background:#237951;color:white}
+  .tag.linked {background:#147a82;color:white}
+  .tag.reserved {background:#a45034;color:white}
+  .tag.checked {background:#6e627c;color:white}
+  .tag.outside {background:#687d83;color:white}
+  .tag.qualified {background:#a77b18;color:white}
+  .tag.unresolved,.tag.missing {background:#ab4655;color:white}
+  .search-box {width:100%;padding:9px 10px;margin:8px 0;border:1px solid var(--panel-border);border-radius:6px;background:var(--panel);color:var(--text);font:inherit;font-size:12px}
+  .search-results {max-height:160px;overflow:auto}
+  .search-results button {display:block;width:100%;text-align:left;background:transparent;color:var(--text);border:0;border-bottom:1px solid var(--panel-border);padding:7px;font:inherit;font-size:12px;cursor:pointer}
+  body {font-family: 'Satoshi', sans-serif;}
+  .panel h1 {font-family: 'Boska', Georgia, serif; font-size:26px;padding-right:32px}
+  #map {left:420px}
+  .panel {width:400px}
+  .sub,.stat span,.src,.tag {font-size:12px!important}
+  .note {font-size:14px}
+  .quote {font-style:normal}
+  [data-theme="light"] {--panel:#F4F1E8;--text:#0B2545;--muted:#4e6973;--paper:#0B2545;--panel-border:#b7c8cf}
+  .quote {color:var(--text)}
+  [data-theme="light"] .stat.s1 b {color:#16668f}
+  [data-theme="light"] .stat.s2 b {color:#62509c}
+  [data-theme="light"] .stat.s3 b {color:#4e6973}
+  [data-theme="light"] .stat.s4 b {color:#906500}
+  .theme-btn {padding:6px 12px;border:1px solid var(--panel-border);border-radius:6px;background:transparent;color:var(--text);cursor:pointer}
+  .drain-panel {margin:12px 0;padding:12px;border:1px solid var(--panel-border);border-radius:8px;font-size:12px}
+  .drain-panel h2 {font-size:16px;margin:0 0 8px}
+  .drain-controls {display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .drain-controls label {display:flex;align-items:center;gap:5px;min-height:32px}
+  .drain-controls button {min-height:36px;padding:6px 10px;border:1px solid var(--panel-border);background:transparent;color:var(--text);border-radius:6px;cursor:pointer}
+  .drain-panel p {margin:8px 0;color:var(--muted);line-height:1.5}
+  .drain-panel a {color:var(--text)}
+  .drain-panel details {margin-top:8px}
+  .drain-panel summary {cursor:pointer;min-height:32px;padding-top:6px}
+  #drain-records {display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  #drain-records button {background:transparent;border:1px solid var(--panel-border);color:var(--text);text-align:left;min-height:36px;padding:6px;border-radius:4px;font:inherit;cursor:pointer}
+  .drain-marker {background:transparent;border:0}
+  .drain-marker span {display:grid;place-items:center;width:24px;height:24px;font:bold 12px 'Satoshi',sans-serif;color:white;background:#0B2545;border:3px solid #C9A227;border-radius:50%;box-shadow:0 1px 5px #0009}
+  .drain-marker.basin span {border-color:#79d5ff;border-radius:3px;width:20px;height:20px}
+  .drain-marker:focus-visible span {outline:3px solid white;outline-offset:3px}
+  .drain-popup p {margin:8px 0}
+  .drain-popup .scope {background:#eef3f5;padding:8px;border-radius:4px;color:#304650}
+  #ch91-records {display:grid;gap:5px}
+  #ch91-records button {background:transparent;border:1px solid var(--panel-border);color:var(--text);text-align:left;min-height:38px;padding:7px;border-radius:4px;font:inherit;cursor:pointer}
+  #ch91-records button small {display:block;color:var(--muted);margin-top:3px;font-size:12px}
+  .supplied-record {border:1px solid var(--panel-border);border-radius:4px;padding:7px}
+  .supplied-record summary {cursor:pointer;min-height:32px;line-height:1.45}
+  .supplied-record summary:focus-visible {outline:2px solid #20808d;outline-offset:3px}
+  .supplied-record p {line-height:1.5;overflow-wrap:anywhere}
+  .supplied-record button {width:100%}
+  .ch91-marker {background:transparent;border:0}
+  .ch91-marker span {display:grid;place-items:center;width:30px;height:26px;font:bold 11px 'Satoshi',sans-serif;color:#0B2545;background:#e9f3f2;border:2px solid #147a82;border-radius:5px;box-shadow:0 1px 5px #0009}
+  .ch91-marker.interim span {border-style:dashed}
+  .ch91-marker.adjacent span {background:#e3e4e5;border-color:#687d83}
+  .logo {width:28px;height:28px;color:var(--accent);margin-bottom:8px}
+  @media (max-width: 640px) {
+    #map {left:0}
+    .panel {max-height:52vh;width:calc(100vw - 20px)}
+    .panel h1 {font-size:20px}
+    .logo {width:22px;height:22px;margin-bottom:4px}
+    .count-row {gap:6px;margin-top:6px}
+    .stat {padding:6px 8px}
+    .stat span {font-size:10px!important}
+    .sub {font-size:10px!important;margin-bottom:6px!important}
+    .panel.collapsed {max-height:62px}
+    .leaflet-top.leaflet-left {top:auto;bottom:28px}
+  }
+  @media (max-width: 640px) {
+    .panel { width: calc(100vw - 20px); top: 8px; left: 10px; padding: 14px; }
+    .stat b { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="panel" id="panel">
+  <button class="collapse-btn" id="toggle" title="Collapse panel" aria-expanded="true">−</button>
+  <svg class="logo" aria-label="Hamilton Beach map mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7l8-3 8 3 8-3v21l-8 3-8-3-8 3zM12 4v21M20 7v21M5 18c6-6 9 6 16 0"/></svg>
+  <h1>Hamilton Beach, Wareham</h1>
+  <div class="sub">Beach rights research map · Assessor Map 50F · Not a title determination</div>
+  <span class="theme-btn" id="theme" hidden aria-hidden="true"></span>
+  <section class="drain-panel" aria-labelledby="ch91-heading">
+    <h2 id="ch91-heading">Chapter 91 documents</h2>
+    <div class="drain-controls">
+      <label><input id="show-ch91-beach" type="checkbox" checked> 3 shoreline records</label>
+      <label><input id="show-ch91-utility" type="checkbox" checked> 2 utility crossings</label>
+      <label><input id="show-ch91-adjacent" type="checkbox"> 2 adjacent properties</label>
+      <button id="focus-ch91" type="button">View Chapter 91</button>
+    </div>
+    <p>14 distinct Chapter 91 records: 12 issued licenses + 2 interim approvals. Also attached: 2 separate 2020 NOI materials and an alternate scan of license 3102. Historical records include qualified parcel-locus matches, not guessed structure markers. Not a complete inventory or a current-validity certification.</p>
+    <p><a href="ch91/parcel-recording-status.md" target="_blank" rel="noopener">Six-record parcel, recording and status review</a> · <a href="ch91/historical-recording-verification.pdf" target="_blank" rel="noopener">Additional Registry evidence PDF</a></p>
+    <details>
+      <summary>Browse all 17 document files and plans</summary>
+      <div id="ch91-records"></div>
+      <p><a href="ch91/chapter-91-records.md" download>License inventory + archive request draft</a></p>
+      <p><a href="https://experience.arcgis.com/experience/c78fc81ac2a149b78494c15b7875dca5" target="_blank" rel="noopener">MassDEP viewer</a> · <a href="https://www.mass.gov/guides/waterways-file-review-research" target="_blank" rel="noopener">Unmapped archive records</a></p>
+    </details>
+    <p>“C91” points are MassDEP locus locations, not structure footprints. “IA” is interim approval. Adjacent Point Road records are off by default.</p>
+  </section>
+  <section class="drain-panel" aria-labelledby="drain-heading">
+    <h2 id="drain-heading">Drainage records</h2>
+    <div class="drain-controls">
+      <label><input id="show-outfalls" type="checkbox" checked> O · 3 outfalls</label>
+      <label><input id="show-basins" type="checkbox" checked> B · 4 catch basins</label>
+      <button id="focus-drains" type="button">View drains</button>
+    </div>
+    <p>Locations from the public stormwater GIS. No underground pipe connections or survey-accurate easement route are inferred.</p>
+    <details>
+      <summary>Browse 7 drainage records</summary>
+      <div id="drain-records"></div>
+      <p><a href="drains/drain-records.md" download>Drainage evidence notes</a> · <a href="drains/easement.md" download>1961 easement notes</a></p>
+      <p><a href="drains/2838_142_best.jpg" target="_blank" rel="noopener">1961 easement scan</a> · <a href="drains/2838_142_plan_full.jpg" target="_blank" rel="noopener">Attached plan</a></p>
+    </details>
+  </section>
+
+  <div class="count-row">
+    <div class="stat s1"><b id="coverage">195 / 195</b><span>mapped records accounted for</span></div>
+    <div class="stat s4"><b id="instruments">...</b><span>supplied reference entries fully image-reviewed</span></div>
+    <div class="stat s2"><b id="positive">...</b><span>mapped grant + linked evidence records</span></div>
+    <div class="stat s3"><b id="exceptions">...</b><span>unresolved reference + missing-reference records</span></div>
+  </div>
+  <label for="search" class="note">Find an address, deed, drain ID or Chapter 91 number</label>
+  <input class="search-box" id="search" type="search" placeholder="Try 15 Turner, 60684/99 or WWA1030PI" autocomplete="off">
+  <div class="search-results" id="search-results" aria-live="polite"></div>
+  <div class="legend" id="legend">
+  </div>
+  <div class="quote">
+    <b>Full inventory audit, not a title certification.</b> Every mapped record is accounted for; unresolved scans and references remain flagged.
+    Counts describe documentary evidence, not enforceable rights or owners.
+  </div>
+  <div class="note">
+    <b>How to read this.</b> Green records have express beach-use grants; teal records have identified benefits by reference or common-use language with the grantee.
+    Orange shows reservations for others/public. Purple means the reviewed instrument did not establish a specific benefit, not that rights are absent.
+    Gray identifies a different subdivision or scope; gold means a parcel-limited clause has not been assigned to these polygons.
+    Red records have an unresolved scan/reference or no supplied reference.
+    <br><br>
+    The audit covers 186 supplied references, with shared instruments deduplicated. A confirmed assessor typo is documented rather than silently corrected.
+    A clause for one lot in a multi-parcel deed is not automatically extended to all lots.
+    <b>FEE and TAX polygons can overlap.</b> Assessor records, historical lots, deed instruments and owners are different counting units.
+    The property-history browser includes reviewed historical evidence and remaining research gaps. Full lifetime title chains, later instruments, enforceability and a survey-accurate plan overlay are not yet certified.
+    <br><br><a href="parcel-deed-checks.md" download style="color:var(--text)">Download full evidence ledger</a> ·
+    <a href="parcel-deed-checks.csv" download style="color:var(--text)">Download 195-record CSV</a>
+  </div>
+
+  <div class="note" style="margin-top:8px">
+    <b>Use the map.</b> Click a parcel for its address, assessor ID and research status. Click a legend row to hide or show a category.
+    Parcel boundaries are for reference, not a survey.
+  </div>
+
+  <div class="src">
+    Sources: Plymouth County Registry of Deeds (TitleView) — 1922 plan Book 3/511; 1923 lot deeds Book 1438/117;
+    1975 Land Court decree Book 4100/130 · Wareham Town Street Listing · MassGIS / Wareham assessor parcel data (retrieved October 4, 2026; layer vintage may differ from current assessment data) ·
+    MassDOT Road Inventory 2025 ·
+    <a href="https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0" target="_blank">MassGIS parcel layer</a> ·
+    <a href="https://titleview.org/plymouthdeeds/" target="_blank">Plymouth Registry: instrument-image audit, October 4, 2026</a> ·
+    <a href="https://gis.vgsi.com/warehamma/" target="_blank">Wareham assessing data</a> ·
+    <a href="https://wareham.gov/DocumentCenter/View/466/Street-Listing-PDF" target="_blank">Street Listing (PDF)</a>
+  </div>
+</div>
+
+<script src="parcels.js"></script>
+<script src="audit.js"></script>
+<script src="title-trace.js"></script>
+<script src="road-wording.js"></script>
+<script src="drainage.js"></script>
+<script src="ch91.js"></script>
+<script>
+  const map = L.map("map", { zoomControl: true });window.map=map;
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19, attribution: "Imagery © Esri, MassGIS"
+  }).addTo(map);
+  const labels = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 }).addTo(map);
+
+  const STYLES = {
+    grant: {color:"#d8ffde",weight:3,fillColor:"#35a86e",fillOpacity:0.85},
+    linked: {color:"#bcfbff",weight:3,fillColor:"#24a8b0",fillOpacity:0.85},
+    reserved: {color:"#ffdfbf",weight:3,fillColor:"#d68154",fillOpacity:0.85},
+    checked: {color:"#eadcf5",weight:2,fillColor:"#a18bb5",fillOpacity:0.70},
+    outside: {color:"#d8dee0",weight:1,fillColor:"#687d83",fillOpacity:0.50},
+    qualified: {color:"#fff0bf",weight:2,fillColor:"#bd9637",fillOpacity:0.75},
+    unresolved: {color:"#ffd5db",weight:2,fillColor:"#ab4655",fillOpacity:0.75},
+    missing: {color:"#ffd5db",weight:2,dashArray:"4 3",fillColor:"#ab4655",fillOpacity:0.30},
+    orig:    { color: "#dff1ff", weight: 1, fillColor: "#2b8cbe", fillOpacity: 0.55 },
+    taxrec:  { color: "#e6e0ff", weight: 1, fillColor: "#7a6bb5", fillOpacity: 0.50 },
+    other:   { color: "#d8dee0", weight: 1, fillColor: "#8fa3ab", fillOpacity: 0.35 },
+    beach:   { color: "#ffe3a1", weight: 2.5, fillColor: "#C9A227", fillOpacity: 0.80 }
+  };
+  const LABELS = {
+    grant:"Express beach-use grant in reviewed deed",
+    linked:"Earlier-deed or referenced beach-use benefit",
+    reserved:"Reservation for others/public; own rights untraced",
+    checked:"Deed checked; beach rights unresolved",
+    outside:"Different subdivision or instrument scope",
+    qualified:"Parcel-limited clause; polygon benefit unassigned",
+    unresolved:"Scan or reference unresolved",
+    missing:"No assessor deed reference",
+    orig: "Numeric assessor lot ID — deeded rights unverified",
+    taxrec: "Missing mapped parcel ID — deeded rights unverified",
+    other: "Other assessor ID — deeded rights unverified",
+    beach: "Beach-area assessment record"
+  };
+  const layers = {};
+  const targets = {};
+  const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const mapCounts={...AUDIT_STATS.counts};
+  Object.entries(TITLE_TRACE).forEach(([index,t])=>{
+    if(t.approved_classification&&DEED_AUDIT[index]){
+      const prior=DEED_AUDIT[index].cls;
+      mapCounts[prior]=(mapCounts[prior]||0)-1;
+      mapCounts[t.approved_classification]=(mapCounts[t.approved_classification]||0)+1;
+    }
+  });
+  const tracePanel=document.createElement("section");
+  tracePanel.className="drain-panel";
+  tracePanel.innerHTML="<h2>Earlier deeds: purple-parcel trace</h2><p>"+
+    TITLE_TRACE_STATS.original_purple_records+" original purple records / "+TITLE_TRACE_STATS.deed_groups+" deed groups. "+
+    TITLE_TRACE_STATS.approved_linked_records+" earlier-deed benefit findings; "+TITLE_TRACE_STATS.approved_reserved_records+
+    " reservations for others/public. Other records remain unresolved.</p><p>Open a parcel for matching lots, clauses, scans and next steps. A read predecessor does not mean its entire chain is complete.</p>"+
+    "<p><a href='purple-parcel-earlier-deeds.md' download>Full research ledger</a> · <a href='purple-parcel-earlier-deeds.csv' download>100-record CSV</a> · <a href='title-trace.json' download>Evidence ledger JSON</a></p>";
+  document.getElementById("legend").after(tracePanel);
+  const roadPanel=document.createElement("section");
+  roadPanel.className="drain-panel";
+  roadPanel.innerHTML="<h2>Road wording: partial review</h2><p>"+ROAD_STATS.completed_road_reviews+" / "+ROAD_STATS.reference_entries+
+    " reference entries reviewed. "+ROAD_STATS.pending+" pending; "+ROAD_STATS.other_incomplete+
+    " partial or defective scans. Open a parcel for exact clauses and lot limits.</p>"+
+    "<p>Street boundaries are not road-use grants. No road ownership, public acceptance or present enforceability is determined. Beach colors are unchanged.</p>"+
+    "<p><a href='hamilton-beach-road-wording.md' download>Road wording report</a> · <a href='hamilton-beach-road-wording.csv' download>Clause CSV</a> · <a href='road-wording.json' download>Checkpoint JSON</a></p>";
+  tracePanel.after(roadPanel);
+  function roadEvidenceNote(index){
+    const rows=ROAD_EVIDENCE[index];
+    if(!rows?.length)return "";
+    return "<section><h3>Roads, streets and passage</h3><p>Related current and earlier reference entries are listed below. An earlier-chain candidate does not automatically benefit this parcel; observe each lot limit.</p>"+
+      rows.map(r=>"<details><summary>"+escapeHtml(r.ref)+" · "+escapeHtml(r.review_status)+" · "+r.findings.length+" wording entries</summary>"+
+        "<p>"+escapeHtml(r.notes||"")+"</p>"+
+        (!r.findings.length?"<p>"+(r.review_status==="reviewed"?"No road-purpose clause recorded in reviewed subject pages.":"Not a negative finding: road review remains incomplete.")+"</p>":"")+
+        r.findings.map(f=>"<p><b>"+escapeHtml(ROAD_LABELS[f.category]||f.category)+"</b> · page "+escapeHtml(f.recorded_page??"unverified")+"</p><blockquote>"+
+          escapeHtml(f.quote)+"</blockquote><p><b>Scope:</b> "+escapeHtml(f.lot_scope)+
+          "<br><b>Beneficiaries:</b> "+escapeHtml(f.beneficiaries)+"<br>"+escapeHtml(f.limitation)+
+          (f.scan?"<br><a href='"+f.scan+"' target='_blank' rel='noopener'>Open clause scan</a>":"")+"</p>").join("")+"</details>").join("")+
+      "<p>No road ownership, municipal acceptance or current enforceability determination. <a href='https://titleview.org/plymouthdeeds/' target='_blank' rel='noopener'>Plymouth Registry</a></p></section>";
+  }
+  function earlierDeedNote(t){
+    if(!t)return "";
+    const decision=t.parent_adjudication;
+    const readableStatus={positive:"specific clause evidence found; see parcel limits",partial:"earlier steps reviewed; chain remains incomplete",blocked:"research gap requiring follow-up"};
+    return "<section><h3>Earlier-deed tracing</h3><p>Research status: "+escapeHtml(readableStatus[t.status]||t.status)+
+      ". This is a bounded trace, not title certification.</p>"+
+      (decision?"<p><b>"+(t.approved_classification?"Map finding: "+escapeHtml(LABELS[t.approved_classification]):"Color unchanged: parcel limits remain")+
+      "</b><br>"+escapeHtml(decision.reason)+"</p>":"")+
+      "<p><b>Lot / scope limits</b><br>"+escapeHtml(t.parcel_limitations)+"</p>"+
+      t.earlier_instruments.map(i=>"<details><summary>"+escapeHtml(i.ref)+" · "+escapeHtml(i.classification||i.status||"unresolved")+
+        " · "+(i.pages_read||0)+" subject-page reviews</summary><p>"+escapeHtml(i.doc_type||"Instrument type unresolved")+
+        (i.date?" · "+escapeHtml(i.date):"")+"</p><p>"+escapeHtml(i.lot_match||"Lot continuity unresolved")+"</p>"+
+        (i.quote?"<blockquote>"+escapeHtml(i.quote)+"</blockquote>":"")+
+        "<p>"+escapeHtml(i.notes||"")+"</p>"+
+        (i.next_refs?.length?"<p>Next references: "+i.next_refs.map(escapeHtml).join("; ")+"</p>":"")+
+        "<p>"+(i.scans||[]).map((s,k)=>"<a href='"+s+"' target='_blank' rel='noopener'>"+escapeHtml(i.ref)+" scan "+(k+1)+"</a>").join(" · ")+"</p></details>").join("")+
+      "<p><b>Remaining work</b><br>"+escapeHtml(t.next_action)+"</p><p><a href='https://titleview.org/plymouthdeeds/' target='_blank' rel='noopener'>Plymouth Registry book/page search</a></p></section>";
+  }
+  let hover;
+  map.createPane("ch91");map.getPane("ch91").style.zIndex=640;
+  const ch91Groups={beach:L.layerGroup().addTo(map),utility:L.layerGroup().addTo(map),adjacent:L.layerGroup()};
+  const ch91Targets={};
+  function focusCh91(d){
+    document.getElementById("show-ch91-"+d.group).checked=true;ch91Groups[d.group].addTo(map);
+    if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();
+    map.setView([d.lat,d.lng],18,{animate:false});ch91Targets[d.id].openPopup();
+  }
+  CH91.forEach(d=>{
+    const interim=d.id==="DEP006099";
+    const marker=L.marker([d.lat,d.lng],{pane:"ch91",title:d.id+" · "+d.location,
+      icon:L.divIcon({className:"ch91-marker "+(interim?"interim ":"")+d.group,html:"<span>"+(interim?"IA":"C91")+"</span>",iconSize:[30,26],iconAnchor:[15,13]})
+    }).addTo(ch91Groups[d.group]);
+    marker.bindTooltip(d.id+" · "+d.location,{direction:"top",offset:[0,-12]});
+    marker.bindPopup("<div class='drain-popup'><b>"+escapeHtml(d.id)+"</b><br>"+escapeHtml(d.location)+
+      "<p class='scope'>"+escapeHtml(d.kind)+" · "+(d.group==="adjacent"?"Adjacent context, not assigned to Hamilton Beach.":"MassDEP locus point; no footprint inferred.")+"</p>"+
+      "<p><b>Licensee:</b> "+escapeHtml(d.licensee)+"<br><b>Issued:</b> "+escapeHtml(d.issued)+"</p>"+
+      "<p>"+escapeHtml(d.detail)+"</p><p><b>Term/status:</b> "+escapeHtml(d.term)+"</p>"+
+      "<p>"+escapeHtml(d.access)+"</p><p>"+escapeHtml(d.caution)+"</p>"+
+      "<p><a href='"+d.pdf+"' target='_blank' rel='noopener'>Open original PDF + plans</a> · <a href='"+d.pdf+"' download>Download</a></p>"+
+      (d.extra.length?"<p>"+d.extra.map(x=>"<a href='"+x.url+"' target='_blank' rel='noopener'>"+escapeHtml(x.label)+"</a>").join(" · ")+"</p>":"")+
+      "<p><a href='"+d.source+"' target='_blank' rel='noopener'>Official document source"+(d.id==="WW01-0000829"?" (search "+d.id+")":"")+"</a> · "+
+      "<a href='"+CH91_GIS+"/query?objectIds="+d.objectId+"&outFields=*&outSR=4326&f=pjson' target='_blank' rel='noopener'>GIS locus record</a></p>"+
+      "<small>"+escapeHtml(d.pages)+". Retrieved October 4, 2026. Current validity not certified.</small></div>",
+      {maxWidth:matchMedia("(max-width:640px)").matches?250:360,maxHeight:matchMedia("(max-width:640px)").matches?300:460,autoPanPaddingTopLeft:L.point(12,matchMedia("(max-width:640px)").matches?80:12)});
+    marker.on("click",()=>{if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();});
+    ch91Targets[d.id]=marker;
+    const button=document.createElement("button");button.type="button";button.innerHTML=escapeHtml(d.id)+" · "+escapeHtml(d.location)+"<small>"+escapeHtml(d.kind)+"</small>";button.onclick=()=>focusCh91(d);document.getElementById("ch91-records").appendChild(button);
+  });
+  const historicalButton=document.createElement("button");historicalButton.type="button";
+  historicalButton.innerHTML="DPW001667 · 1935 water-main license<small>Historical predecessor; opens original PDF + plan</small>";
+  historicalButton.onclick=()=>window.open(CH91_HISTORY.pdf,"_blank","noopener");document.getElementById("ch91-records").appendChild(historicalButton);
+  const greenButton=document.createElement("button");greenButton.type="button";
+  greenButton.innerHTML="DPW003102 · Olive Green · 1948<small>Pier, jetties and sand replacement; original license + plan. Modern parcel unresolved; no map point.</small>";
+  greenButton.title=CH91_GREEN_HISTORY.detail;
+  greenButton.onclick=()=>window.open(CH91_GREEN_HISTORY.pdf,"_blank","noopener");document.getElementById("ch91-records").appendChild(greenButton);
+  CH91_SUPPLIED.forEach(d=>{
+    const item=document.createElement("details");item.className="supplied-record";
+    const summary=document.createElement("summary");summary.textContent=d.id+" · "+d.location;
+    const description=document.createElement("p");description.textContent=d.kind+" · "+d.issued+". "+d.detail+" Source: "+(d.sourceLabel||"user-supplied PDF, October 5, 2026")+"; "+d.pages+".";
+    const button=document.createElement("button");button.type="button";button.textContent="Open "+d.id+" PDF";button.onclick=()=>window.open(d.pdf,"_blank","noopener");
+    item.append(summary,description,button);
+    const verification=CH91_VERIFICATION[d.id];
+    if(verification){
+      ["match","recording","status"].forEach(key=>{const p=document.createElement("p");const label=document.createElement("b");label.textContent=({match:"Parcel match: ",recording:"Recording: ",status:"Current status: "})[key];p.append(label,document.createTextNode(verification[key]));item.appendChild(p);});
+      const links=document.createElement("p");const registry=document.createElement("a");registry.href="https://titleview.org/plymouthdeeds/";registry.target="_blank";registry.rel="noopener";registry.textContent="Official Registry (search exact book/page)";links.appendChild(registry);
+      if(verification.assessor){links.appendChild(document.createTextNode(" · "));const assessor=document.createElement("a");assessor.href=verification.assessor;assessor.target="_blank";assessor.rel="noopener";assessor.textContent="Official assessor record";links.appendChild(assessor);}
+      links.appendChild(document.createTextNode(" · "));const law=document.createElement("a");law.href="https://malegislature.gov/Laws/SessionLaws/Acts/2024/Chapter238";law.target="_blank";law.rel="noopener";law.textContent="2024 extension act, §280";links.appendChild(law);item.appendChild(links);
+      if(Number.isInteger(verification.parcelIndex)){const focus=document.createElement("button");focus.type="button";focus.textContent=verification.button;focus.onclick=()=>focusVerifiedParcel(verification.parcelIndex);item.appendChild(focus);}
+    }
+    document.getElementById("ch91-records").appendChild(item);
+  });
+  Object.keys(ch91Groups).forEach(group=>{
+    document.getElementById("show-ch91-"+group).onchange=e=>{if(e.target.checked)ch91Groups[group].addTo(map);else{ch91Groups[group].eachLayer(l=>l.closePopup());map.removeLayer(ch91Groups[group]);}};
+  });
+  document.getElementById("focus-ch91").onclick=()=>{
+    ["beach","utility"].forEach(g=>{document.getElementById("show-ch91-"+g).checked=true;ch91Groups[g].addTo(map);});
+    if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();
+    const shown=CH91.filter(d=>document.getElementById("show-ch91-"+d.group).checked);
+    map.closePopup();map.fitBounds(L.latLngBounds(shown.map(d=>[d.lat,d.lng])).pad(0.4),{maxZoom:17,animate:false});
+  };
+  map.createPane("drainage");
+  map.getPane("drainage").style.zIndex=650;
+  const drainGroups={outfall:L.layerGroup().addTo(map),basin:L.layerGroup().addTo(map)};
+  const drainTargets={};
+  const drainBounds=L.latLngBounds(DRAINAGE.map(d=>[d.lat,d.lng]));
+  const drainSource=d=>DRAIN_GIS+"/"+(d.kind==="outfall"?8:0)+"/query?objectIds="+d.objectId+"&outFields=*&returnGeometry=true&outSR=4326&f=pjson";
+  function focusDrain(d){
+    const checkbox=document.getElementById(d.kind==="outfall"?"show-outfalls":"show-basins");
+    checkbox.checked=true;drainGroups[d.kind].addTo(map);
+    if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();
+    map.setView([d.lat,d.lng],19,{animate:false});drainTargets[d.id].openPopup();
+  }
+  DRAINAGE.forEach(d=>{
+    const marker=L.marker([d.lat,d.lng],{
+      pane:"drainage",title:d.id+" · "+d.location,alt:d.id+" "+(d.kind==="outfall"?"outfall":"catch basin"),
+      icon:L.divIcon({className:"drain-marker "+d.kind,html:"<span>"+(d.kind==="outfall"?"O":"B")+"</span>",iconSize:[24,24],iconAnchor:[12,12]})
+    }).addTo(drainGroups[d.kind]);
+    marker.bindTooltip(d.id,{direction:"top",offset:[0,-12]});
+    marker.bindPopup("<div class='drain-popup'><b>"+escapeHtml(d.id)+"</b><br>"+escapeHtml(d.location)+
+      "<p class='scope'>GIS location, not a field survey. "+(d.kind==="outfall"?"Outlet record":"Catch-basin record")+".</p>"+
+      "<p>"+escapeHtml(d.detail)+"</p><p>"+escapeHtml(d.facts)+"</p>"+
+      (d.status?"<p>"+escapeHtml(d.status)+"</p>":"")+"<p>"+escapeHtml(d.evidence)+"</p>"+
+      (d.related.length?"<p>Documented association: "+d.related.map(escapeHtml).join(", ")+". No connection line is inferred.</p>":"")+
+      "<p><a href='"+drainSource(d)+"' target='_blank' rel='noopener'>GIS source record</a> · "+
+      "<a href='"+DRAIN_REPORT+"#page="+d.pages+"' target='_blank' rel='noopener'>Catchment report</a></p>"+
+      "<p>"+d.scans.map((s,i)=>"<a href='"+s+"' target='_blank' rel='noopener'>Evidence sheet "+(i+1)+"</a>").join(" · ")+"</p>"+
+      "<small>GIS retrieved October 4, 2026. Record dates differ; no current beach-water safety conclusion.</small></div>",
+      {maxWidth:matchMedia("(max-width:640px)").matches?250:360,maxHeight:matchMedia("(max-width:640px)").matches?300:460,autoPanPaddingTopLeft:L.point(12,matchMedia("(max-width:640px)").matches?80:12)});
+    marker.on("click",()=>{if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();});
+    drainTargets[d.id]=marker;
+    const button=document.createElement("button");button.type="button";button.textContent=(d.kind==="outfall"?"O":"B")+" · "+d.id;button.onclick=()=>focusDrain(d);document.getElementById("drain-records").appendChild(button);
+  });
+  ["outfall","basin"].forEach(kind=>{
+    document.getElementById(kind==="outfall"?"show-outfalls":"show-basins").onchange=e=>{
+      if(e.target.checked)drainGroups[kind].addTo(map);else{drainGroups[kind].eachLayer(l=>l.closePopup());map.removeLayer(drainGroups[kind]);}
+    };
+  });
+  document.getElementById("focus-drains").onclick=()=>{
+    document.getElementById("show-outfalls").checked=true;document.getElementById("show-basins").checked=true;
+    drainGroups.outfall.addTo(map);drainGroups.basin.addTo(map);
+    if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();
+    map.closePopup();map.fitBounds(drainBounds.pad(0.35),{maxZoom:18,animate:false});
+  };
+
+  PARCELS.features.forEach(f => {
+    const p = f.properties;
+    const d = DEED_AUDIT[p.audit_index];
+    const trace=TITLE_TRACE[p.audit_index];
+    if (d) p.cls = trace?.approved_classification || d.cls;
+    const layer = L.geoJSON(f, { style: () => STYLES[p.cls] }).addTo(map);
+    layers[p.cls] = layers[p.cls] || [];
+    layers[p.cls].push(layer);
+    const bindTarget = layer.getLayers()[0];
+    targets[p.audit_index]={layer,target:bindTarget};
+    const licenseEntry=Object.entries(CH91_VERIFICATION).find(([id,v])=>v.parcelIndex===p.audit_index);
+    const licenseDoc=licenseEntry?CH91_SUPPLIED.find(r=>r.id===licenseEntry[0]):null;
+    const licenseNote=licenseEntry&&licenseDoc?"<p><b>Chapter 91: "+escapeHtml(licenseEntry[0])+"</b><br>"+
+      escapeHtml(licenseEntry[1].match)+"<br><b>Recording:</b> "+escapeHtml(licenseEntry[1].recording)+
+      "<br><b>Status:</b> "+escapeHtml(licenseEntry[1].status)+
+      "<br><a href='"+licenseDoc.pdf+"' target='_blank' rel='noopener'>Open authorization PDF</a> · "+
+      "<a href='"+licenseEntry[1].assessor+"' target='_blank' rel='noopener'>Current assessor record</a>"+
+      "<br><small>Parcel locus/context only; no structure footprint or beach-right benefit inferred.</small></p>":"";
+    bindTarget.bindPopup(
+      "<b>" + escapeHtml(p.addr || "(vacant / no address)") + "</b><br>" +
+      "<button type='button' class='history-popup' data-open-history='"+p.audit_index+"'>Open property history + screenshots</button><br>" +
+      "Assessor parcel " + escapeHtml(p.pid || "ID unavailable") + (p.lot ? " · assessor lot " + escapeHtml(p.lot) : "") + "<br>" +
+      "Inventory record " + p.audit_index + " · " + escapeHtml(d?.polygon_type || "") + "<br>" +
+      (p.use || "") + (p.yr ? " · built " + p.yr : "") + "<br>" +
+      "<span class='tag " + p.cls + "'>" + LABELS[p.cls] + "</span>" +
+      (p.cls === "beach" ? "<br>Owner of record: " + p.owner : "") +
+      licenseNote+
+      earlierDeedNote(trace)+
+      roadEvidenceNote(p.audit_index)+
+      (d ? "<br><b>Current-instrument audit: " + escapeHtml(d.book) + "</b><br>Current scan status: " + escapeHtml(d.status) +
+        (d.date ? "<br>Recorded " + escapeHtml(d.date) : "") + "<br>" + escapeHtml(d.finding) +
+        (d.quote ? "<blockquote style='margin:8px 0;padding-left:8px;border-left:2px solid #8fa3ab'>" + escapeHtml(d.quote) + "</blockquote>" : "") +
+        "<br>" + escapeHtml(d.next) + "<br>" + (d.scans || []).map((scan,i)=>"<a href='"+scan+"' target='_blank' rel='noopener'>Scan "+(i+1)+"</a>").join(" · ") +
+        "<br><a href='https://titleview.org/plymouthdeeds/' target='_blank' rel='noopener'>Search book/page at Plymouth Registry</a>" : "")
+    , {maxWidth:matchMedia("(max-width:640px)").matches?250:330,maxHeight:matchMedia("(max-width:640px)").matches?300:480,autoPanPadding:L.point(12,12),autoPanPaddingTopLeft:matchMedia("(max-width:640px)").matches?L.point(12,80):L.point(12,12)});
+    bindTarget.on("click", () => {
+      if (matchMedia("(max-width:640px)").matches) {
+        collapseMobilePanel();
+        const popup = bindTarget.getPopup();
+        popup.options.autoPanPaddingTopLeft = L.point(12,80);
+        popup.update();
+      }
+    });
+    bindTarget.on("mouseover", e => { hover = e.target; hover.setStyle({ weight: 3, color: "#ffffff" }); });
+    bindTarget.on("mouseout", e => { if (hover) hover.setStyle(STYLES[e.target.feature.properties.cls]); });
+  });
+
+  document.getElementById("instruments").textContent=AUDIT_STATS.reviewed+" / "+AUDIT_STATS.instruments;
+  document.getElementById("positive").textContent=(mapCounts.grant||0)+" + "+(mapCounts.linked||0);
+  document.getElementById("exceptions").textContent=(AUDIT_STATS.counts.unresolved||0)+" + "+(AUDIT_STATS.counts.missing||0);
+  Object.keys(mapCounts).forEach(cls=>{
+    const row=document.createElement("div");row.className="row";row.dataset.layer=cls;row.setAttribute("role","button");row.tabIndex=0;
+    row.innerHTML="<span class='swatch' style='background:"+STYLES[cls].fillColor+"'></span>"+mapCounts[cls]+" "+LABELS[cls];
+    document.getElementById("legend").appendChild(row);
+  });
+  document.getElementById("search").addEventListener("input",e=>{
+    const q=e.target.value.trim().toLowerCase();
+    const results=document.getElementById("search-results");results.replaceChildren();
+    if(!q)return;
+    const matches=Object.entries(DEED_AUDIT).filter(([index,d])=>(!window.HBAMembership||window.HBAMembership.visible(index))&&[d.address,d.pid,d.book,d.instrument_ref,...(TITLE_TRACE[index]?.earlier_instruments||[]).map(i=>i.ref)].join(" ").toLowerCase().includes(q)).map(([index,d])=>d).slice(0,25);
+    const drainMatches=DRAINAGE.filter(d=>[d.id,d.location,d.kind].join(" ").toLowerCase().includes(q));
+    const ch91Matches=CH91.filter(d=>[d.id,d.id.replace("DEP",""),d.location,d.licensee,d.kind].join(" ").toLowerCase().includes(q));
+    ch91Matches.forEach(d=>{const button=document.createElement("button");button.textContent=d.id+" · "+d.location;button.onclick=()=>focusCh91(d);results.appendChild(button);});
+    const historyMatch=[CH91_HISTORY.id,"1667","1935"].some(s=>s.toLowerCase().includes(q));
+    if(historyMatch){const button=document.createElement("button");button.textContent="DPW001667 · 1935 water-main license PDF";button.onclick=()=>window.open(CH91_HISTORY.pdf,"_blank","noopener");results.appendChild(button);}
+    const greenMatch=[CH91_GREEN_HISTORY.id,"3102","1948","Olive Green","Olive M. Green","jetties","sand replacement"].some(s=>s.toLowerCase().includes(q));
+    if(greenMatch){const button=document.createElement("button");button.textContent="DPW003102 · Olive Green · 1948 license + plan (parcel unresolved)";button.onclick=()=>window.open(CH91_GREEN_HISTORY.pdf,"_blank","noopener");results.appendChild(button);}
+    const suppliedMatches=CH91_SUPPLIED.filter(d=>[d.id,d.location,d.licensee,d.kind,d.issued,d.detail,JSON.stringify(CH91_VERIFICATION[d.id]||{})].join(" ").toLowerCase().includes(q));
+    suppliedMatches.forEach(d=>{const button=document.createElement("button");button.textContent=d.id+" · "+d.location+" · PDF";button.onclick=()=>window.open(d.pdf,"_blank","noopener");results.appendChild(button);});
+    drainMatches.forEach(d=>{const button=document.createElement("button");button.textContent=d.id+" · "+d.location;button.onclick=()=>focusDrain(d);results.appendChild(button);});
+    if(!matches.length&&!drainMatches.length&&!ch91Matches.length&&!historyMatch&&!greenMatch&&!suppliedMatches.length){results.textContent="No matching record. Try a street, deed, drain ID or license number.";return;}
+    matches.forEach(d=>{const button=document.createElement("button");button.textContent=(d.address||d.pid||"No address")+" · "+d.book;
+      button.onclick=()=>focusVerifiedParcel(d.index);results.appendChild(button);});
+  });
+  function focusVerifiedParcel(index){
+    if(window.HBAMembership&&!window.HBAMembership.visible(index)){window.HBAMembership.explainHidden();return;}
+    const item=targets[index];const record=DEED_AUDIT[index];
+    if(!item||!record)return;
+    const cls=TITLE_TRACE[index]?.approved_classification||record.cls;
+    if(!map.hasLayer(item.layer)){(layers[cls]||[]).forEach(l=>l.addTo(map));document.querySelector('[data-layer="'+cls+'"]').classList.remove("off");}
+    if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();
+    map.fitBounds(item.layer.getBounds().pad(0.6),{maxZoom:19,animate:false});item.target.openPopup();
+  }
+  function collapseMobilePanel(){
+    document.getElementById("panel").classList.add("collapsed");
+    document.getElementById("toggle").textContent="+";
+    document.getElementById("toggle").setAttribute("aria-expanded","false");
+  }
+  document.querySelectorAll("#legend .row").forEach(row => {
+    row.addEventListener("keydown", e => {if(e.key === "Enter" || e.key === " ") {e.preventDefault(); row.click();}});
+    row.addEventListener("click", () => {
+      const cls = row.dataset.layer;
+      const off = row.classList.toggle("off");
+      (layers[cls] || []).forEach(l => off ? map.removeLayer(l) : l.addTo(map));
+    });
+  });
+
+  document.getElementById("toggle").addEventListener("click", () => {
+    const p = document.getElementById("panel");
+    p.classList.toggle("collapsed");
+    document.getElementById("toggle").textContent=p.classList.contains("collapsed")?"+":"−";
+    document.getElementById("toggle").setAttribute("aria-expanded",!p.classList.contains("collapsed"));
+  });
+
+  // Board decision: the app always uses the dark theme and the larger reading size.
+  document.documentElement.dataset.theme="dark";
+  document.documentElement.classList.add("hba-large-text");
+  map.fitBounds(L.geoJSON(PARCELS).getBounds().pad(0.08));
+</script>
+<script src="deed-labels.js"></script>
+<script src="assessments.js"></script>
+<script src="property-history.js"></script>
+<script src="research-tools.js"></script>
+<script src="sand-school.js"></script>
+<script src="nourishment-data.js"></script>
+<script src="nourishment.js"></script>
+<script src="ch91-landmarks.js"></script>
+<link rel="stylesheet" href="town-history.css">
+<script src="town-history-data.js"></script>
+<script src="town-history.js"></script>
+<script src="island-history.js"></script>
+<script src="storms-data.js"></script>
+<script src="storms-history.js"></script>
+<link rel="stylesheet" href="historical-postcards.css">
+<script src="historical-postcards.js"></script>
+<script>window.__DUES_API_BASE__ = '__PORT_3003__';window.__COMMUNITY_API_BASE__ = '__PORT_3003__';</script>
+<script src="governance-guide.js"></script>
+<link rel="stylesheet" href="communications.css">
+<link rel="stylesheet" href="minutes.css">
+<script src="communications.js"></script>
+<script src="minutes.js"></script>
+<link rel="stylesheet" href="voting.css">
+<script src="voting.js"></script>
+<script src="volunteers.js"></script>
+<script src="dues-receipts.js"></script>
+<script src="finance-register.js"></script>
+<script src="bank-reconciliation.js"></script>
+<script src="document-research.js"></script>
+<link rel="stylesheet" href="document-intake.css">
+<script src="document-intake.js"></script>
+<script src="event-dates.js"></script>
+<script src="contractor-bids.js"></script>
+<script src="community.js"></script>
+<link rel="stylesheet" href="local-weather.css">
+<link rel="stylesheet" href="beach-scene.css">
+<script src="beach-scene.js"></script>
+<script src="local-weather.js"></script>
+<link rel="stylesheet" href="weather-alerts.css">
+<script src="weather-alerts.js"></script>
+<script src="bulletin.js"></script>
+<script src="inbox.js"></script>
+<script src="summer-events.js"></script>
+<script src="town-rules-data.js"></script>
+<script src="town-rules.js"></script>
+<script src="engagement.js"></script>
+<script src="board-budget.js"></script>
+<link rel="stylesheet" href="project-timeline.css">
+<script src="project-timeline.js"></script>
+<link rel="stylesheet" href="budget-outputs.css">
+<script src="budget-outputs.js"></script>
+<link rel="stylesheet" href="nourishment-guide.css">
+<script src="nourishment-guide.js"></script>
+<script src="home.js"></script>
+<script src="membership-area.js"></script>
+<script src="membership.js"></script>
+<script src="app-practice.js"></script>
+<link rel="stylesheet" href="team.css">
+<script src="team.js"></script>
+<link rel="stylesheet" href="capabilities.css">
+<link rel="stylesheet" href="dues-planner.css">
+<script src="dues-planner.js"></script>
+<link rel="stylesheet" href="newsletter-viewer.css">
+<script src="newsletter-viewer.js"></script>
+<link rel="stylesheet" href="app-map.css">
+<script src="app-map.js"></script>
+<script src="account.js"></script>
+<script src="capabilities.js"></script>
+<script src="house-privacy.js"></script>
+<script src="whole-scroll.js"></script>
+<link rel="stylesheet" href="resident-usability.css">
+<link rel="stylesheet" href="volunteers.css">
+<link rel="stylesheet" href="nautical.css">
+<link rel="stylesheet" href="whole-scroll.css">
+</body>
+</html>

@@ -1,0 +1,44 @@
+/* Votes & polls: plain-language status lines, quorum meter, wizard. */
+.voting-status{font-size:15px!important;color:var(--text)!important;max-width:80ch}
+.voting-card h4{margin-top:4px}
+.voting-back{margin-bottom:10px}
+.voting-rules{display:grid;grid-template-columns:minmax(110px,max-content) 1fr;gap:6px 16px;margin:14px 0;font-size:14px}
+.voting-rules dt{font-weight:700;color:var(--muted)}
+.voting-rules dd{margin:0}
+.voting-motion{font-size:17px;line-height:1.6}
+.voting-quorum{height:10px;border:1px solid var(--panel-border);border-radius:5px;overflow:hidden;margin:14px 0 6px;background:transparent}
+.voting-quorum>div{height:100%;background:var(--accent,#5E9C8F)}
+.voting-ballot fieldset{border:1px solid var(--panel-border);border-radius:6px;padding:12px 14px;display:grid;gap:8px;margin:12px 0}
+.voting-ballot legend{font-weight:700;padding:0 6px}
+.voting-option{display:flex;align-items:center;gap:10px;font-size:17px;padding:10px 12px;border:1px solid var(--panel-border);border-radius:5px}
+.voting-option input{width:22px;height:22px;accent-color:var(--accent,#5E9C8F)}
+.voting-receipt code{font-size:18px;letter-spacing:.08em;padding:2px 6px;border:1px solid var(--panel-border);border-radius:4px}
+.voting-tally{border-collapse:collapse;margin:10px 0;font-size:15px}
+.voting-tally th,.voting-tally td{text-align:left;padding:6px 14px 6px 0;border-bottom:1px solid var(--panel-border)}
+.voting-outcome{font-size:20px;font-weight:700;margin:6px 0}
+.voting-history{padding-left:20px;line-height:1.7;font-size:14px}
+.voting-link{min-height:0!important;padding:0 2px!important;border:0!important;text-decoration:underline;background:transparent!important}
+.voting-actions{flex-wrap:wrap;margin-top:18px}
+.voting-standing ul{padding-left:20px;line-height:1.7}
+.voting-filters{margin:10px 0}
+#voting-wizard{background:var(--panel);color:var(--text);border:1px solid var(--panel-border);font:16px/1.55 Satoshi,sans-serif;border-radius:10px;padding:0;width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto}
+#voting-wizard form{padding:20px 24px 24px}
+#voting-wizard header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+#voting-wizard header h3{margin:0;font-size:22px}
+:root[data-theme=dark] #voting-wizard{--panel:#0B2545}
+#voting-wizard::backdrop{background:#07192Fd9}
+#voting-wizard button{font:500 14px/1.4 Satoshi,sans-serif;min-height:44px;border:1px solid var(--panel-border);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:5px;cursor:pointer}
+#voting-wizard button:disabled{opacity:.5;cursor:not-allowed}
+#voting-wizard .community-form label:not(.community-check){display:flex;flex-direction:column;gap:5px;font-size:13px;margin:12px 0}
+#voting-wizard input,#voting-wizard textarea,#voting-wizard select{font:16px/1.5 Satoshi,sans-serif;padding:10px 12px;min-height:44px;background:var(--panel);color:var(--text);border:1px solid var(--panel-border);border-radius:5px;box-sizing:border-box;width:100%}
+#voting-wizard .community-check{flex-direction:row!important;align-items:center;gap:10px;font-size:15px!important}
+#voting-wizard .community-check input{width:22px;min-height:0;height:22px}
+#voting-wizard label[hidden],#voting-wizard #wizard-fields[hidden]{display:none!important}
+#voting-wizard small{font-size:12px;color:var(--muted)}
+.voting-rules-card{border:1px solid var(--panel-border);border-left:4px solid var(--accent,#5E9C8F);border-radius:6px;padding:12px 16px;margin:12px 0}
+.voting-rules-card:empty{display:none}
+.voting-problems{color:#e18a8a;padding-left:20px;line-height:1.6}
+:root[data-theme=light] .voting-problems{color:#8f1f2f}
+.voting-questions{padding-left:20px;line-height:1.6}
+.voting-ok{color:var(--accent,#5E9C8F);font-weight:600}
+@media(max-width:700px){.voting-rules{grid-template-columns:1fr}.voting-rules dt{margin-top:6px}.voting-actions button{width:100%}}

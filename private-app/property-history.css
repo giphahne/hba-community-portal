@@ -1,0 +1,108 @@
+.history-entry{margin:14px 0;padding:14px 0;border-block:1px solid var(--panel-border)}
+.history-entry h2{font-size:20px;margin:0 0 6px}
+.history-entry p{font-size:13px;line-height:1.5}
+.history-primary,.history-popup{border:0;border-radius:6px;background:var(--accent);color:#13315C;font:700 14px Satoshi,sans-serif;padding:12px 15px;min-height:44px;cursor:pointer}
+.history-primary{width:100%}
+.history-popup{margin-block:10px}
+#history-dialog{position:fixed;inset:18px;width:calc(100vw - 36px);height:calc(100dvh - 36px);max-width:1560px;max-height:none;margin:auto;padding:0;border:1px solid var(--panel-border);border-radius:12px;background:var(--ink);color:var(--text);font:14px/1.5 Satoshi,sans-serif;box-shadow:0 18px 60px #0008}
+#history-dialog::backdrop{background:#07192Fd9}
+#history-dialog *{box-sizing:border-box}
+.history-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+.history-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 22px;border-bottom:1px solid var(--panel-border);flex:none}
+.history-top h2{font:700 26px/1.2 Boska,Georgia,serif;margin:0}
+.history-top p{color:var(--muted);margin:4px 0 0;font-size:12px}
+#history-dialog button,#history-dialog select,#history-dialog input{font:inherit;color:inherit}
+#history-dialog button,#history-dialog select{min-height:44px}
+#history-dialog button{cursor:pointer;border:1px solid var(--panel-border);background:transparent;padding:8px 12px;border-radius:5px;text-align:left}
+#history-dialog button:hover{background:var(--panel-border)}
+#history-dialog button:disabled{opacity:.42;cursor:default}
+#history-dialog :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#history-dialog input,#history-dialog select{background:var(--ink);border:1px solid var(--panel-border);padding:9px;border-radius:5px;width:100%;min-height:44px}
+.history-layout{display:grid;grid-template-columns:280px minmax(0,1fr);flex:1;min-height:0}
+.history-nav{padding:16px;border-right:1px solid var(--panel-border);display:flex;flex-direction:column;min-height:0;gap:9px}
+.history-nav>summary{display:none}
+.history-nav label{font-size:12px;color:var(--muted)}
+.history-nav #history-residential{min-height:0;width:auto}
+.history-nav small{color:var(--muted);display:block}
+.history-list{overflow:auto;flex:1;min-height:0}
+#history-dialog .history-list button{display:block;width:100%;border:0;border-bottom:1px solid var(--panel-border);border-radius:0;padding:12px 8px}
+.history-list button strong,.history-list button small{display:block}
+.history-list button[aria-current=true]{background:var(--panel-border);box-shadow:inset 0 -2px var(--accent)}
+.history-main{overflow:auto;padding:22px 26px;min-width:0}
+.history-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.history-heading h3{font:700 34px/1.1 Boska,Georgia,serif;margin:0 0 8px}
+.history-kicker{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.history-meta{color:var(--muted);margin:0 0 8px}
+.history-caution{background:var(--panel-border);padding:12px 15px;border-radius:6px;font-size:13px;margin-block:14px;overflow-wrap:anywhere}
+.history-caution strong{color:var(--accent)}
+.history-tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--panel-border);padding-bottom:10px;margin-bottom:16px}
+#history-dialog .history-tabs button[aria-selected=true]{background:var(--accent);color:#13315C;border-color:var(--accent);font-weight:700}
+.history-summary summary{cursor:pointer;font-weight:700;min-height:44px;padding-block:10px}
+.history-summary p{max-width:85ch}
+.history-clauses{overflow-wrap:anywhere}
+.history-clauses article{padding-block:16px;border-bottom:1px solid var(--panel-border)}
+.history-clauses h4{font-size:17px;margin:0 0 5px}
+#history-dialog blockquote{margin:12px 0;padding:12px 16px;background:var(--panel-border);border-radius:5px}
+#history-dialog a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.history-evidence{display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:18px;margin-top:16px}
+.history-instruments{min-width:0}
+.history-instruments label{font-size:12px;color:var(--muted)}
+.history-instruments>div{max-height:600px;overflow:auto;margin-top:8px}
+#history-dialog .history-instruments button{display:block;width:100%;margin-bottom:6px;padding:10px}
+.history-instruments button[aria-pressed=true]{background:var(--panel-border);border-color:var(--accent)}
+.history-instruments button strong,.history-instruments button small{display:block}
+.history-instruments button small{font-size:12px;color:var(--muted)}
+.history-document{min-width:0}
+.history-document h4{font-size:18px;margin:0}
+.history-document p{overflow-wrap:anywhere}
+.history-controls{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:10px 0}
+.history-controls span{font-size:12px;color:var(--muted);margin-inline:4px}
+.history-image-stage{height:580px;max-height:68dvh;overflow:auto;background:#E6E3DA;border-radius:5px;padding:8px;position:relative}
+.history-image-stage img{display:block;max-width:none;height:auto;width:100%;background:#e4e8e9}
+.history-image-stage img[hidden]{display:none!important}
+.history-image-stage .image-message{color:#233540;padding:18px;min-height:130px}
+.history-skeleton{height:400px;background:#cbd7da;animation:history-pulse 1s ease-in-out infinite alternate}
+.history-page-note{font-size:12px;color:var(--muted);margin:8px 0}
+.history-docnotes{font-size:13px}
+.history-docnotes p{margin:8px 0}
+.history-intro{font-size:16px;line-height:1.65}
+.history-intro h4{font-size:20px;margin:12px 0}
+.history-intro p{max-width:80ch}
+.history-story-list article{padding:20px 0;border-top:1px solid var(--panel-border)}
+.history-story-list h5{font-size:17px;margin:8px 0}
+.history-story-list small{display:block;color:var(--muted);margin-bottom:12px}
+.history-story-label{font-weight:700;color:var(--accent);font-size:14px;margin:8px 0}
+.history-glossary{margin:16px 0}
+.history-glossary summary{min-height:44px;cursor:pointer;font-weight:700;padding:12px 0}
+.history-glossary dt{font-weight:700;margin-top:16px}
+.history-glossary dd{margin:4px 0 12px}
+.history-empty{padding:20px;color:var(--muted)}
+.history-links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin-top:18px}
+:root[data-theme=light] #history-dialog{--ink:#F4F1E8;--text:#13315C;--muted:#47616d;--accent:#855917;--panel-border:rgba(19,49,92,.13)}
+:root[data-theme=light] #history-dialog .history-tabs button[aria-selected=true]{color:white}
+:root[data-theme=light] .history-primary,:root[data-theme=light] .history-popup{background:#805719;color:white}
+@keyframes history-pulse{to{opacity:.55}}
+@media(prefers-reduced-motion:reduce){.history-skeleton{animation:none}}
+@media(max-width:1000px){.history-layout{grid-template-columns:230px minmax(0,1fr)}.history-main{padding:18px}.history-evidence{grid-template-columns:1fr}.history-instruments>div{max-height:180px}.history-image-stage{height:500px}}
+@media(max-width:640px){
+  #history-dialog{inset:0;width:100vw;height:100dvh;border-radius:0;border:0}
+  .history-top{padding:12px 14px}.history-top h2{font-size:23px}.history-top p{max-width:230px}
+  .history-layout{display:block;overflow:auto}.history-nav{display:block;border-right:0;border-bottom:1px solid var(--panel-border);padding:12px 16px}
+  .history-nav>summary{display:block;cursor:pointer;min-height:44px;padding-block:9px;font-weight:700}
+  .history-nav:not([open])>*:not(summary){display:none}
+  .history-nav label{display:block;margin-block:8px}.history-list{max-height:180px;margin-top:8px}
+  .history-main{overflow:visible;padding:18px 16px}
+  .history-heading h3{font-size:30px}.history-heading{display:block}.history-heading button{margin-bottom:8px}
+  .history-evidence{gap:12px}.history-image-stage{height:460px;max-height:65dvh}
+  .history-tabs{gap:4px}.history-tabs button{padding:8px!important;font-size:13px!important}
+}
+/* Street governor block in each property report */
+.history-governor{margin:14px 0 18px;padding:14px 16px;border:1px solid #C9A22766;border-left:5px solid #C9A227;border-radius:10px;background:rgba(201,162,39,.08)}
+.history-governor h4{margin:0 0 6px;font-size:17px}
+.history-governor p{margin:0 0 6px;font-size:15px;line-height:1.5}
+.history-governor-name{font-size:18px!important;font-weight:700}
+.history-governor-name span{font-weight:400;font-size:14px;color:var(--muted)}
+.history-governor-contact a{color:#E8CB6A;text-decoration:underline;text-underline-offset:3px}
+.history-governor-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.history-governor-actions button{min-height:44px;padding:8px 14px;border-radius:6px;border:1px solid var(--panel-border);background:var(--panel);color:var(--text);font:600 14px Satoshi,sans-serif;cursor:pointer}
+.history-governor-actions button:hover{border-color:var(--accent)}

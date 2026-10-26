@@ -1,0 +1,11 @@
+#bb-timeline .tl-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:16px 0}
+#bb-timeline label{display:grid;gap:8px;font-size:16px}#bb-timeline .tl-check{display:flex;gap:12px;align-items:center}
+#bb-timeline input[type=checkbox]{width:22px;height:22px;min-height:22px;flex:none}
+#bb-timeline .tl-project{padding:20px 0;border-top:1px solid var(--panel-border)}
+#bb-timeline summary{cursor:pointer;font-weight:600;min-height:44px;padding:12px 0}
+#bb-timeline .tl-source{font-size:14px;line-height:1.6;color:var(--muted)}
+#bb-timeline .tl-alert{padding:16px;border:2px solid var(--accent);font-weight:600}
+#bb-timeline .tl-results{padding:0;list-style:none}#bb-timeline .tl-results li{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--panel-border)}
+#bb-timeline .tl-table{overflow:auto}#bb-timeline table{border-collapse:collapse;min-width:850px;font-size:14px}
+#bb-timeline th,#bb-timeline td{padding:12px;text-align:left;border-bottom:1px solid var(--panel-border);vertical-align:top}
+@media(max-width:600px){#bb-timeline .tl-results li{display:grid;gap:8px}#bb-timeline .tl-inputs{grid-template-columns:1fr}.bb-tabs{flex-wrap:wrap}}

@@ -1,0 +1,7 @@
+#postcards-dialog{width:min(1000px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:24px;background:var(--bg,#F4F1E8);color:var(--text,#13315C);border:1px solid var(--border,#C4CFD6);border-radius:8px}
+#postcards-dialog>header{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#postcards-dialog h2{font-size:24px}#postcards-dialog h3{font-size:20px}#postcards-dialog p{font-size:16px;line-height:1.6}
+#postcards-dialog article{padding:24px 0;border-bottom:1px solid var(--border,#C4CFD6)}
+#postcards-dialog img{display:block;max-width:100%;height:auto;margin:16px 0}
+#postcards-dialog button{min-height:48px;padding:12px 16px;font:inherit;cursor:pointer}
+@media(max-width:600px){#postcards-dialog{padding:16px}}

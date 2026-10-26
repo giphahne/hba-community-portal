@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Save Our Beach: Hamilton Beach, Wareham</title>
+<meta name="description" content="How to save our beach: a plain-language guide to erosion, sand fences, jetties and sand placement at Hamilton Beach in Wareham, Massachusetts.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f3e7cf'/%3E%3Cpath d='M4 20c4-5 8-5 12 0s8 5 12 0' stroke='%23146b6b' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M4 26h24' stroke='%23c79a4e' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="jetty-geometry.js" defer></script>
+<script src="sims.js" defer></script>
+<script src="app.js" defer></script>
+<link rel="stylesheet" href="integration.css">
+<script src="integration.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#" class="brand" aria-label="How to Save Our Beach home">
+      <svg class="logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M4 24c5-6 10-6 16 0s11 6 16 0" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M6 32h28" stroke="var(--sand-strong)" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="28" cy="12" r="3.2" fill="var(--sand-strong)"/>
+      </svg>
+      <span>How to Save Our Beach <small>Hamilton Beach, Wareham</small></span>
+    </a>
+    <nav aria-label="Lessons">
+      <a href="#basics">Basics</a>
+      <a href="#seasons">Seasons</a>
+      <a href="#beach">Eroding</a>
+      <a href="#old">Photos</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#wind">Fences</a>
+      <a href="#jetty">Jetties</a>
+      <a href="#fix">Fixes</a>
+      <a href="#science">Science</a>
+    </nav>
+    <button class="theme" id="themeBtn" aria-label="Switch dark or light mode" title="Dark / light mode">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero wrap hero-short">
+  <p class="eyebrow">Sand School · the short version</p>
+  <h1>How to save our beach</h1>
+  <p class="lede"><strong>Our beach is a slow river of sand.</strong> Waves push sand from the middle of the beach toward the east point. More leaves than arrives, so the middle gets narrower every year.</p>
+  <div class="facts">
+    <div class="fact"><b>~1.1 ft</b><span>of beach lost each year in the middle, the fastest spot since 1978</span></div>
+    <div class="fact"><b>~55 ft</b><span>of new beach piled up at the east point between 1994 and 2013</span></div>
+    <div class="fact"><b>5 truckloads</b><span>of sand (about 130 cubic yards) the beach is short every year</span></div>
+  </div>
+  <div class="short-grid">
+    <article class="short-card"><h2>Where the sand goes</h2><p>Winter storms pull sand off the beach onto an underwater bar; summer waves bring most of it back. What does not come back drifts east to the point, past the end of the old jetties.</p><a href="#beach" class="short-more">See the photographs below</a></article>
+    <article class="short-card"><h2>The four fixes</h2><ol><li><strong>Add sand</strong> in the right spot: about 150 truckloads over three falls, then about 5 loads a year.</li><li><strong>Rebuild Jetties 2 and 3</strong> to 100 ft and pre-fill them, so new sand stays.</li><li><strong>Sand fence and beachgrass</strong> from mid-October to May, placed for both winter winds.</li><li><strong>Watch, measure, refill</strong>: a height mark on each wall, photographed every fall, spring and after storms.</li></ol><a href="#jetty" class="short-more">Try the jetty model below</a></article>
+    <article class="short-card"><h2>What does not help</h2><ul><li>Taller or longer walls (the beach in front keeps narrowing).</li><li>Moving sand from one part of the beach to another.</li><li>Raking or bulldozing in winter; Christmas trees or plastic fencing.</li><li>Fencing the walled south front, where the tide reaches the walls.</li></ul><a href="#science" class="short-more" data-deeper>Why, in the science</a></article>
+    <article class="short-card short-card-you"><h2>What you can do</h2><ul><li>Help put the fences up in October and take them down in May.</li><li>Photograph the wall marks after every big storm and send them in.</li><li>Vote on the sand, jetty and drain funds at the meetings. The members approved $35,200 of beach work on August 30, 2026.</li><li>Keep sand on the beach: no digging it out of the dune or hauling it home.</li></ul></article>
+  </div>
+</section>
+
+
+<section id="beach" class="wrap sec">
+  <h2>Where our beach is eroding</h2>
+  <p class="sub">Real aerial photographs. Each numbered marker is a spot losing sand; tap one to see how fast. Pick a year, or compare 1995 with 2025.</p>
+  <div class="years" role="group" aria-label="Choose photo year">
+    <button class="yr" data-y="1995">1995</button><button class="yr" data-y="2001">2001</button><button class="yr" data-y="2009">2009</button><button class="yr" data-y="2014">2014</button><button class="yr" data-y="2019">2019</button><button class="yr active" data-y="2025">2025</button>
+    <button class="yr cmp" id="cmpBtn" aria-pressed="false">Compare 1995 ↔ 2025</button>
+  </div>
+  <div class="photo-grid">
+    <div class="photo" id="photo">
+      <img id="photoBase" src="img/hb_2025.webp" width="1400" height="1279" alt="Aerial photo of Hamilton Beach, Wareham, in 2025">
+      <div class="clip" id="clip" hidden><img src="img/hb_1995.webp" width="1400" height="1279" alt="Aerial photo of Hamilton Beach in 1995 (black and white)"></div>
+      <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="Compare divider position" hidden>
+      <div class="cmp-labels" id="cmpLabels" hidden><span>1995</span><span>2025</span></div>
+      <div id="spots"></div>
+      <svg class="arrows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs><marker id="ah" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0 0 L4 2 L0 4z" fill="#ffd166"/></marker></defs>
+        <path d="M8 84 C 25 78, 45 66, 66 60" stroke="#ffd166" stroke-width="0.7" fill="none" stroke-dasharray="2 1.4" marker-end="url(#ah)"/>
+        <path d="M74 52 C 72 44, 69 38, 66 30" stroke="#ffd166" stroke-width="0.7" fill="none" stroke-dasharray="2 1.4" marker-end="url(#ah)"/>
+      </svg>
+    </div>
+    <aside class="spot-panel" id="spotPanel" aria-live="polite">
+      <p class="eyebrow">Tap a marker</p>
+      <h3>Start with marker 3</h3>
+      <p>Marker 3, the central beach, is losing sand fastest. The yellow dashed arrows show where that sand goes: east along the south beach toward the point, then around onto the side beach.</p>
+    </aside>
+  </div>
+  <p class="credit">Photos: MassGIS and USGS aerial orthoimagery. Tides differ between photos, so the waterline moves a little even when the beach doesn't.</p>
+</section>
+
+<section id="jetty" class="band">
+  <div class="wrap">
+    <h2>Jetties, and where to put the sand</h2>
+    <p class="lede">The 1A Worrall groin stays in every run. Tick the two 100-foot jetties on or off, choose how much sand to pre-fill, then press <strong>Play 20 years</strong> and watch the beach. Orange zones show where to put the sand.</p>
+    <div class="jet-ctl">
+      <fieldset class="seg"><legend>Build</legend>
+        <label class="fixed"><input type="checkbox" checked disabled> 1A Worrall groin (installed)</label>
+        <label><input type="checkbox" id="jt2" checked> Jetty 2: beach entrance (100 ft)</label>
+        <label><input type="checkbox" id="jt3" checked> Jetty 3: east end (100 ft)</label>
+      </fieldset>
+      <fieldset class="seg"><legend>Sand</legend>
+        <label><input type="checkbox" id="jsand" checked> Add restoration sand (zone 1)</label>
+        <label><input type="checkbox" id="jdump" checked> Show where to dump sand</label>
+      </fieldset>
+      <div class="pf-ctl"><label for="jpf"><b>Sand pre-dumped at the jetties</b></label>
+        <input type="range" id="jpf" min="0" max="100" step="10" value="100" aria-describedby="jpfo">
+        <output id="jpfo" for="jpf">100% of a full pocket</output></div>
+      <div class="jet-time"><button class="btn primary" id="jPlay" type="button">Play 20 years</button>
+        <label for="jYears" class="sr-only">Year</label><input type="range" id="jYears" min="0" max="20" step="1" value="0"><output id="jYear">2026</output></div>
+    </div>
+    <details class="jetty-angle-review"><summary>Jetty angles & source accuracy</summary>
+      <p>Previously all structures followed the local shoreline normal. They now have separate image-based orientations. The installed 1A groin stays fixed at an approximate 160° display bearing. Jetty 2 starts at 158° and Jetty 3 at 169°, visually traced from your circled 1938 photo. These are estimates, not survey bearings; a historical photo does not establish an approved rebuild alignment.</p>
+      <p>Bearings are clockwise from image north: 90° east, 180° south. The aerial is treated as north-up. Use these controls to explore orientation uncertainty, not to select a construction angle. The model adjusts only cross-shore projected length, not full coastal dynamics.</p>
+      <label>Jetty 2 image bearing <input type="number" id="jAngle2" min="110" max="210" step="1" value="158"> degrees</label>
+      <label>Jetty 3 image bearing <input type="number" id="jAngle3" min="110" max="210" step="1" value="169"> degrees</label>
+      <button type="button" id="jAngleReset">Reset photo estimates</button>
+      <p>The earlier “15–30 ft” placement estimate was not a measured error bound. Historical registration and structure endpoints remain uncertain. A measured/as-built plan and coastal-engineer review are needed for reliable design or forecasts.</p>
+      <div class="jetty-angle-sources"><a href="img/cmp_1938_aligned.webp" target="_blank" rel="noopener"><img loading="lazy" src="img/cmp_1938_aligned.webp" alt="Aligned historical aerial used for approximate jetty directions">Aligned historical image</a><a href="../ch91/NOI-Plan-JETTI-6-25-20.pdf" target="_blank" rel="noopener">Supplied 2020 1A Worrall plan (application, not an issued approval)</a></div>
+    </details>
+    <div class="jet-canvas"><canvas id="jettyCanvas" width="1560" height="1155" role="img" aria-label="Illustrative aerial with separately oriented jetties; bearings are photo estimates, not surveyed or engineered alignments."></canvas></div>
+    <p class="jet-note" id="jNote"></p>
+    <div class="jet-out" id="jOut" aria-live="polite"></div>
+    <div class="dump-cards">
+      <div><b>Dump zone 1: just east of the 1A groin</b><span>This is the fastest-eroding stretch, and the waves carry sand east from here, so sand dumped here feeds the whole south beach. The restoration is about 150 truckloads (26 cu yd each) over three falls. After that, about 5 loads each fall at the west end of the zone.</span></div>
+      <div><b>Pre-fill zones: just west of each new jetty</b><span>Fill each jetty's pocket once, when it's built. Otherwise the jetty takes sand from the beach east of it while it fills (<a href="https://www.olsen-associates.com/sites/default/files/docs/pubs/Bodge_Design%20Aspects%20of%20Groins%20and%20Jetties%202002.pdf" target="_blank" rel="noopener">Bodge, 2003</a>). Use the pre-dump slider to see how much less fill does. The map gives the truckloads for each pocket.</span></div>
+      <div><b>When</b><span>Dump in the fall, after the summer season and before the fences go up in mid-October, and follow the state's best practices for placing sand (<a href="https://www.mass.gov/doc/beach-nourishment-massdeps-guide-to-best-management-practices-for-projects-in-ma/download" target="_blank" rel="noopener">MassDEP</a>).</span></div>
+    </div>
+    <p class="note">How it works: a simplified "one-line" shoreline model on a 5 m grid, using an assumed west-to-east transport direction and idealized sand trapping. The no-action scenario uses the imported 1978–2013 shoreline-change trend (<a href="https://www.usgs.gov/data/massachusetts-shoreline-change-project-2021-update-a-gis-compilation-shoreline-change-rates" target="_blank" rel="noopener">USGS/CZM</a>). Historical positions and angles are image estimates with no measured error bound. Angle changes adjust the drawn structure and its cross-shore projection, not a calibrated wave or sediment model. This is a teaching model, not an engineering design or a prediction of construction performance.</p>
+  </div>
+</section>
+
+<section class="wrap short-actions-wrap">
+  <div class="short-actions"><button type="button" class="short-btn" id="deeperBtn" aria-expanded="false" aria-controls="deeper">Go deeper: the full lessons</button><p class="short-note">Five more lessons with the surveys, photographs from 1938 on, a year-by-year timeline and the wind models behind the fence plan.</p></div>
+</section>
+
+<div id="deeper" class="deeper" hidden>
+<section id="basics" class="band">
+  <div class="wrap">
+    <h2>Lesson 1: Erosion in three ideas</h2>
+    <ol class="ideas">
+      <li>
+        <h3>Waves move sand sideways</h3>
+        <p>Waves usually hit the beach at an angle. Each wave pushes sand up the beach at that angle, and the backwash pulls it straight down. Repeat that thousands of times a day and the sand zig-zags along the shore. Scientists call this <dfn>longshore drift</dfn>. At Hamilton Beach the winds and waves come mostly from the south and southwest, so sand drifts <strong>from west to east</strong>, toward the point.</p>
+      </li>
+      <li>
+        <h3>Erosion means more sand leaves than arrives</h3>
+        <p>Every stretch of beach loses sand downstream. It only stays the same size if the same amount of new sand arrives from upstream. When something blocks the supply, such as walls, jetties or groins to the west, that stretch shrinks. That shrinking is <dfn>erosion</dfn>. The sand isn't destroyed. It just moved somewhere else.</p>
+      </li>
+      <li>
+        <h3>Sand piles up where the river slows</h3>
+        <p>The sand ends up wherever the drift slows down: against a groin, around a point, or in a quiet corner. At Hamilton Beach that's the east point and the south end of the Reynolds Avenue side beach. Those parts have been <strong>growing</strong> while the middle of the beach shrinks.</p>
+      </li>
+    </ol>
+    <figure class="drift">
+      <svg viewBox="0 0 800 220" role="img" aria-labelledby="driftT">
+        <title id="driftT">Diagram: waves arrive at an angle, push sand up the beach, and the backwash pulls it straight down, so sand zig-zags along the shore.</title>
+        <rect x="0" y="0" width="800" height="90" fill="var(--sand)"/>
+        <rect x="0" y="90" width="800" height="130" fill="var(--sea)"/>
+        <path id="zz" d="M60 86 L130 46 L130 86 L200 46 L200 86 L270 46 L270 86 L340 46 L340 86 L410 46 L410 86 L480 46 L480 86 L550 46 L550 86 L620 46 L620 86 L690 46" stroke="var(--ink)" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>
+        <circle r="7" fill="var(--sand-strong)" stroke="var(--ink)" stroke-width="2"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#zz"/></animateMotion></circle>
+        <g stroke="var(--foam)" stroke-width="3" fill="none" stroke-linecap="round">
+          <path d="M40 200 L140 110"/><path d="M180 200 L280 110"/><path d="M320 200 L420 110"/><path d="M460 200 L560 110"/><path d="M600 200 L700 110"/>
+        </g>
+        <text x="20" y="28" class="svgt">Beach</text>
+        <text x="20" y="214" class="svgt light">Waves arrive at an angle from the southwest</text>
+        <text x="560" y="28" class="svgt">Sand drifts east →</text>
+      </svg>
+      <figcaption>Up the beach at an angle, straight back down: each wave nudges the sand grain a little to the east.</figcaption>
+    </figure>
+  </div>
+</section>
+
+
+
+<section id="seasons" class="band">
+  <div class="wrap">
+    <h2>Lesson 2: Summer beach, winter beach</h2>
+    <p class="sub">The beach also breathes in and out with the seasons. Drag the slider through the year.</p>
+    <div class="seasons">
+      <svg id="profile" viewBox="0 0 800 300" role="img" aria-labelledby="profT">
+        <title id="profT">Side view of the beach from the seawall out to the water. In summer the sand forms a wide flat berm. In winter storms pull it offshore into a sandbar.</title>
+      </svg>
+      <div>
+        <label class="ctl">Month <output id="monOut">July</output>
+          <input type="range" id="mon" min="0" max="11" value="6" step="1">
+        </label>
+        <p id="seasonText" class="season-text"></p>
+        <p class="note">Why it matters: sand that storms move offshore mostly comes back in spring, but not all of it. Where there's no beach in front of a wall, waves hit the wall directly, dig out sand at its base, and send that sand away for good. That's why the winter plan places sand <strong>in the fall</strong>, so it's ready to take the storms' energy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="old" class="band">
+  <div class="wrap">
+    <h2>Lesson 3½: The older photos</h2>
+    <p class="sub">These two historic aerial prints, from 1938 and 1971, show Hamilton Beach decades before the modern MassGIS photos. Switch between them and the 2025 view of the same area. Look at the sand along the south front, then at the point. The beach was nearly bare in 1938, wide in 1971, and narrow again in front of the walls by 2025.</p>
+    <div class="years" role="group" aria-label="Choose historic photo">
+      <button class="yr oldbtn" data-k="u">1938</button>
+      <button class="yr oldbtn active" data-k="71">April 28, 1971</button>
+      <button class="yr oldbtn" data-k="25">2025, same view</button>
+    </div>
+    <div class="old-grid">
+      <figure class="old-fig">
+        <img id="oldImg" src="img/old_1971_crop.webp" width="1100" height="813" alt="Historic black and white aerial photo of Hamilton Beach dated April 28, 1971">
+        <figcaption id="oldCap"></figcaption>
+      </figure>
+      <aside class="spot-panel">
+        <p class="eyebrow">What to notice</p>
+        <h3 id="oldH"></h3>
+        <ul id="oldList" class="old-list"></ul>
+        <p><a id="oldFull" href="img/old_1971_full.webp" target="_blank" rel="noopener">Open the full photo</a></p>
+      </aside>
+    </div>
+
+    <div class="sbs-head">
+      <h3 id="sbsTitle">1971 and 2025, side by side</h3>
+      <div class="years" role="group" aria-label="Comparison options">
+        <button class="yr cmpyr" data-y="1938">1938</button>
+        <button class="yr cmpyr active" data-y="1971">1971</button>
+        <span class="vsep" aria-hidden="true"></span>
+        <button class="yr sbsmode active" data-m="sbs">Side by side</button>
+        <button class="yr sbsmode" data-m="slide">Drag slider</button>
+      </div>
+    </div>
+    <p class="sub">Choose 1938 or 1971 to compare with 2025. Each older photo has been lined up with the 2025 photo using the streets, the pond and the creek, so both show the same ground at about the same scale. The 1938 print is low resolution, so its line-up is rougher. Move your pointer or finger over either photo, and a ring marks the same spot in the other one.</p>
+    <div class="sbs" id="sbs">
+      <figure class="sbs-fig"><div class="sbs-img" data-side="a"><img id="sbsOldImg" src="img/cmp_1971_aligned.webp" width="1100" height="813" alt="April 28, 1971 aerial photo of Hamilton Beach, aligned to the 2025 view"><span class="ring" aria-hidden="true"></span></div><figcaption id="sbsOldCap"><b>April 28, 1971</b>: wide sand along the whole south front, and a short, rounded point.</figcaption></figure>
+      <figure class="sbs-fig"><div class="sbs-img" data-side="b"><img src="img/cmp_2025.webp" width="1100" height="813" alt="Spring 2025 aerial photo of Hamilton Beach, same area"><span class="ring" aria-hidden="true"></span></div><figcaption><b>Spring 2025</b>: the central front is narrow, the point has a long tip, and the side beach is wide at its south end.</figcaption></figure>
+    </div>
+    <div class="slide" id="slideCmp" hidden>
+      <img src="img/cmp_2025.webp" width="1100" height="813" alt="Spring 2025 aerial photo of Hamilton Beach">
+      <div class="slide-top"><img id="slideOldImg" src="img/cmp_1971_aligned.webp" width="1100" height="813" alt="April 28, 1971 aerial photo of Hamilton Beach, aligned"></div>
+      <div class="slide-bar" aria-hidden="true"></div>
+      <span class="slide-lab l" id="slideOldLab">1971</span><span class="slide-lab r">2025</span>
+      <input type="range" id="slideR" min="0" max="100" value="50" aria-label="Drag to compare 1971 and 2025">
+    </div>
+    <ol class="sbs-keys" id="sbsKeys"></ol>
+    <p class="credit">The historic prints were supplied for this guide. They aren't georeferenced, so compare them by eye. Scale and angle differ a little from the 2025 view.</p>
+  </div>
+</section>
+
+<section id="timeline" class="tl-sec">
+  <div class="wrap tl-intro">
+    <h2>Watch the sand move, year by year</h2>
+    <p class="sub">Scroll slowly through this section. The photos change from 1938 to 2025, all lined up to the same view. The gold streaks show sand drifting along the south front to the tip, then wrapping north onto the side beach. The streaks show direction, not exact amounts.</p>
+  </div>
+  <div class="tl-scroll" id="tlScroll">
+    <div class="tl-stage">
+      <div class="wrap tl-grid">
+        <div class="tl-photo" id="tlPhoto">
+          <div class="tl-stack" id="tlStack"></div>
+          <canvas id="tlCanvas" aria-hidden="true"></canvas>
+          <div class="tl-year" id="tlYear" aria-live="polite">1938</div>
+        </div>
+        <div class="tl-side">
+          <ol class="tl-dots" id="tlDots" aria-label="Jump to year"></ol>
+          <div class="tl-card">
+            <h3 id="tlH"></h3>
+            <p id="tlP"></p>
+          </div>
+          <label class="tog"><input type="checkbox" id="tlSand" checked> Show moving sand</label>
+          <div class="tl-bar" aria-hidden="true"><span id="tlFill"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="wind" class="wrap sec">
+  <h2>Lesson 4: Winter winds and sand fences</h2>
+  <p class="lede">Your fences stand from mid-October to May, and two winter winds matter. Winter winds blow mostly from the north to west, and strong ones come from the northwest (<a href="https://nauticalcharts.noaa.gov/publications/coast-pilot/files/cp2/CPB2_C05_WEB.pdf" target="_blank" rel="noopener">NOAA Coast Pilot</a>). The strongest winds come from nor'easters out of the northeast (<a href="https://www2.whoi.edu/staff/jchurchill/wp-content/uploads/sites/180/2018/03/PID863111-1_51823.pdf" target="_blank" rel="noopener">WHOI</a>). The plan below uses 50 ft and 25 ft fences placed so each one catches sand from either wind, on both the south beach and the side beach.</p>
+  <div class="wind-toggle" role="group" aria-label="Choose the wind">
+    <button class="btn" data-wind="NE" aria-pressed="true">Northeast wind (nor'easter)</button>
+    <button class="btn" data-wind="NW" aria-pressed="false">Northwest wind</button>
+  </div>
+  <div class="wind-wrap">
+    <canvas id="windCanvas" width="1560" height="1155" role="img" aria-label="Animated 2025 aerial map. White streaks show the chosen winter wind crossing Hamilton Beach. Sand grains blow into four 50 ft spur fences on the east end and seven 25 ft fence sections down the middle of the side beach, building mounds. The walled south front, the wet point and two narrow spots are marked as no-fence areas."></canvas>
+    <p class="wind-month" aria-live="polite"><span id="windMonth">Mid-Oct</span></p>
+  </div>
+  <div class="xs-grid">
+    <figure class="xs-pane on" data-pane="NE">
+      <svg viewBox="0 0 900 300" role="img" aria-labelledby="xsTNE xsDNE">
+        <title id="xsTNE">Sand fence section on the side beach in a northeast wind</title>
+        <desc id="xsDNE">Wind blows from the water toward the houses, lifts dry sand off the beach and drops it in a mound on the house side of the fence.</desc>
+        <defs>
+          <marker id="xahNE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f8a87"/></marker><marker id="xahkNE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a8a8c"/></marker>
+          <path id="gpathNE" d="M300 222 C 380 218, 450 214, 504 210"/>
+        </defs>
+        <rect x="0" y="0" width="900" height="300" fill="var(--surface)"/>
+        <path d="M0 236 L750 196 L750 160 L900 160 L900 300 L0 300 Z" fill="var(--sand)"/>
+        <rect x="750" y="150" width="150" height="12" fill="var(--grow)" opacity=".7"/>
+        <rect x="750" y="120" width="12" height="80" fill="var(--muted)"/>
+        <text x="776" y="140" class="xs-t">Houses</text>
+        <path d="M0 224 L215 224 L262 300 L0 300 Z" fill="var(--sea)" opacity=".85"/>
+        <line x1="0" y1="222" x2="290" y2="222" stroke="var(--sea)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="16" y="212" class="xs-t">Winter high tide</text>
+        <path class="mound" d="M440 211 Q 548 158 646 201 Z" fill="var(--sand-strong)" opacity=".9"/>
+        <g stroke="var(--ink)" stroke-width="5"><line x1="520" y1="209" x2="520" y2="148"/></g>
+        <g stroke="var(--ink)" stroke-width="2" opacity=".75"><line x1="514" y1="154" x2="526" y2="154"/><line x1="514" y1="168" x2="526" y2="168"/><line x1="514" y1="182" x2="526" y2="182"/><line x1="514" y1="196" x2="526" y2="196"/></g>
+        <text x="430" y="106" class="xs-t">Fence section</text>
+        <text x="300" y="166" class="xs-t">Wind hits the fence</text><text x="560" y="128" class="xs-t">Slowed, drops sand</text>
+        <g class="wind" stroke="#1f8a87" stroke-width="4" fill="none" marker-end="url(#xahNE)"><path class="w1" d="M300 80 L 860 80"/><path class="w2" d="M300 178 L 504 178"/><path class="w3" d="M538 178 L 616 178" stroke-width="2" opacity=".6"/><path class="w4" d="M538 194 L 600 194" stroke-width="2" opacity=".6"/></g>
+        <text x="300" y="52" class="xs-h">NE wind off the water</text>
+        <g class="grains" fill="var(--sand-strong)" stroke="var(--ink)" stroke-width=".6">
+          <circle r="4"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#gpathNE"/></animateMotion></circle>
+          <circle r="3.5"><animateMotion dur="2.4s" begin="-0.8s" repeatCount="indefinite"><mpath href="#gpathNE"/></animateMotion></circle>
+          <circle r="4.5"><animateMotion dur="2.4s" begin="-1.6s" repeatCount="indefinite"><mpath href="#gpathNE"/></animateMotion></circle>
+        </g>
+        <text x="250" y="248" class="xs-t">Dry sand on the water side feeds the fence</text>
+        <path d="M292 270 L 748 270" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#xahkNE)"/><path d="M748 270 L 294 270" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#xahkNE)"/>
+        <text x="330" y="294" class="xs-h">Needs about 50 ft or more of dry beach</text>
+      </svg>
+      <figcaption><b>Northeast wind (nor'easters):</b> blows off the water and up the beach. Sand piles up on the house side of each fence section.</figcaption>
+    </figure>
+    <figure class="xs-pane" data-pane="NW">
+      <svg viewBox="0 0 900 300" role="img" aria-labelledby="xsTNW xsDNW">
+        <title id="xsTNW">Sand fence section on the side beach in a northwest wind</title>
+        <desc id="xsDNW">Wind blows from the houses toward the water, lifts dry sand off the back of the beach and drops it in a mound on the water side of the fence before it can blow into the water.</desc>
+        <defs>
+          <marker id="xahNW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f8a87"/></marker><marker id="xahkNW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a8a8c"/></marker>
+          <path id="gpathNW" d="M740 198 C 660 202, 590 205, 536 207"/>
+        </defs>
+        <rect x="0" y="0" width="900" height="300" fill="var(--surface)"/>
+        <path d="M0 236 L750 196 L750 160 L900 160 L900 300 L0 300 Z" fill="var(--sand)"/>
+        <rect x="750" y="150" width="150" height="12" fill="var(--grow)" opacity=".7"/>
+        <rect x="750" y="120" width="12" height="80" fill="var(--muted)"/>
+        <text x="776" y="140" class="xs-t">Houses</text>
+        <path d="M0 224 L215 224 L262 300 L0 300 Z" fill="var(--sea)" opacity=".85"/>
+        <line x1="0" y1="222" x2="290" y2="222" stroke="var(--sea)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="16" y="212" class="xs-t">Winter high tide</text>
+        <path class="mound" d="M396 214 Q 492 158 600 205 Z" fill="var(--sand-strong)" opacity=".9"/>
+        <g stroke="var(--ink)" stroke-width="5"><line x1="520" y1="209" x2="520" y2="148"/></g>
+        <g stroke="var(--ink)" stroke-width="2" opacity=".75"><line x1="514" y1="154" x2="526" y2="154"/><line x1="514" y1="168" x2="526" y2="168"/><line x1="514" y1="182" x2="526" y2="182"/><line x1="514" y1="196" x2="526" y2="196"/></g>
+        <text x="452" y="106" class="xs-t">Fence section</text>
+        <text x="580" y="166" class="xs-t">Wind hits the fence</text><text x="300" y="128" class="xs-t">Slowed, drops sand</text>
+        <g class="wind" stroke="#1f8a87" stroke-width="4" fill="none" marker-end="url(#xahNW)"><path class="w1" d="M860 80 L 160 80"/><path class="w2" d="M745 178 L 536 178"/><path class="w3" d="M504 178 L 426 178" stroke-width="2" opacity=".6"/><path class="w4" d="M504 194 L 442 194" stroke-width="2" opacity=".6"/></g>
+        <text x="380" y="52" class="xs-h">NW wind off the land</text>
+        <g class="grains" fill="var(--sand-strong)" stroke="var(--ink)" stroke-width=".6">
+          <circle r="4"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#gpathNW"/></animateMotion></circle>
+          <circle r="3.5"><animateMotion dur="2.4s" begin="-0.8s" repeatCount="indefinite"><mpath href="#gpathNW"/></animateMotion></circle>
+          <circle r="4.5"><animateMotion dur="2.4s" begin="-1.6s" repeatCount="indefinite"><mpath href="#gpathNW"/></animateMotion></circle>
+        </g>
+        <text x="470" y="248" class="xs-t">Dry sand on the house side feeds the fence</text>
+        <path d="M292 270 L 748 270" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#xahkNW)"/><path d="M748 270 L 294 270" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#xahkNW)"/>
+        <text x="330" y="294" class="xs-h">Needs about 50 ft or more of dry beach</text>
+      </svg>
+      <figcaption><b>Northwest wind (common and strong in winter):</b> blows off the land toward the water. The same fence section catches sand on its water side, before it blows away.</figcaption>
+    </figure>
+  </div>
+  <div class="fence-keep">
+    <div><b>A: 50 ft spur fences, east end</b><span>Four 50 ft fences, about 100 ft apart. Each one runs across the dry beach, from about 10 ft off the lawns toward the water, and stops well short of the winter high-tide line. Both winds blow partly along this beach: a northeast wind pushes sand west, and a northwest wind pushes it east. A fence that crosses the beach catches sand on its east side in a nor'easter and on its west side in a northwest wind.</span></div>
+    <div><b>B: 25 ft fence sections, side beach</b><span>Seven 25 ft sections (about 175 ft of fence) down the middle of the dry beach, with 10 ft gaps for walking and alternate sections set a few feet apart. Setting them mid-beach leaves dry sand on both sides. In a nor'easter they catch sand blowing up from the water; in a northwest wind they catch sand blowing off the back of the beach before it reaches the water.</span></div>
+    <div><b>Left out</b><span>The point (too wet), the side beach's north corner and the stretch at transect 2708 (each only about 33–40 ft of dry sand), and the walled south front (water at the wall).</span></div>
+  </div>
+  <p class="credit">Layout uses the CZM sand-fence guidance on spacing, spurs and staggered rows (<a href="https://www.mass.gov/info-details/stormsmart-properties-fact-sheet-6-sand-fencing" target="_blank" rel="noopener">StormSmart Fact Sheet 6</a>). The fence spots are planning sketches, so stake them on site.</p>
+</section>
+
+
+
+<section id="fix" class="sec">
+  <div class="wrap">
+    <h2>Lesson 6: What will save our beach</h2>
+    <div class="fixes">
+      <details open>
+        <summary><span>Add sand in dump zone 1</span><em>Best long-term option</em></summary>
+        <p>Start with the restoration: about 150 truckloads (26 cu yd each) over three falls. After that, place about 130 cubic yards a year (about 5 loads), or up to about 195 if erosion speeds up. Put it in dump zone 1, just east of the 1A Worrall groin, at the upstream end of the eroding stretch (see the Lesson 5 map). The waves then carry it east and feed the whole central beach for free. Do it in the fall so it's in place for winter storms. Use sand the same size as the beach sand or a little coarser.</p>
+      </details>
+      <details>
+        <summary><span>Rebuild Jetties 2 and 3, and pre-fill them</span><em>Holds the sand in place</em></summary>
+        <p>The 1A Worrall groin is already in place. Rebuilding Jetty 2, by the beach entrance, and Jetty 3, at the east end, where the 1938 photo shows them, at 100 ft holds the widest beach in the model, but only if their pockets are filled with sand when they're built. Without pre-fill, each new jetty takes the sand it traps from the beach east of it. Coastal geologists and engineers agree on that (<a href="https://www.wcu.edu/webfiles/pdfs/coastal_scientist_groin_statement.pdf" target="_blank" rel="noopener">Young, Pilkey and others</a>; <a href="https://www.olsen-associates.com/sites/default/files/docs/pubs/Bodge_Design%20Aspects%20of%20Groins%20and%20Jetties%202002.pdf" target="_blank" rel="noopener">Bodge, 2003</a>). Jetties this long would likely need a new Chapter 91 license. See Lesson 5.</p>
+      </details>
+      <details>
+        <summary><span>Sand fence and beachgrass</span><em>Keeps blowing sand</em></summary>
+        <p>A fence doesn't stop sand. It slows the wind, and slow wind drops the sand it's carrying. So a fence only catches sand where there's dry sand above high tide and where the wind blows across the fence, not along it.</p>
+        <p><strong>Your fences stand from mid-October to May and are placed to catch sand from both winter winds: the northwest wind and nor'easters.</strong></p>
+        <ul>
+          <li><strong>East end:</strong> four 50 ft spur fences running across the dry beach about 100 ft apart. Both winds blow partly along this beach, so each spur catches sand on one side or the other.</li>
+          <li><strong>Side beach:</strong> seven 25 ft sections down the middle of the dry beach, staggered with 10 ft gaps. They catch sand blowing up the beach in a nor'easter and blowing off the land in a northwest wind.</li>
+          <li><strong>No fence:</strong> the point (too wet), the north corner of the side beach and the stretch at transect 2708 (too narrow), and the walled south front (water at the wall).</li>
+        </ul>
+        <p>Put fences up by mid-October, plant beachgrass behind them from mid-November into early spring, and take them down in May. Leave the sand mounds when the fences come out. See Lesson 4 for the animated version.</p>
+      </details>
+      <details>
+        <summary><span>Watch, measure, refill</span><em>Cheap and essential</em></summary>
+        <p>Mark a height on each wall. Photograph the markers every fall, in spring, and after every big storm. When the sand drops below a mark, it's time to top up. This turns "it looks smaller" into a clear trigger.</p>
+      </details>
+      <details>
+        <summary><span>What doesn't help</span><em>Common mistakes</em></summary>
+        <p>Here's what to avoid:</p>
+        <ul>
+          <li>Taller or longer walls. A wall protects what's behind it, but the beach in front keeps narrowing (<a href="https://pubs.usgs.gov/sir/2010/5254/pdf/sir20105254_chap2.pdf" target="_blank" rel="noopener">Shipman, USGS</a>).</li>
+          <li>Raking or bulldozing sand around in winter.</li>
+          <li>Christmas trees or plastic fencing.</li>
+          <li>Fencing the walled south front, where high tide reaches the walls.</li>
+          <li>Moving sand from one part of the beach to another. New sand should come from outside.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="science" class="band">
+  <div class="wrap">
+    <h2>Lesson 7: What the science says</h2>
+    <p class="lede">Each step in this guide rests on published work by coastal geologists and engineers. Here are the main points and where they come from.</p>
+    <div class="sci">
+      <article>
+        <h3>Waves carry sand along the shore, and it can be measured</h3>
+        <p>The state's Shoreline Change Project maps the shoreline along the whole coast over more than a century, and notes that beach sand comes "primarily from eroding coastal landforms" (<a href="https://www.mass.gov/info-details/massachusetts-shoreline-change-project" target="_blank" rel="noopener">MA CZM</a>). Our erosion rates come from those shorelines (<a href="https://www.usgs.gov/data/massachusetts-shoreline-change-project-2021-update-a-gis-compilation-shoreline-change-rates" target="_blank" rel="noopener">USGS</a>).</p>
+      </article>
+      <article>
+        <h3>Seawalls save the house, not the beach</h3>
+        <p>USGS geologist Hugh Shipman writes that a seawall on an eroding shore "does not prevent continued retreat of the beach itself, with the result being the gradual narrowing of the upper beach" (<a href="https://pubs.usgs.gov/sir/2010/5254/pdf/sir20105254_chap2.pdf" target="_blank" rel="noopener">USGS SIR 2010-5254</a>). Coastal geologist Gary Griggs calls this passive erosion: once the back of the beach is fixed, "the sandy beach will eventually be flooded or be drowned" (<a href="https://coastalcare.org/2020/05/coastal-armoring-and-disappearing-beaches-by-gary-griggs/" target="_blank" rel="noopener">Griggs</a>). That is what's happening along our walled south front.</p>
+      </article>
+      <article>
+        <h3>Jetties trap sand on one side and starve the other</h3>
+        <p>A statement signed by coastal geologists including Rob Young and Orrin Pilkey says that sand "is trapped on the updrift side, causing a sand deficit and increasing erosion rates on the downdrift side" (<a href="https://www.wcu.edu/webfiles/pdfs/coastal_scientist_groin_statement.pdf" target="_blank" rel="noopener">Western Carolina University</a>). North Carolina's 2026 science panel adds that "the longer a sand-trapping structure remains in place, the farther alongshore the impacts will extend" (<a href="https://www.deq.nc.gov/coastal-management/draft-science-panel-report-effects-hard-structures-june-15-2026-v3/open" target="_blank" rel="noopener">NC DEQ</a>).</p>
+      </article>
+      <article>
+        <h3>That's why new jetties must be pre-filled with sand</h3>
+        <p>Coastal engineer Kevin Bodge: "pre-filling the structural field with littoral material is essential," and without nourishment, it is "theoretically impossible to mitigate the long-term downdrift erosional effect" of groins (<a href="https://www.olsen-associates.com/sites/default/files/docs/pubs/Bodge_Design%20Aspects%20of%20Groins%20and%20Jetties%202002.pdf" target="_blank" rel="noopener">Bodge, 2003</a>). The Coastal Engineering Manual covers groin design in detail (<a href="https://coastalengineeringmanual.tpub.com/PartV-Chap3/index.htm" target="_blank" rel="noopener">USACE CEM, Part V-3</a>).</p>
+      </article>
+      <article>
+        <h3>New sand is the fix that adds sand</h3>
+        <p>Beach nourishment is the main soft option for eroding sandy shores (<a href="https://link.springer.com/article/10.1007/s11852-021-00801-y" target="_blank" rel="noopener">Staudt et al., 2021</a>). Woods Hole Sea Grant and MassDEP explain how to do it well in Massachusetts (<a href="https://seagrant.whoi.edu/wp-content/uploads/2024/03/Beach-Nourishment-Marine-Extension-Bulletin-2023.pdf" target="_blank" rel="noopener">WHOI Sea Grant</a>; <a href="https://www.mass.gov/doc/beach-nourishment-massdeps-guide-to-best-management-practices-for-projects-in-ma/download" target="_blank" rel="noopener">MassDEP</a>).</p>
+      </article>
+      <article>
+        <h3>Fences need dry sand and room</h3>
+        <p>Damp sand barely blows: when moisture limits the supply, "mean transport rates are much lower" (<a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/esp.1527" target="_blank" rel="noopener">Davidson-Arnott et al.</a>). That's why the wet point gets no fence. Wind also needs a stretch of dry beach to pick up speed and sand; one 2024 study measured that "critical fetch" at about 24–104 m (<a href="https://onlinelibrary.wiley.com/doi/10.1002/esp.5784" target="_blank" rel="noopener">Earth Surface Processes and Landforms, 2024</a>). That's why the narrow spots get no fence.</p>
+      </article>
+      <article>
+        <h3>Fences build sand where they stand</h3>
+        <p>Fences slow the wind so it drops its sand (<a href="https://www.mass.gov/info-details/stormsmart-properties-fact-sheet-6-sand-fencing" target="_blank" rel="noopener">MA CZM</a>). A NOAA-funded study found that fences "can trap sand and increase dune width at the base of the fence." It also found they can starve the dune behind them (<a href="https://coastalscience.noaa.gov/news/the-effect-of-sand-fencing-on-the-structure-of-natural-dune-systems/" target="_blank" rel="noopener">Itzkin et al., 2020</a>). That's one more reason to take our fences down in May and plant beachgrass.</p>
+      </article>
+      <article>
+        <h3>Winter winds</h3>
+        <p>"The prevailing winds during the winter are from north to west" (<a href="https://nauticalcharts.noaa.gov/publications/coast-pilot/files/cp2/CPB2_C05_WEB.pdf" target="_blank" rel="noopener">NOAA Coast Pilot</a>). Woods Hole researchers add that in winter "strong winds come from the NW although the strongest winds are the nor'easters from the ENE" (<a href="https://www2.whoi.edu/staff/jchurchill/wp-content/uploads/sites/180/2018/03/PID863111-1_51823.pdf" target="_blank" rel="noopener">WHOI</a>). The fence plan in Lesson 4 is built for both.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Words to know</h2>
+    <dl class="gloss">
+      <div><dt>Erosion</dt><dd>When more sand leaves a stretch of beach than arrives, so the beach gets narrower or lower.</dd></div>
+      <div><dt>Accretion</dt><dd>The opposite: sand piling up, so the beach grows.</dd></div>
+      <div><dt>Longshore drift</dt><dd>Sand moving along the shore, pushed by waves that arrive at an angle.</dd></div>
+      <div><dt>Groin / jetty</dt><dd>A wall of rock built out into the water across the beach. It catches sand on its upstream side.</dd></div>
+      <div><dt>Nourishment</dt><dd>Bringing in sand and placing it on the beach.</dd></div>
+      <div><dt>Transect</dt><dd>A fixed measuring line drawn from land out to sea, used to track the shoreline over time.</dd></div>
+      <div><dt>Berm / sandbar</dt><dd>The flat summer shelf of sand on the upper beach, and the underwater ridge where winter storms park sand.</dd></div>
+    </dl>
+  </div>
+</section>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h2>Where the numbers come from</h2>
+    <ul class="srcs">
+      <li>Shoreline positions, 1978–2013 (post-dredge): <a href="https://www.usgs.gov/data/massachusetts-shoreline-change-project-2021-update-a-gis-compilation-shoreline-change-rates" target="_blank" rel="noopener">USGS / Massachusetts CZM Shoreline Change Project</a></li>
+      <li>Summer south–southwest and winter north–west winds in Buzzards Bay: <a href="https://nauticalcharts.noaa.gov/publications/coast-pilot/files/cp2/CPB2_C05_WEB.pdf" target="_blank" rel="noopener">NOAA Coast Pilot 2</a></li>
+      <li>Nourishment, refill markers and sea-level effects: <a href="https://seagrant.whoi.edu/wp-content/uploads/2024/03/Beach-Nourishment-Marine-Extension-Bulletin-2023.pdf" target="_blank" rel="noopener">WHOI Sea Grant beach nourishment bulletin</a></li>
+      <li>Sand quality and timing: <a href="https://www.mass.gov/doc/beach-nourishment-massdeps-guide-to-best-management-practices-for-projects-in-ma/download" target="_blank" rel="noopener">MassDEP beach nourishment best practices</a></li>
+      <li>Winter NW winds and ENE nor'easters: <a href="https://www2.whoi.edu/staff/jchurchill/wp-content/uploads/sites/180/2018/03/PID863111-1_51823.pdf" target="_blank" rel="noopener">WHOI (Churchill et al.)</a></li>
+      <li>Windy season and wind direction by month: <a href="https://weatherspark.com/y/26798/Average-Weather-in-Buzzards-Bay-Massachusetts-United-States-Year-Round" target="_blank" rel="noopener">WeatherSpark</a></li>
+      <li>Sand fencing: <a href="https://www.mass.gov/info-details/stormsmart-properties-fact-sheet-6-sand-fencing" target="_blank" rel="noopener">CZM StormSmart Fact Sheet 6</a>. Beachgrass: <a href="https://www.mass.gov/info-details/cz-tip-dune-building-with-beachgrass" target="_blank" rel="noopener">CZ-Tip: Dune Building with Beachgrass</a></li>
+      <li>Side beach widths: estimated from MassGIS aerial photos, 1995–2025, to about ±5 m.</li>
+    </ul>
+    <p class="fine">This is an educational tool, not engineering or legal advice. Volumes and work windows must come from a coastal engineer and your Conservation Commission permits.</p>
+  </div>
+</footer>
+<script>
+(function(){
+  var deeper=document.getElementById('deeper'),btn=document.getElementById('deeperBtn');
+  function show(){if(!deeper.hidden)return;deeper.hidden=false;btn.setAttribute('aria-expanded','true');btn.textContent='Hide the full lessons';document.documentElement.classList.add('deeper-open');window.dispatchEvent(new Event('resize'));}
+  function hide(){deeper.hidden=true;btn.setAttribute('aria-expanded','false');btn.textContent='Go deeper: the full lessons';document.documentElement.classList.remove('deeper-open');}
+  btn.addEventListener('click',function(){if(deeper.hidden){show();deeper.scrollIntoView({behavior:'smooth',block:'start'});}else{hide();window.scrollTo({top:0,behavior:'smooth'});}});
+  document.querySelectorAll('nav a[href^="#"],[data-deeper]').forEach(function(a){a.addEventListener('click',function(){var id=a.getAttribute('href').slice(1);if(document.getElementById(id)&&deeper.contains(document.getElementById(id)))show();});});
+  if(location.hash&&deeper.querySelector(location.hash))show();
+})();
+</script>
+</body>
+</html>

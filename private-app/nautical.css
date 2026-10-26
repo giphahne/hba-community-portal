@@ -1,0 +1,32 @@
+/* Nautical accents shared by every tool. Colours come from the :root variables in index.html;
+   this layer only adds rope dividers and small brass marks. Postcards, photographs and illustrations are untouched. */
+:root{
+  --rope-line:repeating-linear-gradient(90deg,var(--rope) 0 10px,transparent 10px 16px);
+  --mark-anchor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A227' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='4' r='2'/%3E%3Cpath d='M12 6v15M5 13a7 7 0 0 0 14 0M8 10h8'/%3E%3C/svg%3E");
+  --mark-compass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A227' stroke-width='1.8' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 3l2.2 7L21 12l-6.8 2L12 21l-2.2-7L3 12l6.8-2z' fill='%23C9A227' fill-opacity='.35'/%3E%3C/svg%3E");
+  --mark-flags:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 24'%3E%3Cpath d='M0 4q24 8 48 0' fill='none' stroke='%23D9C49A' stroke-width='1.5'/%3E%3Cpath d='M6 5l8 1v8l-8-1z' fill='%23B23A48'/%3E%3Cpath d='M20 7h8v8h-8z' fill='%23F4F1E8'/%3E%3Cpath d='M20 7h4v8h-4z' fill='%238FC1B5'/%3E%3Cpath d='M34 6l8-1v8l-8 1z' fill='%23C9A227'/%3E%3C/svg%3E");
+}
+/* Dashboard */
+.hba-dashboard .cap-group-head h2,.hba-dashboard .cap-side-head h2,.hba-dashboard #cap-album-title,.cap-lb h2{padding-left:30px;position:relative}
+.hba-dashboard .cap-group-head h2::before,.hba-dashboard .cap-side-head h2::before,.hba-dashboard #cap-album-title::before,.cap-lb h2::before{content:'';position:absolute;left:0;top:.18em;width:22px;height:22px;background:var(--mark-anchor) center/contain no-repeat}
+.hba-dashboard .cap-side-head h2::before{background-image:var(--mark-compass)}
+.hba-dashboard #cap-album-title::before,.cap-lb h2::before{background-image:var(--mark-flags);width:40px;left:-6px}
+.hba-dashboard #cap-album-title,.cap-lb h2{padding-left:40px}
+.hba-dashboard .cap-group{position:relative;padding-top:18px}
+.hba-dashboard .cap-group::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--rope-line);opacity:.75;border-radius:2px}
+.hba-dashboard .cap-card{background:linear-gradient(180deg,var(--navy-2),#102A4F);border-color:rgba(217,196,154,.35)}
+.hba-dashboard .cap-card::after{content:'';position:absolute;right:12px;top:12px;width:14px;height:14px;background:var(--mark-compass) center/contain no-repeat;opacity:.55}
+.hba-dashboard .cap-card{position:relative}
+.hba-dashboard .cap-card:hover{border-color:var(--brass)}
+/* Dialog headers used by every tool */
+.community-head,.community-section-head{position:relative}
+.community-head{border-bottom:0!important;padding-bottom:16px!important}
+.community-head::after,.minutes-head::after{content:'';position:absolute;left:24px;right:24px;bottom:0;height:3px;background:var(--rope-line);opacity:.8}
+.community-section-head h3,.community-story>h3:first-child{padding-left:28px;position:relative}
+.community-section-head h3::before,.community-story>h3:first-child::before{content:'';position:absolute;left:0;top:.15em;width:20px;height:20px;background:var(--mark-anchor) center/contain no-repeat;opacity:.9}
+/* Primary buttons: brass hull on navy text so the large labels stay readable */
+#community-dialog button.community-submit,#community-editor .community-submit,.hba-dashboard .cap-quick-btn{background:var(--brass);color:var(--navy);border-color:var(--brass)}
+/* Nautical status colours */
+.community-notice{border-left:4px solid var(--seafoam);background:rgba(143,193,181,.14)}
+.community-error,.community-danger{color:var(--signal-red-text)!important}
+

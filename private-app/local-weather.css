@@ -1,0 +1,9 @@
+.local-weather h4{font-size:17px;margin:24px 0 10px}
+.local-weather .weather-provenance{font-size:14px;line-height:1.6}
+.local-weather .weather-warning{border-left:3px solid currentColor;padding-left:12px}
+.weather-table{overflow:auto;width:100%}.weather-table table{min-width:680px}
+.local-weather summary{min-height:44px;cursor:pointer;padding:10px 0;font-weight:600}
+.local-weather strong{font-weight:700}
+.local-weather .weather-scroll-help{font-size:14px}
+.weather-table:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+@media print{.local-weather .weather-scroll-help{display:none!important}}

@@ -1,0 +1,57 @@
+/* Beach & weather report, rendered inline on the dashboard */
+.cap-bulletin{margin:0 0 26px;padding:18px 22px 10px;border:1px solid #B9A77E55;border-radius:14px;background:#0B2545;color:#F4F1E8;min-width:0;scroll-margin-top:12px}
+.cap-bulletin:empty{display:none}
+.cap-bulletin .cap-side-head{align-items:flex-start}
+.cap-bulletin .cap-side-head h2{font:700 26px/1.2 Georgia,serif;margin:0}
+.cap-bulletin .cap-side-head h2:focus{outline:2px solid #C9A227;outline-offset:4px}
+.cap-bulletin .waterfront-toolbar p{margin:0 0 8px;font-size:15.5px;line-height:1.55;color:#DCE4E8}
+.cap-bulletin [role=status]{margin:0 0 6px}
+.waterfront-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.waterfront-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:start}
+.waterfront-card{padding:24px 0;border-top:1px solid #B9A77E;min-width:0}
+.waterfront-card h3{font-size:22px;line-height:1.3;margin:8px 0 14px}
+.waterfront-card p,.waterfront-footer{font-size:16.5px;line-height:1.6}
+.waterfront-card small,.waterfront-muted{font-size:14px!important;line-height:1.6}
+.waterfront-notice{padding:16px;border:1px solid #B9A77E;margin:16px 0;overflow-wrap:anywhere}
+.waterfront-notice h4{margin:0 0 10px}
+.waterfront-status{border-left:3px solid #9b511b;padding:10px 16px;background:#b4c8cd55}
+.waterfront-links{display:flex;gap:12px;flex-wrap:wrap}
+.cap-bulletin a{color:#8FC1B5;text-decoration:underline;overflow-wrap:anywhere}
+.cap-bulletin button,.cap-bulletin select{min-height:44px;padding:10px 14px;border:1px solid #D9C49A;border-radius:5px;background:transparent;color:inherit;font:inherit}
+.waterfront-date{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.waterfront-tides{display:block;width:100%;max-height:265px;color:#8FC1B5;margin:16px 0}
+.cap-bulletin table{border-collapse:collapse;width:100%;font-size:15px}
+.cap-bulletin th,.cap-bulletin td{text-align:left;border-bottom:1px solid #B9A77E;padding:12px 6px}
+.waterfront-footer{border-top:1px solid #B9A77E;padding-top:20px}
+@media(max-width:720px){.cap-bulletin{padding:16px 14px}.waterfront-grid{grid-template-columns:1fr}.waterfront-toolbar{display:block}.waterfront-card h3{font-size:20px}}
+.waterfront-button{display:inline-block;min-height:44px;padding:11px 16px;border:1px solid #D9C49A;border-radius:5px;background:transparent;color:inherit;font:inherit;font-weight:600;text-decoration:none}
+.waterfront-button:hover{background:#D9C49A22}
+
+/* Official feeds (DPH beach dashboard, DMF classification) */
+.waterfront-official{margin:10px 0 14px;padding:12px 14px;border-radius:12px;border:1px solid var(--rope,#D9C49A);background:rgba(19,49,92,.55)}
+.waterfront-official p{margin:0 0 8px;font-size:16px;line-height:1.5}
+.waterfront-official-status{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:10px;border-left:6px solid var(--seafoam,#8FC1B5);background:rgba(143,193,181,.12)}
+.waterfront-official-status.is-open{border-left-color:var(--seafoam,#8FC1B5)}
+.waterfront-official-status.is-closed{border-left-color:var(--signal-red,#B23A48);background:rgba(178,58,72,.16)}
+.waterfront-official-status.is-neutral{border-left-color:var(--brass,#C9A227);background:rgba(201,162,39,.12)}
+.waterfront-official-status strong{font-size:18px}.waterfront-official-status span{font-size:15px;color:#E6E0CF}
+.waterfront-official table{width:100%;border-collapse:collapse;font-size:15px;margin:6px 0}
+.waterfront-official th,.waterfront-official td{text-align:left;padding:5px 8px;border-bottom:1px solid rgba(217,196,154,.3)}
+.waterfront-official tr.exceeds td{color:#F2A5AE;font-weight:700}
+.waterfront-official ul{margin:0 0 8px 18px;padding:0;font-size:15.5px}
+.waterfront-subhead{margin:12px 0 6px;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:var(--brass,#C9A227)}
+
+/* Drop-down header */
+.cap-bulletin.is-collapsed{padding-bottom:18px}
+.waterfront-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 6px}
+.cap-bulletin .waterfront-toggle{flex:1;display:grid;gap:4px;text-align:left;min-height:64px;padding:6px 8px 8px 0;border:0;border-radius:10px;background:transparent;color:#F4F1E8;cursor:pointer}
+.cap-bulletin .waterfront-toggle:hover h2,.cap-bulletin .waterfront-toggle:focus-visible h2{color:#C9A227}
+.cap-bulletin .waterfront-toggle:focus-visible{outline:3px solid #8FC1B5;outline-offset:3px}
+.waterfront-toggle-row{display:flex;align-items:center;gap:14px}
+.cap-bulletin .waterfront-toggle h2{font:700 26px/1.2 Georgia,serif;margin:0}
+.waterfront-chevron{width:16px;height:16px;border-right:3px solid #C9A227;border-bottom:3px solid #C9A227;transform:rotate(45deg);transition:transform .2s;margin-top:-6px;flex:none}
+.waterfront-toggle[aria-expanded=true] .waterfront-chevron{transform:rotate(-135deg);margin-top:8px}
+.waterfront-summary{font-size:18px;line-height:1.45;color:#E6E0CF}
+.waterfront-toggle-hint{font-size:14px;color:#8FC1B5}
+.waterfront-close{display:block;margin:16px auto 6px;min-height:48px;padding:0 22px;font-weight:600}
+@media(max-width:720px){.waterfront-head{flex-direction:column}.cap-bulletin .waterfront-toggle h2{font-size:22px}.waterfront-summary{font-size:16.5px}}

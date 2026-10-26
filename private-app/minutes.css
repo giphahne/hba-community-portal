@@ -1,0 +1,14 @@
+/* Meeting minutes tool */
+.minutes-reader h3{margin:6px 0 4px}
+.minutes-meta{margin:0 0 12px;color:var(--color-text-muted,#B9C8D2);font-size:1rem}
+.minutes-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 18px;margin:0 0 16px;padding:12px 14px;border:1px solid var(--color-border,#B9A77E55);border-radius:10px}
+.minutes-facts div{display:flex;flex-direction:column;gap:2px}
+.minutes-facts .minutes-wide{grid-column:1/-1}
+.minutes-facts dt{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted,#B9C8D2)}
+.minutes-facts dd{margin:0;font-size:1.05rem;line-height:1.5}
+.minutes-section{margin:0 0 18px}
+.minutes-section h4{margin:0 0 6px;font-size:1.15rem}
+.minutes-section p{margin:0 0 10px;line-height:1.6}
+.minutes-section ul{margin:0;padding-left:22px;line-height:1.6}
+.minutes-link{background:none;border:none;padding:0;color:var(--color-primary,#8FC1B5);text-decoration:underline;font:inherit;cursor:pointer;min-height:0}
+.community-notice .minutes-link{margin:0 10px 6px 0}
