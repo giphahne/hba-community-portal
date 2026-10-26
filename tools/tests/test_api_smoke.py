@@ -156,3 +156,70 @@ def test_route_table_unchanged(api):
         SNAPSHOT.write_text("\n".join(current) + "\n")
         pytest.skip("route snapshot written")
     assert current == [line for line in SNAPSHOT.read_text().splitlines() if line]
+
+
+# ---- Stateless hosting: everything a restart would lose must live in the cookie or the environment.
+
+def fresh_app(tmp_path, fake, secrets=True):
+    import httpx
+    from conftest import load_app
+    mod = load_app(tmp_path, secrets=secrets)
+    mod.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
+    mod.notify_admin = lambda *a, **k: None
+    return mod
+
+
+def test_session_survives_restart(web, fake, tmp_path):
+    from fastapi.testclient import TestClient
+    fake.add_user("res@example.org", "resident")
+    sign_in(web, "res@example.org")
+    restarted = TestClient(fresh_app(tmp_path / "other", fake).app, cookies=dict(web.cookies))
+    assert restarted.get("/api/session").json()["signed_in"]
+
+
+def test_no_files_written_when_secrets_set(web, fake, tmp_path):
+    fake.add_user("res@example.org", "resident")
+    sign_in(web, "res@example.org")
+    web.get("/app/home.js")
+    data = tmp_path / "data"
+    assert not data.exists() or not any(data.iterdir())
+
+
+def test_dev_mode_generates_and_reuses_keys(fake, tmp_path):
+    first = fresh_app(tmp_path, fake, secrets=False)
+    second = fresh_app(tmp_path, fake, secrets=False)
+    assert (tmp_path / "data" / "session.key").exists() and (tmp_path / "data" / "vapid.pem").exists()
+    assert first.SESSION_KEY == second.SESSION_KEY and first.VAPID_PUBLIC == second.VAPID_PUBLIC
+
+
+def test_session_cookie_flags_and_size(tmp_path):
+    from fastapi.testclient import TestClient
+    from conftest import FakeSupabase
+    fake = FakeSupabase(token_padding=1400)   # a Supabase JWT with user metadata is roughly 1–1.5 KB
+    web = TestClient(fresh_app(tmp_path, fake).app)
+    fake.add_user("res@example.org", "resident")
+    r = web.post("/api/auth/login", json={"email": "res@example.org", "password": PASSWORD})
+    header = r.headers["set-cookie"]
+    assert "hba_session=" in header and "httponly" in header.lower() and "samesite=lax" in header.lower()
+    assert len(header) < 4000, len(header)
+
+
+def test_tampered_cookie_signs_out(web, fake):
+    fake.add_user("res@example.org", "resident")
+    sign_in(web, "res@example.org")
+    web.cookies.clear()
+    web.cookies.set("hba_session", "gAAAAAB-not-a-real-token")
+    assert web.get("/api/session").json() == {"signed_in": False}
+    assert web.get("/app/home.js").status_code == 401
+
+
+def test_generated_secrets_are_accepted(fake, tmp_path, monkeypatch):
+    import subprocess, sys
+    from conftest import REPO, SECRETS
+    out = subprocess.run([sys.executable, str(REPO / "tools" / "generate-secrets.py")], capture_output=True,
+                         text=True, check=True).stdout
+    values = dict(line.split("=", 1) for line in out.splitlines())
+    assert set(values) == set(SECRETS)
+    monkeypatch.setattr("conftest.SECRETS", values)
+    mod = fresh_app(tmp_path, fake)
+    assert mod.VAPID_PUBLIC and not (tmp_path / "data").exists()

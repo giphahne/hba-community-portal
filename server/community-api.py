@@ -2,7 +2,8 @@
 
 Only an anon key is used. Every data/storage request carries the user's JWT,
 so PostgreSQL policies remain authoritative even if a UI control is bypassed.
-Auth sessions are encrypted at rest and bound to the private proxy visitor.
+Auth sessions live in an encrypted, HttpOnly cookie, so the service keeps no state on disk:
+all secrets come from environment variables and any free container host can run it.
 """
 import io
 import json
@@ -13,7 +14,6 @@ import hashlib
 import hmac
 from urllib.parse import quote
 from bank_reconciliation import analyze as analyze_bank
-import sqlite3
 import time
 from pathlib import Path
 from threading import RLock
@@ -38,67 +38,67 @@ import voting
 import engagement
 ENGAGE = {}
 from fastapi.responses import Response, FileResponse, HTMLResponse, JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).parent
 load_dotenv(ROOT / ".env.community")
-# Hosted copies read hba-storage.json (written by build-publish-bundle.py) so the service talks to Supabase directly;
-# the hosting credential proxy rewrites the Authorization header, which would discard each member's own token.
-_storage_cfg = ROOT / "hba-storage.json"
-if _storage_cfg.exists():
-    _cfg = json.loads(_storage_cfg.read_text(encoding="utf-8"))
-    URL, KEY = _cfg["url"].rstrip("/"), _cfg["anon_key"]
-else:
-    URL = os.environ["SUPABASE_URL"].rstrip("/")
-    KEY = os.environ["SUPABASE_ANON_KEY"]
+URL = os.environ["SUPABASE_URL"].rstrip("/")
+KEY = os.environ["SUPABASE_ANON_KEY"]
+# Only used when a secret is not supplied by the environment (local development). Hosted copies set every secret
+# as an environment variable, because free container hosts wipe local files on each restart.
 DATA = Path(os.environ.get("HBA_DATA_DIR") or ROOT / "community-private-data")
-DATA.mkdir(mode=0o700, exist_ok=True)
-key_path = DATA / "session.key"
-if not key_path.exists():
-    key_path.write_bytes(Fernet.generate_key())
-    key_path.chmod(0o600)
-cipher = Fernet(key_path.read_bytes())
-db = sqlite3.connect(DATA / "sessions.sqlite", check_same_thread=False)
-db.row_factory = sqlite3.Row
-db.execute("CREATE TABLE IF NOT EXISTS sessions(visitor TEXT PRIMARY KEY,payload BLOB NOT NULL)")
-db.commit()
-(DATA / "sessions.sqlite").chmod(0o600)
+
+def dev_secret(env, filename, make):
+    value = os.environ.get(env, "").strip()
+    if value:
+        return value.encode()
+    DATA.mkdir(mode=0o700, exist_ok=True)
+    path = DATA / filename
+    if not path.exists():
+        print(f"warning: {env} is not set; generated {path} for local development only", flush=True)
+        path.write_bytes(make())
+        path.chmod(0o600)
+    return path.read_bytes().strip()
+
+# HBA_SESSION_KEY (a Fernet key) encrypts session cookies and also keys the payer fingerprints stored in the
+# database, so keep it stable: changing it signs everyone out and stops old payer keys from matching.
+SESSION_KEY = dev_secret("HBA_SESSION_KEY", "session.key", Fernet.generate_key)
+cipher = Fernet(SESSION_KEY)
 lock = RLock()
 rates = defaultdict(deque)
-db.execute("CREATE TABLE IF NOT EXISTS push_log(key TEXT PRIMARY KEY, at REAL NOT NULL)")
-db.commit()
 
-# ---- Administrator alerts (Web Push). The VAPID key pair lives in community-private-data/vapid.pem and is copied
-# into every published bundle so devices stay subscribed across releases. Subscriptions live in Supabase
+# ---- Administrator alerts (Web Push). HBA_VAPID_PRIVATE_KEY holds the VAPID private key (PEM, or the base64 form
+# printed by tools/generate-secrets.py); keep it stable so devices stay subscribed. Subscriptions live in Supabase
 # (hba_push_subscriptions); the server sends with the member's own token via the hba_push_targets() function.
 import threading
 from pywebpush import webpush, WebPushException
 from py_vapid import Vapid
 import base64
-VAPID_PATH = DATA / "vapid.pem"
-def _vapid():
+def _new_vapid_pem():
     v = Vapid()
-    if VAPID_PATH.exists():
-        v = Vapid.from_file(str(VAPID_PATH))
-    else:
-        v.generate_keys()
-        v.save_key(str(VAPID_PATH))
-        VAPID_PATH.chmod(0o600)
+    v.generate_keys()
+    return v.private_pem()
+def _vapid():
+    raw_key = dev_secret("HBA_VAPID_PRIVATE_KEY", "vapid.pem", _new_vapid_pem).decode()
+    v = Vapid.from_pem(raw_key.replace("\\n", "\n").encode()) if raw_key.startswith("-----BEGIN") else Vapid.from_string(raw_key)
     from cryptography.hazmat.primitives import serialization
     raw = v.public_key.public_bytes(serialization.Encoding.X962, serialization.PublicFormat.UncompressedPoint)
     return v, base64.urlsafe_b64encode(raw).decode().rstrip("=")
 VAPID, VAPID_PUBLIC = _vapid()
-PUSH_SUBJECT = os.environ.get("HBA_PUSH_SUBJECT", "mailto:hba-admin@hamiltonbeach.pplx.app")
+PUSH_SUBJECT = os.environ.get("HBA_PUSH_SUBJECT", "mailto:admin@example.org")
+# Pending-account alerts repeat on every session check, so each alert key is sent once per process. After a
+# restart one repeat is possible, which is harmless.
+push_sent = {}
 
 def notify_admin(token, kind, title, body, dedupe=None, url="/"):
     """Send a push alert to every administrator device. Runs in the background; failures never affect the request."""
     if dedupe:
         with lock:
-            if db.execute("SELECT 1 FROM push_log WHERE key=?", (dedupe,)).fetchone():
+            if dedupe in push_sent:
                 return
-            with db:
-                db.execute("INSERT INTO push_log(key,at) VALUES(?,?)", (dedupe, time.time()))
+            if len(push_sent) > 5000:
+                push_sent.clear()
+            push_sent[dedupe] = time.time()
     def run():
         try:
             targets = rest("rpc/hba_push_targets", token, "POST", {}) or []
@@ -119,48 +119,18 @@ APP_ROOT=Path(os.environ.get("HBA_APP_ROOT") or ROOT/"private-app")
 homes = json.loads((APP_ROOT/"dues-registry-data.json").read_text(encoding="utf-8"))
 VALID = {p["uid"] for p in homes["properties"]}
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
-# Browsers reach the API through the hosting proxy on the same origin as the sign-in gate; CORS is only needed for local development and Perplexity-hosted previews.
-# Self-hosted copies may add their own sign-in page origin(s) with HBA_ALLOWED_ORIGINS="https://portal.example.org,https://www.example.org".
-_extra_origins = [o.strip() for o in os.environ.get("HBA_ALLOWED_ORIGINS", "").split(",") if o.strip()]
-app.add_middleware(CORSMiddleware, allow_origin_regex=r"^(https://([a-z0-9-]+\.)?(pplx\.app|perplexity\.ai)|http://(127\.0\.0\.1|localhost)(:\d+)?)$",
-                   allow_origins=_extra_origins, allow_credentials=bool(_extra_origins),
-                   allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], allow_headers=["Content-Type", "X-HBA-Proof", "X-Visitor-Id"])
-
-# Visitor identity. The Perplexity host sends an x-visitor-id header for every browser. Elsewhere set
-# HBA_VISITOR_MODE=cookie and the service issues its own random first-party cookie instead.
-VISITOR_MODE = os.environ.get("HBA_VISITOR_MODE", "header").strip().lower()
-if VISITOR_MODE == "cookie":
-    @app.middleware("http")
-    async def _visitor_cookie(req: Request, call_next):
-        vid = req.cookies.get("hba_visitor", "")
-        fresh = not re.fullmatch(r"[A-Za-z0-9_-]{32,64}", vid or "")
-        if fresh:
-            vid = secrets.token_urlsafe(32)
-        req.state.visitor_id = vid
-        resp = await call_next(req)
-        if fresh:
-            resp.set_cookie("hba_visitor", vid, max_age=365 * 24 * 3600, httponly=True, samesite="lax",
-                            secure=req.url.scheme == "https", path="/")
-        return resp
-PREVIEW_APP_URL="https://www.perplexity.ai/computer/a/hamilton-beach-community-homes-IC2mb69NTpGgtcVWYsewOA"
+# One origin: the same service serves the sign-in page (/), the member app (/app/) and the API (/api/), so no CORS.
 def app_url():
-    """Public address of the app for links in drafts: app-url.txt in the project root (written by build-publish-bundle.py) or the preview."""
-    try:return (ROOT/"app-url.txt").read_text(encoding="utf-8").strip() or PREVIEW_APP_URL
-    except OSError:return PREVIEW_APP_URL
+    """Public address of the portal, used for links in drafted e-mails. Set HBA_PUBLIC_URL in production."""
+    return os.environ.get("HBA_PUBLIC_URL", "").strip().rstrip("/") or "http://127.0.0.1:3003"
 client = httpx.Client(timeout=35)
 resident_view=ContextVar("hba_resident_view",default=False)
 Image.MAX_IMAGE_PIXELS = 24_000_000
 
 @app.middleware("http")
 async def private_headers(request, call_next):
-    preview=False
-    try:
-        v=visitor(request)
-        with lock:
-            row=db.execute("SELECT payload FROM sessions WHERE visitor=?",(v,)).fetchone()
-        if row:preview=json.loads(cipher.decrypt(row["payload"])).get("view_mode")=="resident"
-    except (HTTPException,ValueError,KeyError):
-        pass
+    saved=load_cookie(request)
+    preview=bool(saved and saved.get("view_mode")=="resident")
     mode_token=resident_view.set(preview)
     path=request.url.path
     if path.startswith("/api/") and path not in {"/api/health","/api/session","/api/logout"} and not path.startswith("/api/auth/") and request.method!="OPTIONS":
@@ -169,29 +139,56 @@ async def private_headers(request, call_next):
             await run_in_threadpool(asset_member,request)
         except HTTPException as e:
             resident_view.reset(mode_token)
-            return JSONResponse({"detail":e.detail},status_code=e.status_code,
-                                headers={"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff"})
+            r=JSONResponse({"detail":e.detail},status_code=e.status_code,
+                           headers={"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff"})
+            write_cookie(request,r)
+            return r
     try:r = await call_next(request)
     finally:resident_view.reset(mode_token)
+    write_cookie(request,r)
     r.headers["Cache-Control"] = "private, no-store"
     r.headers["X-Content-Type-Options"] = "nosniff"
     return r
 
-def visitor(req):
-    if VISITOR_MODE == "cookie":
-        # private_headers is the outer middleware, so it runs before _visitor_cookie has set request.state;
-        # fall back to the cookie itself.
-        v = getattr(req.state, "visitor_id", "") or req.cookies.get("hba_visitor", "")
-        if re.fullmatch(r"[A-Za-z0-9_-]{32,64}", v or ""):
-            return v
-    v = req.headers.get("x-visitor-id", "")
-    if v and len(v) <= 200:
-        return v
-    if req.client and req.client.host in {"127.0.0.1", "::1", "testclient"} and req.headers.get("origin") in {
-        "http://127.0.0.1:3001", "http://localhost:3001"
-    }:
-        return "local-development"
-    raise HTTPException(401, "Open this app through its private preview to sign in.")
+# ---- Sessions. The whole session (Supabase access + refresh token, CSRF proof, timestamps, view mode) is
+# Fernet-encrypted into one HttpOnly cookie. Handlers stage changes on request.state; private_headers writes them.
+SESSION_COOKIE="hba_session"
+IDLE_LIMIT,ABSOLUTE_LIMIT=43200,604800
+
+def load_cookie(req):
+    """The current session dict (including changes staged earlier in this request), or None."""
+    staged=getattr(req.state,"hba_session",None)
+    if staged is not None:
+        return staged or None
+    raw=req.cookies.get(SESSION_COOKIE,"")
+    if not raw:
+        return None
+    try:
+        return json.loads(cipher.decrypt(raw.encode()))
+    except Exception:
+        return None
+
+def put_session(req, value):
+    req.state.hba_session=value
+
+def drop_session(req):
+    req.state.hba_session={}
+
+def write_cookie(req, resp):
+    staged=getattr(req.state,"hba_session",None)
+    if staged is None:
+        return
+    secure=req.url.scheme=="https" or req.headers.get("x-forwarded-proto","").split(",")[0].strip()=="https"
+    if staged:
+        resp.set_cookie(SESSION_COOKIE,cipher.encrypt(json.dumps(staged,separators=(",",":")).encode()).decode(),
+                        max_age=ABSOLUTE_LIMIT,httponly=True,samesite="lax",secure=secure,path="/")
+    else:
+        resp.delete_cookie(SESSION_COOKIE,httponly=True,samesite="lax",secure=secure,path="/")
+
+def client_ip(req):
+    """Caller address for rate limits. Behind the host's proxy the last X-Forwarded-For hop is the one it added."""
+    fwd=[h.strip() for h in req.headers.get("x-forwarded-for","").split(",") if h.strip()]
+    return fwd[-1] if fwd else (req.client.host if req.client else "unknown")
 
 def sb(method, path, token=None, **kwargs):
     # Anonymous calls send only the apikey header (Supabase treats that as the anon role); a bearer token is added
@@ -220,25 +217,16 @@ def rest(table, token, method="GET", data=None, query="", representation=False):
            json=data, headers={"Prefer": "return=representation" if representation else "return=minimal"})
     return r.json() if r.content else None
 
-def put_session(v, value):
-    with lock, db:
-        db.execute("INSERT INTO sessions VALUES(?,?) ON CONFLICT(visitor) DO UPDATE SET payload=excluded.payload",
-                   (v, cipher.encrypt(json.dumps(value).encode())))
-
 def read_session(req, require_proof=True):
-    v = visitor(req)
-    with lock:
-        r = db.execute("SELECT payload FROM sessions WHERE visitor=?", (v,)).fetchone()
-    if not r:
+    s = load_cookie(req)
+    if not s:
+        if req.cookies.get(SESSION_COOKIE):
+            drop_session(req)
+            raise HTTPException(401, "Please sign in again.")
         raise HTTPException(401, "Sign in to your HBA account.")
-    try:
-        s = json.loads(cipher.decrypt(r["payload"]))
-    except Exception:
-        raise HTTPException(401, "Please sign in again.")
     now=time.time()
-    if now-s.get("seen",now)>43200 or now-s.get("started",now)>604800:
-        with lock, db:
-            db.execute("DELETE FROM sessions WHERE visitor=?", (v,))
+    if now-s.get("seen",now)>IDLE_LIMIT or now-s.get("started",now)>ABSOLUTE_LIMIT:
+        drop_session(req)
         raise HTTPException(401, "Session expired. Sign in again.")
     if require_proof and not secrets.compare_digest(req.headers.get("x-hba-proof", ""), s["proof"]):
         raise HTTPException(401, "Session check failed. Reopen the Community section.")
@@ -246,11 +234,10 @@ def read_session(req, require_proof=True):
         try:
             d = sb("POST", "/auth/v1/token?grant_type=refresh_token", json={"refresh_token": s["refresh"]}).json()
         except HTTPException:
-            with lock, db:
-                db.execute("DELETE FROM sessions WHERE visitor=?", (v,))
+            drop_session(req)
             raise HTTPException(401, "Session expired. Sign in again.")
         s.update(token=d["access_token"], refresh=d["refresh_token"], expires=time.time()+d["expires_in"])
-        put_session(v, s)
+        put_session(req, s)
     # Supabase Auth verifies the JWT on every protected request.
     u = sb("GET", "/auth/v1/user", s["token"]).json()
     rows = rest("hba_members", s["token"], query="id=eq." + u["id"] + "&select=*")
@@ -261,9 +248,11 @@ def read_session(req, require_proof=True):
     m["view_mode"]="resident" if s.get("view_mode")=="resident" and m["role"] in {"board","admin"} else "board" if m["role"] in {"board","admin"} else "resident"
     if m["view_mode"]=="resident" and m["actual_role"] in {"board","admin"}:
         m["role"]="resident"
-    s["seen"]=now
     s.setdefault("started",now)
-    put_session(v,s)
+    # Re-issue the cookie for activity at most once a minute, not on every request.
+    if now-s.get("seen",0)>60 or getattr(req.state,"hba_session",None) is not None:
+        s["seen"]=now
+        put_session(req,s)
     return s, m
 
 def require(req, roles=("resident", "board", "admin")):
@@ -287,7 +276,7 @@ def set_view_mode(body:ViewMode,req:Request):
         raise HTTPException(403,"Only a board account can switch between board and resident views.")
     if body.mode not in {"board","resident"}:raise HTTPException(400,"Choose board or resident view.")
     s["view_mode"]=body.mode
-    put_session(visitor(req),s)
+    put_session(req,s)
     with asset_auth_lock:asset_auth_cache.clear()
     return {"saved":True,"view_mode":body.mode}
 
@@ -295,19 +284,13 @@ asset_auth_cache={}
 asset_auth_lock=RLock()
 def asset_member(req):
     """Session still has to exist on every asset request; short cache avoids an auth call per image."""
-    v=visitor(req)
-    with lock:
-        row=db.execute("SELECT payload FROM sessions WHERE visitor=?",(v,)).fetchone()
-    if not row:
+    saved=load_cookie(req)
+    if not saved:
         raise HTTPException(401,"Sign in before viewing HBA information.")
-    try:
-        saved=json.loads(cipher.decrypt(row["payload"]))
-    except Exception:
-        raise HTTPException(401,"Please sign in again.")
     now=time.time()
-    if now-saved.get("seen",now)>43200 or now-saved.get("started",now)>604800:
+    if now-saved.get("seen",now)>IDLE_LIMIT or now-saved.get("started",now)>ABSOLUTE_LIMIT:
         raise HTTPException(401,"Session expired. Sign in again.")
-    key=(v,hashlib.sha256(saved["token"].encode()).hexdigest())
+    key=(hashlib.sha256(saved["token"].encode()).hexdigest(),saved.get("view_mode"))
     with asset_auth_lock:
         cached=asset_auth_cache.get(key)
         if cached and cached[1]>now:
@@ -317,7 +300,7 @@ def asset_member(req):
             raise HTTPException(403,"Your account needs board approval before viewing HBA information.")
         if len(asset_auth_cache)>2000:
             asset_auth_cache.clear()
-        fresh=(v,hashlib.sha256(s["token"].encode()).hexdigest())
+        fresh=(hashlib.sha256(s["token"].encode()).hexdigest(),s.get("view_mode"))
         asset_auth_cache[fresh]=(m,now+10)
         return m
 
@@ -356,7 +339,7 @@ def year_ok(year):
         raise HTTPException(400, "Year must be between 2020 and 2100.")
 
 def rate(req):
-    key = visitor(req)
+    key = client_ip(req)
     now = time.time()
     with lock:
         q = rates[key]
@@ -439,7 +422,7 @@ def auth(action: str, body: Credentials, req: Request):
         sb("POST", "/auth/v1/signup", json={"email": email, "password": body.password, "data": meta})
         return {"message": "Check your email to confirm your address, then sign in. Your request then goes to the board for approval; you will see a waiting screen until a board member approves it and links your household." + (" Your SMS topics are saved with the request and activate on approval (texting itself is not switched on yet)." if phone else "")}
     d = sb("POST", "/auth/v1/token?grant_type=password", json={"email": email, "password": body.password}).json()
-    put_session(visitor(req), {"token": d["access_token"], "refresh": d["refresh_token"],
+    put_session(req, {"token": d["access_token"], "refresh": d["refresh_token"],
                 "expires": time.time()+d["expires_in"], "proof": secrets.token_urlsafe(32),
                 "started":time.time(),"seen":time.time()})
     return session(req)
@@ -450,8 +433,7 @@ def logout(req: Request):
     try:
         sb("POST", "/auth/v1/logout?scope=local", s["token"])
     finally:
-        with lock, db:
-            db.execute("DELETE FROM sessions WHERE visitor=?", (visitor(req),))
+        drop_session(req)
     return {"signed_in": False}
 
 @app.get("/api/community")
@@ -1396,7 +1378,7 @@ def research(body: ResearchQuery,req: Request):
     result={"question":body.question,"sources":sources,"limitations":limits,"total_text_chunks":len(entries),"draft":None}
     if not body.generate or not sources:
         return result
-    now=time.time();key=visitor(req)+"/ai-research"
+    now=time.time();key=client_ip(req)+"/ai-research"
     with lock:
         q=rates[key]
         while q and q[0]<now-3600:q.popleft()
@@ -2349,7 +2331,7 @@ def payer_fingerprint(account_id, value):
     value=value.strip()
     if not re.fullmatch(r"[A-Za-z][A-Za-z0-9:_-]{5,119}",value) or sum(c.isdigit() for c in value)>8:
         raise HTTPException(400,"Use a non-sensitive stable payer key starting with a letter (for example payer-keefe-joint). Do not use account/routing numbers, check numbers, a surname alone, or last four digits alone.")
-    return hmac.new(key_path.read_bytes(),("hba-payer-v1/"+str(account_id)+"/"+value).encode(),hashlib.sha256).hexdigest()
+    return hmac.new(SESSION_KEY,("hba-payer-v1/"+str(account_id)+"/"+value).encode(),hashlib.sha256).hexdigest()
 
 @app.get("/api/dues-receipts")
 def dues_receipts(req: Request):
@@ -2551,5 +2533,5 @@ async def upload_bid_file(record_id:str,req:Request,file:UploadFile=File(...),ca
         raise HTTPException(503,"File upload did not finish. A private attachment entry exists but its file is unavailable; ask the administrator to remove the failed entry before retrying.")
     return row
 
-voting.setup(app, rest=rest, sb=sb, require=require, board=board, homes=homes, visitor=visitor, rate=rate, anon_key=KEY)
+voting.setup(app, rest=rest, sb=sb, require=require, board=board, homes=homes, rate=rate, anon_key=KEY)
 ENGAGE.update(engagement.setup(app, rest=rest, require=require, board=board, notify_admin=notify_admin, uid=uid))

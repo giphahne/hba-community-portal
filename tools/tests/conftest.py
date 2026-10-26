@@ -10,6 +10,7 @@ from urllib.parse import parse_qs
 
 import httpx
 import pytest
+from cryptography.fernet import Fernet
 from fastapi.testclient import TestClient
 
 REPO = Path(__file__).resolve().parents[2]
@@ -20,7 +21,8 @@ FAKE_URL = "https://fake-project.supabase.co"
 class FakeSupabase:
     """Just enough of Supabase Auth + PostgREST for sign-in, session checks and simple writes."""
 
-    def __init__(self):
+    def __init__(self, token_padding=0):
+        self.token_padding = token_padding   # make access tokens JWT-sized for cookie-size checks
         self.users = {}      # email -> {"id","email","password","role","email_confirmed_at"}
         self.tokens = {}     # access token -> email
         self.refresh = {}    # refresh token -> email
@@ -35,7 +37,7 @@ class FakeSupabase:
 
     def _issue(self, email):
         n = len(self.tokens) + 1
-        access, refresh = f"access-{n}-{email}", f"refresh-{n}-{email}"
+        access, refresh = f"access-{n}-{email}" + "x" * self.token_padding, f"refresh-{n}-{email}"
         self.tokens[access] = email
         self.refresh[refresh] = email
         return {"access_token": access, "refresh_token": refresh, "expires_in": 3600, "token_type": "bearer"}
@@ -77,11 +79,27 @@ class FakeSupabase:
         return httpx.Response(404, json={"msg": "not faked: " + path})
 
 
-def load_app(tmp_path):
-    """Import server/community-api.py as a fresh module bound to a temp data dir and the fake Supabase."""
+def _vapid_pem():
+    from py_vapid import Vapid
+    v = Vapid()
+    v.generate_keys()
+    return v.private_pem().decode()
+
+
+SECRETS = {"HBA_SESSION_KEY": Fernet.generate_key().decode(), "HBA_VAPID_PRIVATE_KEY": _vapid_pem()}
+
+
+def load_app(tmp_path, secrets=True):
+    """Import server/community-api.py as a fresh module bound to a temp data dir and the fake Supabase.
+    secrets=False leaves the key variables unset (the local-development path that writes key files)."""
     import os
-    os.environ.update({"SUPABASE_URL": FAKE_URL, "SUPABASE_ANON_KEY": "fake-anon-key", "HBA_VISITOR_MODE": "cookie",
+    os.environ.update({"SUPABASE_URL": FAKE_URL, "SUPABASE_ANON_KEY": "fake-anon-key",
                        "HBA_DATA_DIR": str(tmp_path / "data"), "HBA_APP_ROOT": str(REPO / "private-app")})
+    for k, v in SECRETS.items():
+        if secrets:
+            os.environ[k] = v
+        else:
+            os.environ.pop(k, None)
     if str(SERVER) not in sys.path:
         sys.path.insert(0, str(SERVER))
     spec = importlib.util.spec_from_file_location("community_api_under_test", SERVER / "community-api.py")

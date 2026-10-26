@@ -6,6 +6,7 @@ This module derives the rules a vote must satisfy from the 2022 bylaws and never
 from pathlib import Path
 import contextvars
 import math
+import os
 import re
 import secrets
 from concurrent.futures import ThreadPoolExecutor
@@ -18,11 +19,9 @@ from fastapi import HTTPException, Request
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
-PREVIEW_APP_URL="https://www.perplexity.ai/computer/a/hamilton-beach-community-homes-IC2mb69NTpGgtcVWYsewOA"
 def app_url():
-    """Public address of the app for notice drafts: app-url.txt beside this file, else the Perplexity preview."""
-    try:return (Path(__file__).parent/"app-url.txt").read_text(encoding="utf-8").strip() or PREVIEW_APP_URL
-    except OSError:return PREVIEW_APP_URL
+    """Public address of the portal for notice drafts (same setting as community-api.py)."""
+    return os.environ.get("HBA_PUBLIC_URL", "").strip().rstrip("/") or "http://127.0.0.1:3003"
 
 GOVERNOR_SEATS = ['Pilgrim Street Governor', 'Algelo Street Governor', 'Worrall Street Governor', 'Surf Street Governor',
                   'Turner Street Governor', 'Glen Street Governor', 'Reynolds Street Governor',
@@ -199,7 +198,7 @@ def outcome_for(v, t, procedures):
     return {"outcome": "passed" if passed else "failed", "quorum_met": True, "rule_applied": rule}
 
 
-def setup(app, *, rest, sb, require, board, homes, visitor, rate, anon_key):
+def setup(app, *, rest, sb, require, board, homes, rate, anon_key):
     def uid(value):
         try:
             return str(UUID(str(value)))

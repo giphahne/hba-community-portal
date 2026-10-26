@@ -1,29 +1,9 @@
-"""Internal LLM worker. The authenticated bridge supplies only authorized excerpts."""
+"""AI drafting for "Ask our documents". The caller (community-api.py /api/research) supplies only excerpts the
+signed-in member is already authorized to read."""
 import json
-import secrets
 import re
-from pathlib import Path
-from fastapi import FastAPI,Request,HTTPException
+from fastapi import HTTPException
 from openai import OpenAI
-
-ROOT=Path(__file__).parent
-keyfile=ROOT/"community-private-data/research-worker.key"
-if not keyfile.exists():
-    keyfile.write_text(secrets.token_urlsafe(40))
-    keyfile.chmod(0o600)
-KEY=keyfile.read_text().strip()
-app=FastAPI(docs_url=None,redoc_url=None,openapi_url=None)
-
-@app.get("/health")
-def health():
-    return {"service":"HBA internal research worker"}
-
-@app.post("/draft")
-async def draft(req:Request):
-    if not secrets.compare_digest(req.headers.get("x-hba-research-key",""),KEY):
-        raise HTTPException(403,"Internal worker access only.")
-    body=await req.json()
-    return generate_report(body)
 
 def generate_report(body):
     sources=body.get("sources",[])
