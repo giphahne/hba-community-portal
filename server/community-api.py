@@ -47,12 +47,12 @@ load_dotenv(ROOT / ".env.community")
 # the hosting credential proxy rewrites the Authorization header, which would discard each member's own token.
 _storage_cfg = ROOT / "hba-storage.json"
 if _storage_cfg.exists():
-    _cfg = json.loads(_storage_cfg.read_text())
+    _cfg = json.loads(_storage_cfg.read_text(encoding="utf-8"))
     URL, KEY = _cfg["url"].rstrip("/"), _cfg["anon_key"]
 else:
     URL = os.environ["SUPABASE_URL"].rstrip("/")
     KEY = os.environ["SUPABASE_ANON_KEY"]
-DATA = ROOT / "community-private-data"
+DATA = Path(os.environ.get("HBA_DATA_DIR") or ROOT / "community-private-data")
 DATA.mkdir(mode=0o700, exist_ok=True)
 key_path = DATA / "session.key"
 if not key_path.exists():
@@ -115,8 +115,8 @@ def notify_admin(token, kind, title, body, dedupe=None, url="/"):
             except Exception as e:  # noqa: BLE001
                 print("push error:", str(e)[:160])
     threading.Thread(target=run, daemon=True).start()
-APP_ROOT=ROOT/"private-app"
-homes = json.loads((APP_ROOT/"dues-registry-data.json").read_text())
+APP_ROOT=Path(os.environ.get("HBA_APP_ROOT") or ROOT/"private-app")
+homes = json.loads((APP_ROOT/"dues-registry-data.json").read_text(encoding="utf-8"))
 VALID = {p["uid"] for p in homes["properties"]}
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 # Browsers reach the API through the hosting proxy on the same origin as the sign-in gate; CORS is only needed for local development and Perplexity-hosted previews.
@@ -145,7 +145,7 @@ if VISITOR_MODE == "cookie":
 PREVIEW_APP_URL="https://www.perplexity.ai/computer/a/hamilton-beach-community-homes-IC2mb69NTpGgtcVWYsewOA"
 def app_url():
     """Public address of the app for links in drafts: app-url.txt in the project root (written by build-publish-bundle.py) or the preview."""
-    try:return (ROOT/"app-url.txt").read_text().strip() or PREVIEW_APP_URL
+    try:return (ROOT/"app-url.txt").read_text(encoding="utf-8").strip() or PREVIEW_APP_URL
     except OSError:return PREVIEW_APP_URL
 client = httpx.Client(timeout=35)
 resident_view=ContextVar("hba_resident_view",default=False)
@@ -179,8 +179,10 @@ async def private_headers(request, call_next):
 
 def visitor(req):
     if VISITOR_MODE == "cookie":
-        v = getattr(req.state, "visitor_id", "")
-        if v:
+        # private_headers is the outer middleware, so it runs before _visitor_cookie has set request.state;
+        # fall back to the cookie itself.
+        v = getattr(req.state, "visitor_id", "") or req.cookies.get("hba_visitor", "")
+        if re.fullmatch(r"[A-Za-z0-9_-]{32,64}", v or ""):
             return v
     v = req.headers.get("x-visitor-id", "")
     if v and len(v) <= 200:
@@ -328,7 +330,7 @@ def protected_app(req:Request,file_path:str="index.html"):
     if not path.is_relative_to(APP_ROOT.resolve()) or path.suffix.lower() not in allowed or not path.is_file():
         raise HTTPException(404,"App file not found.")
     if path.suffix.lower()==".html":
-        text=path.read_text()
+        text=path.read_text(encoding="utf-8")
         rel=path.relative_to(APP_ROOT)
         guard_src="../"*(len(rel.parts)-1)+"auth-guard.js"
         root_relative="../"*len(rel.parts)
@@ -1340,7 +1342,7 @@ class ResearchQuery(BaseModel):
 def research_corpus(t,include_archive):
     """Explicit allowlist: never searches sessions, credentials, dues or register."""
     entries=[];limits=[]
-    ledger=json.loads((APP_ROOT/"property-history.json").read_text())
+    ledger=json.loads((APP_ROOT/"property-history.json").read_text(encoding="utf-8"))
     for p in ledger["properties"]:
         for i in p["instruments"]:
             if i["role"]=="Rejected / unrelated":
@@ -1350,7 +1352,7 @@ def research_corpus(t,include_archive):
                 entries.append({"title":p["address"]+" · "+i["ref"],"text":text,
                                 "kind":"deed","property_index":p["index"],"ref":i["ref"],"scan":i["scans"][0] if i["scans"] else None})
     for path in sorted(APP_ROOT.glob("*.md"))+sorted((APP_ROOT/"ch91").glob("*.md"))+sorted((APP_ROOT/"drains").glob("*.md")):
-        text=path.read_text()
+        text=path.read_text(encoding="utf-8")
         for n in range(0,len(text),2400):
             entries.append({"title":path.stem.replace("-"," ").title(),"text":text[n:n+2600],
                             "kind":"local_report","path":str(path.relative_to(APP_ROOT)),"section":n//2400+1})

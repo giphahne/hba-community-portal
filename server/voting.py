@@ -21,7 +21,7 @@ from pydantic import BaseModel, Field
 PREVIEW_APP_URL="https://www.perplexity.ai/computer/a/hamilton-beach-community-homes-IC2mb69NTpGgtcVWYsewOA"
 def app_url():
     """Public address of the app for notice drafts: app-url.txt beside this file, else the Perplexity preview."""
-    try:return (Path(__file__).parent/"app-url.txt").read_text().strip() or PREVIEW_APP_URL
+    try:return (Path(__file__).parent/"app-url.txt").read_text(encoding="utf-8").strip() or PREVIEW_APP_URL
     except OSError:return PREVIEW_APP_URL
 
 GOVERNOR_SEATS = ['Pilgrim Street Governor', 'Algelo Street Governor', 'Worrall Street Governor', 'Surf Street Governor',
