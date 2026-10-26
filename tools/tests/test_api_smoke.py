@@ -48,7 +48,7 @@ def test_unconfirmed_email_blocked(web, fake):
 
 
 def test_app_requires_sign_in(web, fake):
-    assert web.get("/app/").status_code in (401, 302, 303, 307)
+    assert web.get("/app/", follow_redirects=False).status_code == 303
     assert web.get("/app/home.js").status_code == 401
     fake.add_user("res@example.org", "resident")
     sign_in(web, "res@example.org")
@@ -223,3 +223,35 @@ def test_generated_secrets_are_accepted(fake, tmp_path, monkeypatch):
     monkeypatch.setattr("conftest.SECRETS", values)
     mod = fresh_app(tmp_path, fake)
     assert mod.VAPID_PUBLIC and not (tmp_path / "data").exists()
+
+
+# ---- One origin: sign-in page, member app and API from the same service.
+
+def test_sign_in_page_served(web):
+    r = web.get("/")
+    assert r.status_code == 200 and "login.js" in r.text and "__PORT_" not in r.text
+    assert web.get("/login.js").headers["content-type"].startswith("text/javascript")
+    assert web.get("/manifest.webmanifest").headers["content-type"].startswith("application/manifest+json")
+    assert web.get("/sw.js").headers.get("service-worker-allowed") == "/"
+    assert web.get("/icons/icon-192.png").status_code == 200
+
+
+def test_site_route_does_not_shadow_api_or_leak_files(web):
+    assert web.get("/api/no-such-endpoint").status_code in (401, 404)
+    assert web.get("/../server/community-api.py").status_code == 404
+    assert web.get("/README.md").status_code == 404
+
+
+def test_signed_out_app_page_redirects_to_sign_in(web):
+    r = web.get("/app/", follow_redirects=False)
+    assert r.status_code == 303 and r.headers["location"] == "/"
+    assert web.get("/app/sand-school/learn.html", follow_redirects=False).status_code == 303
+
+
+def test_framing_limited_to_same_origin(web, fake):
+    fake.add_user("res@example.org", "resident")
+    sign_in(web, "res@example.org")
+    r = web.get("/app/")
+    assert r.headers["x-frame-options"] == "SAMEORIGIN"
+    assert "frame-ancestors 'self'" in r.headers["content-security-policy"]
+    assert "__PORT_" not in r.text and "<base" not in r.text

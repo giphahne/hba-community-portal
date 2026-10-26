@@ -103,8 +103,7 @@
   }
   function publicBase(){
     const raw=window.__COMMUNITY_API_BASE__||'';
-    if(raw.startsWith('__PORT_')&&['localhost','127.0.0.1'].includes(location.hostname))return 'http://127.0.0.1:3003';
-    if(!raw||raw.startsWith('__PORT_'))throw Error('Volunteer service unavailable.');
+    if(!raw)throw Error('Volunteer service unavailable.');
     return new URL(raw,document.baseURI).href.replace(/\/$/,'');
   }
   async function openPublic(){

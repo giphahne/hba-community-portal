@@ -1,7 +1,9 @@
 (() => {
   'use strict';
+  // The sign-in page is never shown inside the member app's frame (e.g. after a session ends mid-load).
+  if(window.top!==window){window.top.location.replace('/');return;}
   const $=id=>document.getElementById(id),form=$('login-form');
-  const raw=window.__HBA_GATE_API__,base=raw.startsWith('__PORT_')?'http://127.0.0.1:3003':new URL(raw,location.href).href.replace(/\/$/,'');
+  const base='';// the backend serves this page, so the API is on the same origin
   let session=null,signup=false,busy=false,epoch=0,frame=null;
   const approved=s=>s?.signed_in&&['resident','board','admin'].includes(s.member?.role);
   const mustChange=s=>!!(s?.signed_in&&s.member?.must_change_password);
@@ -33,7 +35,7 @@
     catch(err){form.elements.email.value=cred.id;status('Saved sign-in did not work: '+err.message+' Type your password to continue.',true);}
     finally{busy=false;$('login-submit').disabled=false;}
   }
-  function conceal(){if(frame){frame.removeAttribute('srcdoc');frame.src='about:blank';frame.remove();frame=null;}$('app-screen').hidden=true;$('login-screen').hidden=false;document.body.classList.remove('portal-open');document.title='Sign in · Hamilton Beach Association';}
+  function conceal(){if(frame){frame.src='about:blank';frame.remove();frame=null;}$('app-screen').hidden=true;$('login-screen').hidden=false;document.body.classList.remove('portal-open');document.title='Sign in · Hamilton Beach Association';}
   function show(){
     $('forgot-help').hidden=true;
     if(mustChange(session)){
@@ -57,17 +59,8 @@
     }
     conceal();form.hidden=!!session?.signed_in;$('pending-account').hidden=!session?.signed_in;
   }
-  // The hosted app answers every request with X-Frame-Options: DENY, so the member app is fetched with the
-  // signed-in session and rendered through srcdoc with a <base> tag instead of a URL-loaded frame.
-  async function loadApp(target){
-    try{
-      const r=await fetch(base+'/app/',{cache:'no-store',headers:session?.proof?{'X-HBA-Proof':session.proof}:{}});
-      if(!r.ok){let d={};try{d=await r.json();}catch{}throw Error(d.detail||'The member app could not be loaded.');}
-      const html=await r.text();
-      if(target!==frame)return;
-      target.srcdoc=html.replace(/<head[^>]*>/i,m=>m+'<base href="'+base+'/app/">');
-    }catch(e){if(target===frame)status(e.message,true);}
-  }
+  // Same origin as the backend, so the member app loads by URL; the session cookie authorizes it.
+  function loadApp(target){target.src='/app/';}
   async function api(path,body){
     const r=await fetch(base+path,{cache:'no-store',method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?.proof?{'X-HBA-Proof':session.proof}:{})},...(body?{body:JSON.stringify(body)}:{})});
     const raw=await r.text();let d={};try{d=raw?JSON.parse(raw):{};}catch{}

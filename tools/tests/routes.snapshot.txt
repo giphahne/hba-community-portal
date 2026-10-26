@@ -2,6 +2,7 @@ DELETE /api/member-households/{member_id}/{household_uid}
 DELETE /api/members/{record_id}
 DELETE /api/records/{kind}/{record_id}
 DELETE /api/vote-proxies/{pid}
+GET /
 GET /api/auth/addresses
 GET /api/bank
 GET /api/beach-status
@@ -43,6 +44,7 @@ GET /api/weather
 GET /api/weather-alerts
 GET /app/
 GET /app/{file_path:path}
+GET /{file_path:path}
 POST /api/account/password
 POST /api/advisories
 POST /api/agenda

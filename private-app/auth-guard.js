@@ -1,30 +1,7 @@
 (() => {
   'use strict';
-  // Hosted copies send X-Frame-Options: DENY on every response, so private pages cannot be framed by URL.
-  // Fetch the page (same session) and render it through srcdoc with a <base> so relative assets still resolve.
-  window.hbaLoadFrame=async function(frame,url){
-    const abs=new URL(url,document.baseURI).href;
-    const r=await fetch(abs,{cache:'no-store'});
-    if(!r.ok){let d={};try{d=await r.json();}catch{}throw Error(d.detail||('The page could not be loaded ('+r.status+').'));}
-    const html=await r.text(),dir=abs.slice(0,abs.lastIndexOf('/')+1);
-    frame.removeAttribute('src');
-    frame.srcdoc=/<head[^>]*>/i.test(html)?html.replace(/<head[^>]*>/i,m=>m+'<base href="'+dir+'">'):'<base href="'+dir+'">'+html;
-  };
-  // Under srcdoc the <base> makes "#section" links resolve to the folder URL, which navigates the frame away to a
-  // 404. Keep them as in-page jumps. Links whose own handler already called preventDefault are left alone.
-  document.addEventListener('click',e=>{
-    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-    const a=e.target.closest?.('a[href^="#"]');
-    if(!a||(a.target&&a.target!=='_self'))return;
-    e.preventDefault();
-    let id=a.getAttribute('href').slice(1);try{id=decodeURIComponent(id);}catch{}
-    const t=id&&document.getElementById(id);
-    if(!id){window.scrollTo({top:0});return;}
-    if(!t)return;
-    t.scrollIntoView({block:'start'});
-    if(!t.matches('a[href],button,input,select,textarea,summary,[tabindex]'))t.setAttribute('tabindex','-1');
-    t.focus({preventScroll:true});
-  });
+  // Learning tools (Sand School, budget simulator) are same-origin pages loaded into frames by URL.
+  window.hbaLoadFrame=async function(frame,url){frame.src=new URL(url,document.baseURI).href;};
   let locked=false,seenMember=false;
   const root=window.__HBA_API_ROOT__,approved=s=>s?.signed_in&&['resident','board','admin'].includes(s.member?.role);
   function lock(){

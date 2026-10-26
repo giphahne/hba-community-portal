@@ -17,10 +17,6 @@
   function base(){
     if(apiBase)return apiBase;
     const raw=window.__COMMUNITY_API_BASE__||'';
-    if(raw.startsWith('__PORT_')){
-      if(!['127.0.0.1','localhost'].includes(location.hostname))throw Error('The community service is not configured.');
-      return apiBase='http://127.0.0.1:3003';
-    }
     if(!raw)throw Error('The community service is unavailable.');
     return apiBase=new URL(raw,document.baseURI).href.replace(/\/$/,'');
   }
