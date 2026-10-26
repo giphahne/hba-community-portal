@@ -2,7 +2,7 @@
 
 No network, no real database. Each test gets a fresh app module, data folder and fake Supabase state.
 """
-import importlib.util
+from types import SimpleNamespace
 import sys
 from pathlib import Path
 import httpx
@@ -28,7 +28,7 @@ SECRETS = {"HBA_SESSION_KEY": Fernet.generate_key().decode(), "HBA_VAPID_PRIVATE
 
 
 def load_app(tmp_path, secrets=True):
-    """Import server/community-api.py as a fresh module bound to a temp data dir and the fake Supabase.
+    """Import the backend (server/hba) afresh, bound to a temp data dir. Returns its app and core modules.
     secrets=False leaves the key variables unset (the local-development path that writes key files)."""
     import os
     os.environ.update({"SUPABASE_URL": FAKE_URL, "SUPABASE_ANON_KEY": "fake-anon-key",
@@ -40,10 +40,11 @@ def load_app(tmp_path, secrets=True):
             os.environ.pop(k, None)
     if str(SERVER) not in sys.path:
         sys.path.insert(0, str(SERVER))
-    spec = importlib.util.spec_from_file_location("community_api_under_test", SERVER / "community-api.py")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+    for name in list(sys.modules):   # settings are read at import, so every test gets fresh modules
+        if name == "hba" or name.startswith("hba.") or name in {"voting", "engagement", "document_intake"}:
+            del sys.modules[name]
+    import hba.main
+    return SimpleNamespace(app=hba.main.app, config=hba.config, push=hba.push, supabase=hba.supabase)
 
 
 @pytest.fixture
@@ -54,9 +55,7 @@ def fake():
 @pytest.fixture
 def api(tmp_path, fake):
     mod = load_app(tmp_path)
-    mod.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
-    mod.notify_admin = lambda *a, **k: None   # push alerts run in a thread; not under test here
-    mod.test_fake = fake
+    mod.supabase.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
     return mod
 
 

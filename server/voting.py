@@ -667,26 +667,6 @@ def setup(app, *, rest, sb, require, board, homes, rate, anon_key):
         rest("hba_member_households", token, "DELETE", query="member_id=eq." + uid(member_id) + "&household_uid=eq." + re.sub(r"[^A-Za-z0-9_]", "", household_uid))
         return {"deleted": True}
 
-    class Setting(BaseModel):
-        value: str = Field(default="", max_length=2000)
-
-    @app.put("/api/settings/{key}")
-    def save_setting(key: str, body: Setting, req: Request):
-        token, m = require(req, ("admin",))
-        if not re.fullmatch(r"[a-z_]{3,60}", key):
-            raise HTTPException(400, "Invalid setting key.")
-        value = body.value.strip()
-        if key == "public_facebook_group_url" and value:
-            from urllib.parse import urlparse
-            p = urlparse(value)
-            if p.scheme != "https" or not (p.hostname or "").endswith("facebook.com") or p.username or p.password:
-                raise HTTPException(400, "Enter an https://www.facebook.com/... link copied from the group's Share menu.")
-        existing = rest("hba_settings", token, query="key=eq." + key + "&select=key")
-        payload = {"value": value, "updated_by": m["id"], "updated_at": datetime.now(timezone.utc).isoformat()}
-        if existing:
-            return rest("hba_settings", token, "PATCH", payload, query="key=eq." + key, representation=True)[0]
-        return rest("hba_settings", token, "POST", {"key": key, **payload}, representation=True)[0]
-
     # ----- exports -----
     def local(ts):
         from zoneinfo import ZoneInfo

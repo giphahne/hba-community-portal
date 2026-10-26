@@ -4,6 +4,7 @@ These pin the behaviour the hosting refactor must keep. Supabase is faked (see c
 Run: pytest tools/tests
 """
 import os
+import time
 from pathlib import Path
 
 import pytest
@@ -116,20 +117,20 @@ def test_logout(web, fake):
     assert web.get("/app/home.js").status_code == 401
 
 
-def test_idle_session_expires(web, fake, api, monkeypatch):
+def test_idle_session_expires(web, fake, monkeypatch):
     fake.add_user("res@example.org", "resident")
     sign_in(web, "res@example.org")
-    real = api.time.time
-    monkeypatch.setattr(api.time, "time", lambda: real() + 13 * 3600)
+    real = time.time
+    monkeypatch.setattr(time, "time", lambda: real() + 13 * 3600)
     assert web.get("/api/session").json() == {"signed_in": False}
 
 
-def test_access_token_refreshed(web, fake, api, monkeypatch):
+def test_access_token_refreshed(web, fake, monkeypatch):
     fake.add_user("res@example.org", "resident")
     sign_in(web, "res@example.org")
     first = set(fake.tokens)
-    real = api.time.time
-    monkeypatch.setattr(api.time, "time", lambda: real() + 3550)   # within 90 s of the 1 h expiry
+    real = time.time
+    monkeypatch.setattr(time, "time", lambda: real() + 3550)   # within 90 s of the 1 h expiry
     assert web.get("/api/session").json()["signed_in"]
     assert set(fake.tokens) - first, "expected a refreshed access token"
 
@@ -139,9 +140,18 @@ def test_health(web):
     assert r.status_code == 200 and r.json()["configured"]
 
 
+def flat_routes(routes):
+    """Routes in matching order; included routers are expanded in place."""
+    for r in routes:
+        if hasattr(r, "original_router"):
+            yield from flat_routes(r.original_router.routes)
+        else:
+            yield r
+
+
 def route_table(app):
     rows = set()
-    for r in app.routes:
+    for r in flat_routes(app.routes):
         for m in sorted(getattr(r, "methods", None) or []):
             if m not in {"HEAD", "OPTIONS"}:
                 rows.add(f"{m} {r.path}")
@@ -164,8 +174,7 @@ def fresh_app(tmp_path, fake, secrets=True):
     import httpx
     from conftest import load_app
     mod = load_app(tmp_path, secrets=secrets)
-    mod.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
-    mod.notify_admin = lambda *a, **k: None
+    mod.supabase.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
     return mod
 
 
@@ -189,7 +198,8 @@ def test_dev_mode_generates_and_reuses_keys(fake, tmp_path):
     first = fresh_app(tmp_path, fake, secrets=False)
     second = fresh_app(tmp_path, fake, secrets=False)
     assert (tmp_path / "data" / "session.key").exists() and (tmp_path / "data" / "vapid.pem").exists()
-    assert first.SESSION_KEY == second.SESSION_KEY and first.VAPID_PUBLIC == second.VAPID_PUBLIC
+    assert first.config.SESSION_KEY == second.config.SESSION_KEY
+    assert first.push.VAPID_PUBLIC == second.push.VAPID_PUBLIC
 
 
 def test_session_cookie_flags_and_size(tmp_path):
@@ -222,7 +232,7 @@ def test_generated_secrets_are_accepted(fake, tmp_path, monkeypatch):
     assert set(values) == set(SECRETS)
     monkeypatch.setattr("conftest.SECRETS", values)
     mod = fresh_app(tmp_path, fake)
-    assert mod.VAPID_PUBLIC and not (tmp_path / "data").exists()
+    assert mod.push.VAPID_PUBLIC and not (tmp_path / "data").exists()
 
 
 # ---- One origin: sign-in page, member app and API from the same service.
@@ -289,3 +299,33 @@ def test_revalidation_still_requires_sign_in(web, fake):
 
 def test_api_answers_never_cached(web):
     assert web.get("/api/session").headers["cache-control"] == "private, no-store"
+
+
+def test_admin_push_alert_is_signed_with_vapid_key(api, fake, monkeypatch):
+    """Alerts send from a background thread whose errors are only logged, so check the send itself."""
+    sent = []
+    fake.rpc["hba_push_targets"] = [{"endpoint": "https://push.example/abc", "p256dh": "k", "auth": "a"}]
+    monkeypatch.setattr(api.push, "webpush", lambda info, **kw: sent.append((info, kw)))
+
+    class Inline:
+        def __init__(self, target, daemon=None):
+            self.target = target
+
+        def start(self):
+            self.target()
+    monkeypatch.setattr(api.push.threading, "Thread", Inline)
+    api.push.notify_admin("token", "test", "Title", "Body")
+    assert len(sent) == 1
+    info, kw = sent[0]
+    assert info["endpoint"] == "https://push.example/abc"
+    assert kw["vapid_private_key"] is api.push.VAPID and kw["vapid_claims"]["sub"].startswith("mailto:")
+
+
+def test_entry_point_serves_the_package_app(api):
+    """`uvicorn community-api:app` must keep working for hosts and the README's run command."""
+    import importlib.util
+    from conftest import SERVER
+    spec = importlib.util.spec_from_file_location("community_api_entry", SERVER / "community-api.py")
+    entry = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(entry)
+    assert entry.app is api.app

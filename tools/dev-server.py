@@ -6,7 +6,6 @@ Sign in with one of the preview accounts below. Data panels are empty (the fake 
 anything you save is forgotten when the server stops. Use it to check pages, navigation and permissions;
 use a real (free) Supabase project to check data.
 """
-import importlib.util
 import os
 import sys
 from pathlib import Path
@@ -27,17 +26,15 @@ os.environ.setdefault("SUPABASE_URL", "https://preview.invalid")
 os.environ.setdefault("SUPABASE_ANON_KEY", "preview-anon-key")
 os.environ.setdefault("HBA_DATA_DIR", str(REPO / "server" / "community-private-data"))
 
-spec = importlib.util.spec_from_file_location("community_api", REPO / "server" / "community-api.py")
-api = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(api)
+import hba.main  # noqa: E402  (reads the settings above)
+import hba.supabase  # noqa: E402
 
 fake = FakeSupabase()
 for email, role in PREVIEW_ACCOUNTS.items():
     fake.add_user(email, role, password=PREVIEW_PASSWORD)
-api.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
-api.notify_admin = lambda *a, **k: None
+hba.supabase.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
 
 if __name__ == "__main__":
     print("Preview accounts (password for all: see PREVIEW_PASSWORD in tools/dev-server.py):",
           ", ".join(PREVIEW_ACCOUNTS))
-    uvicorn.run(api.app, host="127.0.0.1", port=int(os.environ.get("PORT", "3003")))
+    uvicorn.run(hba.main.app, host="127.0.0.1", port=int(os.environ.get("PORT", "3003")))
