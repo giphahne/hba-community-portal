@@ -3,6 +3,9 @@
 -- indexes, row-level-security policies, functions, triggers and the storage bucket. No resident data.
 -- Run in the Supabase SQL editor (or psql) on a fresh project, in order, as the postgres role.
 
+-- Functions below are listed alphabetically and some call functions defined later; skip body checks while
+-- creating them (the same setting pg_dump writes). Bodies are still checked when they run.
+set check_function_bodies = off;
 create extension if not exists pgcrypto;
 create extension if not exists "uuid-ossp";
 
@@ -2372,11 +2375,7 @@ AS $function$
 $function$;
 
 -- ===== Triggers =====
-CREATE TRIGGER enforce_bucket_name_length_trigger BEFORE INSERT OR UPDATE OF name ON storage.buckets FOR EACH ROW EXECUTE FUNCTION storage.enforce_bucket_name_length();
-CREATE TRIGGER protect_bucket_control_insert BEFORE INSERT ON storage.buckets FOR EACH ROW EXECUTE FUNCTION storage.protect_bucket_control_columns('service_role');
-CREATE TRIGGER protect_bucket_control_update BEFORE UPDATE OF lifecycle_configuration, lifecycle_configuration_generation ON storage.buckets FOR EACH ROW EXECUTE FUNCTION storage.protect_bucket_control_columns();
-CREATE TRIGGER protect_bucket_control_update_role AFTER UPDATE OF lifecycle_configuration, lifecycle_configuration_generation ON storage.buckets FOR EACH ROW EXECUTE FUNCTION storage.enforce_bucket_lifecycle_service_role('service_role');
-CREATE TRIGGER protect_buckets_delete BEFORE DELETE ON storage.buckets FOR EACH STATEMENT EXECUTE FUNCTION storage.protect_delete();
+-- Supabase's own triggers on storage.buckets/objects are not listed: every project already has them.
 CREATE TRIGGER bank_import_audit AFTER INSERT OR DELETE ON public.hba_bank_imports FOR EACH ROW EXECUTE FUNCTION hba_finance_record_audit();
 CREATE TRIGGER bank_match_audit AFTER INSERT OR DELETE ON public.hba_bank_matches FOR EACH ROW EXECUTE FUNCTION hba_finance_record_audit();
 CREATE TRIGGER bank_validate_match BEFORE INSERT ON public.hba_bank_matches FOR EACH ROW EXECUTE FUNCTION hba_bank_validate_match();
@@ -2410,8 +2409,6 @@ CREATE TRIGGER roll_audit AFTER INSERT OR DELETE OR UPDATE ON public.hba_vote_ro
 CREATE TRIGGER roll_lock BEFORE INSERT OR DELETE OR UPDATE ON public.hba_vote_roll FOR EACH ROW EXECUTE FUNCTION hba_lock_roll();
 CREATE TRIGGER vote_audit AFTER INSERT OR DELETE OR UPDATE ON public.hba_votes FOR EACH ROW EXECUTE FUNCTION hba_audit_vote_tables();
 CREATE TRIGGER vote_validate BEFORE INSERT OR UPDATE ON public.hba_votes FOR EACH ROW EXECUTE FUNCTION hba_validate_vote();
-CREATE TRIGGER protect_objects_delete BEFORE DELETE ON storage.objects FOR EACH STATEMENT EXECUTE FUNCTION storage.protect_delete();
-CREATE TRIGGER update_objects_updated_at BEFORE UPDATE ON storage.objects FOR EACH ROW EXECUTE FUNCTION storage.update_updated_at_column();
 CREATE TRIGGER hba_member_sync AFTER INSERT OR UPDATE OF email, email_confirmed_at ON auth.users FOR EACH ROW EXECUTE FUNCTION hba_sync_member();
 
 -- ===== Row-level security =====

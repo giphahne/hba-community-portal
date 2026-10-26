@@ -192,3 +192,8 @@ insert into public.hba_settings (key,value) values
   ('public_local_sands_url','https://www.facebook.com/LocalSand'),
   ('public_supper_defaults','{"time":"17:30","end":"23:00","location":"Corner of Glen and Algelo Avenues","note":"Usual time and place from the 2026 Summer Events sheet (5:30 PM start); the earlier 5:00 PM figure was replaced October 17, 2026."}')
 on conflict (key) do update set value=excluded.value;
+
+-- Single-row settings tables. The app only updates row 1 (payment and Venmo settings, voting procedures),
+-- so the row must exist before the member archive and those settings screens can load.
+insert into public.hba_payment_settings (id) values (1) on conflict (id) do nothing;
+insert into public.hba_voting_procedures (id) values (1) on conflict (id) do nothing;

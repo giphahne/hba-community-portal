@@ -22,7 +22,7 @@ hba-community-portal/
 │   │   └── routers/      One module per area: auth, community, finance, governance, weather, …
 │   └── voting.py, engagement.py, document_intake.py, …   Feature modules with their own routes
 ├── supabase/
-│   ├── schema.sql        Full database structure: 73 tables, 124 foreign keys, 66 functions, 41 triggers,
+│   ├── schema.sql        Full database structure: 73 tables, 124 foreign keys, 66 functions, 34 triggers,
 │   │                     220 row-level-security policies, grants, storage bucket  (generated from the live project)
 │   ├── seed-reference.sql  Reference rows only: the 156 house addresses, 15 finance categories, 10 public settings
 │   └── migrations-history/ The incremental SQL files the schema grew from (for reference; schema.sql supersedes them)
