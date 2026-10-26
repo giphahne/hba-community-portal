@@ -3,17 +3,18 @@
 Thank you for helping the Hamilton Beach Association portal. A few ground rules keep it safe for the neighbours who use it.
 
 ## Never commit
-- `.env.community`, `hba-storage.json`, anything in `community-private-data/`
+- `.env.community`, anything in `community-private-data/`, the values of `HBA_SESSION_KEY` / `HBA_VAPID_PRIVATE_KEY`
 - Resident contact lists, rosters, QA fixtures with real accounts
 - Supabase service-role keys (the app only ever uses the public anon key)
 
 `.gitignore` blocks the usual locations; please look at your diff before pushing.
 
 ## Local development
-1. Follow README.md → Installation to create a Supabase project and fill in `server/.env.community`.
-2. `cd server && ./run.sh` starts the API on http://127.0.0.1:3003 and serves `private-app/` at `/app/`.
-3. Serve `site/` with any static server on port 3001 (for example `npx serve -l 3001 site`). The sign-in page
-   falls back to the local API automatically while `__HBA_GATE_API__` is left as the placeholder.
+1. Quick look without a database: `python tools/dev-server.py`, then open http://127.0.0.1:3003.
+2. With data: create a Supabase project (DEPLOY.md, step 1), fill in `server/.env.community`, then
+   `cd server && ./run.sh`. One address serves the sign-in page (/), the member app (/app/) and the API (/api/).
+3. Before pushing: `python -m pytest tools/tests` (no database needed). Backend code lives in `server/hba/`;
+   add routes to the matching module in `server/hba/routers/`.
 
 ## Database changes
 - Add a new file `supabase/migrations/NNN-short-name.sql` (create the folder on first use) rather than editing `schema.sql`.

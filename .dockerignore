@@ -1,0 +1,17 @@
+.git
+.github
+.claude
+supabase
+tools
+**/__pycache__
+**/*.pyc
+**/.env
+**/.env.*
+server/community-private-data
+server/private-app
+server/hba-storage.json
+*.md
+!private-app/**/*.md
+**/winter-residents*.csv
+**/roster*.csv
+**/qa-fixtures.json

@@ -329,3 +329,10 @@ def test_entry_point_serves_the_package_app(api):
     entry = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(entry)
     assert entry.app is api.app
+
+
+def test_production_refuses_to_invent_secrets(fake, tmp_path, monkeypatch):
+    monkeypatch.setenv("HBA_REQUIRE_SECRETS", "1")
+    with pytest.raises(SystemExit, match="HBA_SESSION_KEY is not set"):
+        fresh_app(tmp_path, fake, secrets=False)
+    assert not (tmp_path / "data").exists()

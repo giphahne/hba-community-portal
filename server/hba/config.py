@@ -23,6 +23,9 @@ def dev_secret(env, filename, make):
     value = os.environ.get(env, "").strip()
     if value:
         return value.encode()
+    if os.environ.get("HBA_REQUIRE_SECRETS") == "1":   # set in the Dockerfile: never invent keys in production
+        raise SystemExit(f"{env} is not set. Generate it with tools/generate-secrets.py and add it to the host's "
+                         "environment settings.")
     DATA.mkdir(mode=0o700, exist_ok=True)
     path = DATA / filename
     if not path.exists():
