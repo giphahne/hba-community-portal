@@ -2,7 +2,7 @@
 
     python tools/dev-server.py            # then open http://127.0.0.1:3003
 
-Sign in with one of the preview accounts below. Data panels are empty (the fake database has no rows) and
+Sign in with one of the preview accounts below. Data panels are empty (the fake database holds only placeholder settings) and
 anything you save is forgotten when the server stops. Use it to check pages, navigation and permissions;
 use a real (free) Supabase project to check data.
 """
@@ -32,6 +32,15 @@ import hba.supabase  # noqa: E402
 fake = FakeSupabase()
 for email, role in PREVIEW_ACCOUNTS.items():
     fake.add_user(email, role, password=PREVIEW_PASSWORD)
+# Rows and RPC answers a real project always has (the migrations insert the payment-settings row; the count RPCs
+# return sets), so /api/community and /api/votes answer instead of failing on the empty fake.
+fake.rows["hba_payment_settings"] = [{"id": 1, "recipient_name": "", "recipient_identifier": "", "enabled": False,
+                                      "venmo_name": "", "venmo_handle": "", "venmo_enabled": False,
+                                      "updated_by": None, "updated_at": "2026-01-01T00:00:00Z"}]
+for name in ("hba_can_schedule", "hba_can_edit_newsletter", "hba_can_edit_finance", "hba_can_edit_minutes"):
+    fake.rpc[name] = True
+fake.rpc.update({"hba_volunteer_counts": [], "hba_sms_counts": {"opted_in": 0, "topics": {}},
+                 "hba_vote_counts": [], "hba_my_dues_status": []})
 hba.supabase.client = httpx.Client(transport=httpx.MockTransport(fake.handle))
 
 if __name__ == "__main__":
