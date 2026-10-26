@@ -255,3 +255,37 @@ def test_framing_limited_to_same_origin(web, fake):
     assert r.headers["x-frame-options"] == "SAMEORIGIN"
     assert "frame-ancestors 'self'" in r.headers["content-security-policy"]
     assert "__PORT_" not in r.text and "<base" not in r.text
+
+
+# ---- Transfer size: compressed text, revalidated files.
+
+def test_text_is_compressed_and_photos_are_not(web, fake):
+    fake.add_user("res@example.org", "resident")
+    sign_in(web, "res@example.org")
+    js = web.get("/app/road-wording.js", headers={"Accept-Encoding": "gzip"})
+    assert js.status_code == 200 and js.headers.get("content-encoding") == "gzip"
+    photo = web.get("/app/photos/aerial-beach.jpg", headers={"Accept-Encoding": "gzip"})
+    assert photo.status_code == 200 and "content-encoding" not in photo.headers
+
+
+def test_files_revalidate_with_304(web, fake):
+    fake.add_user("res@example.org", "resident")
+    sign_in(web, "res@example.org")
+    first = web.get("/app/home.js")
+    assert first.headers["cache-control"] == "private, no-cache" and first.headers.get("etag")
+    again = web.get("/app/home.js", headers={"If-None-Match": first.headers["etag"]})
+    assert again.status_code == 304 and not again.content
+    site = web.get("/login.js")
+    assert web.get("/login.js", headers={"If-None-Match": site.headers["etag"]}).status_code == 304
+
+
+def test_revalidation_still_requires_sign_in(web, fake):
+    fake.add_user("res@example.org", "resident")
+    s = sign_in(web, "res@example.org")
+    etag = web.get("/app/home.js").headers["etag"]
+    web.post("/api/logout", json={}, headers=proof(s))
+    assert web.get("/app/home.js", headers={"If-None-Match": etag}).status_code == 401
+
+
+def test_api_answers_never_cached(web):
+    assert web.get("/api/session").headers["cache-control"] == "private, no-store"

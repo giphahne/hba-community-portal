@@ -131,6 +131,32 @@ def app_url():
     return os.environ.get("HBA_PUBLIC_URL", "").strip().rstrip("/") or "http://127.0.0.1:3003"
 client = httpx.Client(timeout=35)
 resident_view=ContextVar("hba_resident_view",default=False)
+
+# ---- Transfer size. Text (scripts, styles, JSON data, pages, API answers) is gzip-compressed; photos, PDFs and
+# scans are already compressed and pass through untouched. Files are revalidated (ETag → 304) instead of
+# re-downloaded on every visit; every request is still checked against the session first.
+from starlette.middleware.gzip import GZipMiddleware
+COMPRESSIBLE={".html",".js",".css",".json",".csv",".tsv",".md",".svg",".webmanifest",".txt"}
+class TextGZip:
+    def __init__(self, app):
+        self.app=app
+        self.gzip=GZipMiddleware(app,minimum_size=1000)
+    async def __call__(self, scope, receive, send):
+        path=scope.get("path","") if scope["type"]=="http" else ""
+        binary_api="/files/" in path or path.endswith(("/files","/photo","/file"))
+        if path and (path.endswith("/") or Path(path).suffix.lower() in COMPRESSIBLE or (path.startswith("/api/") and not binary_api)):
+            return await self.gzip(scope,receive,send)
+        return await self.app(scope,receive,send)
+app.add_middleware(TextGZip)
+
+def file_reply(req, path, media_type=None, headers=None):
+    """FileResponse that answers a matching If-None-Match with 304 Not Modified."""
+    r=FileResponse(path,media_type=media_type,stat_result=os.stat(path),
+                   headers={"Cache-Control":"private, no-cache","X-Content-Type-Options":"nosniff",**(headers or {})})
+    tags={t.strip().removeprefix("W/") for t in req.headers.get("if-none-match","").split(",") if t.strip()}
+    if r.headers.get("etag") in tags:
+        return Response(status_code=304,headers={k:v for k,v in r.headers.items() if k in {"etag","last-modified","cache-control"}})
+    return r
 Image.MAX_IMAGE_PIXELS = 24_000_000
 
 @app.middleware("http")
@@ -152,7 +178,9 @@ async def private_headers(request, call_next):
     try:r = await call_next(request)
     finally:resident_view.reset(mode_token)
     write_cookie(request,r)
-    r.headers["Cache-Control"] = "private, no-store"
+    # API answers are never cached; app and site files are revalidated (see file_reply).
+    if request.url.path.startswith("/api/") or "cache-control" not in r.headers:
+        r.headers["Cache-Control"] = "private, no-store"
     r.headers["X-Content-Type-Options"] = "nosniff"
     # The sign-in page frames the member app, and the app frames its learning tools: same origin only.
     r.headers["X-Frame-Options"] = "SAMEORIGIN"
@@ -335,7 +363,7 @@ def protected_app(req:Request,file_path:str="index.html"):
         boot="<script>window.__HBA_API_ROOT__=new URL("+json.dumps(root_relative)+",document.baseURI).href;</script><script src="+json.dumps(guard_src)+"></script>"
         text=text.replace("<head>","<head>"+boot,1)
         return HTMLResponse(text,headers={"Cache-Control":"private, no-store"})
-    return FileResponse(path,headers={"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff"})
+    return file_reply(req,path)
 
 def newsletter_editor(req):
     t, m = board(req)
@@ -2558,11 +2586,11 @@ SITE_TYPES={".html":"text/html; charset=utf-8",".css":"text/css; charset=utf-8",
 
 @app.get("/")
 @app.get("/{file_path:path}")
-def public_site(file_path:str="index.html"):
+def public_site(req:Request,file_path:str="index.html"):
     path=(SITE_ROOT/(file_path or "index.html")).resolve()
     if file_path.startswith(("api/","app/")) or not path.is_relative_to(SITE_ROOT.resolve()) or path.suffix.lower() not in SITE_TYPES or not path.is_file():
         raise HTTPException(404,"Not found.")
     headers={"X-Content-Type-Options":"nosniff"}
     if path.name=="sw.js":
         headers["Service-Worker-Allowed"]="/"
-    return FileResponse(path,media_type=SITE_TYPES[path.suffix.lower()],headers=headers)
+    return file_reply(req,path,SITE_TYPES[path.suffix.lower()],headers)
