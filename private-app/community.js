@@ -753,6 +753,10 @@
   };
   window.openHBACommunity=openCommunity;
   // Restore role information for dues privacy without opening the archive.
+  // The first answer can arrive while later <script> tags (the dashboard among them) are still downloading, so it is
+  // announced only once the page has finished parsing; otherwise those scripts never hear about the account.
   const initialEpoch=accountEpoch;
-  api('/api/session').then(s=>{if(initialEpoch===accountEpoch){session=s;broadcast();}}).catch(()=>{if(initialEpoch===accountEpoch){session={signed_in:false};broadcast();}});
+  const afterParse=fn=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn,{once:true}):fn();
+  api('/api/session').then(s=>{if(initialEpoch===accountEpoch){session=s;afterParse(()=>{if(initialEpoch===accountEpoch)broadcast();});}})
+    .catch(()=>{if(initialEpoch===accountEpoch){session={signed_in:false};afterParse(()=>{if(initialEpoch===accountEpoch)broadcast();});}});
 })();
