@@ -3767,27 +3767,27 @@ set
 $function$;
 
 -- ===== Triggers =====
-create trigger enforce_bucket_name_length_trigger BEFORE INSERT
-or
-update OF name on storage.buckets for EACH row
-execute FUNCTION storage.enforce_bucket_name_length ();
+-- create trigger enforce_bucket_name_length_trigger BEFORE INSERT
+-- or
+-- update OF name on storage.buckets for EACH row
+-- execute FUNCTION storage.enforce_bucket_name_length ();
 
-create trigger protect_bucket_control_insert BEFORE INSERT on storage.buckets for EACH row
-execute FUNCTION storage.protect_bucket_control_columns ('service_role');
+-- create trigger protect_bucket_control_insert BEFORE INSERT on storage.buckets for EACH row
+-- execute FUNCTION storage.protect_bucket_control_columns ('service_role');
 
-create trigger protect_bucket_control_update BEFORE
-update OF lifecycle_configuration,
-lifecycle_configuration_generation on storage.buckets for EACH row
-execute FUNCTION storage.protect_bucket_control_columns ();
+-- create trigger protect_bucket_control_update BEFORE
+-- update OF lifecycle_configuration,
+-- lifecycle_configuration_generation on storage.buckets for EACH row
+-- execute FUNCTION storage.protect_bucket_control_columns ();
 
-create trigger protect_bucket_control_update_role
-after
-update OF lifecycle_configuration,
-lifecycle_configuration_generation on storage.buckets for EACH row
-execute FUNCTION storage.enforce_bucket_lifecycle_service_role ('service_role');
+-- create trigger protect_bucket_control_update_role
+-- after
+-- update OF lifecycle_configuration,
+-- lifecycle_configuration_generation on storage.buckets for EACH row
+-- execute FUNCTION storage.enforce_bucket_lifecycle_service_role ('service_role');
 
-create trigger protect_buckets_delete BEFORE DELETE on storage.buckets for EACH STATEMENT
-execute FUNCTION storage.protect_delete ();
+-- create trigger protect_buckets_delete BEFORE DELETE on storage.buckets for EACH STATEMENT
+-- execute FUNCTION storage.protect_delete ();
 
 create trigger bank_import_audit
 after INSERT
@@ -3955,12 +3955,12 @@ or
 update on public.hba_votes for EACH row
 execute FUNCTION hba_validate_vote ();
 
-create trigger protect_objects_delete BEFORE DELETE on storage.objects for EACH STATEMENT
-execute FUNCTION storage.protect_delete ();
+-- create trigger protect_objects_delete BEFORE DELETE on storage.objects for EACH STATEMENT
+-- execute FUNCTION storage.protect_delete ();
 
-create trigger update_objects_updated_at BEFORE
-update on storage.objects for EACH row
-execute FUNCTION storage.update_updated_at_column ();
+-- create trigger update_objects_updated_at BEFORE
+-- update on storage.objects for EACH row
+-- execute FUNCTION storage.update_updated_at_column ();
 
 create trigger hba_member_sync
 after INSERT
