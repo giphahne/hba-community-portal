@@ -1314,6 +1314,91 @@ CREATE INDEX hba_votes_state_idx ON public.hba_votes USING btree (state, created
 -- ===== Functions =====
 -- NOTE: hba_sync_member() promotes one e-mail address to administrator when it confirms its account.
 -- Replace admin@example.com below with your administrator's address before running.
+
+CREATE OR REPLACE FUNCTION public.hba_role()
+ RETURNS text
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$
+ select case when member.role in ('board','admin') and
+ (coalesce(nullif(current_setting('request.headers',true),''),'{}')::jsonb->>'x-hba-view')='resident'
+ then 'resident' else member.role end
+ from public.hba_members member join auth.users u on u.id=member.id
+ where member.id=auth.uid() and u.email_confirmed_at is not null
+ union all select 'anonymous' where not exists(
+ select 1 from public.hba_members member join auth.users u on u.id=member.id
+ where member.id=auth.uid() and u.email_confirmed_at is not null)
+$function$;
+
+CREATE OR REPLACE FUNCTION public.hba_is_board()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$ select public.hba_role() in ('board','admin') $function$;
+
+
+
+CREATE OR REPLACE FUNCTION public.hba_can_edit_newsletter()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$
+ select public.hba_role()='admin' or (public.hba_is_board() and exists(
+ select 1 from public.hba_officeholders o where o.member_id=auth.uid()
+ and o.position='Secretary'
+ and (o.term_start is null or o.term_start<=current_date)
+ and (o.term_end is null or o.term_end>=current_date)))
+$function$;
+
+
+CREATE OR REPLACE FUNCTION public.hba_holds_office(p_positions text[])
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$
+ select public.hba_role()='admin' or (public.hba_is_board() and exists(
+  select 1 from public.hba_officeholders o where o.member_id=auth.uid() and o.position=any(p_positions)
+  and (o.term_start is null or o.term_start<=current_date) and (o.term_end is null or o.term_end>=current_date)))
+$function$;
+
+
+CREATE OR REPLACE FUNCTION public.hba_is_governor()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$
+ select public.hba_is_board() and exists(select 1 from public.hba_officeholders o where o.member_id=auth.uid() and o.position like '%Governor%'
+  and (o.term_start is null or o.term_start<=current_date) and (o.term_end is null or o.term_end>=current_date)) $function$;
+  
+CREATE OR REPLACE FUNCTION public.hba_is_member()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$ select public.hba_role() in ('resident','board','admin') $function$;
+
+CREATE OR REPLACE FUNCTION public.hba_is_president()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$ select public.hba_holds_office(array['President']) $function$;
+
+CREATE OR REPLACE FUNCTION public.hba_is_secretary()
+ RETURNS boolean
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$ select public.hba_holds_office(array['Secretary']) $function$;
+
+
+
+
 CREATE OR REPLACE FUNCTION public.hba_admin_delete_research_report(p_id uuid)
  RETURNS boolean
  LANGUAGE plpgsql
@@ -1465,18 +1550,8 @@ CREATE OR REPLACE FUNCTION public.hba_can_edit_minutes()
 AS $function$
  select public.hba_can_edit_newsletter()
 $function$;
-CREATE OR REPLACE FUNCTION public.hba_can_edit_newsletter()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$
- select public.hba_role()='admin' or (public.hba_is_board() and exists(
- select 1 from public.hba_officeholders o where o.member_id=auth.uid()
- and o.position='Secretary'
- and (o.term_start is null or o.term_start<=current_date)
- and (o.term_end is null or o.term_end>=current_date)))
-$function$;
+
+
 CREATE OR REPLACE FUNCTION public.hba_can_schedule()
  RETURNS boolean
  LANGUAGE sql
@@ -1678,6 +1753,8 @@ begin
  then raise exception 'Event date precedes the first year recorded for this series'; end if;
  return new;
 end $function$;
+
+
 CREATE OR REPLACE FUNCTION public.hba_finance_record_audit()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -1692,6 +1769,7 @@ begin
  values(tg_table_name,coalesce(new_data->>'id',old_data->>'id',coalesce(new_data->>'year',old_data->>'year')||'/'||coalesce(new_data->>'category_code',old_data->>'category_code')),tg_op,old_data,new_data,auth.uid());
  return coalesce(new,old);
 end $function$;
+
 CREATE OR REPLACE FUNCTION public.hba_finance_validate()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -1702,28 +1780,24 @@ begin
  raise exception 'Budget category does not match income/expense'; end if;
  new.updated_at=now(); return new;
 end $function$;
-CREATE OR REPLACE FUNCTION public.hba_holds_office(p_positions text[])
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$
- select public.hba_role()='admin' or (public.hba_is_board() and exists(
-  select 1 from public.hba_officeholders o where o.member_id=auth.uid() and o.position=any(p_positions)
-  and (o.term_start is null or o.term_start<=current_date) and (o.term_end is null or o.term_end>=current_date)))
-$function$;
+
+
+
 CREATE OR REPLACE FUNCTION public.hba_household()
  RETURNS text
  LANGUAGE sql
  STABLE SECURITY DEFINER
  SET search_path TO 'public'
 AS $function$ select household_uid from public.hba_members where id=auth.uid() and public.hba_is_member() $function$;
+
+
 CREATE OR REPLACE FUNCTION public.hba_import_bank_statement(p_account uuid, p_start date, p_end date, p_closing numeric, p_books numeric, p_note text, p_rows jsonb)
  RETURNS jsonb
  LANGUAGE plpgsql
  SET search_path TO 'public'
 AS $function$
 declare import_id uuid; row_value jsonb; added int:=0; affected int; duplicates int:=0;
+
 begin
  if not public.hba_can_edit_finance() then raise exception 'Treasurer permission required'; end if;
  if p_start is null or p_end is null or p_end<p_start or p_end>current_date
@@ -1742,6 +1816,7 @@ begin
  end loop;
  return jsonb_build_object('import_id',import_id,'added',added,'possible_duplicates_held',duplicates);
 end $function$;
+
 CREATE OR REPLACE FUNCTION public.hba_import_dues(p_year integer, p_rows jsonb)
  RETURNS SETOF hba_dues
  LANGUAGE plpgsql
@@ -1756,38 +1831,8 @@ begin
  return next public.hba_set_dues(p_year,r->>'uid',r->>'status',(r->>'revision')::int);
  end loop;
 end $function$;
-CREATE OR REPLACE FUNCTION public.hba_is_board()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$ select public.hba_role() in ('board','admin') $function$;
-CREATE OR REPLACE FUNCTION public.hba_is_governor()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$
- select public.hba_is_board() and exists(select 1 from public.hba_officeholders o where o.member_id=auth.uid() and o.position like '%Governor%'
-  and (o.term_start is null or o.term_start<=current_date) and (o.term_end is null or o.term_end>=current_date)) $function$;
-CREATE OR REPLACE FUNCTION public.hba_is_member()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$ select public.hba_role() in ('resident','board','admin') $function$;
-CREATE OR REPLACE FUNCTION public.hba_is_president()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$ select public.hba_holds_office(array['President']) $function$;
-CREATE OR REPLACE FUNCTION public.hba_is_secretary()
- RETURNS boolean
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$ select public.hba_holds_office(array['Secretary']) $function$;
+
+
 CREATE OR REPLACE FUNCTION public.hba_lock_roll()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -2081,21 +2126,9 @@ begin
   reviewed_by=auth.uid(),reviewed_at=now(),review_payload=p where id=p_id returning * into item;
  return item;
 end $function$;
-CREATE OR REPLACE FUNCTION public.hba_role()
- RETURNS text
- LANGUAGE sql
- STABLE SECURITY DEFINER
- SET search_path TO 'public'
-AS $function$
- select case when member.role in ('board','admin') and
- (coalesce(nullif(current_setting('request.headers',true),''),'{}')::jsonb->>'x-hba-view')='resident'
- then 'resident' else member.role end
- from public.hba_members member join auth.users u on u.id=member.id
- where member.id=auth.uid() and u.email_confirmed_at is not null
- union all select 'anonymous' where not exists(
- select 1 from public.hba_members member join auth.users u on u.id=member.id
- where member.id=auth.uid() and u.email_confirmed_at is not null)
-$function$;
+
+
+
 CREATE OR REPLACE FUNCTION public.hba_save_sms_preferences(p_phone text, p_topics text[], p_opted_in boolean, p_consent boolean DEFAULT false)
  RETURNS void
  LANGUAGE plpgsql
@@ -2116,6 +2149,8 @@ begin
  insert into public.hba_sms_consent_log(member_id,action,phone,topics,consent_version)
  values(auth.uid(),action_name,p_phone,p_topics,'hba-sms-v1');
 end $function$;
+
+
 CREATE OR REPLACE FUNCTION public.hba_set_dues(p_year integer, p_uid text, p_status text, p_revision integer)
  RETURNS hba_dues
  LANGUAGE plpgsql
@@ -2166,10 +2201,10 @@ begin
   then jsonb_build_object('phone',meta->>'sms_phone','topics',meta->'sms_topics') else null end;
  insert into public.hba_members(id,email,display_name,role,requested_household_uid,request_note,sms_request,requested_at)
  values(new.id,lower(new.email),left(coalesce(meta->>'display_name',''),120),
-  case when lower(new.email)='admin@example.com' and new.email_confirmed_at is not null then 'admin' else 'pending' end,
+  case when lower(new.email)='giphahne@gmail.com' and new.email_confirmed_at is not null then 'admin' else 'pending' end,
   nullif(left(coalesce(meta->>'requested_household_uid',''),100),''),left(coalesce(meta->>'request_note',''),1000),req,now())
  on conflict(id) do update set email=excluded.email,
-  role=case when lower(new.email)='admin@example.com' and new.email_confirmed_at is not null then 'admin' else hba_members.role end,
+  role=case when lower(new.email)='giphahne@gmail.com' and new.email_confirmed_at is not null then 'admin' else hba_members.role end,
   requested_household_uid=coalesce(hba_members.requested_household_uid,excluded.requested_household_uid),
   request_note=case when hba_members.request_note='' then excluded.request_note else hba_members.request_note end,
   sms_request=coalesce(hba_members.sms_request,excluded.sms_request);
