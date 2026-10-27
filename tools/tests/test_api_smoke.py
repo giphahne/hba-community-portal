@@ -3,6 +3,7 @@
 These pin the behaviour the hosting refactor must keep. Supabase is faked (see conftest.py).
 Run: pytest tools/tests
 """
+import json
 import os
 import time
 from pathlib import Path
@@ -423,3 +424,16 @@ def test_rain_date_before_event_is_explained(web, fake):
                                                          "event_date": "2027-06-12", "rain_date": "2027-06-12"})
     assert r.status_code == 400 and r.json()["detail"] == "The rain date must be after the event date."
     assert not [w for w in fake.writes if w[1] == "hba_events"]
+
+
+def test_linking_a_property_twice_is_explained(web, fake):
+    """A second link to the same property used to surface the database's duplicate-key message."""
+    fake.add_user("gov@example.org", "board")
+    fake.add_user("res@example.org", "resident")
+    s = sign_in(web, "gov@example.org")
+    member_id = fake.users["res@example.org"]["id"]
+    home = json.loads((Path(__file__).resolve().parents[2] / "private-app" / "dues-registry-data.json").read_text(encoding="utf-8"))["properties"][1]["uid"]
+    fake.rows["hba_member_households"] = [{"household_uid": home}]
+    r = web.post("/api/member-households", headers=proof(s), json={"member_id": member_id, "household_uid": home})
+    assert r.status_code == 400 and r.json()["detail"] == "That property is already linked to this account."
+    assert not [w for w in fake.writes if w[1] == "hba_member_households"]

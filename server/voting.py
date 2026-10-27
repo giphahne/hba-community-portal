@@ -661,6 +661,8 @@ def setup(app, *, rest, sb, require, board, homes, rate, anon_key):
             raise HTTPException(400, "Approve the account before linking extra properties.")
         if target[0]["household_uid"] == body.household_uid:
             raise HTTPException(400, "That is already the account's primary household.")
+        if rest("hba_member_households", token, query=f"member_id=eq.{body.member_id}&household_uid=eq.{body.household_uid}&select=household_uid"):
+            raise HTTPException(400, "That property is already linked to this account.")
         rest("hba_member_households", token, "POST", {"member_id": str(body.member_id), "household_uid": body.household_uid, "note": body.note.strip()})
         return {"saved": True}
 
