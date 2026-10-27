@@ -140,6 +140,7 @@
     try{
       const p=await window.HBACommunity.api('/api/cleaning-plan');
       if(epoch!==planEpoch||!ready||!window.HBACommunity?.isBoard())return;
+      if(p.recorded===false){privatePlanLoaded=true;return;}// none recorded yet: the simulator keeps its estimate
       frame.contentWindow.postMessage({type:'hba-private-cleaning',annualAmount:p.annual_amount,firstYear:p.first_year},'*');
       privatePlanLoaded=true;
     }catch(e){$('#bb-load').hidden=false;$('#bb-load').textContent='Private cleaning allowance was not loaded: '+e.message;}

@@ -25,9 +25,9 @@ router = APIRouter()
 def cleaning_plan(req: Request):
     t, _ = board(req)
     rows = rest("hba_cleaning_plan", t, query="select=*&id=eq.1")
-    if not rows:
-        raise HTTPException(404, "No private cleaning plan recorded.")
-    p = rows[0]
+    if not rows:   # a new project has none until the treasurer records the contract; the model keeps its estimate
+        return {"recorded": False}
+    p = {**rows[0], "recorded": True}
     p["annual_amount"] = float(p["amount_per_cleaning"])*p["cleanings_per_year"]
     p["total_amount"] = p["annual_amount"]*p["seasons"]
     return p

@@ -402,3 +402,14 @@ def test_nomination_needs_an_open_election(web, fake):
                  json={"election_year": 2027, "position": "President", "candidate_name": "Pat Example"})
     assert r.status_code == 400 and "not open" in r.json()["detail"]
     assert not [w for w in fake.writes if w[1] == "hba_nominations"]
+
+
+def test_cleaning_plan_missing_is_not_an_error(web, fake):
+    """A new project has no private cleaning plan; the capital model must keep its estimate, not report a failure."""
+    fake.add_user("gov@example.org", "board")
+    s = sign_in(web, "gov@example.org")
+    r = web.get("/api/cleaning-plan", headers=proof(s))
+    assert r.status_code == 200 and r.json() == {"recorded": False}
+    fake.rows["hba_cleaning_plan"] = [{"id": 1, "amount_per_cleaning": "150", "cleanings_per_year": 4, "seasons": 2, "first_year": 2026}]
+    p = web.get("/api/cleaning-plan", headers=proof(s)).json()
+    assert p["recorded"] and p["annual_amount"] == 600 and p["total_amount"] == 1200
