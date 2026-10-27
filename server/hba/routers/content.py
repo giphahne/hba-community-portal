@@ -100,3 +100,33 @@ def save_summer_events(data: dict, req: Request):
             if field in e:
                 e[field] = re.sub(r"\s+", " ", e[field]).strip()
     return {"events": save_content(token, member, "public_summer_rules", events)}
+
+
+# ---- Beach-cleaning conservation notice (horseshoe-crab season) on the bulletin ---------------------------
+class ConservationNotice(BaseModel):
+    hold_text: str = Field(min_length=1, max_length=600)
+    link_label: str = Field(default="", max_length=160)
+    link_url: str = Field(default="", max_length=500)
+    covers: str = Field(default="", max_length=160)
+    future_note: str = Field(default="", max_length=600)
+    hold_from_month: int = Field(ge=1, le=12)
+    hold_to_month: int = Field(ge=1, le=12)
+
+    @model_validator(mode="after")
+    def sensible(self):
+        if self.link_url and not re.fullmatch(r"https://[A-Za-z0-9.-]+\.[A-Za-z]{2,}(/\S*)?", self.link_url):
+            raise ValueError("The notice link must be a full https:// address.")
+        if self.link_url and not self.link_label.strip():
+            raise ValueError("Give the notice link a label, e.g. “Town of Wareham’s 2027 notice”.")
+        if self.hold_to_month < self.hold_from_month:
+            raise ValueError("The conservation hold must end in the same month or a later month than it starts.")
+        return self
+
+
+@router.put("/api/content/conservation-notice")
+def save_conservation_notice(data: dict, req: Request):
+    token, member = require(req, ("admin",))
+    body = checked(ConservationNotice, data).model_dump()
+    for field in ("hold_text", "link_label", "link_url", "covers", "future_note"):
+        body[field] = re.sub(r"\s+", " ", body[field]).strip()
+    return {"notice": save_content(token, member, "public_conservation_notice", body)}

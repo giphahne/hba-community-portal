@@ -55,3 +55,4 @@
 .waterfront-toggle-hint{font-size:14px;color:#8FC1B5}
 .waterfront-close{display:block;margin:16px auto 6px;min-height:48px;padding:0 22px;font-weight:600}
 @media(max-width:720px){.waterfront-head{flex-direction:column}.cap-bulletin .waterfront-toggle h2{font-size:22px}.waterfront-summary{font-size:16.5px}}
+.cap-bulletin .waterfront-inline-edit{display:block;margin-top:10px;font-weight:600}

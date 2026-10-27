@@ -20,9 +20,13 @@
   copies of the same documents, labelled "archived copy": Street Listing PDF (Oct 2025), Town Accepted Streets PDF
   (Nov 2025) and the town's 2026 horseshoe-crab notice (May 2026). The notice is seasonal; link next year's in
   `private-app/bulletin.js` when the town posts it.
-- **Workstation paths in data files**: 10 deed-scan `image` values in `audit.json`, `property-history.json` and
-  `road-wording.json` start with `/home/user/workspace/…`. The app does not show them today, but any future screen
-  that does will get broken images. Reproduce: `grep -c /home/user private-app/*.json`.
+- **Workstation paths in data files**: fixed. 976 research image paths (about 4,800 occurrences) pointed at the
+  researcher's computer (`/home/user/workspace/…`) in `audit.json`, `property-history.json` (the downloadable evidence
+  ledger), `road-wording.*` and `title-trace.*`. 765 now name the app's own copy of the same scan (record-scans
+  package); 210 with no copy anywhere became registry citations ("Plymouth County Registry of Deeds, Book 27263,
+  Page 1, image 1 (research working copy, not included)"); one working notes file is named as not included.
+- **Horseshoe-crab notice**: now edited by the administrator in the bulletin (Edit conservation notice: wording, link,
+  dates covered and the conservation-hold months), saved as `public_conservation_notice`.
 - **Errors from the database reached readers as raw text** in other places too. Fixed afterwards in dbaa4ba: `hba/supabase.py` now turns constraint violations into plain-language messages.
 - `board@hba.test` and `pending@hba.test` did not exist in the local Supabase although `test-accounts.txt` listed them;
   the seed step now creates them through the app's own sign-up and approval.

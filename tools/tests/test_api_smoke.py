@@ -502,3 +502,41 @@ def test_every_named_constraint_is_in_the_schema():
     names = set(re.findall(r"constraint (\w+) (?:CHECK|UNIQUE|PRIMARY KEY)", schema)) | set(re.findall(r"CREATE UNIQUE INDEX (\w+)", schema))
     assert set(messages) <= names, set(messages) - names
     assert not [m for m in messages.values() if "!" in m]
+
+
+# ---- Admin-editable content: the beach-cleaning conservation notice.
+
+NOTICE = {"hold_text": "May and June are reserved for horseshoe crabs.", "link_label": "Town of Wareham’s 2027 notice",
+          "link_url": "https://www.wareham.gov/AlertCenter.aspx?AID=200", "covers": "May 1 through June 30",
+          "future_note": "", "hold_from_month": 5, "hold_to_month": 6}
+
+
+def test_admin_saves_conservation_notice(web, fake):
+    import json
+    fake.add_user("admin@example.org", "admin")
+    s = sign_in(web, "admin@example.org")
+    r = web.put("/api/content/conservation-notice", json=NOTICE, headers=proof(s))
+    assert r.status_code == 200, r.text
+    saved = [body for _, table, body in fake.writes if table.startswith("hba_settings")][-1]
+    assert saved["key"] == "public_conservation_notice"
+    assert json.loads(saved["value"])["link_url"] == NOTICE["link_url"]
+
+
+def test_board_cannot_edit_conservation_notice(web, fake):
+    fake.add_user("board@example.org", "board")
+    s = sign_in(web, "board@example.org")
+    assert web.put("/api/content/conservation-notice", json=NOTICE, headers=proof(s)).status_code == 403
+
+
+@pytest.mark.parametrize("change, message", [
+    ({"link_url": "http://insecure.example.org/x"}, "https://"),
+    ({"link_url": "javascript:alert(1)"}, "https://"),
+    ({"link_label": ""}, "label"),
+    ({"hold_from_month": 7, "hold_to_month": 6}, "later month"),
+    ({"hold_text": ""}, "at least 1 character"),
+])
+def test_conservation_notice_validation(web, fake, change, message):
+    fake.add_user("admin@example.org", "admin")
+    s = sign_in(web, "admin@example.org")
+    r = web.put("/api/content/conservation-notice", json={**NOTICE, **change}, headers=proof(s))
+    assert r.status_code == 400 and message in r.json()["detail"], r.text

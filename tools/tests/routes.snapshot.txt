@@ -118,6 +118,7 @@ POST /api/work/{record_id}/notes
 PUT /api/agenda/{record_id}
 PUT /api/bid-requests/{record_id}
 PUT /api/category-budgets/{year}
+PUT /api/content/conservation-notice
 PUT /api/content/summer-events
 PUT /api/documents/{document_id}/visibility
 PUT /api/dues-targets/{year}/{household}
