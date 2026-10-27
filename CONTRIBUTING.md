@@ -33,6 +33,33 @@ Thank you for helping the Hamilton Beach Association portal. A few ground rules 
 - Illustrations are labelled "Illustration from a resident photograph · …"; real photographs "Photograph · …".
 - Never put real people in generated images.
 
+## End-to-end walkthrough
+`tools/e2e/` clicks through the whole portal in a real browser, the way residents and the board use it, against a
+throwaway local Supabase. It never runs against the association's database (it refuses any Supabase address that is not
+local), because it creates and edits records.
+
+1. Once: install the Supabase CLI and Docker Desktop, then make a local project next to this checkout
+   (`hba-local-supabase/`), put `schema.sql` (with `admin@example.com` replaced by `admin@hba.test`, as in DEPLOY.md
+   step 2) and the `migrations/` files in its `supabase/migrations/` folder and `seed-reference.sql` in
+   `supabase/seed.sql`, and run `npx supabase@latest start`. Create `admin@hba.test` and `resident@hba.test` there
+   (Studio → Authentication, auto-confirmed), approve resident@ as a resident, and write the shared test password in
+   `hba-local-supabase/test-accounts.txt` as `password for all: …` (or set `HBA_E2E_PASSWORD`).
+   The walkthrough signs up `board@hba.test` and `pending@hba.test` itself through the app.
+2. `pip install playwright pyflakes && python -m playwright install chromium`
+3. Run it: `python tools/e2e/run.py` (about an hour). It starts this checkout's portal on 127.0.0.1:3013, seeds events,
+   meetings, minutes, a newsletter, votes, volunteers, register entries, dues, bids, issues, documents and photos
+   through the API, checks every link, then for the administrator, a board member and a resident opens every dashboard
+   tool and archive section, clicks every control that is not destructive and submits every form with test data.
+   It also checks a board member in Resident view, a pending account, and the main flows at phone width (375px).
+4. Read `tools/e2e/REPORT.md`. Hand-written notes on the bugs it found live in `tools/e2e/FINDINGS.md` and are copied
+   to the top of the report.
+
+Faster runs: `--roles resident --tools issues,payments` (one role, two tools), `--no-explore` (only open each tool),
+`--no-external` (skip contacting outside websites), `--base-url http://127.0.0.1:3003` (use a portal you started).
+The walkthrough answers every confirmation prompt with Cancel and never clicks delete, approve/reject, sign out,
+password, send-text or certify buttons. Its own server allows 500 sign-ins per 15 minutes (`HBA_AUTH_ATTEMPTS`);
+the hosted portal keeps the default of 12.
+
 ## Tests
 - `node tools/tests/test-event-dates.cjs`
 - `python3 tools/tests/test-bank-math.py`

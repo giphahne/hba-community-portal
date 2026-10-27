@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 import secrets
 import time
 from threading import RLock
@@ -141,6 +142,10 @@ def year_ok(year):
     if not 2020 <= year <= 2100:
         raise HTTPException(400, "Year must be between 2020 and 2100.")
 
+# Sign-in and sign-up attempts allowed per address in 15 minutes. The end-to-end walkthrough raises it on its own
+# local server, which signs the four test accounts in many times.
+AUTH_ATTEMPTS = int(os.environ.get("HBA_AUTH_ATTEMPTS") or 12)
+
 def rate(req):
     key = client_ip(req)
     now = time.time()
@@ -148,6 +153,6 @@ def rate(req):
         q = rates[key]
         while q and q[0] < now - 900:
             q.popleft()
-        if len(q) >= 12:
+        if len(q) >= AUTH_ATTEMPTS:
             raise HTTPException(429, "Too many account attempts. Try again in 15 minutes.")
         q.append(now)
