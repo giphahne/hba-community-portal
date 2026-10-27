@@ -1,6 +1,6 @@
 """Issues, decisions, team and officeholders, meetings, agenda, minutes and elections."""
 
-from datetime import date, time as time_type, timedelta
+from datetime import date, datetime, time as time_type, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
 from uuid import UUID, uuid4
@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 from hba.config import VALID, homes
 from hba.push import notify_admin
 from hba.routers.community import read_file
-from hba.sessions import board, require
+from hba.sessions import board, require, uid
 from hba.supabase import rest, sb
 
 router = APIRouter()

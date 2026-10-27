@@ -28,5 +28,5 @@ jobs:
           python tools/tests/test-bank-math.py
       - name: Backend smoke tests (fake Supabase)
         run: |
-          pip install -q pytest
+          pip install -q pytest pyflakes
           python -m pytest tools/tests -q

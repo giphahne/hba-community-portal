@@ -13,7 +13,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from hba.config import SESSION_KEY, VALID, homes
-from hba.sessions import board, require, year_ok
+from hba.sessions import board, require, uid, year_ok
 from hba.supabase import rest
 
 router = APIRouter()
