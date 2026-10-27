@@ -3102,6 +3102,14 @@ grant DELETE, INSERT, SELECT, UPDATE on public.hba_votes to authenticated;
 grant DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE on public.hba_voting_procedures to authenticated;
 grant DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE on public.hba_work to authenticated;
 grant DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE on public.hba_work_notes to authenticated;
+-- Column-level update grants: these tables may only be edited in the listed columns (RLS decides which rows).
+grant update(title,issue_date,body,state,file_path,original_name,issue_precision,original_path) on public.hba_newsletters to authenticated;
+grant update(meeting_id,meeting_date,meeting_time,title,location,called_to_order,adjourned,attendees,body,motions,action_items,state,approved_on,approved_note,file_path,original_name) on public.hba_meeting_minutes to authenticated;
+grant update(title,category,description,location,task_date,task_time,capacity,state,photo_path) on public.hba_volunteer_tasks to authenticated;
+grant update(opted_in) on public.hba_volunteer_email_preferences to authenticated;
+grant update(transaction_date,direction,category_code,payee,amount,reference,memo,cleared,voided,bank_account_id) on public.hba_check_register to authenticated;
+grant update(amount,basis,source_note) on public.hba_category_budgets to authenticated;
+grant update(category,message) on public.hba_sms_drafts to authenticated;
 grant execute on function public.hba_admin_delete_research_report(p_id uuid) to authenticated;
 -- no anon/authenticated execute on public.hba_apply_event_recurrence()
 -- no anon/authenticated execute on public.hba_audit_election()
