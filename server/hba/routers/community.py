@@ -154,6 +154,8 @@ def save_event(body: Event, req: Request, record_id: str | None = None):
             dtime.fromisoformat(body.event_time)
         except ValueError:
             raise HTTPException(400, "Invalid event time.")
+    if body.rain_date and body.rain_date <= body.event_date:
+        raise HTTPException(400, "The rain date must be after the event date.")
     saved = rest("hba_events", t, "PATCH" if record_id else "POST", body.model_dump(mode="json",exclude_unset=bool(record_id)),
                  query="id=eq."+uid(record_id) if record_id else "", representation=True)
     # Every new scheduled event gets a volunteer sign-up sheet (when that storage exists).

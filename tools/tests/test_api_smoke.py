@@ -413,3 +413,13 @@ def test_cleaning_plan_missing_is_not_an_error(web, fake):
     fake.rows["hba_cleaning_plan"] = [{"id": 1, "amount_per_cleaning": "150", "cleanings_per_year": 4, "seasons": 2, "first_year": 2026}]
     p = web.get("/api/cleaning-plan", headers=proof(s)).json()
     assert p["recorded"] and p["annual_amount"] == 600 and p["total_amount"] == 1200
+
+
+def test_rain_date_before_event_is_explained(web, fake):
+    """The database's rain-date rule used to reach the board as raw constraint text."""
+    fake.add_user("gov@example.org", "board")
+    s = sign_in(web, "gov@example.org")
+    r = web.post("/api/events", headers=proof(s), json={"series_id": "6f1c1d5e-6b7a-4d43-9a0e-1d2c3b4a5f60", "title": "Kickoff",
+                                                         "event_date": "2027-06-12", "rain_date": "2027-06-12"})
+    assert r.status_code == 400 and r.json()["detail"] == "The rain date must be after the event date."
+    assert not [w for w in fake.writes if w[1] == "hba_events"]
