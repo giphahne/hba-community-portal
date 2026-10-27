@@ -76,7 +76,7 @@
     const years=[...new Set([...(cache.elections||[]).map(e=>e.year),...cache.nominations.map(n=>n.election_year)])].filter(y=>y>=2027).sort();
     const rows=cache.nominations.filter(n=>c.isBoard()||n.state==='accepted'||n.created_by===c.member.id);
     return `<details class="voting-nominations"><summary>Nominations & candidate statements (${rows.filter(n=>n.state==='accepted').length} accepted)</summary><p class="community-muted">Elections are held at the August annual meeting every other year starting 2027 (President, Governors at Large; Street Governors by their street). Nominate a neighbor or yourself; the board accepts nominations per the procedures, and accepted candidates become the ballot options.</p>
-      <div class="community-actions"><button type="button" id="vote-nominate">Submit a nomination</button></div>
+      ${nominationYears().length?'<div class="community-actions"><button type="button" id="vote-nominate">Submit a nomination</button></div>':'<p class="community-muted">Nominations open when the board sets up the next election.</p>'}
       ${years.map(y=>`<h4>${y} election</h4>${rows.filter(n=>n.election_year===y).map(n=>`<article class="community-card"><div><span class="community-tag">${esc(n.position)} · ${esc(n.state)}</span><h4>${esc(n.candidate_name)}</h4>${n.statement?`<p class="community-prewrap">${esc(n.statement)}</p>`:''}<small>${esc(c.homes.properties.find(p=>p.uid===n.household_uid)?.address||'household not given')}</small></div><div class="community-actions">${c.isBoard()&&n.state==='submitted'?`<button type="button" data-nomination="${n.id}" data-state="accepted">Accept</button><button type="button" data-nomination="${n.id}" data-state="declined">Decline</button>`:''}${n.created_by===c.member.id&&['submitted','accepted'].includes(n.state)?`<button type="button" data-nomination="${n.id}" data-state="withdrawn">Withdraw</button>`:''}</div></article>`).join('')||'<p class="community-muted">No nominations yet.</p>'}`).join('')||'<p class="community-muted">No election year has nominations yet. The first election under the supplied rule is August 2027.</p>'}</details>`;
   }
   function detail(c,v){
@@ -210,8 +210,10 @@
         for(const k of ['public_facebook_group_name','public_facebook_group_url','public_facebook_group_note','public_local_sands_name','public_local_sands_url','public_local_sands_note'])if((st[k]||'')!==(b[k]||''))await c.api('/api/settings/'+k,{method:'PUT',body:JSON.stringify({value:b[k]||''})});
         await c.mutate('/api/session',{},'Procedures and settings saved.');await load(c);c.render();},{},'Save');
   }
+  // Only years whose election the board has set up and not yet closed accept nominations (database rule).
+  const nominationYears=()=>(cache.elections||[]).filter(e=>['planning','nominations_open','meeting_scheduled'].includes(e.state)).map(e=>e.year).sort();
   function nominateForm(c){
-    const years=[2027,2029,2031].filter(y=>y>=new Date().getFullYear());
+    const years=nominationYears();
     c.formDialog('Submit a nomination',`<label>Election year<select name="election_year">${years.map(y=>`<option value="${y}">${y} (August annual meeting)</option>`).join('')}</select></label><label>Position<select name="position">${['President',...cache.seats].map(s=>`<option value="${s}">${s}</option>`).join('')}</select></label><label>Candidate name<input name="candidate_name" required maxlength="160"></label><label>Candidate’s household<select name="household_uid"><option value="">Not given</option>${c.homes.properties.map(p=>`<option value="${p.uid}">${esc(p.address)}</option>`).join('')}</select></label><label>Candidate statement (optional)<textarea name="statement" rows="3" maxlength="4000"></textarea></label><p>Elected officials may hold one office per residence or property (Article IV). The board reviews nominations before they appear as ballot options.</p>`,
       fd=>{const b=Object.fromEntries(fd);b.election_year=+b.election_year;b.household_uid=b.household_uid||null;return call(c,'/api/nominations',{method:'POST',body:JSON.stringify(b)},'Nomination submitted for board review.');},{},'Submit');
   }

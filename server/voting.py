@@ -602,6 +602,9 @@ def setup(app, *, rest, sb, require, board, homes, rate, anon_key):
             raise HTTPException(400, "Choose an elected position: President, a Street Governor or a Governor at Large.")
         if body.household_uid and body.household_uid not in {p["uid"] for p in homes["properties"]}:
             raise HTTPException(400, "Choose a mapped household.")
+        # The database only accepts nominations while that year's election is being planned or is open.
+        if not rest("hba_elections", token, query=f"year=eq.{body.election_year}&state=in.(planning,nominations_open,meeting_scheduled)&select=year"):
+            raise HTTPException(400, f"Nominations for {body.election_year} are not open. The board opens them when it sets up that election.")
         return rest("hba_nominations", token, "POST", body.model_dump(), representation=True)[0]
 
     class NominationReview(BaseModel):

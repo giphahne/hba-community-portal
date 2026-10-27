@@ -391,3 +391,14 @@ def test_summer_event_keys_must_be_unique(web, fake):
     twice = {"events": [SUMMER["events"][1], SUMMER["events"][1]]}
     r = web.put("/api/content/summer-events", json=twice, headers=proof(s))
     assert r.status_code == 400 and "same key" in r.json()["detail"]
+
+
+def test_nomination_needs_an_open_election(web, fake):
+    """The database refuses nominations for a year with no open election; the API says so plainly instead of
+    passing on a bare permission error (the form used to offer fixed years that had no election set up)."""
+    fake.add_user("res@example.org", "resident")
+    s = sign_in(web, "res@example.org")
+    r = web.post("/api/nominations", headers=proof(s),
+                 json={"election_year": 2027, "position": "President", "candidate_name": "Pat Example"})
+    assert r.status_code == 400 and "not open" in r.json()["detail"]
+    assert not [w for w in fake.writes if w[1] == "hba_nominations"]
