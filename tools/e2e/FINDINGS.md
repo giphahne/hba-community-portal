@@ -12,6 +12,7 @@
 | 6 | A rain date on or before the event date showed raw database text ("violates check constraint rain_date_requires_later_date") | No API check | "The rain date must be after the event date." | `test_rain_date_before_event_is_explained` |
 | 7 | Linking an account to a property it already has showed "duplicate key value violates unique constraint" | No API check | "That property is already linked to this account." | `test_linking_a_property_twice_is_explained` |
 | 8 | Script error "Cannot set properties of null (setting 'onclick')" in Road ownership research / property reports | A deed image that failed after the reader turned the page looked up its retry button in a detached stage | Only the image still on screen reacts | Walkthrough clicks through `roads` and `reports` |
+| 9 | On a slow connection a board member (or resident) could land on the signed-out dashboard layout, a "Sign in" tile and no board tools, until reloading | community.js announced the account as soon as the session answered, sometimes before the dashboard script had loaded and started listening | The first announcement waits for the page to finish parsing | Walkthrough "slow connection" flow serves capabilities.js 2.5 s late (failed 3/3 before, passes after) |
 
 ### Not fixed: listed for a decision
 
@@ -26,9 +27,6 @@
 - **Errors from the database reach readers as raw text** in other places too: the API passes PostgREST's message
   through for any constraint the API does not check first (items 6 and 7 were the two the walkthrough hit). A general
   translation in `hba/supabase.py` for constraint violations would cover the rest.
-- **For a moment after sign-in the dashboard draws the signed-out view** (a "Sign in" account tile, no board tools)
-  until the account loads. On a slow phone connection a board member could see the resident layout for a second or two.
-  Reproduce: throttle the network in the browser's developer tools and sign in as board@.
 - `board@hba.test` and `pending@hba.test` did not exist in the local Supabase although `test-accounts.txt` listed them;
   the seed step now creates them through the app's own sign-up and approval.
 
