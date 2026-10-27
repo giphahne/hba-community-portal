@@ -16,11 +16,10 @@
 
 ### Not fixed: listed for a decision
 
-- **Four wareham.gov links return 404** (town site reorganised): the 2026 horseshoe-crab notice in the bulletin
-  (`private-app/bulletin.js`, `AlertCenter.aspx?AID=125`), "Street Listing" PDF (`private-app/index.html`,
-  `private-app/research-tools.json`), "Town Accepted Streets" PDF (`private-app/research-tools.json`).
-  Reproduce: open the link from the bulletin's June note or Road ownership research. Needs the current addresses from
-  the town site.
+- **Four wareham.gov links returned 404** (town site reorganised): fixed by pointing them at Internet Archive
+  copies of the same documents, labelled "archived copy": Street Listing PDF (Oct 2025), Town Accepted Streets PDF
+  (Nov 2025) and the town's 2026 horseshoe-crab notice (May 2026). The notice is seasonal; link next year's in
+  `private-app/bulletin.js` when the town posts it.
 - **Workstation paths in data files**: 10 deed-scan `image` values in `audit.json`, `property-history.json` and
   `road-wording.json` start with `/home/user/workspace/…`. The app does not show them today, but any future screen
   that does will get broken images. Reproduce: `grep -c /home/user private-app/*.json`.
