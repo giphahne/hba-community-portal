@@ -437,3 +437,68 @@ def test_linking_a_property_twice_is_explained(web, fake):
     r = web.post("/api/member-households", headers=proof(s), json={"member_id": member_id, "household_uid": home})
     assert r.status_code == 400 and r.json()["detail"] == "That property is already linked to this account."
     assert not [w for w in fake.writes if w[1] == "hba_member_households"]
+
+
+def pg_error(code, message, details=None):
+    return {"code": code, "message": message, "details": details, "hint": None}
+
+
+EVENT = {"series_id": "6f1c1d5e-6b7a-4d43-9a0e-1d2c3b4a5f60", "title": "Kickoff", "event_date": "2027-06-12"}
+
+
+@pytest.mark.parametrize("status,error,expected", [
+    (400, pg_error("23514", 'new row for relation "hba_events" violates check constraint "hba_events_title_check"'),
+     "Check the title. It may be empty, too long, or outside the allowed range."),
+    (400, pg_error("23514", 'new row for relation "hba_events" violates check constraint "hba_events_state_check"'),
+     "That state is not one of the allowed choices. Refresh the page and try again."),
+    (400, pg_error("23514", 'new row for relation "hba_events" violates check constraint "rain_switch_requires_date"'),
+     "Enter a rain date before moving the event to it."),
+    (400, pg_error("23514", 'new row for relation "hba_votes" violates check constraint "hba_votes_check1"'),
+     "Something in the form is not allowed. Check your entries and try again."),
+    (409, pg_error("23505", 'duplicate key value violates unique constraint "hba_one_annual_supper"',
+                   "Key (series_id, annual_rule_year)=(x, 2027) already exists."),
+     "That yearly event is already on the calendar for this year."),
+    (409, pg_error("23505", 'duplicate key value violates unique constraint "hba_photos_file_path_key"'),
+     "A file with that name is already stored. Rename the file and try again."),
+    (409, pg_error("23505", 'duplicate key value violates unique constraint "hba_events_pkey"'),
+     "This has already been saved, so it was not added again. Refresh the page to see it."),
+    (409, pg_error("23503", 'insert or update on table "hba_events" violates foreign key constraint "hba_events_series_id_fkey"',
+                   'Key (series_id)=(x) is not present in table "hba_event_series".'),
+     "Something this refers to is no longer there. Refresh the page and try again."),
+    (409, pg_error("23503", 'update or delete on table "hba_events" violates foreign key constraint "hba_photos_event_id_fkey" on table "hba_photos"',
+                   'Key (id)=(x) is still referenced from table "hba_photos".'),
+     "This cannot be removed because other records still use it."),
+    (400, pg_error("23502", 'null value in column "event_date" of relation "hba_events" violates not-null constraint'),
+     "The event date is required. Fill it in and try again."),
+])
+def test_database_constraint_errors_read_plainly(web, fake, status, error, expected):
+    """Constraint errors the API does not pre-check used to reach readers as raw Postgres text."""
+    fake.add_user("gov@example.org", "board")
+    s = sign_in(web, "gov@example.org")
+    fake.errors["hba_events"] = (status, error)
+    r = web.post("/api/events", headers=proof(s), json=EVENT)
+    assert r.status_code == 400 and r.json()["detail"] == expected
+    assert "constraint" not in expected and "!" not in expected
+
+
+def test_database_function_messages_are_kept(web, fake):
+    """A message a database function raised itself (RAISE EXCEPTION, code P0001) is already written for readers."""
+    fake.add_user("gov@example.org", "board")
+    s = sign_in(web, "gov@example.org")
+    fake.errors["hba_events"] = (400, pg_error("P0001", "Spaghetti Supper is the third Saturday in August."))
+    r = web.post("/api/events", headers=proof(s), json=EVENT)
+    assert r.status_code == 400 and r.json()["detail"] == "Spaghetti Supper is the third Saturday in August."
+
+
+def test_every_named_constraint_is_in_the_schema():
+    """Specific wording must point at constraints that exist, or it silently never applies."""
+    import ast
+    import re
+    repo = Path(__file__).resolve().parents[2]
+    schema = (repo / "supabase" / "schema.sql").read_text(encoding="utf-8")
+    source = ast.parse((repo / "server" / "hba" / "supabase.py").read_text(encoding="utf-8"))
+    messages = next(ast.literal_eval(n.value) for n in source.body
+                    if isinstance(n, ast.Assign) and getattr(n.targets[0], "id", "") == "CONSTRAINT_MESSAGES")
+    names = set(re.findall(r"constraint (\w+) (?:CHECK|UNIQUE|PRIMARY KEY)", schema)) | set(re.findall(r"CREATE UNIQUE INDEX (\w+)", schema))
+    assert set(messages) <= names, set(messages) - names
+    assert not [m for m in messages.values() if "!" in m]

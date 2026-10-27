@@ -20,6 +20,7 @@ class FakeSupabase:
         self.writes = []     # (method, path, json) of REST writes
         self.rows = {}       # table -> list of rows returned for GET
         self.rpc = {}        # function name -> JSON answer for POST /rest/v1/rpc/<name>
+        self.errors = {}     # table or "rpc/<name>" -> (status, PostgREST error JSON) answered to writes there
 
     def add_user(self, email, role, password="correct-horse-battery", confirmed=True):
         uid = f"00000000-0000-4000-8000-{len(self.users) + 1:012d}"
@@ -59,6 +60,9 @@ class FakeSupabase:
             return httpx.Response(200, json={"id": "new"})
         if path.startswith("/rest/v1/"):
             table = path.removeprefix("/rest/v1/")
+            if request.method != "GET" and table in self.errors:
+                status, error = self.errors[table]
+                return httpx.Response(status, json=error)
             if table.startswith("rpc/") and table[4:] in self.rpc:
                 return httpx.Response(200, json=self.rpc[table[4:]])
             if request.method != "GET":
