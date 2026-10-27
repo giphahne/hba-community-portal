@@ -28,9 +28,7 @@ Generated 2026-10-27 13:23 by `python tools/e2e/run.py` against a local Supabase
 - **Workstation paths in data files**: 10 deed-scan `image` values in `audit.json`, `property-history.json` and
   `road-wording.json` start with `/home/user/workspace/…`. The app does not show them today, but any future screen
   that does will get broken images. Reproduce: `grep -c /home/user private-app/*.json`.
-- **Errors from the database reach readers as raw text** in other places too: the API passes PostgREST's message
-  through for any constraint the API does not check first (items 6 and 7 were the two the walkthrough hit). A general
-  translation in `hba/supabase.py` for constraint violations would cover the rest.
+- **Errors from the database reached readers as raw text** in other places too. Fixed afterwards in dbaa4ba: `hba/supabase.py` now turns constraint violations into plain-language messages.
 - `board@hba.test` and `pending@hba.test` did not exist in the local Supabase although `test-accounts.txt` listed them;
   the seed step now creates them through the app's own sign-up and approval.
 
