@@ -540,3 +540,12 @@ def test_conservation_notice_validation(web, fake, change, message):
     s = sign_in(web, "admin@example.org")
     r = web.put("/api/content/conservation-notice", json={**NOTICE, **change}, headers=proof(s))
     assert r.status_code == 400 and message in r.json()["detail"], r.text
+
+
+@pytest.mark.parametrize("given", ["https://abc.supabase.co", "https://abc.supabase.co/", "https://abc.supabase.co/rest/v1",
+                                   "https://abc.supabase.co/rest/v1/", " https://abc.supabase.co/auth/v1 "])
+def test_supabase_url_is_trimmed_to_the_project(tmp_path, monkeypatch, given):
+    import conftest
+    monkeypatch.setattr(conftest, "FAKE_URL", given)
+    mod = conftest.load_app(tmp_path)
+    assert mod.config.URL == "https://abc.supabase.co"

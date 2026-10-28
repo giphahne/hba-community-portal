@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 from collections import defaultdict, deque
 from pathlib import Path
 from threading import RLock
@@ -13,7 +14,9 @@ ENGAGE = {}
 
 ROOT = Path(__file__).resolve().parent.parent  # the server/ folder
 load_dotenv(ROOT / ".env.community")
-URL = os.environ["SUPABASE_URL"].rstrip("/")
+# The project URL only: a value copied with an API path on the end (e.g. ".../rest/v1/") is trimmed, because the
+# service adds /auth/v1 and /rest/v1 itself.
+URL = re.sub(r"/(rest|auth|storage)/v1/?.*$", "", os.environ["SUPABASE_URL"].strip()).rstrip("/")
 KEY = os.environ["SUPABASE_ANON_KEY"]
 # Only used when a secret is not supplied by the environment (local development). Hosted copies set every secret
 # as an environment variable, because free container hosts wipe local files on each restart.
