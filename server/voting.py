@@ -6,6 +6,7 @@ This module derives the rules a vote must satisfy from the 2022 bylaws and never
 from pathlib import Path
 import contextvars
 import math
+import os
 import re
 import secrets
 from concurrent.futures import ThreadPoolExecutor
@@ -18,11 +19,9 @@ from fastapi import HTTPException, Request
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
-PREVIEW_APP_URL="https://www.perplexity.ai/computer/a/hamilton-beach-community-homes-IC2mb69NTpGgtcVWYsewOA"
 def app_url():
-    """Public address of the app for notice drafts: app-url.txt beside this file, else the Perplexity preview."""
-    try:return (Path(__file__).parent/"app-url.txt").read_text().strip() or PREVIEW_APP_URL
-    except OSError:return PREVIEW_APP_URL
+    """Public address of the portal for notice drafts (same setting as community-api.py)."""
+    return os.environ.get("HBA_PUBLIC_URL", "").strip().rstrip("/") or "http://127.0.0.1:3003"
 
 GOVERNOR_SEATS = ['Pilgrim Street Governor', 'Algelo Street Governor', 'Worrall Street Governor', 'Surf Street Governor',
                   'Turner Street Governor', 'Glen Street Governor', 'Reynolds Street Governor',
@@ -199,7 +198,7 @@ def outcome_for(v, t, procedures):
     return {"outcome": "passed" if passed else "failed", "quorum_met": True, "rule_applied": rule}
 
 
-def setup(app, *, rest, sb, require, board, homes, visitor, rate, anon_key):
+def setup(app, *, rest, sb, require, board, homes, rate, anon_key):
     def uid(value):
         try:
             return str(UUID(str(value)))
@@ -603,6 +602,9 @@ def setup(app, *, rest, sb, require, board, homes, visitor, rate, anon_key):
             raise HTTPException(400, "Choose an elected position: President, a Street Governor or a Governor at Large.")
         if body.household_uid and body.household_uid not in {p["uid"] for p in homes["properties"]}:
             raise HTTPException(400, "Choose a mapped household.")
+        # The database only accepts nominations while that year's election is being planned or is open.
+        if not rest("hba_elections", token, query=f"year=eq.{body.election_year}&state=in.(planning,nominations_open,meeting_scheduled)&select=year"):
+            raise HTTPException(400, f"Nominations for {body.election_year} are not open. The board opens them when it sets up that election.")
         return rest("hba_nominations", token, "POST", body.model_dump(), representation=True)[0]
 
     class NominationReview(BaseModel):
@@ -659,6 +661,8 @@ def setup(app, *, rest, sb, require, board, homes, visitor, rate, anon_key):
             raise HTTPException(400, "Approve the account before linking extra properties.")
         if target[0]["household_uid"] == body.household_uid:
             raise HTTPException(400, "That is already the account's primary household.")
+        if rest("hba_member_households", token, query=f"member_id=eq.{body.member_id}&household_uid=eq.{body.household_uid}&select=household_uid"):
+            raise HTTPException(400, "That property is already linked to this account.")
         rest("hba_member_households", token, "POST", {"member_id": str(body.member_id), "household_uid": body.household_uid, "note": body.note.strip()})
         return {"saved": True}
 
@@ -667,26 +671,6 @@ def setup(app, *, rest, sb, require, board, homes, visitor, rate, anon_key):
         token, m = require(req, ("admin",))
         rest("hba_member_households", token, "DELETE", query="member_id=eq." + uid(member_id) + "&household_uid=eq." + re.sub(r"[^A-Za-z0-9_]", "", household_uid))
         return {"deleted": True}
-
-    class Setting(BaseModel):
-        value: str = Field(default="", max_length=2000)
-
-    @app.put("/api/settings/{key}")
-    def save_setting(key: str, body: Setting, req: Request):
-        token, m = require(req, ("admin",))
-        if not re.fullmatch(r"[a-z_]{3,60}", key):
-            raise HTTPException(400, "Invalid setting key.")
-        value = body.value.strip()
-        if key == "public_facebook_group_url" and value:
-            from urllib.parse import urlparse
-            p = urlparse(value)
-            if p.scheme != "https" or not (p.hostname or "").endswith("facebook.com") or p.username or p.password:
-                raise HTTPException(400, "Enter an https://www.facebook.com/... link copied from the group's Share menu.")
-        existing = rest("hba_settings", token, query="key=eq." + key + "&select=key")
-        payload = {"value": value, "updated_by": m["id"], "updated_at": datetime.now(timezone.utc).isoformat()}
-        if existing:
-            return rest("hba_settings", token, "PATCH", payload, query="key=eq." + key, representation=True)[0]
-        return rest("hba_settings", token, "POST", {"key": key, **payload}, representation=True)[0]
 
     # ----- exports -----
     def local(ts):

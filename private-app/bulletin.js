@@ -63,6 +63,46 @@
         <small>Retrieved ${esc(new Date(tides.retrieved_at).toLocaleString('en-US',{timeZone:'America/New_York'}))} Eastern; source refreshed on request, cached up to 6 hours.</small>`:!tideError?'<p>Loading NOAA predictions…</p>':''}
       <p class="waterfront-muted">Not for navigation. Tide predictions do not determine swimming safety or shellfish harvest permission.</p></section>`;
   }
+  // Conservation (horseshoe-crab) notice for beach cleaning. The administrator edits it in the app
+  // (public_conservation_notice); these defaults are the 2026 wording.
+  const CONSERVATION_DEFAULT={
+    hold_text:'June is reserved for horseshoe-crab breeding protection: no HBA beach cleaning is planned during June.',
+    link_label:'Town of Wareham’s 2026 notice (archived copy)',
+    link_url:'https://web.archive.org/web/20260511190646/https://www.wareham.gov/AlertCenter.aspx?AID=125',
+    covers:'May 1 through June 30',
+    future_note:'For future seasons, this portal conservatively holds both May and June pending updated town/DMF guidance.',
+    hold_from_month:5,hold_to_month:6};
+  function conservation(){
+    let saved={};try{saved=JSON.parse(data?.settings?.public_conservation_notice||'{}')||{};}catch{}
+    return {...CONSERVATION_DEFAULT,...saved};
+  }
+  const inHold=month=>{const c=conservation();return month>=c.hold_from_month&&month<=c.hold_to_month;};
+  const MONTH_NAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function conservationNotice(){
+    const c=conservation();
+    const link=c.link_url?` The <a href="${esc(c.link_url)}" target="_blank" rel="noopener noreferrer">${esc(c.link_label)}</a>${c.covers?` covers ${esc(c.covers)}`:''}.`:'';
+    const edit=window.HBACommunity?.member?.role==='admin'?' <button type="button" id="conservation-edit" class="waterfront-inline-edit">Edit conservation notice</button>':'';
+    return `<p>${esc(c.hold_text)}${link}${c.future_note?' '+esc(c.future_note):''}${edit}</p>`;
+  }
+  function editConservation(){
+    const C=window.HBACommunity,c=conservation();
+    const months=n=>MONTH_NAMES.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('');
+    C.formDialog('Edit the conservation notice',
+      `<p>Shown in the beach-cleaning section of the bulletin. Update the link when the town posts each year’s horseshoe-crab notice.</p>
+      <label>Opening sentence<textarea name="hold_text" rows="2" maxlength="600" required></textarea></label>
+      <label>Notice link label<input name="link_label" maxlength="160" placeholder="Town of Wareham’s 2027 notice"></label>
+      <label>Notice link (https://…)<input name="link_url" type="url" maxlength="500" placeholder="Leave empty if there is no notice yet"></label>
+      <label>The notice covers<input name="covers" maxlength="160" placeholder="May 1 through June 30"></label>
+      <label>Note for future seasons<textarea name="future_note" rows="2" maxlength="600"></textarea></label>
+      <label>Conservation hold starts<select name="hold_from_month">${months()}</select></label>
+      <label>Conservation hold ends<select name="hold_to_month">${months()}</select></label>
+      <p>Sample cleaning dates in the hold months are marked “Reschedule: conservation hold”.</p>`,
+      async fd=>{
+        const body=Object.fromEntries(fd);body.hold_from_month=Number(body.hold_from_month);body.hold_to_month=Number(body.hold_to_month);
+        const res=await C.api('/api/content/conservation-notice',{method:'PUT',body:JSON.stringify(body)});
+        data={...(data||{}),settings:{...(data?.settings||{}),public_conservation_notice:JSON.stringify(res.notice)}};render();
+      },c,'Save for everyone');
+  }
   function facebookCard(){
     const st=data?.settings||{},name=st.public_facebook_group_name||'Quasuet Island/Hamilton Beach Friends and Family',url=st.public_facebook_group_url||'';
     let safe='';try{const u=new URL(url);if(u.protocol==='https:'&&u.hostname.endsWith('facebook.com'))safe=u.href;}catch{}
@@ -107,12 +147,12 @@
       <div id="waterfront-alerts-host"></div>
       ${window.HBALocalWeather.panel(weather,weatherError,selected)}
       <div class="waterfront-grid"><div>${tidePanel()}</div><div>${notice('swimming','Hamilton Beach swimming',links.swimming)}${notice('shellfishing','Shellfish maps & closures',links.shellfish)}</div></div>
-      <section class="waterfront-card waterfront-cleaning" aria-labelledby="cleaning-title"><p class="waterfront-eyebrow">Public beach-cleaning bulletin</p><h3 id="cleaning-title">Beach cleaning: dates & conservation</h3><p class="waterfront-status">Proposed schedule only. No cleaning dates below are confirmed.</p><p>June is reserved for horseshoe-crab breeding protection: no HBA beach cleaning is planned during June. The <a href="https://www.wareham.gov/AlertCenter.aspx?AID=125" target="_blank" rel="noopener noreferrer">Town of Wareham’s 2026 notice</a> covers May 1 through June 30. For future seasons, this portal conservatively holds both May and June pending updated town/DMF guidance.</p><p>The unsigned sample agreement proposes eight Thursday cleanings per season, near low tide. Dates in the conservation hold require rescheduling; all other dates still require confirmation, permission and tide checks. The first seasonal cleaning is intended as a deep clean. Financial terms and the contract are not published here.</p>
+      <section class="waterfront-card waterfront-cleaning" aria-labelledby="cleaning-title"><p class="waterfront-eyebrow">Public beach-cleaning bulletin</p><h3 id="cleaning-title">Beach cleaning: dates & conservation</h3><p class="waterfront-status">Proposed schedule only. No cleaning dates below are confirmed.</p>${conservationNotice()}<p>The unsigned sample agreement proposes eight Thursday cleanings per season, near low tide. Dates in the conservation hold require rescheduling; all other dates still require confirmation, permission and tide checks. The first seasonal cleaning is intended as a deep clean. Financial terms and the contract are not published here.</p>
       <details><summary>View sample dates for 2027–2029</summary>${[
         [2027,['05-27','07-01','07-15','07-29','08-12','08-19','08-26','09-02']],
         [2028,['05-25','06-29','07-13','07-20','08-03','08-17','08-24','08-31']],
         [2029,['05-24','06-28','07-12','07-26','08-09','08-16','08-23','08-30']]
-      ].map(([y,dates])=>`<h4>${y} · Unconfirmed</h4><ul>${dates.map((s,i)=>`<li>${new Date(y+'-'+s+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}${i===0?' · First deep clean':''} · ${Number(s.slice(0,2))<=6?'Reschedule: conservation hold':'Proposed; not confirmed'}</li>`).join('')}</ul>`).join('')}<p>Rain-date proposal: Wednesday before or Friday after, subject to approval and conservation restrictions. The June 30, 2027 fallback for July 1 is held too. No replacement dates or official future tide times have been invented.</p></details><p>For access questions, check confirmed board notices. For a neighborhood problem, use the private issue form; reports and board review notes are not published here.</p><button id="cleaning-report" type="button">${signedIn?"Report a beach issue":"Sign in to report a beach issue"}</button></section>
+      ].map(([y,dates])=>`<h4>${y} · Unconfirmed</h4><ul>${dates.map((s,i)=>`<li>${new Date(y+'-'+s+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}${i===0?' · First deep clean':''} · ${inHold(Number(s.slice(0,2)))?'Reschedule: conservation hold':'Proposed; not confirmed'}</li>`).join('')}</ul>`).join('')}<p>Rain-date proposal: Wednesday before or Friday after, subject to approval and conservation restrictions. The June 30, 2027 fallback for July 1 is held too. No replacement dates or official future tide times have been invented.</p></details><p>For access questions, check confirmed board notices. For a neighborhood problem, use the private issue form; reports and board review notes are not published here.</p><button id="cleaning-report" type="button">${signedIn?"Report a beach issue":"Sign in to report a beach issue"}</button></section>
       ${facebookCard()}
       ${storeCard()}
       <p class="waterfront-footer">Never treat the absence of a closure here as an “open” determination. Check current official notices and posted signs; a board transcription cannot override a closure, permit restriction or public-health advisory.</p>
@@ -121,6 +161,7 @@
     host.querySelector('#waterfront-close').onclick=()=>{setOpen(false);requestAnimationFrame(()=>window.HBAShell?.scrollToSection?.('cap-bulletin'));};
     host.querySelector('#waterfront-refresh').onclick=()=>refresh();
     host.querySelector('#cleaning-report').onclick=()=>window.openHBACommunity('issues');
+    host.querySelector('#conservation-edit')?.addEventListener('click',editConservation);
     const picker=host.querySelector('#waterfront-tide-day');if(picker)picker.onchange=()=>{selected=picker.value;render();};
     window.HBAWeatherAlerts.mount(host.querySelector('#waterfront-alerts-host'));
     if(focus==='waterfront-tide-day')picker?.focus({preventScroll:true});

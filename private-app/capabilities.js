@@ -331,6 +331,8 @@
   function run(id,arg){
     if(id==='signin'){window.openHBACommunity('overview');return;}
     if(id==='calendar'&&arg&&/^\d{4}-\d{2}-\d{2}$/.test(arg)){window.HBACommunity?.showDay?.(arg);return;}
+    if(id==='calendar'){window.openHBACommunity('calendar');return;}// "Open calendar" has no entry in the tool list
+    if(id==='bulletin'){window.openHBABulletin?.();return;}// nor do the weather, tide and alert tiles
     const t=allTools().find(x=>x.id===id);if(!t||!visible(t)||!t.run)return;
     try{t.run(arg);}catch(e){console.error(e);}
   }

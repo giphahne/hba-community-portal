@@ -17,10 +17,6 @@
   function base(){
     if(apiBase)return apiBase;
     const raw=window.__COMMUNITY_API_BASE__||'';
-    if(raw.startsWith('__PORT_')){
-      if(!['127.0.0.1','localhost'].includes(location.hostname))throw Error('The community service is not configured.');
-      return apiBase='http://127.0.0.1:3003';
-    }
     if(!raw)throw Error('The community service is unavailable.');
     return apiBase=new URL(raw,document.baseURI).href.replace(/\/$/,'');
   }
@@ -71,6 +67,11 @@
     if(!isMember()){$('#community-content').innerHTML=blank(session.member.role==='pending'?'Your account is awaiting approval':'Member access is unavailable','A board member must approve resident access. The administrator controls board permissions. You can refresh here after approval.');return;}
     if(!data){$('#community-content').innerHTML=blank('Archive not loaded','Use Refresh to retry.');return;}
     if(boardOnly.has(view)&&!isBoard())view='overview';
+    // The archive's sections (minutes, votes, finance, …) load the first time the dialog shows one (lazy.js).
+    if(window.HBALazy&&!window.HBALazy.ready('community-tools')){
+      if(dlg.open){$('#community-content').innerHTML=blank('Opening the archive…','One moment while this section loads.');window.HBALazy.need('community-tools').then(()=>{if(dlg.open)render();},()=>{$('#community-content').innerHTML=blank('This section could not load','Check your connection, then use Refresh to try again.');});}
+      return;
+    }
     const availableTabs=tabs.filter(([v])=>!boardOnly.has(v)||isBoard());
     const tabLabel=(v,label)=>v==='issues'&&isBoard()?'Neighborhood issues':v==='bank'&&!isBoard()?'Financial updates':label;
     // With the dashboard as the base layer the tab strip is hidden, so the header names the open section.
@@ -571,9 +572,16 @@
     formDialog('August '+e.year+' election information',`<label>August meeting<select name="meeting_id"><option value="">Date to be announced</option>${opts(meetings,m=>m.id,m=>m.meeting_date+' · '+m.title)}</select></label><p>If the meeting is missing, the President, Secretary or administrator can schedule it in Board meetings first.</p><label>Status<select name="state"><option value="planning">Planning</option><option value="nominations_open">Nominations open</option><option value="meeting_scheduled">August meeting scheduled</option><option value="results_recorded">Results recorded from minutes</option></select></label>`+area('notice','Election notice')+area('positions','Positions covered by this election')+field('nomination_deadline','Nomination deadline, if established','date')+area('nomination_instructions','How to nominate / eligibility review')+area('results','Actual results, after the election')+area('source_note','Supporting minutes / source and procedure notes')+'<p>Member-visible. Do not include private contact details or a household eligibility list. No email or SMS will be sent automatically.</p>',
       fd=>{const p=Object.fromEntries(fd);p.meeting_id||=null;p.nomination_deadline||=null;return mutate('/api/elections/'+e.year,{method:'PUT',body:JSON.stringify(p)},'Election information saved. App roles and voting eligibility were not changed.');},e);
   }
-  function seriesForm(){formDialog('Add an event series',field('title','Event name','text',true)+area('description','About this event'),fd=>mutate('/api/series',{method:'POST',body:JSON.stringify(Object.fromEntries(fd))},'Event series added.'));}
+  // then: called with the new series once saved (used when the first event date needs a series to belong to).
+  function seriesForm(then){
+    const intro=then?'<p>Every event date belongs to a series, such as Spaghetti Supper or Movie Night. Name the series first; the next step adds the date.</p>':'';
+    formDialog(then?'Step 1 of 2: name the event':'Add an event series',intro+field('title','Event name','text',true)+area('description','About this event'),async fd=>{
+      const saved=await mutate('/api/series',{method:'POST',body:JSON.stringify(Object.fromEntries(fd))},'Event series added.');
+      if(then&&saved?.id)setTimeout(()=>then(saved),0);// after this dialog closes
+    },{},then?'Next: add the date':'Save');
+  }
   function eventForm(e){
-    if(!data.series.length){seriesForm();return;}
+    if(!data.series.length){seriesForm(s=>{series=s.id;eventForm();});return;}
     const editing=!!e&&!e.projected;
     formDialog(editing?'Edit event date':'Add an event date',`<label>Event series<select name="series_id">${opts(data.series,s=>s.id,s=>s.title)}</select></label>`+
       `<div id="supper-year-control" hidden><label>Spaghetti Supper year<input name="supper_year" type="number" min="1800" max="2200"></label><p id="supper-rule-preview" role="status"></p></div>`+
@@ -581,6 +589,7 @@
       `<label class="communications-check"><input name="use_rain_date" type="checkbox"${e?.use_rain_date?' checked':''}> Board has moved this event to its rain date</label><label class="communications-check"><input name="planning_only" type="checkbox"${e?e.planning_only?' checked':'':' checked'}> Planned date; time / location / details still pending</label>`+
       field('event_time','Time, if known (Wareham local time)','time')+field('location','Location','text',false,300)+area('description','Details / source for a historical date')+`<label>Status<select name="state"><option value="scheduled">Scheduled</option><option value="held">Held</option><option value="cancelled">Cancelled</option></select></label>`,async fd=>{
       const d=Object.fromEntries(fd);delete d.supper_year;d.event_time||=null;d.rain_date||=null;d.use_rain_date=fd.has('use_rain_date');d.planning_only=fd.has('planning_only');
+      month=d.event_date.slice(0,7);selectedDay=d.event_date;// show the saved date, whichever month it is in
       await mutate('/api/events'+(editing?'/'+e.id:''),{method:editing?'PUT':'POST',body:JSON.stringify(d)},'Event date saved.');
     },e?{...e,use_rain_date:undefined,planning_only:undefined}:{series_id:series||data.series[0].id});
     const f=editor.querySelector('form'),control=f.querySelector('#supper-year-control'),preview=f.querySelector('#supper-rule-preview');
@@ -719,6 +728,8 @@
   async function openCommunity(target='overview',uid=''){
     lastFocus=document.activeElement;view=target;if(uid){if(target==='work')workId=uid;else homeUid=uid;}
     if(!dlg.open)dlg.showModal();await refresh();
+    // Resolve once the section has drawn: render() waits for the archive's sections to load the first time.
+    if(isMember()&&data&&window.HBALazy)await window.HBALazy.need('community-tools').catch(()=>{});
   }
   $('#community-close').onclick=()=>dlg.close();dlg.addEventListener('close',()=>lastFocus?.focus?.({preventScroll:true}));
   $('#community-refresh').onclick=refresh;
@@ -742,6 +753,10 @@
   };
   window.openHBACommunity=openCommunity;
   // Restore role information for dues privacy without opening the archive.
+  // The first answer can arrive while later <script> tags (the dashboard among them) are still downloading, so it is
+  // announced only once the page has finished parsing; otherwise those scripts never hear about the account.
   const initialEpoch=accountEpoch;
-  api('/api/session').then(s=>{if(initialEpoch===accountEpoch){session=s;broadcast();}}).catch(()=>{if(initialEpoch===accountEpoch){session={signed_in:false};broadcast();}});
+  const afterParse=fn=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn,{once:true}):fn();
+  api('/api/session').then(s=>{if(initialEpoch===accountEpoch){session=s;afterParse(()=>{if(initialEpoch===accountEpoch)broadcast();});}})
+    .catch(()=>{if(initialEpoch===accountEpoch){session={signed_in:false};afterParse(()=>{if(initialEpoch===accountEpoch)broadcast();});}});
 })();

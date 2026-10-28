@@ -2,6 +2,7 @@
 import hashlib
 import io
 import json
+import os
 import re
 import subprocess
 import tempfile
@@ -21,7 +22,8 @@ C = {}
 BUSY = set()
 MUTEX = Lock()
 KINDS = {"event", "budget", "agenda", "decision", "work", "house_history", "history", "governing", "permit"}
-MODEL = "gpt_5_4"
+# Same setting as research_ai.py: OPENAI_MODEL for a direct OpenAI key; "gpt_5_4" is the Perplexity-hosted default.
+MODEL = os.environ.get("OPENAI_MODEL", "").strip() or "gpt_5_4"
 FIELDS = {
  "event":{"title","series_title","event_date","event_time","rain_date","location","detail","state","planning_only"},
  "budget":{"title","year","category_code","amount","detail"},
@@ -266,6 +268,13 @@ def process(document_id, token):
              "document_id=eq."+document_id)
         if not pages:
             raise ValueError("No readable text; upload a clearer copy.")
+        if not os.environ.get("OPENAI_API_KEY"):
+            # AI suggestions are optional. Without a key the file and its page text are kept for manual review.
+            rest("hba_document_intakes", token, "PATCH", {
+                "state": "needs_attention",
+                "summary": "AI suggestions are switched off on this copy (no OPENAI_API_KEY is set). The file and its page text are saved; review the original.",
+                "updated_at": datetime.now(timezone.utc).isoformat()}, "document_id=eq."+document_id)
+            return
         categories = C["rest"]("hba_finance_categories", token, query="select=code,label,direction")
         series = C["rest"]("hba_series", token, query="select=id,title,first_year")
         output = ai_extract(pages, {"title": doc["title"], "category": doc["category"],

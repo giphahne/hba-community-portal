@@ -6,24 +6,25 @@
 <title>Hamilton Beach, Wareham — Beach Rights Research Map</title>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=boska@500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="property-history.css">
-<link rel="stylesheet" href="research-tools.css">
-<link rel="stylesheet" href="sand-school.css">
-<link rel="stylesheet" href="nourishment.css">
-<link rel="stylesheet" href="island-history.css">
-<link rel="stylesheet" href="storms-history.css">
-<link rel="stylesheet" href="board-budget.css">
-<link rel="stylesheet" href="dues-registry.css">
+<template data-lazy-css="property-history.css"></template>
+<template data-lazy-css="research-tools.css"></template>
+<template data-lazy-css="sand-school.css"></template>
+<template data-lazy-css="nourishment.css"></template>
+<template data-lazy-css="island-history.css"></template>
+<template data-lazy-css="storms-history.css"></template>
+<template data-lazy-css="board-budget.css"></template>
+<template data-lazy-css="dues-registry.css"></template>
 <link rel="stylesheet" href="home.css">
 <link rel="stylesheet" href="community.css">
 <link rel="stylesheet" href="bulletin.css">
 <link rel="stylesheet" href="inbox.css">
-<link rel="stylesheet" href="summer-events.css">
+<template data-lazy-css="summer-events.css"></template>
 <link rel="stylesheet" href="town-rules.css">
-<link rel="stylesheet" href="engagement.css">
-<link rel="stylesheet" href="ch91-landmarks.css">
+<template data-lazy-css="engagement.css"></template>
+<template data-lazy-css="ch91-landmarks.css"></template>
 <link rel="stylesheet" href="app-practice.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="lazy.js"></script>
 <style>
   :root {
     /* Nautical palette: centralized so every tool shares the same hull, sail, brass and rope colours. */
@@ -263,14 +264,13 @@
     <a href="https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0" target="_blank">MassGIS parcel layer</a> ·
     <a href="https://titleview.org/plymouthdeeds/" target="_blank">Plymouth Registry: instrument-image audit, October 4, 2026</a> ·
     <a href="https://gis.vgsi.com/warehamma/" target="_blank">Wareham assessing data</a> ·
-    <a href="https://wareham.gov/DocumentCenter/View/466/Street-Listing-PDF" target="_blank">Street Listing (PDF)</a>
+    <a href="https://web.archive.org/web/20251029013621/https://www.wareham.gov/DocumentCenter/View/466/Street-Listing-PDF" target="_blank" rel="noopener">Street Listing (PDF, archived copy, Oct 2025)</a>
   </div>
 </div>
 
 <script src="parcels.js"></script>
 <script src="audit.js"></script>
-<script src="title-trace.js"></script>
-<script src="road-wording.js"></script>
+<script src="map-summary.js"></script>
 <script src="drainage.js"></script>
 <script src="ch91.js"></script>
 <script>
@@ -311,8 +311,10 @@
   const layers = {};
   const targets = {};
   const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  // Start-up slice of the earlier-deed and road-wording research (map-summary.js); popups load the full evidence.
+  const MAP_SUMMARY=window.HBA_MAP_SUMMARY,TRACE_SUMMARY=MAP_SUMMARY.trace;
   const mapCounts={...AUDIT_STATS.counts};
-  Object.entries(TITLE_TRACE).forEach(([index,t])=>{
+  Object.entries(TRACE_SUMMARY).forEach(([index,t])=>{
     if(t.approved_classification&&DEED_AUDIT[index]){
       const prior=DEED_AUDIT[index].cls;
       mapCounts[prior]=(mapCounts[prior]||0)-1;
@@ -322,15 +324,15 @@
   const tracePanel=document.createElement("section");
   tracePanel.className="drain-panel";
   tracePanel.innerHTML="<h2>Earlier deeds: purple-parcel trace</h2><p>"+
-    TITLE_TRACE_STATS.original_purple_records+" original purple records / "+TITLE_TRACE_STATS.deed_groups+" deed groups. "+
-    TITLE_TRACE_STATS.approved_linked_records+" earlier-deed benefit findings; "+TITLE_TRACE_STATS.approved_reserved_records+
+    MAP_SUMMARY.title_stats.original_purple_records+" original purple records / "+MAP_SUMMARY.title_stats.deed_groups+" deed groups. "+
+    MAP_SUMMARY.title_stats.approved_linked_records+" earlier-deed benefit findings; "+MAP_SUMMARY.title_stats.approved_reserved_records+
     " reservations for others/public. Other records remain unresolved.</p><p>Open a parcel for matching lots, clauses, scans and next steps. A read predecessor does not mean its entire chain is complete.</p>"+
     "<p><a href='purple-parcel-earlier-deeds.md' download>Full research ledger</a> · <a href='purple-parcel-earlier-deeds.csv' download>100-record CSV</a> · <a href='title-trace.json' download>Evidence ledger JSON</a></p>";
   document.getElementById("legend").after(tracePanel);
   const roadPanel=document.createElement("section");
   roadPanel.className="drain-panel";
-  roadPanel.innerHTML="<h2>Road wording: partial review</h2><p>"+ROAD_STATS.completed_road_reviews+" / "+ROAD_STATS.reference_entries+
-    " reference entries reviewed. "+ROAD_STATS.pending+" pending; "+ROAD_STATS.other_incomplete+
+  roadPanel.innerHTML="<h2>Road wording: partial review</h2><p>"+MAP_SUMMARY.road_stats.completed_road_reviews+" / "+MAP_SUMMARY.road_stats.reference_entries+
+    " reference entries reviewed. "+MAP_SUMMARY.road_stats.pending+" pending; "+MAP_SUMMARY.road_stats.other_incomplete+
     " partial or defective scans. Open a parcel for exact clauses and lot limits.</p>"+
     "<p>Street boundaries are not road-use grants. No road ownership, public acceptance or present enforceability is determined. Beach colors are unchanged.</p>"+
     "<p><a href='hamilton-beach-road-wording.md' download>Road wording report</a> · <a href='hamilton-beach-road-wording.csv' download>Clause CSV</a> · <a href='road-wording.json' download>Checkpoint JSON</a></p>";
@@ -347,6 +349,13 @@
           "<br><b>Beneficiaries:</b> "+escapeHtml(f.beneficiaries)+"<br>"+escapeHtml(f.limitation)+
           (f.scan?"<br><a href='"+f.scan+"' target='_blank' rel='noopener'>Open clause scan</a>":"")+"</p>").join("")+"</details>").join("")+
       "<p>No road ownership, municipal acceptance or current enforceability determination. <a href='https://titleview.org/plymouthdeeds/' target='_blank' rel='noopener'>Plymouth Registry</a></p></section>";
+  }
+  // Earlier-deed and road-wording evidence (title-trace.js, road-wording.js) arrives the first time a popup opens.
+  let parcelDetailsError=false;
+  const parcelDetailsReady=()=>typeof TITLE_TRACE!=="undefined"&&typeof ROAD_EVIDENCE!=="undefined";
+  function parcelDetailsNote(index){
+    if(parcelDetailsReady())return earlierDeedNote(TITLE_TRACE[index])+roadEvidenceNote(index);
+    return "<p>"+(parcelDetailsError?"Earlier-deed and road wording records could not load. Close this popup and open it again to retry.":"Loading earlier-deed and road wording records…")+"</p>";
   }
   function earlierDeedNote(t){
     if(!t)return "";
@@ -475,7 +484,7 @@
   PARCELS.features.forEach(f => {
     const p = f.properties;
     const d = DEED_AUDIT[p.audit_index];
-    const trace=TITLE_TRACE[p.audit_index];
+    const trace=TRACE_SUMMARY[p.audit_index];
     if (d) p.cls = trace?.approved_classification || d.cls;
     const layer = L.geoJSON(f, { style: () => STYLES[p.cls] }).addTo(map);
     layers[p.cls] = layers[p.cls] || [];
@@ -490,7 +499,8 @@
       "<br><a href='"+licenseDoc.pdf+"' target='_blank' rel='noopener'>Open authorization PDF</a> · "+
       "<a href='"+licenseEntry[1].assessor+"' target='_blank' rel='noopener'>Current assessor record</a>"+
       "<br><small>Parcel locus/context only; no structure footprint or beach-right benefit inferred.</small></p>":"";
-    bindTarget.bindPopup(
+    // Built when the popup opens, so it can include the evidence once parcel-details has loaded.
+    bindTarget.bindPopup(() =>
       "<b>" + escapeHtml(p.addr || "(vacant / no address)") + "</b><br>" +
       "<button type='button' class='history-popup' data-open-history='"+p.audit_index+"'>Open property history + screenshots</button><br>" +
       "Assessor parcel " + escapeHtml(p.pid || "ID unavailable") + (p.lot ? " · assessor lot " + escapeHtml(p.lot) : "") + "<br>" +
@@ -499,14 +509,28 @@
       "<span class='tag " + p.cls + "'>" + LABELS[p.cls] + "</span>" +
       (p.cls === "beach" ? "<br>Owner of record: " + p.owner : "") +
       licenseNote+
-      earlierDeedNote(trace)+
-      roadEvidenceNote(p.audit_index)+
+      parcelDetailsNote(p.audit_index)+
       (d ? "<br><b>Current-instrument audit: " + escapeHtml(d.book) + "</b><br>Current scan status: " + escapeHtml(d.status) +
         (d.date ? "<br>Recorded " + escapeHtml(d.date) : "") + "<br>" + escapeHtml(d.finding) +
         (d.quote ? "<blockquote style='margin:8px 0;padding-left:8px;border-left:2px solid #8fa3ab'>" + escapeHtml(d.quote) + "</blockquote>" : "") +
         "<br>" + escapeHtml(d.next) + "<br>" + (d.scans || []).map((scan,i)=>"<a href='"+scan+"' target='_blank' rel='noopener'>Scan "+(i+1)+"</a>").join(" · ") +
         "<br><a href='https://titleview.org/plymouthdeeds/' target='_blank' rel='noopener'>Search book/page at Plymouth Registry</a>" : "")
     , {maxWidth:matchMedia("(max-width:640px)").matches?250:330,maxHeight:matchMedia("(max-width:640px)").matches?300:480,autoPanPadding:L.point(12,12),autoPanPaddingTopLeft:matchMedia("(max-width:640px)").matches?L.point(12,80):L.point(12,12)});
+    bindTarget.on("popupopen", async e => {
+      if (parcelDetailsReady()) return;
+      const popup = e.popup, content = popup.getContent();
+      // Households only see full records for their own address (house-privacy.js); skip the download otherwise.
+      const privacy = window.HBAHousePrivacy;
+      if (p.cls !== "beach" && privacy?.popupAllowed && !(await privacy.popupAllowed(p.audit_index))) return;
+      const refresh = () => {
+        if (!popup.isOpen() || popup.getContent() !== content) return;
+        // Redraw with the evidence, keeping any section the reader has already expanded.
+        const opened = [...popup.getElement().querySelectorAll("details")].map(x => x.open);
+        popup.update();
+        popup.getElement().querySelectorAll("details").forEach((x, i) => { if (opened[i]) x.open = true; });
+      };
+      window.HBALazy.need("parcel-details").then(() => { parcelDetailsError = false; refresh(); }, () => { parcelDetailsError = true; refresh(); });
+    });
     bindTarget.on("click", () => {
       if (matchMedia("(max-width:640px)").matches) {
         collapseMobilePanel();
@@ -531,7 +555,7 @@
     const q=e.target.value.trim().toLowerCase();
     const results=document.getElementById("search-results");results.replaceChildren();
     if(!q)return;
-    const matches=Object.entries(DEED_AUDIT).filter(([index,d])=>(!window.HBAMembership||window.HBAMembership.visible(index))&&[d.address,d.pid,d.book,d.instrument_ref,...(TITLE_TRACE[index]?.earlier_instruments||[]).map(i=>i.ref)].join(" ").toLowerCase().includes(q)).map(([index,d])=>d).slice(0,25);
+    const matches=Object.entries(DEED_AUDIT).filter(([index,d])=>(!window.HBAMembership||window.HBAMembership.visible(index))&&[d.address,d.pid,d.book,d.instrument_ref,...(TRACE_SUMMARY[index]?.refs||[])].join(" ").toLowerCase().includes(q)).map(([index,d])=>d).slice(0,25);
     const drainMatches=DRAINAGE.filter(d=>[d.id,d.location,d.kind].join(" ").toLowerCase().includes(q));
     const ch91Matches=CH91.filter(d=>[d.id,d.id.replace("DEP",""),d.location,d.licensee,d.kind].join(" ").toLowerCase().includes(q));
     ch91Matches.forEach(d=>{const button=document.createElement("button");button.textContent=d.id+" · "+d.location;button.onclick=()=>focusCh91(d);results.appendChild(button);});
@@ -550,7 +574,7 @@
     if(window.HBAMembership&&!window.HBAMembership.visible(index)){window.HBAMembership.explainHidden();return;}
     const item=targets[index];const record=DEED_AUDIT[index];
     if(!item||!record)return;
-    const cls=TITLE_TRACE[index]?.approved_classification||record.cls;
+    const cls=TRACE_SUMMARY[index]?.approved_classification||record.cls;
     if(!map.hasLayer(item.layer)){(layers[cls]||[]).forEach(l=>l.addTo(map));document.querySelector('[data-layer="'+cls+'"]').classList.remove("off");}
     if(matchMedia("(max-width:640px)").matches)collapseMobilePanel();
     map.fitBounds(item.layer.getBounds().pad(0.6),{maxZoom:19,animate:false});item.target.openPopup();
@@ -581,39 +605,14 @@
   document.documentElement.classList.add("hba-large-text");
   map.fitBounds(L.geoJSON(PARCELS).getBounds().pad(0.08));
 </script>
-<script src="deed-labels.js"></script>
-<script src="assessments.js"></script>
-<script src="property-history.js"></script>
-<script src="research-tools.js"></script>
-<script src="sand-school.js"></script>
-<script src="nourishment-data.js"></script>
-<script src="nourishment.js"></script>
-<script src="ch91-landmarks.js"></script>
-<link rel="stylesheet" href="town-history.css">
-<script src="town-history-data.js"></script>
-<script src="town-history.js"></script>
-<script src="island-history.js"></script>
-<script src="storms-data.js"></script>
-<script src="storms-history.js"></script>
-<link rel="stylesheet" href="historical-postcards.css">
-<script src="historical-postcards.js"></script>
-<script>window.__DUES_API_BASE__ = '__PORT_3003__';window.__COMMUNITY_API_BASE__ = '__PORT_3003__';</script>
-<script src="governance-guide.js"></script>
+<template data-lazy-css="town-history.css"></template>
+<template data-lazy-css="historical-postcards.css"></template>
+<script>window.__COMMUNITY_API_BASE__ = '/';</script>
 <link rel="stylesheet" href="communications.css">
-<link rel="stylesheet" href="minutes.css">
-<script src="communications.js"></script>
-<script src="minutes.js"></script>
-<link rel="stylesheet" href="voting.css">
-<script src="voting.js"></script>
-<script src="volunteers.js"></script>
-<script src="dues-receipts.js"></script>
-<script src="finance-register.js"></script>
-<script src="bank-reconciliation.js"></script>
-<script src="document-research.js"></script>
-<link rel="stylesheet" href="document-intake.css">
-<script src="document-intake.js"></script>
+<template data-lazy-css="minutes.css"></template>
+<template data-lazy-css="voting.css"></template>
+<template data-lazy-css="document-intake.css"></template>
 <script src="event-dates.js"></script>
-<script src="contractor-bids.js"></script>
 <script src="community.js"></script>
 <link rel="stylesheet" href="local-weather.css">
 <link rel="stylesheet" href="beach-scene.css">
@@ -623,17 +622,11 @@
 <script src="weather-alerts.js"></script>
 <script src="bulletin.js"></script>
 <script src="inbox.js"></script>
-<script src="summer-events.js"></script>
 <script src="town-rules-data.js"></script>
 <script src="town-rules.js"></script>
-<script src="engagement.js"></script>
-<script src="board-budget.js"></script>
-<link rel="stylesheet" href="project-timeline.css">
-<script src="project-timeline.js"></script>
-<link rel="stylesheet" href="budget-outputs.css">
-<script src="budget-outputs.js"></script>
-<link rel="stylesheet" href="nourishment-guide.css">
-<script src="nourishment-guide.js"></script>
+<template data-lazy-css="project-timeline.css"></template>
+<template data-lazy-css="budget-outputs.css"></template>
+<template data-lazy-css="nourishment-guide.css"></template>
 <script src="home.js"></script>
 <script src="membership-area.js"></script>
 <script src="membership.js"></script>
@@ -643,16 +636,14 @@
 <link rel="stylesheet" href="capabilities.css">
 <link rel="stylesheet" href="dues-planner.css">
 <script src="dues-planner.js"></script>
-<link rel="stylesheet" href="newsletter-viewer.css">
-<script src="newsletter-viewer.js"></script>
-<link rel="stylesheet" href="app-map.css">
-<script src="app-map.js"></script>
+<template data-lazy-css="newsletter-viewer.css"></template>
+<template data-lazy-css="app-map.css"></template>
 <script src="account.js"></script>
 <script src="capabilities.js"></script>
 <script src="house-privacy.js"></script>
 <script src="whole-scroll.js"></script>
 <link rel="stylesheet" href="resident-usability.css">
-<link rel="stylesheet" href="volunteers.css">
+<template data-lazy-css="volunteers.css"></template>
 <link rel="stylesheet" href="nautical.css">
 <link rel="stylesheet" href="whole-scroll.css">
 </body>

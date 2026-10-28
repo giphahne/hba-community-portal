@@ -247,7 +247,8 @@
     const skeleton=document.createElement('div');skeleton.className='history-skeleton';stage.append(skeleton);
     const image=document.createElement('img');image.alt=`${selected.address}, deed ${doc.ref}, attached image ${pageNumber+1}`;image.decoding='async';image.style.width=zoom+'%';image.hidden=true;
     image.onload=()=>{skeleton.remove();image.hidden=false;};
-    image.onerror=()=>{stage.innerHTML='<div class="image-message"><strong>The deed image could not load.</strong><p>The reference and reviewed notes are preserved. Retry this page or open the full-resolution image.</p><button type="button" id="history-image-retry">Retry image</button></div>';el('history-image-retry').onclick=renderImage;};
+    // A failure can arrive after the reader turned the page or closed the report; only the current image may react.
+    image.onerror=()=>{if(image.parentNode!==stage||!stage.isConnected)return;stage.innerHTML='<div class="image-message"><strong>The deed image could not load.</strong><p>The reference and reviewed notes are preserved. Retry this page or open the full-resolution image.</p><button type="button" id="history-image-retry">Retry image</button></div>';stage.querySelector('#history-image-retry').onclick=renderImage;};
     stage.append(image);image.src=src;applyZoom();
   }
   dialog.addEventListener('keydown',e=>{

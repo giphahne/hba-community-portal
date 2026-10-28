@@ -1,0 +1,51 @@
+name: Build and deploy
+# Builds the container (code + record scans) and pushes it to the repository's GitHub Container Registry,
+# then asks the host to redeploy. See DEPLOY.md for the one-time setup.
+#   Secret SCANS_ZIP_URL   private download link to hba-portal-record-scans.zip (optional; without it no scans)
+#   Secret DEPLOY_HOOK_URL the host's deploy hook (optional; without it, redeploy from the host dashboard)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add the record scans
+        env:
+          SCANS_ZIP_URL: ${{ secrets.SCANS_ZIP_URL }}
+        run: |
+          if [ -n "$SCANS_ZIP_URL" ]; then
+            curl -fsSL "$SCANS_ZIP_URL" -o /tmp/scans.zip
+            unzip -q -o /tmp/scans.zip -d private-app
+            rm /tmp/scans.zip
+          else
+            echo "::warning::SCANS_ZIP_URL is not set; building without the record scans."
+          fi
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Image name (lower case)
+        id: name
+        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.name.outputs.image }}:latest
+            ${{ steps.name.outputs.image }}:${{ github.sha }}
+      - name: Redeploy
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$DEPLOY_HOOK_URL" ]; then curl -fsS -X POST "$DEPLOY_HOOK_URL" > /dev/null; fi

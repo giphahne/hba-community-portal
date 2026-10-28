@@ -1,0 +1,39 @@
+## Bugs found by the walkthrough (October 2026)
+
+### Fixed, each in its own commit with a regression check
+
+| # | What a reader saw | Cause | Fix | Regression check |
+|---|---|---|---|---|
+| 1 | Editing an issue, meeting, agenda item, minutes, officeholder or register entry; approving minutes; attaching a minutes PDF; replying to a governor message; meeting Zoom settings: all failed with a server error | The backend split left `uid()`, `datetime` and `timezone` un-imported in `governance.py` and `finance.py` (18 routes) | Imports restored | `tools/tests/test_backend_names.py` runs pyflakes over `server/` (CI installs pyflakes) |
+| 2 | On a project built from `schema.sql` (the new free hosting), even the administrator got "This account does not have permission for that action" when attaching a newsletter or minutes PDF, approving minutes, publishing a newsletter or volunteer task, changing volunteer e-mail preferences, editing a register entry or category budget, or editing an SMS draft | `schema.sql` kept table grants but dropped all column-level `grant update(…)` lines from the migration history | Grants added to `schema.sql`; `supabase/migrations/002_column_update_grants.sql` for a project already created | `tools/tests/test_schema_grants.py` compares every column grant in the history with `schema.sql`; walkthrough seeds a minutes PDF, newsletter PDF and published volunteer task |
+| 3 | The dashboard's Weather now, Next tide and NWS alerts tiles did nothing | They run tool id `bulletin`, which is not in the tool list (same gap as Open calendar) | `run('bulletin')` opens the bulletin section | Walkthrough opens `bulletin` for every role |
+| 4 | Submitting a nomination always failed with a permission error, for every role | The form offered fixed years 2027/2029/2031; the database accepts nominations only for an election the board has opened | Form lists only open election years (a note replaces the button when none); the API explains | `test_nomination_needs_an_open_election` |
+| 5 | Every board visit logged a failed request, and the Detailed capital model said "Private cleaning allowance was not loaded" | `/api/cleaning-plan` answered 404 when no plan row exists, which is always true on a new project (no screen adds one) | Answers `{"recorded": false}`; the model keeps its estimate | `test_cleaning_plan_missing_is_not_an_error` |
+| 6 | A rain date on or before the event date showed raw database text ("violates check constraint rain_date_requires_later_date") | No API check | "The rain date must be after the event date." | `test_rain_date_before_event_is_explained` |
+| 7 | Linking an account to a property it already has showed "duplicate key value violates unique constraint" | No API check | "That property is already linked to this account." | `test_linking_a_property_twice_is_explained` |
+| 8 | Script error "Cannot set properties of null (setting 'onclick')" in Road ownership research / property reports | A deed image that failed after the reader turned the page looked up its retry button in a detached stage | Only the image still on screen reacts | Walkthrough clicks through `roads` and `reports` |
+| 9 | On a slow connection a board member (or resident) could land on the signed-out dashboard layout, a "Sign in" tile and no board tools, until reloading | community.js announced the account as soon as the session answered, sometimes before the dashboard script had loaded and started listening | The first announcement waits for the page to finish parsing | Walkthrough "slow connection" flow serves capabilities.js 2.5 s late (failed 3/3 before, passes after) |
+
+### Not fixed: listed for a decision
+
+- **Four wareham.gov links returned 404** (town site reorganised): fixed by pointing them at Internet Archive
+  copies of the same documents, labelled "archived copy": Street Listing PDF (Oct 2025), Town Accepted Streets PDF
+  (Nov 2025) and the town's 2026 horseshoe-crab notice (May 2026). The notice is seasonal; link next year's in
+  `private-app/bulletin.js` when the town posts it.
+- **Workstation paths in data files**: fixed. 976 research image paths (about 4,800 occurrences) pointed at the
+  researcher's computer (`/home/user/workspace/…`) in `audit.json`, `property-history.json` (the downloadable evidence
+  ledger), `road-wording.*` and `title-trace.*`. 765 now name the app's own copy of the same scan (record-scans
+  package); 210 with no copy anywhere became registry citations ("Plymouth County Registry of Deeds, Book 27263,
+  Page 1, image 1 (research working copy, not included)"); one working notes file is named as not included.
+- **Horseshoe-crab notice**: now edited by the administrator in the bulletin (Edit conservation notice: wording, link,
+  dates covered and the conservation-hold months), saved as `public_conservation_notice`.
+- **Errors from the database reached readers as raw text** in other places too. Fixed afterwards in dbaa4ba: `hba/supabase.py` now turns constraint violations into plain-language messages.
+- `board@hba.test` and `pending@hba.test` did not exist in the local Supabase although `test-accounts.txt` listed them;
+  the seed step now creates them through the app's own sign-up and approval.
+
+### By design (reported as warnings, not failures)
+
+Advisories need an official mass.gov or wareham.ma.us link; minutes cannot be dated in the future; a household already
+marked paid outside the receipt ledger cannot get a second credit; only the administrator may change a scheduling
+office linked to an account; resident-made issues, draft bids and draft volunteer tasks are not shown to other
+residents.

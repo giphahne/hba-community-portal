@@ -1,15 +1,7 @@
 (() => {
   'use strict';
-  // Hosted copies send X-Frame-Options: DENY on every response, so private pages cannot be framed by URL.
-  // Fetch the page (same session) and render it through srcdoc with a <base> so relative assets still resolve.
-  window.hbaLoadFrame=async function(frame,url){
-    const abs=new URL(url,document.baseURI).href;
-    const r=await fetch(abs,{cache:'no-store'});
-    if(!r.ok){let d={};try{d=await r.json();}catch{}throw Error(d.detail||('The page could not be loaded ('+r.status+').'));}
-    const html=await r.text(),dir=abs.slice(0,abs.lastIndexOf('/')+1);
-    frame.removeAttribute('src');
-    frame.srcdoc=/<head[^>]*>/i.test(html)?html.replace(/<head[^>]*>/i,m=>m+'<base href="'+dir+'">'):'<base href="'+dir+'">'+html;
-  };
+  // Learning tools (Sand School, budget simulator) are same-origin pages loaded into frames by URL.
+  window.hbaLoadFrame=async function(frame,url){frame.src=new URL(url,document.baseURI).href;};
   let locked=false,seenMember=false;
   const root=window.__HBA_API_ROOT__,approved=s=>s?.signed_in&&['resident','board','admin'].includes(s.member?.role);
   function lock(){

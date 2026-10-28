@@ -37,7 +37,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/12484_224_p1.jpg"
+            "title-trace/repair_1/12484_224_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot 83, Hamilton Beach November 1922, Plan 3/511; matches current Lot 83.",
@@ -92,9 +92,9 @@
           "pages_total": 3,
           "pages_read": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/41065_139_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/41065_139_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/41065_139_p3.jpg"
+            "title-trace/repair_2/41065_139_p1.jpg",
+            "title-trace/repair_2/41065_139_p2.jpg",
+            "title-trace/repair_2/41065_139_p3.jpg"
           ],
           "lot_match": "Both parcels match: lots36/37 Hayward April1 1915 Plan2/640 and Pilgrim Avenue 1.17 acres assessor50F/1051.",
           "quote": "Subject to and together with all easements, rights, privileges, conditions, and rights of way of record.",
@@ -125,7 +125,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/39596_120_p1.jpg"
+            "title-trace/repair_12/39596_120_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Trust authority only;no parcel/lot description.",
@@ -147,7 +147,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/40425_336_p1.jpg"
+            "title-trace/repair_12/40425_336_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Trust authority only;no parcel/lot description.",
@@ -169,7 +169,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/40425_339_p1.jpg"
+            "title-trace/repair_12/40425_339_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Trust authority only;no parcel/lot description.",
@@ -217,8 +217,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/40249_212_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/40249_212_p2.jpg"
+            "title-trace/repair_3/40249_212_p1.jpg",
+            "title-trace/repair_3/40249_212_p2.jpg"
           ],
           "lot_match": "Certificate of Dacey Family Nominee Trust; trustors' address 49 Pilgrim Avenue, but no lot conveyance.",
           "quote": "There are no additional facts which constitute a condition precedent to acts by the Trustees",
@@ -240,8 +240,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/40249_214_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/40249_214_p2.jpg"
+            "title-trace/repair_3/40249_214_p1.jpg",
+            "title-trace/repair_3/40249_214_p2.jpg"
           ],
           "lot_match": "Lot 26, 7,275 square feet, Rowley Quasuet Bluffs plan July 18, 1945; same Pilgrim/Smith boundaries.",
           "quote": "Subject to restrictions of record insofar as the same are now in force and applicable.",
@@ -265,7 +265,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/7883_257_p1.jpg"
+            "title-trace/repair_13/7883_257_p1.jpg"
           ],
           "lot_match": "Lot26 Quasuet Bluffs Rowley1945,7275sqft; exact current description.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record",
@@ -315,11 +315,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1808_168_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1808_168_p2.jpg"
+            "title-trace/repair_4/1808_168_p1.jpg",
+            "title-trace/repair_4/1808_168_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1808_168_p3.jpg"
+            "title-trace/repair_4/1808_168_p3.jpg"
           ],
           "lot_match": "Hingham lots 85,86,87, Rice Road/Talbot Road; not lot107.",
           "quote": "Subject to encumbrances of record.",
@@ -344,8 +344,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/9973_100_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/9973_100_p2.jpg"
+            "title-trace/repair_4/9973_100_p1.jpg",
+            "title-trace/repair_4/9973_100_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Hull/Nantasket Beach lots3,18 and lot A; not Hamilton Beach lot107.",
@@ -372,7 +372,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/13158_142_p1.jpg"
+            "title-trace/repair_4/13158_142_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot92, 15 Turner; not lot107, 16 Turner.",
@@ -396,12 +396,12 @@
           "pages_read": 3,
           "pages_inspected": 4,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/500_235_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/500_235_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/500_235_p3.jpg"
+            "title-trace/repair_14/500_235_p1.jpg",
+            "title-trace/repair_14/500_235_p2.jpg",
+            "title-trace/repair_14/500_235_p3.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/500_235_p4.jpg"
+            "title-trace/repair_14/500_235_p4.jpg"
           ],
           "lot_match": "Hull NantasketBeach lot3; not HamiltonBeach lot107.",
           "quote": "To Have and To Hold the above granted premises, with all the privileges and appurtenances to the same belonging",
@@ -454,9 +454,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/14657_82_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/14657_82_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/14657_82_p3.jpg"
+            "title-trace/repair_1/14657_82_p1.jpg",
+            "title-trace/repair_1/14657_82_p2.jpg",
+            "title-trace/repair_1/14657_82_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots 110 and 111, Hamilton Beach Hayward 1915; both match current.",
@@ -483,7 +483,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/6805_115_p1.jpg"
+            "title-trace/repair_1/6805_115_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot 110 Hamilton Beach Hayward 1915; Mason Avenue is earlier street name for current Surf Avenue. Matches current Lot 110.",
@@ -507,7 +507,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/3738_183_p1.jpg"
+            "title-trace/repair_1/3738_183_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot 111 Hamilton Beach Hayward 1915, Mason Avenue; matches current Lot 111.",
@@ -531,11 +531,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1490_588_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1490_588_p2.jpg"
+            "title-trace/repair_11/1490_588_p1.jpg",
+            "title-trace/repair_11/1490_588_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1490_588_p3.jpg"
+            "title-trace/repair_11/1490_588_p3.jpg"
           ],
           "lot_match": "Lot110 HamiltonBeach Hayward1915 exactmatch tocurrent110; does not covercurrent111.",
           "quote": "reserving however to the grantor and its other grantees and to the public the right to use the beach for bathing, boating and passage in common with this grantee.",
@@ -591,8 +591,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/28363_50_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/28363_50_p2.jpg"
+            "title-trace/repair_2/28363_50_p1.jpg",
+            "title-trace/repair_2/28363_50_p2.jpg"
           ],
           "lot_match": "Lots113/114 Hamilton Beach March1924 Churbuck; Plan3/511;7Surf matches.",
           "quote": "Together with all rights, privileges, and easements connected therewith and subject to restrictions and easements of record and are hereby conveyed subject to any building and zoning bylaw requirements which may be in force and applicable.",
@@ -618,8 +618,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/25430_333_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/25430_333_p2.jpg"
+            "title-trace/repair_12/25430_333_p1.jpg",
+            "title-trace/repair_12/25430_333_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots113/114March1924ChurbuckPlan3/511;7Surf matches.",
@@ -669,7 +669,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/39175_92_p1.jpg"
+            "title-trace/repair_3/39175_92_p1.jpg"
           ],
           "lot_match": "Lot 12, Hayward & Hayward 1915, 15 Worrall Avenue; beach boundary same described parcel.",
           "quote": "This conveyance is made subject to the reservation of The State Realty Corporation and its grantees as set forth in deed from said The State Realty Corporation to one Coggan, dated August 29, 1923, and recorded in said Registry of Deeds, Book 1438, Pages 494-495, and to the restrictions set forth in said deed, in so far as said restrictions are now in effect and applicable.",
@@ -693,12 +693,12 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/1438_494_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/1438_494_p2.jpg"
+            "title-trace/repair_17/1438_494_p1.jpg",
+            "title-trace/repair_17/1438_494_p2.jpg"
           ],
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/1438_494_p3.jpg",
+              "image": "title-trace/repair_17/1438_494_p3.jpg",
               "reason": "Duplicatebook1438page495,alreadyreadviewerpage2"
             }
           ],
@@ -769,7 +769,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3942_713_p1.jpg"
+            "title-trace/repair_4/3942_713_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot123, Mason now Surf Avenue, Hayward1915; one-third interest matches.",
@@ -793,8 +793,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3942_714_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3942_714_p2.jpg"
+            "title-trace/repair_4/3942_714_p1.jpg",
+            "title-trace/repair_4/3942_714_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "ParcelI two-thirds lot123; ParcelII lot122; Hayward1915, matches both mapped lots.",
@@ -820,9 +820,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46498_93_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46498_93_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46498_93_p3.jpg"
+            "title-trace/repair_4/46498_93_p1.jpg",
+            "title-trace/repair_4/46498_93_p2.jpg",
+            "title-trace/repair_4/46498_93_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots122 and123, 12/14 Surf, Plan2/640 and3/511; matches.",
@@ -850,10 +850,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/1852_572_p1.jpg"
+            "title-trace/repair_14/1852_572_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/1852_572_p2.jpg"
+            "title-trace/repair_14/1852_572_p2.jpg"
           ],
           "lot_match": "Lot123 only, Mason/Surf west side; lot122 not included in this deed.",
           "quote": "reserving however to the grantor and it other grantees and to the public the right to use the beach in front of said lot for bathing, boating and passage in common with these grantees",
@@ -912,8 +912,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/43539_256_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/43539_256_p2.jpg"
+            "title-trace/repair_1/43539_256_p1.jpg",
+            "title-trace/repair_1/43539_256_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot 124 Hamilton Beach Hayward 1915, corner Algelo and Mason; matches current.",
@@ -938,8 +938,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/43226_85_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/43226_85_p2.jpg"
+            "title-trace/repair_11/43226_85_p1.jpg",
+            "title-trace/repair_11/43226_85_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot124 HamiltonBeach Hayward1915 matchescurrent3Algelo.",
@@ -988,8 +988,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3485_210_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3485_210_p2.jpg"
+            "title-trace/repair_2/3485_210_p1.jpg",
+            "title-trace/repair_2/3485_210_p2.jpg"
           ],
           "lot_match": "Lots126A/126B Hamilton Beach;1953WalterRowley Plan9/609; matches.",
           "quote": "Together with all rights, privileges and easements connected therewith, and subject to restrictions and easements of record, and subject to any building and zoning law requirements which may be in force and applicable.",
@@ -1002,7 +1002,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 3,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3485_210_p3.jpg"
+            "title-trace/repair_2/3485_210_p3.jpg"
           ],
           "scans": [
             "title-trace/repair_2/3485_210_p1.jpg",
@@ -1015,11 +1015,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/3304_516_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/3304_516_p2.jpg"
+            "title-trace/repair_12/3304_516_p1.jpg",
+            "title-trace/repair_12/3304_516_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/3304_516_p3.jpg"
+            "title-trace/repair_12/3304_516_p3.jpg"
           ],
           "classification": "checked",
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -1070,8 +1070,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/4842_391_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/4842_391_p2.jpg"
+            "title-trace/repair_3/4842_391_p1.jpg",
+            "title-trace/repair_3/4842_391_p2.jpg"
           ],
           "lot_match": "Lot 127 east Pilgrim Avenue, Hayward & Hayward 1915 Hamilton Beach formerly Quasuet Island.",
           "quote": "Subject to the reservations, conditions and restrictions set out in the deed of these premises by the State Realty Corporation to John W. Bowles, dated October 27, 1925 and recorded with Plymouth County Registry of Deeds, Book 1500, Pages 155-156.",
@@ -1097,13 +1097,13 @@
           "pages_inspected": 3,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/1500_155_p3.jpg",
+              "image": "title-trace/repair_13/1500_155_p3.jpg",
               "reason": "Duplicate subject page"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/1500_155_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/1500_155_p2.jpg"
+            "title-trace/repair_13/1500_155_p1.jpg",
+            "title-trace/repair_13/1500_155_p2.jpg"
           ],
           "lot_match": "Original State Realty grant of Lots127 AND128,1915Hayward Hamilton Beach; current parcel127 is included,128 not current.",
           "quote": "reserving however to the grantor and its other grantees and to the public the right to use the beach for bathing, boating and passage in common with this grantee.",
@@ -1128,7 +1128,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4693_158_p1.jpg"
+            "title-trace/repair_13/4693_158_p1.jpg"
           ],
           "lot_match": "Lot127 only, east Pilgrim; exact current component.",
           "quote": "Subject to the reservations, conditions and restrictions set out in the deed of these premises by the State Realty Corporation to John W. Bowles, dated October 27, 1925",
@@ -1153,7 +1153,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4693_157_p1.jpg"
+            "title-trace/repair_13/4693_157_p1.jpg"
           ],
           "lot_match": "Trust specifically Lot127; confirms same current parcel but no beach grant.",
           "quote": "To hold and administer the remainder interest in certain property",
@@ -1218,7 +1218,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/28113_298_p1.jpg"
+            "title-trace/repair_4/28113_298_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot157 and part158, Hayward1915 Quaset/Hamilton Beach, 11 Broadmarsh; matches.",
@@ -1267,10 +1267,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/2562_383_p1.jpg"
+            "title-trace/repair_1/2562_383_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/2562_383_p2.jpg"
+            "title-trace/repair_1/2562_383_p2.jpg"
           ],
           "lot_match": "Lots 161 and 162 Hamilton Beach Hayward 1915, easterly Plymouth Avenue; matches two current lots.",
           "quote": "And said premises are also conveyed subject to the taxes assessed as of January 1, 1957, which taxes the Grantees also assume and agree to pay.",
@@ -1293,8 +1293,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/2647_213_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/2647_213_p2.jpg"
+            "title-trace/repair_1/2647_213_p1.jpg",
+            "title-trace/repair_1/2647_213_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Part Lot 160 Hamilton Beach Hayward 1915, 10 feet on Plymouth Avenue and about 140 feet depth; matches current part Lot 160.",
@@ -1319,8 +1319,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5938_50_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5938_50_p2.jpg"
+            "title-trace/repair_1/5938_50_p1.jpg",
+            "title-trace/repair_1/5938_50_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots 161,162 and part 160 exactly match current combined parcel.",
@@ -1349,8 +1349,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/47506_28_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/47506_28_p2.jpg"
+            "title-trace/repair_1/47506_28_p1.jpg",
+            "title-trace/repair_1/47506_28_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Residence 21 Broadmarsh Avenue connects Charles A. Dustin by name/address only, not lot title.",
@@ -1396,7 +1396,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/7976_224_p1.jpg"
+            "title-trace/repair_2/7976_224_p1.jpg"
           ],
           "lot_match": "Lot166 and adjoining20-foot width of167;April1 1915Plan2/640;29Broadmarsh matches.",
           "quote": null,
@@ -1419,7 +1419,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/7548_211_p1.jpg"
+            "title-trace/repair_12/7548_211_p1.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -1472,7 +1472,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3804_187_p1.jpg"
+            "title-trace/repair_3/3804_187_p1.jpg"
           ],
           "lot_match": "Lot 17 west Pilgrim, corrected March 1924 T.A. Churbuck plan Book 3/831; same beach boundary.",
           "quote": "Together with the benefit of and subject to easements, reservations and restrictions of record so far as the same are in force and applicable.",
@@ -1495,13 +1495,13 @@
           "pages_inspected": 3,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3339_697_p3.jpg",
+              "image": "title-trace/repair_13/3339_697_p3.jpg",
               "reason": "Duplicate subject page"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3339_697_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3339_697_p2.jpg"
+            "title-trace/repair_13/3339_697_p1.jpg",
+            "title-trace/repair_13/3339_697_p2.jpg"
           ],
           "lot_match": "Lot17 west Pilgrim, correctedMarch1924Churbuck plan; exact current boundaries.",
           "quote": "Together with the benefit of and subject to easements, reservations and restrictions of record so far as the same are in force and applicable.",
@@ -1550,17 +1550,17 @@
           "pages_read": 3,
           "pages_inspected": 9,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_15/1413_548_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/1413_549.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/1413_550.jpg"
+            "title-trace/repair_15/1413_548_p1.jpg",
+            "title-trace/1413_549.jpg",
+            "title-trace/1413_550.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1413_549_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1413_549_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1413_549_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_15/1413_548_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_15/1413_548_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_15/1413_548_p4.jpg"
+            "title-trace/repair_4/1413_549_p1.jpg",
+            "title-trace/repair_4/1413_549_p2.jpg",
+            "title-trace/repair_4/1413_549_p3.jpg",
+            "title-trace/repair_15/1413_548_p2.jpg",
+            "title-trace/repair_15/1413_548_p3.jpg",
+            "title-trace/repair_15/1413_548_p4.jpg"
           ],
           "lot_match": "Parent conveyance: approximately 18-acre Quasuett Island, marsh tracts and buildings; expressly excludes lots 6, 166 and 167 previously deeded by Robert H. Montgomery and Manuel L. Sylvia et al., November 20, 1914, Book 1203/345–346.",
           "quote": "Together with all the privileges, appurtenances, ways, streets and riparian rights, set out, described and contained in a Plan of Shore Lots at Quasuett Island, Wareham, Mass., drawn by E. B. and L. S. Hayward, Civil Engineers dated April 1, 1915",
@@ -1577,7 +1577,7 @@
           "notes": "CORRECTION: actual opening begins bottom1413/548; 549 is continuation. Opening548 and549–550 independently visually inspected, complete3subjectpages. Alias1413/549 retained because later instruments cite it; actual firstpage548. Repair15 fourth capture counter4of4 actually duplicates header549, NOT551; excluded. Following mortgage begins bottom550 and supplied repair4 page551 is unrelated. Generic parent tract/appurtenant/riparian rights only, no individual lot1041 bathing/boating/passage benefit. Granting Manuel L. Sylvia and Julius C. Sylvia, with spouse releases Rose V. and Julia P. Sylvia; State Realty Corporation grantee. Executed1922-08-09, recorded1922-08-16.",
           "registry_url": "https://titleview.org/plymouthdeeds/",
           "actual_first_page_ref": "1413/548",
-          "canonical_review": "/home/user/workspace/hamilton_beach_map/title-trace/foundational-review.json",
+          "canonical_review": "research working file title-trace/foundational-review.json (not included)",
           "scans": [
             "title-trace/repair_15/1413_548_p1.jpg",
             "title-trace/1413_549.jpg",
@@ -1592,7 +1592,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/27408_166_p1.jpg"
+            "title-trace/repair_4/27408_166_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Hamilton Beach assessor Sheet50F lots1040/1041,55,800sf; matches.",
@@ -1617,12 +1617,12 @@
           "pages_read": 3,
           "pages_inspected": 4,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/623_450_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/623_450_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/623_450_p3.jpg"
+            "title-trace/repair_14/623_450_p1.jpg",
+            "title-trace/repair_14/623_450_p2.jpg",
+            "title-trace/repair_14/623_450_p3.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/623_450_p4.jpg"
+            "title-trace/repair_14/623_450_p4.jpg"
           ],
           "lot_match": "Parent Wareham Quasuet marsh/meadow tracts ~10acres; no specific assessor1041 modern parcel allocation.",
           "quote": "To Have and To Hold the above-granted premises, with all the privileges and appurtenances to the same belonging",
@@ -1649,12 +1649,12 @@
           "pages_read": 3,
           "pages_inspected": 4,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/637_282_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/637_282_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/637_282_p3.jpg"
+            "title-trace/repair_14/637_282_p1.jpg",
+            "title-trace/repair_14/637_282_p2.jpg",
+            "title-trace/repair_14/637_282_p3.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/637_282_p4.jpg"
+            "title-trace/repair_14/637_282_p4.jpg"
           ],
           "lot_match": "Parent QuasuetIsland about18acres plus marsh/meadow/saltmarsh; no exact assessor1041 allocation.",
           "quote": "To Have and To Hold the granted premises, with all the privileges and appurtenances thereto belonging",
@@ -1717,8 +1717,8 @@
             15
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/plymouth-2/fresh_captures/scans/47207_14_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/plymouth-2/fresh_captures/scans/47207_14_2.jpg"
+            "scans/47207_14_1.jpg",
+            "scans/47207_14_2.jpg"
           ],
           "excluded_images": [],
           "quote": "Together with all rights, privileges and easements connected therewith and subject to such restrictions and conditions as may exist and be in force and applicable.",
@@ -1745,8 +1745,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_144_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_144_p2.jpg"
+            "title-trace/repair_11/13575_144_p1.jpg",
+            "title-trace/repair_11/13575_144_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot131 HamiltonBeachHayward1915 matchescurrent10Worrell.",
@@ -1772,14 +1772,14 @@
           "pages_read": 8,
           "pages_inspected": 8,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p4.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p5.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p6.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p7.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/13575_136_p8.jpg"
+            "title-trace/repair_11/13575_136_p1.jpg",
+            "title-trace/repair_11/13575_136_p2.jpg",
+            "title-trace/repair_11/13575_136_p3.jpg",
+            "title-trace/repair_11/13575_136_p4.jpg",
+            "title-trace/repair_11/13575_136_p5.jpg",
+            "title-trace/repair_11/13575_136_p6.jpg",
+            "title-trace/repair_11/13575_136_p7.jpg",
+            "title-trace/repair_11/13575_136_p8.jpg"
           ],
           "excluded_images": [],
           "lot_match": "10Worrell definedasRealEstate bysame-dateddeedrecordedherewith; relatesLot131 butnotbeachgrant.",
@@ -1831,8 +1831,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/33394_111_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/33394_111_p2.jpg"
+            "title-trace/repair_2/33394_111_p1.jpg",
+            "title-trace/repair_2/33394_111_p2.jpg"
           ],
           "lot_match": "Lot21 westPilgrim;November1922ChurbuckPlan3/511;69Pilgrim matches.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions, conditions and easements of record and subject to any building and zoning law requirements which may be in force and applicable.",
@@ -1856,8 +1856,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/6242_36_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/6242_36_p2.jpg"
+            "title-trace/repair_12/6242_36_p1.jpg",
+            "title-trace/repair_12/6242_36_p2.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -1910,7 +1910,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/4552_164_p1.jpg"
+            "title-trace/repair_3/4552_164_p1.jpg"
           ],
           "lot_match": "Tax taking: assessor Sheet 50F Lot 22, about 4,095 square feet, Alice E. Monahan et als.",
           "quote": "Said land is taken for non-payment of taxes as defined in Section 43 of said Chapter 60",
@@ -1938,7 +1938,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4795_421_p1.jpg"
+            "title-trace/repair_13/4795_421_p1.jpg"
           ],
           "lot_match": "Lot22 Sheet50F4095sqft; matches Monahan tax-taking chain.",
           "quote": "to foreclose a tax lien acquired under a certain tax deed",
@@ -1991,8 +1991,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1459_307_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1459_307_p2.jpg"
+            "title-trace/repair_4/1459_307_p1.jpg",
+            "title-trace/repair_4/1459_307_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Actual State Realty→Everett W. Knight deed begins bottom307 (after unrelated Swift's Beach lot74 deed) and continues308; includes lots31 and35, Algelo, Hayward1915. Lot31 matches.",
@@ -2017,8 +2017,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/43116_64_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/43116_64_p2.jpg"
+            "title-trace/repair_4/43116_64_p1.jpg",
+            "title-trace/repair_4/43116_64_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot31,10Algelo,Plan2/640,4364sf; matches.",
@@ -2085,9 +2085,9 @@
           "pages_total": 3,
           "pages_read": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/41065_139_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/41065_139_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/41065_139_p3.jpg"
+            "title-trace/repair_2/41065_139_p1.jpg",
+            "title-trace/repair_2/41065_139_p2.jpg",
+            "title-trace/repair_2/41065_139_p3.jpg"
           ],
           "lot_match": "Both parcels match: lots36/37 Hayward April1 1915 Plan2/640 and Pilgrim Avenue 1.17 acres assessor50F/1051.",
           "quote": "Subject to and together with all easements, rights, privileges, conditions, and rights of way of record.",
@@ -2118,7 +2118,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/39596_120_p1.jpg"
+            "title-trace/repair_12/39596_120_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Trust authority only;no parcel/lot description.",
@@ -2140,7 +2140,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/40425_336_p1.jpg"
+            "title-trace/repair_12/40425_336_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Trust authority only;no parcel/lot description.",
@@ -2162,7 +2162,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/40425_339_p1.jpg"
+            "title-trace/repair_12/40425_339_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Trust authority only;no parcel/lot description.",
@@ -2208,8 +2208,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/2838_358_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/2838_358_p2.jpg"
+            "title-trace/repair_1/2838_358_p1.jpg",
+            "title-trace/repair_1/2838_358_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots40 and41 Plan of Shore Lots Hamilton Beach Nov1922 Plan3/511; matches current.",
@@ -2235,8 +2235,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2702_248_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2702_248_p2.jpg"
+            "title-trace/repair_11/2702_248_p1.jpg",
+            "title-trace/repair_11/2702_248_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots40/41 HamiltonBeachNov1922 Plan3/511 matchescurrent.",
@@ -2263,7 +2263,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/10864_279_p1.jpg"
+            "title-trace/repair_11/10864_279_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "30ThomasStreetBrantRockMarshfield, unrelated currentWareham40/41.",
@@ -2310,7 +2310,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/5143_245_p1.jpg"
+            "title-trace/repair_2/5143_245_p1.jpg"
           ],
           "lot_match": "Lot69 cornerAlgelo/Glen;1924Churbuckplan; matches.",
           "quote": "Said premises are conveyed subject to and with the benefit of all rights, easements and restrictions of record insofar as the same are now in force and applicable.",
@@ -2333,7 +2333,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/3649_378_p1.jpg"
+            "title-trace/repair_12/3649_378_p1.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -2393,8 +2393,8 @@
             218
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/plymouth-2/fresh_captures/scans/35233_217_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/plymouth-2/fresh_captures/scans/35233_217_2.jpg"
+            "scans/35233_217_1.jpg",
+            "scans/35233_217_2.jpg"
           ],
           "excluded_images": [],
           "quote": "The above described premises are conveyed subject to and with the benefit of privileges, conditions and restrictions of record insofar as the same are in force and applicable.",
@@ -2418,10 +2418,10 @@
           "pages_read": 4,
           "pages_inspected": 4,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/34938_94_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/34938_94_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/34938_94_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/34938_94_p4.jpg"
+            "title-trace/repair_17/34938_94_p1.jpg",
+            "title-trace/repair_17/34938_94_p2.jpg",
+            "title-trace/repair_17/34938_94_p3.jpg",
+            "title-trace/repair_17/34938_94_p4.jpg"
           ],
           "excluded_images": [],
           "lot_match": "MATCH Lot78 northGlen,3Glen,Hayward1915,exactsamebounds;estateJoanM.Regan→WalterF.PasterJr.",
@@ -2471,7 +2471,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/4345_49_1.jpg"
+            "title-trace/gap-followup/scans/4345_49_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Weweantic Shores Lot74,12 Fourth Avenue, Plan7/418; not Hamilton Beach Lot51.",
@@ -2494,7 +2494,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/4862_466_1.jpg"
+            "title-trace/gap-followup/scans/4862_466_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Weweantic Shores Lot74,12 Fourth Avenue, Plan7/418; not Hamilton Beach Lot51.",
@@ -2543,11 +2543,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1499_7_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1499_7_p2.jpg"
+            "title-trace/repair_1/1499_7_p1.jpg",
+            "title-trace/repair_1/1499_7_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1499_7_p3.jpg"
+            "title-trace/repair_1/1499_7_p3.jpg"
           ],
           "lot_match": "Lot54 Hamilton Beach Hayward1915, Reynolds Avenue; exact current lot match.",
           "quote": "reserving however to the grantor and its other grantees and to the public the right to use the beach for bathing, boating and passage in common with this grantee.",
@@ -2569,10 +2569,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1499_8_p1.jpg"
+            "title-trace/repair_1/1499_8_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1499_8_p2.jpg"
+            "title-trace/repair_1/1499_8_p2.jpg"
           ],
           "lot_match": "Indexed1499/8 deed is Hull Main Street and unrelated. Upper page8 is Lot54 continuation from1499/7; lower8/upper9 is separate Lot37 deed, not Lot54.",
           "quote": null,
@@ -2595,9 +2595,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/44779_316_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/44779_316_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/44779_316_p3.jpg"
+            "title-trace/repair_1/44779_316_p1.jpg",
+            "title-trace/repair_1/44779_316_p2.jpg",
+            "title-trace/repair_1/44779_316_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot54 matches current5Reynolds and root1499/7-8.",
@@ -2658,8 +2658,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/28205_10_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/28205_10_p2.jpg"
+            "title-trace/repair_2/28205_10_p1.jpg",
+            "title-trace/repair_2/28205_10_p2.jpg"
           ],
           "lot_match": "Lot55 eastReynolds;March1924Churbuckplan; matches.",
           "quote": null,
@@ -2683,7 +2683,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/4878_475_p1.jpg"
+            "title-trace/repair_12/4878_475_p1.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -2735,8 +2735,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/31566_173_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/31566_173_p2.jpg"
+            "title-trace/repair_3/31566_173_p1.jpg",
+            "title-trace/repair_3/31566_173_p2.jpg"
           ],
           "lot_match": "Lot 65 south Algelo, west Reynolds, Churbuck March 1924; 29 Algelo.",
           "quote": "No title work done at time of this conveyance.",
@@ -2760,8 +2760,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/36584_289_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/36584_289_p2.jpg"
+            "title-trace/repair_3/36584_289_p1.jpg",
+            "title-trace/repair_3/36584_289_p2.jpg"
           ],
           "lot_match": "Same Lot 65 and boundaries; adds November 1922 Plan Book 3/511.",
           "quote": "This deed is executed for the purpose of confirming and correcting a deed dated October 17, 2005",
@@ -2787,9 +2787,9 @@
           "pages_inspected": 3,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/29487_63_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/29487_63_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/29487_63_p3.jpg"
+            "title-trace/repair_13/29487_63_p1.jpg",
+            "title-trace/repair_13/29487_63_p2.jpg",
+            "title-trace/repair_13/29487_63_p3.jpg"
           ],
           "lot_match": "ExhibitA page65 Lot65 south Algelo/west Reynolds;29 Algelo exact current.",
           "quote": "Meaning and intending to convey LOT #65 on said plan, as the same may be bounded or described.",
@@ -2815,8 +2815,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/29487_61_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/29487_61_p2.jpg"
+            "title-trace/repair_13/29487_61_p1.jpg",
+            "title-trace/repair_13/29487_61_p2.jpg"
           ],
           "lot_match": "Seaview Realty Trust,soleThomasR.Keating; no lot conveyance.",
           "quote": "the Trustee has full power and authority to execute any and all documents",
@@ -2862,7 +2862,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/26608_345_p1.jpg"
+            "title-trace/repair_4/26608_345_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "LotQ-13-B, Pilgrim Avenue, Lonergan December10,1985 subdivision,1044sf; matches.",
@@ -2911,7 +2911,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/10231_105_p1.jpg"
+            "title-trace/repair_1/10231_105_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot58 HamiltonBeach Hayward1915, westReynolds; matches current.",
@@ -2937,11 +2937,11 @@
           "pages_read": 5,
           "pages_inspected": 5,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/10231_106_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/10231_106_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/10231_106_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/10231_106_p4.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/10231_106_p5.jpg"
+            "title-trace/repair_1/10231_106_p1.jpg",
+            "title-trace/repair_1/10231_106_p2.jpg",
+            "title-trace/repair_1/10231_106_p3.jpg",
+            "title-trace/repair_1/10231_106_p4.jpg",
+            "title-trace/repair_1/10231_106_p5.jpg"
           ],
           "excluded_images": [],
           "lot_match": "No specific parcel description; trust authority only, no lot58 rights grant.",
@@ -2967,8 +2967,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4669_226_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4669_226_p2.jpg"
+            "title-trace/repair_11/4669_226_p1.jpg",
+            "title-trace/repair_11/4669_226_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot58 HamiltonBeachHayward1915 matchescurrent6Reynolds.",
@@ -2994,11 +2994,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_16/1493_70_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_16/1493_70_p2.jpg"
+            "title-trace/repair_16/1493_70_p1.jpg",
+            "title-trace/repair_16/1493_70_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_16/1493_70_p3.jpg"
+            "title-trace/repair_16/1493_70_p3.jpg"
           ],
           "lot_match": "Exact Lot58, Hamilton Beach formerly Quasuet Island, Hayward & Hayward1915 plan; westReynolds Avenue, boundariesLots57,77,59. Matches current6Reynolds and reviewed4669/226,10231/105.",
           "quote": "reserving however to the grantor and its other grantees and to the public the right to use the beach for bathing, boating and passage in common with this grantee.",
@@ -3056,7 +3056,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/10558_115_p1.jpg"
+            "title-trace/repair_2/10558_115_p1.jpg"
           ],
           "lot_match": "Lot63 westReynolds1915Haywardplan; matches.",
           "quote": "Said premises are conveyed subject to restrictions of record so far as the same are now in force and applicable.",
@@ -3082,8 +3082,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1647_217_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1647_217_p2.jpg"
+            "title-trace/repair_2/1647_217_p1.jpg",
+            "title-trace/repair_2/1647_217_p2.jpg"
           ],
           "lot_match": "Lot63 westReynolds;1915Hayward;matches.",
           "quote": null,
@@ -3094,7 +3094,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 3,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1647_217_p3.jpg"
+            "title-trace/repair_2/1647_217_p3.jpg"
           ],
           "scans": [
             "title-trace/repair_2/1647_217_p1.jpg",
@@ -3108,8 +3108,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1647_218_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1647_218_p2.jpg"
+            "title-trace/repair_2/1647_218_p1.jpg",
+            "title-trace/repair_2/1647_218_p2.jpg"
           ],
           "lot_match": "Lot63 same1915description;matches.",
           "quote": null,
@@ -3123,7 +3123,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 3,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1647_218_p3.jpg"
+            "title-trace/repair_2/1647_218_p3.jpg"
           ],
           "scans": [
             "title-trace/repair_2/1647_218_p1.jpg",
@@ -3136,10 +3136,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/3032_160_p1.jpg"
+            "title-trace/repair_12/3032_160_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/3032_160_p2.jpg"
+            "title-trace/repair_12/3032_160_p2.jpg"
           ],
           "classification": "checked",
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -3190,7 +3190,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3807_635_p1.jpg"
+            "title-trace/repair_3/3807_635_p1.jpg"
           ],
           "lot_match": "Lot B-7, Sheet 50F, Quasuett Bluffs, about 9,679 sq ft; Glenda M. Kadlac.",
           "quote": "Said land is taken for non-payment of taxes as defined in Section 43 of said Chapter 60",
@@ -3214,16 +3214,16 @@
           "pages_inspected": 3,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4221_99_p2.jpg",
+              "image": "title-trace/repair_13/4221_99_p2.jpg",
               "reason": "Separate unrelated DavidA.Tufts mortgage4221/100–101; not continuation of4221/99"
             },
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4221_99_p3.jpg",
+              "image": "title-trace/repair_13/4221_99_p3.jpg",
               "reason": "Separate unrelated DavidA.Tufts mortgage4221/100–101; not continuation of4221/99"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4221_99_p1.jpg"
+            "title-trace/repair_13/4221_99_p1.jpg"
           ],
           "lot_match": "Not established: page99 namesCharlesT.Dennis andDeboraG.Dennis; no legal description on captured tail.",
           "quote": "the Mortgagee shall have the Statutory Power of Sale",
@@ -3268,8 +3268,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1939_366_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1939_366_p2.jpg"
+            "title-trace/repair_4/1939_366_p1.jpg",
+            "title-trace/repair_4/1939_366_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Actual Arthur L. Smith→John and Mary E. Goggin warranty deed starts bottom366 after unrelated Scituate mortgage; lots9,10,11 Quasuet Bluffs RowleyJuly18,1945 matches current10/11.",
@@ -3316,10 +3316,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/3307_534_p1.jpg"
+            "title-trace/repair_1/3307_534_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/3307_534_p2.jpg"
+            "title-trace/repair_1/3307_534_p2.jpg"
           ],
           "lot_match": "No parcel description; no demonstrated link to current Smith Avenue parcel.",
           "quote": null,
@@ -3342,8 +3342,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1797_505_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1797_505_p2.jpg"
+            "title-trace/repair_11/1797_505_p1.jpg",
+            "title-trace/repair_11/1797_505_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "BrocktonMorseAvenue Lot95 andparts93/94; unrelatedcurrentSmithAvenueB6.",
@@ -3391,9 +3391,9 @@
           "pages_total": 3,
           "pages_read": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/49081_84_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/49081_84_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/49081_84_p3.jpg"
+            "title-trace/repair_2/49081_84_p1.jpg",
+            "title-trace/repair_2/49081_84_p2.jpg",
+            "title-trace/repair_2/49081_84_p3.jpg"
           ],
           "lot_match": "Lot53 eastReynolds1915Hayward matches;ExhibitAcomplete.",
           "quote": "Subject to and with the benefit of all rights, rights of way, easements, appurtenances, reservations, and restrictions of record, insofar as the same are in force and applicable.",
@@ -3419,8 +3419,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/32382_30_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/32382_30_p2.jpg"
+            "title-trace/repair_12/32382_30_p1.jpg",
+            "title-trace/repair_12/32382_30_p2.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -3478,12 +3478,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_216_p2.jpg",
+              "image": "title-trace/repair_3/3386_216_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_216_p1.jpg"
+            "title-trace/repair_3/3386_216_p1.jpg"
           ],
           "lot_match": "Outside mapped Lot1045: Sheet15 Lot1023, 96 sq ft east Depot Street, Emma C. Brown, Isabel Lowe, Florence Hines.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -3506,12 +3506,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3465_563_p2.jpg",
+              "image": "title-trace/repair_3/3465_563_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3465_563_p1.jpg"
+            "title-trace/repair_3/3465_563_p1.jpg"
           ],
           "lot_match": "Outside: Sheet16 Lot1030, 1.7 acres marsh, Emma C. Brown, Isabel Lowe, Florence Hines.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -3535,12 +3535,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_222_p2.jpg",
+              "image": "title-trace/repair_3/3386_222_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_222_p1.jpg"
+            "title-trace/repair_3/3386_222_p1.jpg"
           ],
           "lot_match": "MATCH: assessor Sheet50F Lot1045, 3,910 sq ft Hamilton Beach, Rosaire A. Dumais and Muriel A. Dumais.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -3563,12 +3563,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_224_p2.jpg",
+              "image": "title-trace/repair_3/3386_224_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_224_p1.jpg"
+            "title-trace/repair_3/3386_224_p1.jpg"
           ],
           "lot_match": "Outside: 3/4 acre Elm Street, George J. Gonsalves.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -3591,12 +3591,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3465_579_p2.jpg",
+              "image": "title-trace/repair_3/3465_579_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3465_579_p1.jpg"
+            "title-trace/repair_3/3465_579_p1.jpg"
           ],
           "lot_match": "Outside: Mutual Oil Co., Sheet97 Lot1016, demolition building West Street.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -3619,12 +3619,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_242_p2.jpg",
+              "image": "title-trace/repair_3/3386_242_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3386_242_p1.jpg"
+            "title-trace/repair_3/3386_242_p1.jpg"
           ],
           "lot_match": "Outside: Vasco and Candida Tavares, Sheet97 Lot1013,32,220 sq ft Pierceville Road.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -3647,50 +3647,50 @@
           "pages_inspected": 40,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p40.jpg",
+              "image": "title-trace/repair_3/3608_215_p40.jpg",
               "reason": "Duplicate book3608 page216, already subject viewer page2"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p4.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p5.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p6.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p7.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p8.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p9.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p10.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p11.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p12.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p13.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p14.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p15.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p16.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p17.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p18.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p19.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p20.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p21.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p22.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p23.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p24.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p25.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p26.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p27.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p28.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p29.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p30.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p31.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p32.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p33.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p34.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p35.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p36.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p37.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p38.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3608_215_p39.jpg"
+            "title-trace/repair_3/3608_215_p1.jpg",
+            "title-trace/repair_3/3608_215_p2.jpg",
+            "title-trace/repair_3/3608_215_p3.jpg",
+            "title-trace/repair_3/3608_215_p4.jpg",
+            "title-trace/repair_3/3608_215_p5.jpg",
+            "title-trace/repair_3/3608_215_p6.jpg",
+            "title-trace/repair_3/3608_215_p7.jpg",
+            "title-trace/repair_3/3608_215_p8.jpg",
+            "title-trace/repair_3/3608_215_p9.jpg",
+            "title-trace/repair_3/3608_215_p10.jpg",
+            "title-trace/repair_3/3608_215_p11.jpg",
+            "title-trace/repair_3/3608_215_p12.jpg",
+            "title-trace/repair_3/3608_215_p13.jpg",
+            "title-trace/repair_3/3608_215_p14.jpg",
+            "title-trace/repair_3/3608_215_p15.jpg",
+            "title-trace/repair_3/3608_215_p16.jpg",
+            "title-trace/repair_3/3608_215_p17.jpg",
+            "title-trace/repair_3/3608_215_p18.jpg",
+            "title-trace/repair_3/3608_215_p19.jpg",
+            "title-trace/repair_3/3608_215_p20.jpg",
+            "title-trace/repair_3/3608_215_p21.jpg",
+            "title-trace/repair_3/3608_215_p22.jpg",
+            "title-trace/repair_3/3608_215_p23.jpg",
+            "title-trace/repair_3/3608_215_p24.jpg",
+            "title-trace/repair_3/3608_215_p25.jpg",
+            "title-trace/repair_3/3608_215_p26.jpg",
+            "title-trace/repair_3/3608_215_p27.jpg",
+            "title-trace/repair_3/3608_215_p28.jpg",
+            "title-trace/repair_3/3608_215_p29.jpg",
+            "title-trace/repair_3/3608_215_p30.jpg",
+            "title-trace/repair_3/3608_215_p31.jpg",
+            "title-trace/repair_3/3608_215_p32.jpg",
+            "title-trace/repair_3/3608_215_p33.jpg",
+            "title-trace/repair_3/3608_215_p34.jpg",
+            "title-trace/repair_3/3608_215_p35.jpg",
+            "title-trace/repair_3/3608_215_p36.jpg",
+            "title-trace/repair_3/3608_215_p37.jpg",
+            "title-trace/repair_3/3608_215_p38.jpg",
+            "title-trace/repair_3/3608_215_p39.jpg"
           ],
           "lot_match": "Tax-title low-value certificate for36 Wareham parcels. Relevant item11 is Sheet50F Lot1045 (Dumais), support statement at228.",
           "quote": "the value of each parcel of land held by the Town of Wareham under an instrument of taking or tax title deed listed herewith is insufficient to meet the taxes, interest and charges",
@@ -3816,8 +3816,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/2102_176_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/2102_176_p2.jpg"
+            "title-trace/repair_17/2102_176_p1.jpg",
+            "title-trace/repair_17/2102_176_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "MATCH mappedSheet50FLot1045: VirginiaK./ClareCarpenterJr→RosaireA./MurielA.Dumais,50x78.20ft=3910sqft; beginsnorthwestcornerROWbyGeorgeP.Morse.",
@@ -3866,8 +3866,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/14163_336_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/14163_336_p2.jpg"
+            "title-trace/repair_4/14163_336_p1.jpg",
+            "title-trace/repair_4/14163_336_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots148,147,146 north Allen; bounds match; no named plan or recording given.",
@@ -3892,8 +3892,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/6315_120_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/6315_120_p2.jpg"
+            "title-trace/repair_14/6315_120_p1.jpg",
+            "title-trace/repair_14/6315_120_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots148,147,146 north Allen, explicitly Quasuet Island/HamiltonBeach,Hayward1915; matches.",
@@ -3944,7 +3944,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/7115_110_p1.jpg"
+            "title-trace/repair_1/7115_110_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Q-13-B, 1044sqft strip on Pilgrim Avenue, Rowley Dec10 1985 Lonergan plan; matches current deed Q-13-B but current assessor Q12 mismatch unresolved.",
@@ -3968,8 +3968,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/5023_244_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/5023_244_p2.jpg"
+            "title-trace/repair_11/5023_244_p1.jpg",
+            "title-trace/repair_11/5023_244_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Multipleparcels:SwiftNeckLot291 Plan2/566; triangularsouthLot15 andQuasuetBluffsLots13/14 Plan6/774. CurrentQ13Bstrip mayderivepartLots13/14 butnotspecificallydescribed; needdivisionplan continuity.",
@@ -4023,7 +4023,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/8955_176_p1.jpg"
+            "title-trace/repair_2/8955_176_p1.jpg"
           ],
           "lot_match": "Lot26westPilgrimPlan2/640matches.",
           "quote": "Subject to reservations and restrictions of record which are still in effect.",
@@ -4047,8 +4047,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_72_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_72_p2.jpg"
+            "title-trace/repair_2/50224_72_p1.jpg",
+            "title-trace/repair_2/50224_72_p2.jpg"
           ],
           "lot_match": "Lot26Plan2/640;59Pilgrim matches.",
           "quote": null,
@@ -4073,8 +4073,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_74_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_74_p2.jpg"
+            "title-trace/repair_2/50224_74_p1.jpg",
+            "title-trace/repair_2/50224_74_p2.jpg"
           ],
           "lot_match": "Lot26Plan2/640;59Pilgrim matches.",
           "quote": null,
@@ -4099,8 +4099,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_76_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_76_p2.jpg"
+            "title-trace/repair_2/50224_76_p1.jpg",
+            "title-trace/repair_2/50224_76_p2.jpg"
           ],
           "lot_match": "Lot26Plan2/640;59Pilgrim matches.",
           "quote": null,
@@ -4125,8 +4125,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_78_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/50224_78_p2.jpg"
+            "title-trace/repair_2/50224_78_p1.jpg",
+            "title-trace/repair_2/50224_78_p2.jpg"
           ],
           "lot_match": "Lot26Plan2/640;59Pilgrim matches.",
           "quote": null,
@@ -4177,12 +4177,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3147_129_p2.jpg",
+              "image": "title-trace/repair_3/3147_129_p2.jpg",
               "reason": "Unrelated following instrument, not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3147_129_p1.jpg"
+            "title-trace/repair_3/3147_129_p1.jpg"
           ],
           "lot_match": "WRONG parcel/instrument: Plymouth Fresh Pond Estates all lots, not Wareham Hamilton Beach.",
           "quote": "said lots are hereby released from the restrictions as to sale and building specified thereon",
@@ -4206,13 +4206,13 @@
           "pages_inspected": 3,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3147_127_p3.jpg",
+              "image": "title-trace/repair_13/3147_127_p3.jpg",
               "reason": "Duplicate subject page"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3147_127_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3147_127_p2.jpg"
+            "title-trace/repair_13/3147_127_p1.jpg",
+            "title-trace/repair_13/3147_127_p2.jpg"
           ],
           "lot_match": "Wrong Plymouth Fresh Pond Estates,CharlesH.Schiano subdivision36lots; outside Hamilton Beach.",
           "quote": "I will not convey any lot or erect or place on any lot any permanent building until the work on the ground necessary to adequately serve such lot has been completed",
@@ -4260,8 +4260,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/52019_38_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/52019_38_p2.jpg"
+            "title-trace/repair_4/52019_38_p1.jpg",
+            "title-trace/repair_4/52019_38_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot97 Hamilton Beach,5Turner,4000sf, Pearl Avenue; matches.",
@@ -4286,8 +4286,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/29959_347_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/29959_347_p2.jpg"
+            "title-trace/repair_14/29959_347_p1.jpg",
+            "title-trace/repair_14/29959_347_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot97,5Turner,4000sf, HamiltonBeach; matches.",
@@ -4337,8 +4337,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/4615_381_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/4615_381_p2.jpg"
+            "title-trace/repair_1/4615_381_p1.jpg",
+            "title-trace/repair_1/4615_381_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot24 HamiltonBeach Hayward1915 Plan2/640, westPilgrim; matches current.",
@@ -4363,10 +4363,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/3229_373_p1.jpg"
+            "title-trace/repair_11/3229_373_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/3229_373_p2.jpg"
+            "title-trace/repair_11/3229_373_p2.jpg"
           ],
           "lot_match": "Lot24 HamiltonBeach Plan2/640 matchescurrent63Pilgrim.",
           "quote": null,
@@ -4418,7 +4418,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/28113_298_p1.jpg"
+            "title-trace/repair_4/28113_298_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot157 and part158, Hayward1915 Quaset/Hamilton Beach, 11 Broadmarsh; matches.",
@@ -4464,7 +4464,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/14170_220_p1.jpg"
+            "title-trace/repair_2/14170_220_p1.jpg"
           ],
           "lot_match": "Lots33/34Plan3/511matches.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record and are hereby conveyed subject to any building and zoning law requirements which may be in force and applicable.",
@@ -4488,7 +4488,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/16291_73_p1.jpg"
+            "title-trace/repair_2/16291_73_p1.jpg"
           ],
           "lot_match": "Lots33/34Plan3/511matches.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record and are hereby conveyed subject to any building and zoning law requirements which may be in force and applicable.",
@@ -4512,8 +4512,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/4728_133_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/4728_133_p2.jpg"
+            "title-trace/repair_12/4728_133_p1.jpg",
+            "title-trace/repair_12/4728_133_p2.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -4538,8 +4538,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/5137_377_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/5137_377_p2.jpg"
+            "title-trace/repair_12/5137_377_p1.jpg",
+            "title-trace/repair_12/5137_377_p2.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -4594,7 +4594,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3777_676_p1.jpg"
+            "title-trace/repair_3/3777_676_p1.jpg"
           ],
           "lot_match": "MATCH Lot109 south Algelo/east Mason, Hamilton Beach March1924 Churbuck; same current parcel component.",
           "quote": "With the right to use the beach in front of the other lots, as described in deed hereinafter referred to, in common with the other grantees of the State Realty Corporation and the public, for bathing, boating and passage.",
@@ -4618,7 +4618,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/4773_281_p1.jpg"
+            "title-trace/repair_3/4773_281_p1.jpg"
           ],
           "lot_match": "MATCH Lot108, Hamilton Beach November1922 Churbuck Plan3/511; current second component.",
           "quote": "with the right to use the beach in front of the other lots included in this tract in common with others entitled thereto.",
@@ -4677,8 +4677,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46582_314_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46582_314_p2.jpg"
+            "title-trace/repair_4/46582_314_p1.jpg",
+            "title-trace/repair_4/46582_314_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot5 Worrall/Wequitt,Plan2/640, HaywardApril1,1915; matches.",
@@ -4705,8 +4705,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_54_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_54_p2.jpg"
+            "title-trace/repair_14/10702_54_p1.jpg",
+            "title-trace/repair_14/10702_54_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot5,29Worrall,QuasuettIsland,Plan2/640; matches.",
@@ -4734,25 +4734,25 @@
           "pages_read": 19,
           "pages_inspected": 19,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p4.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p5.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p6.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p7.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p8.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p9.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p10.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p11.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p12.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p13.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p14.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p15.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p16.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p17.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p18.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10702_35_p19.jpg"
+            "title-trace/repair_14/10702_35_p1.jpg",
+            "title-trace/repair_14/10702_35_p2.jpg",
+            "title-trace/repair_14/10702_35_p3.jpg",
+            "title-trace/repair_14/10702_35_p4.jpg",
+            "title-trace/repair_14/10702_35_p5.jpg",
+            "title-trace/repair_14/10702_35_p6.jpg",
+            "title-trace/repair_14/10702_35_p7.jpg",
+            "title-trace/repair_14/10702_35_p8.jpg",
+            "title-trace/repair_14/10702_35_p9.jpg",
+            "title-trace/repair_14/10702_35_p10.jpg",
+            "title-trace/repair_14/10702_35_p11.jpg",
+            "title-trace/repair_14/10702_35_p12.jpg",
+            "title-trace/repair_14/10702_35_p13.jpg",
+            "title-trace/repair_14/10702_35_p14.jpg",
+            "title-trace/repair_14/10702_35_p15.jpg",
+            "title-trace/repair_14/10702_35_p16.jpg",
+            "title-trace/repair_14/10702_35_p17.jpg",
+            "title-trace/repair_14/10702_35_p18.jpg",
+            "title-trace/repair_14/10702_35_p19.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Ziino Family Realty Trust administrative instrument; address29Worrall but no parcel schedule or beach easement grant.",
@@ -4836,8 +4836,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/17456_76_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/17456_76_p2.jpg"
+            "title-trace/repair_1/17456_76_p1.jpg",
+            "title-trace/repair_1/17456_76_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Greater partLot167 ShoreLotsQuasuetIsland April1 1915; exact current greater-part match.",
@@ -4862,8 +4862,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/14840_109_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/14840_109_p2.jpg"
+            "title-trace/repair_11/14840_109_p1.jpg",
+            "title-trace/repair_11/14840_109_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "GreaterpartLot167 ShoreLotsQuasuet1915 matchescurrent31BroadMarsh.",
@@ -4911,7 +4911,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3807_630_p1.jpg"
+            "title-trace/repair_2/3807_630_p1.jpg"
           ],
           "lot_match": "LotB-2Sheet50FQuasuettBluffs15372sqft;matchesassessorB2,noHamiltonshorelot.",
           "quote": null,
@@ -4935,7 +4935,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/4227_45_p1.jpg"
+            "title-trace/repair_12/4227_45_p1.jpg"
           ],
           "excluded_images": [],
           "classification": "checked",
@@ -4986,7 +4986,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3877_629_p1.jpg"
+            "title-trace/repair_3/3877_629_p1.jpg"
           ],
           "lot_match": "No parcel description. Discharge of attachment Clinton C. McRae estate/Paula L. McRae executrix; not title conveyance.",
           "quote": "is hereby discharged",
@@ -5009,8 +5009,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3384_108_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3384_108_p2.jpg"
+            "title-trace/repair_13/3384_108_p1.jpg",
+            "title-trace/repair_13/3384_108_p2.jpg"
           ],
           "lot_match": "Attachment allClintonC.McRae estate realty,PlymouthCounty; no mapped parcel identification.",
           "quote": "attached all the right, title and interest, not exempt by law from attachment or seizure on execution",
@@ -5058,10 +5058,10 @@
           "pages_read": 4,
           "pages_inspected": 4,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/50965_80_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/50965_80_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/50965_80_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/50965_80_p4.jpg"
+            "title-trace/repair_4/50965_80_p1.jpg",
+            "title-trace/repair_4/50965_80_p2.jpg",
+            "title-trace/repair_4/50965_80_p3.jpg",
+            "title-trace/repair_4/50965_80_p4.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots135,136,137,Plan3/511,20Pilgrim,11300sf; matches.",
@@ -5092,7 +5092,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/4228_642_p1.jpg"
+            "title-trace/repair_14/4228_642_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots135,136,137 Plan3/511,11300sf Allen/Pilgrim; matches current20Pilgrim.",
@@ -5117,8 +5117,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/36269_121_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/36269_121_p2.jpg"
+            "title-trace/repair_14/36269_121_p1.jpg",
+            "title-trace/repair_14/36269_121_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Bounds match20Pilgrim/Plan3/511; deed wrongly prints lots135,136,147, corrected137 in50965/80.",
@@ -5144,7 +5144,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/44052_329_p1.jpg"
+            "title-trace/repair_14/44052_329_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Ennio Pasqualino death record, linked grantor/life tenant; no parcel or beach clause.",
@@ -5191,8 +5191,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/16225_169_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/16225_169_p2.jpg"
+            "title-trace/repair_1/16225_169_p1.jpg",
+            "title-trace/repair_1/16225_169_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot52 HamiltonBeach Hayward1915, 9Reynolds; matches current.",
@@ -5217,8 +5217,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/11825_25_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/11825_25_p2.jpg"
+            "title-trace/repair_11/11825_25_p1.jpg",
+            "title-trace/repair_11/11825_25_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot52 HamiltonBeach1915matchescurrent9Reynolds.",
@@ -5266,7 +5266,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/4026_674_p1.jpg"
+            "title-trace/repair_2/4026_674_p1.jpg"
           ],
           "lot_match": "Lot96Plan2/640;PearlAvenuehistoricname;matchescurrentlot96.",
           "quote": "Said premises are conveyed subject to and with the benefit of rights, restrictions and easements of record insofar as the same are now in force and effect.",
@@ -5289,8 +5289,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/2587_156_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/2587_156_p2.jpg"
+            "title-trace/repair_12/2587_156_p1.jpg",
+            "title-trace/repair_12/2587_156_p2.jpg"
           ],
           "excluded_images": [],
           "classification": "reserved",
@@ -5354,7 +5354,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/11580_117_p1.jpg"
+            "title-trace/repair_3/11580_117_p1.jpg"
           ],
           "lot_match": "Lots151/152 Hamilton Beach, Shore Lots Plan3/511; Plymouth/Pilgrim boundaries match.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record",
@@ -5378,7 +5378,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4101_669_p1.jpg"
+            "title-trace/repair_13/4101_669_p1.jpg"
           ],
           "lot_match": "Lots151/152 same current; separate title chains stated for each.",
           "quote": "Lot No. 151 is subject to restrictions and reservations of record, set forth in a deed from Joseph E. Rogers, dated June 18, 1947, and recorded with said Deeds in Book 1490, Page 168, insofar as the same are in force and applicable.",
@@ -5404,7 +5404,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/5128_36_p1.jpg"
+            "title-trace/repair_13/5128_36_p1.jpg"
           ],
           "lot_match": "Lots151/152 exact current boundaries,Plan3/511.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record",
@@ -5451,7 +5451,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/10424_263_p1.jpg"
+            "title-trace/repair_4/10424_263_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "ParcelB,7687sf south PointRoad,JosephJune4,1991 plan; matches. Plan requires combination with Q-34 (current deed O-34 discrepancy).",
@@ -5476,7 +5476,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/10123_262_p1.jpg"
+            "title-trace/repair_14/10123_262_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot28 QuasuetBluffs Plan6/774,5650sf Point/Pilgrim; NOT subject ParcelB7687sf Plan34/505. Earliercitation alone does not prove sameparcel.",
@@ -5525,8 +5525,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/32578_8_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/32578_8_p2.jpg"
+            "title-trace/repair_1/32578_8_p1.jpg",
+            "title-trace/repair_1/32578_8_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot2 QuasuetBluffs WalterE.Rowley July18 1945,15Pilgrim; matches currentLot2.",
@@ -5572,8 +5572,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/44367_220_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/44367_220_p2.jpg"
+            "title-trace/repair_2/44367_220_p1.jpg",
+            "title-trace/repair_2/44367_220_p2.jpg"
           ],
           "lot_match": "Lot85westGlen1915Hayward;12Glenmatches.",
           "quote": "Subject to, and with the benefit of all rights, restrictions, easements, appurtenances, reservations and rights of way of record, insofar as the same may be in force and applicable.",
@@ -5597,8 +5597,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/41128_297_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/41128_297_p2.jpg"
+            "title-trace/repair_12/41128_297_p1.jpg",
+            "title-trace/repair_12/41128_297_p2.jpg"
           ],
           "excluded_images": [],
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -5647,8 +5647,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/1571_139_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/1571_139_2.jpg"
+            "title-trace/gap-followup/scans/1571_139_1.jpg",
+            "title-trace/gap-followup/scans/1571_139_2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Exact historical Lot 88, westerly Glen Avenue, March 1924 Hamilton Beach plan.",
@@ -5670,10 +5670,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/1689_186_1.jpg"
+            "title-trace/gap-followup/scans/1689_186_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/1689_186_2.jpg"
+            "title-trace/gap-followup/scans/1689_186_2.jpg"
           ],
           "lot_match": "Exact Lot 88; inherited from William Mackin, late of Brockton.",
           "quote": "For the title of the said William Mackin see deed from State Realty Corporation to William Mackin.",
@@ -5695,7 +5695,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/4198_584_1.jpg"
+            "title-trace/gap-followup/scans/4198_584_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Exact Lot88; interest held in common with William J. Mackin family or estate.",
@@ -5718,7 +5718,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/4198_581_1.jpg"
+            "title-trace/gap-followup/scans/4198_581_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot87, easterly Glen Avenue; not target Lot88.",
@@ -5741,7 +5741,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/3746_258_1.jpg"
+            "title-trace/gap-followup/scans/3746_258_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot106, west Pearl Avenue; not target Lot88.",
@@ -5788,9 +5788,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46278_45_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46278_45_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46278_45_p3.jpg"
+            "title-trace/repair_4/46278_45_p1.jpg",
+            "title-trace/repair_4/46278_45_p2.jpg",
+            "title-trace/repair_4/46278_45_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot105,12Turner,Plan3/511 November1922 Hamilton Beach; matches.",
@@ -5816,8 +5816,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/40713_156_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/40713_156_p2.jpg"
+            "title-trace/repair_14/40713_156_p1.jpg",
+            "title-trace/repair_14/40713_156_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot105,12Turner,Plan3/511 HamiltonBeachNovember1922; matches.",
@@ -5867,8 +5867,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/33947_332_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/33947_332_p2.jpg"
+            "title-trace/repair_1/33947_332_p1.jpg",
+            "title-trace/repair_1/33947_332_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot129 HamiltonBeach Plan2/640; matches current but current conveys24% interest only.",
@@ -5893,8 +5893,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/28774_340_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/28774_340_p2.jpg"
+            "title-trace/repair_11/28774_340_p1.jpg",
+            "title-trace/repair_11/28774_340_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot129 Plan2/640exactmatchcurrent72Pilgrim; current24%fractionalinterestlimited.",
@@ -5942,8 +5942,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/33394_115_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/33394_115_p2.jpg"
+            "title-trace/repair_2/33394_115_p1.jpg",
+            "title-trace/repair_2/33394_115_p2.jpg"
           ],
           "lot_match": "Lot19westPilgrimMarch1924Churbuck;73Pilgrimmatches.",
           "quote": "Together with the right to use the beach in front of the other lots included in this tract in common with the other grantees of the State Realty Corporation and the public for bathing, boating and passage.",
@@ -6005,7 +6005,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/4957_103_p1.jpg"
+            "title-trace/repair_3/4957_103_p1.jpg"
           ],
           "lot_match": "Lots149/150, State Realty Hayward1915 Plan3/497–552; same Pilgrim and beach boundaries.",
           "quote": "Being the same premises conveyed to Grantors by Deed of Joseph E. Rogers, dated June 30, 1947, and recorded with Plymouth County Registry of Deeds Book 1966, page 341.",
@@ -6028,12 +6028,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/1966_341_p2.jpg",
+              "image": "title-trace/repair_13/1966_341_p2.jpg",
               "reason": "Book1966 page342 is unrelatedRockland deed continuation/Marshfield mortgage; subjectends341"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/1966_341_p1.jpg"
+            "title-trace/repair_13/1966_341_p1.jpg"
           ],
           "lot_match": "Lots149/150,StateRealty1915Plan3/497–552; exact current.",
           "quote": "Subject to all restrictions of record; also to the 1947 real estate taxes.",
@@ -6083,8 +6083,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1462_547_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1462_547_p2.jpg"
+            "title-trace/repair_4/1462_547_p1.jpg",
+            "title-trace/repair_4/1462_547_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Actual State Realty→Torquato Farrioli warranty deed begins bottom547, continues548, includes lot18 west Pilgrim, Hayward1915; matches.",
@@ -6109,8 +6109,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/42096_220_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/42096_220_p2.jpg"
+            "title-trace/repair_4/42096_220_p1.jpg",
+            "title-trace/repair_4/42096_220_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot18,75Pilgrim,Hayward1915 Hamilton Beach; matches.",
@@ -6172,7 +6172,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/4163_304_p1.jpg"
+            "title-trace/repair_1/4163_304_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "AssessorLot1046 Sheet50F, about2.1acres; matches current assessor lot, not subdivision beach easement.",
@@ -6198,8 +6198,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2186_162_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2186_162_p2.jpg"
+            "title-trace/repair_11/2186_162_p1.jpg",
+            "title-trace/repair_11/2186_162_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "PierceSaltMeadowadjoiningHamiltonBeach, fifthparcelof1823/252. Prior currenttax-titleLot1046mayderivepart; acreage/subdivisionmatchnotestablished.",
@@ -6224,8 +6224,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4022_277_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4022_277_p2.jpg"
+            "title-trace/repair_11/4022_277_p1.jpg",
+            "title-trace/repair_11/4022_277_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "BigelowDuxburydefendants; notKadlacWarehamLot1046.",
@@ -6271,7 +6271,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/4843_69_p1.jpg"
+            "title-trace/repair_2/4843_69_p1.jpg"
           ],
           "lot_match": "Lot47Algelo/Reynolds1915Hayward;matches.",
           "quote": null,
@@ -6294,11 +6294,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/1516_128_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/1516_128_p2.jpg"
+            "title-trace/repair_12/1516_128_p1.jpg",
+            "title-trace/repair_12/1516_128_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/1516_128_p3.jpg"
+            "title-trace/repair_12/1516_128_p3.jpg"
           ],
           "source_url": "https://titleview.org/plymouthdeeds/",
           "date": "1926-09-07 recorded;1925-10-28 executed/acknowledged",
@@ -6358,8 +6358,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/19114_79_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/19114_79_p2.jpg"
+            "title-trace/repair_3/19114_79_p1.jpg",
+            "title-trace/repair_3/19114_79_p2.jpg"
           ],
           "lot_match": "LotA ANR Plan34/505 and separate all right/title/interest in Quasuet Bluffs Beach Plan6/774; matches current two components.",
           "quote": "Also All my right, title and interest in and to The land in Wareham, Plymouth County, Massachusetts, shown as “Beach” on a plan of land entitled “Plan of Quasuet Bluffs, Wareham, Massachusetts, Scale 1”=40’, July 18, 1945, Walter Rowley, Surveyor, Wareham, Massachusetts,” recorded with Plymouth County Registry of Deeds, Plan Book 6, Page 774.",
@@ -6384,7 +6384,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/10123_263_p1.jpg"
+            "title-trace/repair_13/10123_263_p1.jpg"
           ],
           "lot_match": "Lots29/30/31 QuasuetBluffs Plan6/774,PointRoad/Pilgrim; predecessor cited for laterLotA, but ANR34/505 relation needs plan verification.",
           "quote": "Subject to and with the benefit of all restrictions of record.",
@@ -6409,7 +6409,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/10123_264_p1.jpg"
+            "title-trace/repair_13/10123_264_p1.jpg"
           ],
           "lot_match": "Separate labelledBeach tract QuasuetBluffs6/774 fromLot36 toBroadMarshRiver,alongPilgrim,32–36 boundaries; matchescurrentBeachinterest component.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record",
@@ -6456,8 +6456,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/44852_298_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/44852_298_p2.jpg"
+            "title-trace/repair_4/44852_298_p1.jpg",
+            "title-trace/repair_4/44852_298_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot99,22Worrall,HamiltonBeach,Hayward1915; matches.",
@@ -6483,7 +6483,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/29839_42_p1.jpg"
+            "title-trace/repair_14/29839_42_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot99,22Worrall,Quasuett/HamiltonBeach,Hayward1915; matches.",
@@ -6508,7 +6508,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/29839_41_p1.jpg"
+            "title-trace/repair_14/29839_41_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Whyte trust certificate,address22Worrall; no land/easement grant.",
@@ -6555,8 +6555,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/49712_276_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/49712_276_p2.jpg"
+            "title-trace/repair_1/49712_276_p1.jpg",
+            "title-trace/repair_1/49712_276_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot128 HamiltonBeach Hayward1915; matches current70Pilgrim.",
@@ -6582,7 +6582,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/5775_217_p1.jpg"
+            "title-trace/repair_11/5775_217_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot128HamiltonBeachHayward1915 exactmatch70Pilgrim.",
@@ -6604,8 +6604,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/42084_242_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/42084_242_p2.jpg"
+            "title-trace/repair_11/42084_242_p1.jpg",
+            "title-trace/repair_11/42084_242_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot128HamiltonBeachmatchescurrent70Pilgrim.",
@@ -6655,7 +6655,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/11797_208_p1.jpg"
+            "title-trace/repair_2/11797_208_p1.jpg"
           ],
           "lot_match": "Lot49eastReynoldsMarch1924Plan3/511matches.",
           "quote": "Said premises are conveyed with all easements appurtenant thereto and subject to the restrictions, reservations and conditions so far as same may now be in force, if any as set forth in a deed from the State Realty Corporation to William Hewitt dated Aug. 28, 1926 and recorded with Plymouth County Registry of Deeds, Book 1531, Page 10 and 11.",
@@ -6682,8 +6682,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1531_10_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1531_10_p2.jpg"
+            "title-trace/repair_2/1531_10_p1.jpg",
+            "title-trace/repair_2/1531_10_p2.jpg"
           ],
           "lot_match": "Lot49eastReynoldsMarch1924Churbuckmatches.",
           "quote": "reserved, however, to the grantor and its other grantees and to the public the right to use the beach in front of said lot for bathing, boating and passage in common with this grantee.",
@@ -6696,7 +6696,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 3,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1531_10_p3.jpg"
+            "title-trace/repair_2/1531_10_p3.jpg"
           ],
           "scans": [
             "title-trace/repair_2/1531_10_p1.jpg",
@@ -6710,7 +6710,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1531_11_p1.jpg"
+            "title-trace/repair_2/1531_11_p1.jpg"
           ],
           "lot_match": "Shurtleff/Guertindischarge;notlot49titleinstrument.",
           "quote": null,
@@ -6723,7 +6723,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 2,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1531_11_p2.jpg"
+            "title-trace/repair_2/1531_11_p2.jpg"
           ],
           "scans": [
             "title-trace/repair_2/1531_11_p1.jpg"
@@ -6774,8 +6774,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/45676_174_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/45676_174_p2.jpg"
+            "title-trace/repair_3/45676_174_p1.jpg",
+            "title-trace/repair_3/45676_174_p2.jpg"
           ],
           "lot_match": "Lot139 ONLY,22 Allen Avenue, Hayward Hamilton Beach plan; matches one of three current components.",
           "quote": "TITLE NOT EXAMINED",
@@ -6799,8 +6799,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/49318_158_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/49318_158_p2.jpg"
+            "title-trace/repair_3/49318_158_p1.jpg",
+            "title-trace/repair_3/49318_158_p2.jpg"
           ],
           "lot_match": "Lots141 and140 ONLY,18 and20 Allen Avenue, assessor50F-141 and50F-140; matches other two components.",
           "quote": "Said premises are conveyed subject to restrictions and easements of record if any there are in force and applicable.",
@@ -6827,7 +6827,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/9378_165_p1.jpg"
+            "title-trace/repair_13/9378_165_p1.jpg"
           ],
           "lot_match": "Lot140 assessor50F6010sqft,MichaelJ.Flanagan etals/presentJohnF.Real; matchescurrent140ONLY.",
           "quote": "Said land is taken for nonpayment of taxes",
@@ -6852,7 +6852,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/10781_180_p1.jpg"
+            "title-trace/repair_13/10781_180_p1.jpg"
           ],
           "lot_match": "Lot141 assessor50F5970sqft,JohnCamann; current141ONLY.",
           "quote": "Said land is taken for nonpayment of taxes",
@@ -6902,9 +6902,9 @@
           "pages_read": 3,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_569_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_569_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_570_p2.jpg"
+            "title-trace/repair_4/1688_569_p1.jpg",
+            "title-trace/repair_4/1688_569_p2.jpg",
+            "title-trace/repair_4/1688_570_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots14/15, altered shore planMarch1924 correctedJuly28; excepts16B; lot15 matches.",
@@ -6931,11 +6931,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_570_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_570_p2.jpg"
+            "title-trace/repair_4/1688_570_p1.jpg",
+            "title-trace/repair_4/1688_570_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_570_p3.jpg"
+            "title-trace/repair_4/1688_570_p3.jpg"
           ],
           "lot_match": "Continuation of same569 foreclosure lots14/15; NOT standalone deed.",
           "quote": "Together with the right in common with others to use the beach for bathing, boating and passing and also the use of all streets and avenues.",
@@ -6960,10 +6960,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_571_p1.jpg"
+            "title-trace/repair_4/1688_571_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1688_571_p2.jpg"
+            "title-trace/repair_4/1688_571_p2.jpg"
           ],
           "lot_match": "Certificate on571 is different mortgage1604/158–159, not lot15; top571 only completes preceding lot15 affidavit.",
           "quote": "",
@@ -6986,7 +6986,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/10773_111_p1.jpg"
+            "title-trace/repair_4/10773_111_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot15 altered shore lotsMarch1924 correctedJuly28; matches.",
@@ -7048,8 +7048,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/31689_121_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/31689_121_p2.jpg"
+            "title-trace/repair_1/31689_121_p1.jpg",
+            "title-trace/repair_1/31689_121_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot163 HamiltonBeach Plan2/640,23BroadMarsh; matches current.",
@@ -7074,7 +7074,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4484_33_p1.jpg"
+            "title-trace/repair_11/4484_33_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot163HamiltonBeachPlan2/640 matchescurrent23BroadMarsh.",
@@ -7122,7 +7122,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3702_215_p1.jpg"
+            "title-trace/repair_2/3702_215_p1.jpg"
           ],
           "lot_match": "Lot16CshorelotsalterationMarch1924Plan3/831;1Worrallmatches.",
           "quote": "Reserving to the Grantor and its other Grantees and to the public the right to use the Beach in front of the lot for bathing and passage in common with the Grantee.",
@@ -7181,7 +7181,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3807_631_p1.jpg"
+            "title-trace/repair_3/3807_631_p1.jpg"
           ],
           "lot_match": "Quasuett Bluffs Sheet50F LotB-3,9,730 sq ft; Glenda M. Kadlac; matches current tax-title component.",
           "quote": "Said land is taken for non-payment of taxes",
@@ -7205,7 +7205,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4221_46_p1.jpg"
+            "title-trace/repair_13/4221_46_p1.jpg"
           ],
           "lot_match": "WRONG Hull twoRStreet parcels,AgnesT.McIsaac; not QuasuetBluffsB3.",
           "quote": "All my right, title and interest in and to the following two (2) parcels of land",
@@ -7253,8 +7253,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/15692_348_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/15692_348_p2.jpg"
+            "title-trace/repair_4/15692_348_p1.jpg",
+            "title-trace/repair_4/15692_348_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot16B,3Worrall,Plan3/831,ChurbuckMarch1924; matches.",
@@ -7279,7 +7279,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/4495_466_p1.jpg"
+            "title-trace/repair_14/4495_466_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot16B,3Worrall,Plan3/831 HamiltonBeach shorealterationsMarch1924; matches.",
@@ -7330,7 +7330,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5501_42_p1.jpg"
+            "title-trace/repair_1/5501_42_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot16A HamiltonBeach T.A.Churbuck Nov1922 Plan3/831,5Worrall; matches current.",
@@ -7354,9 +7354,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5501_43_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5501_43_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5501_43_p3.jpg"
+            "title-trace/repair_1/5501_43_p1.jpg",
+            "title-trace/repair_1/5501_43_p2.jpg",
+            "title-trace/repair_1/5501_43_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot16A exact description matches current, but trust instrument not beach easement grant.",
@@ -7383,8 +7383,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/47936_128_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/47936_128_p2.jpg"
+            "title-trace/repair_1/47936_128_p1.jpg",
+            "title-trace/repair_1/47936_128_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "No parcel specified; supports Polcari trust authority only.",
@@ -7407,10 +7407,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2937_175_p1.jpg"
+            "title-trace/repair_11/2937_175_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2937_175_p2.jpg"
+            "title-trace/repair_11/2937_175_p2.jpg"
           ],
           "lot_match": "Lot16AHamiltonBeachPlan3/831 matchescurrent5Worrall.",
           "quote": null,
@@ -7459,8 +7459,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3478_775_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3478_775_p2.jpg"
+            "title-trace/repair_2/3478_775_p1.jpg",
+            "title-trace/repair_2/3478_775_p2.jpg"
           ],
           "lot_match": "Lot94Plan3/511;historicalPearl/nowTurner;matches.",
           "quote": "Together with the right to use the beach in front of the other lots included in this tract in common with the other grantees of The State Realty Corporation and the public for bathing, boating and passage.",
@@ -7473,7 +7473,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 3,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3478_775_p3.jpg"
+            "title-trace/repair_2/3478_775_p3.jpg"
           ],
           "scans": [
             "title-trace/repair_2/3478_775_p1.jpg",
@@ -7487,7 +7487,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/19334_162_p1.jpg"
+            "title-trace/repair_2/19334_162_p1.jpg"
           ],
           "lot_match": "Lot94Plan3/51111Turner;matches.",
           "quote": "TOGETHER WITH ALL RIGHTS PRIVILEGES AND EASEMENTS CONNECTED THEREWITH AS PROVIDED IN DEED RECORDED WITH SAID DEEDS IN BOOK 3478 PAGE 775",
@@ -7550,7 +7550,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/3905_84_p1.jpg"
+            "title-trace/repair_3/3905_84_p1.jpg"
           ],
           "lot_match": "Lot50, Reynolds Avenue/beach boundary, Hayward1915 Hamilton Beach; matches current lot50.",
           "quote": "Subject to restrictions, reservations and encumbrances of record and to any unpaid taxes or other municipal liens or assessments.",
@@ -7574,12 +7574,12 @@
           "pages_inspected": 2,
           "excluded_images": [
             {
-              "image": "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3439_258_p2.jpg",
+              "image": "title-trace/repair_13/3439_258_p2.jpg",
               "reason": "Book3439/259 separate Hull mortgage release,not subject continuation"
             }
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3439_258_p1.jpg"
+            "title-trace/repair_13/3439_258_p1.jpg"
           ],
           "lot_match": "Lot50 HamiltonBeachHayward1915,Reynolds/beach boundaries match.",
           "quote": "Subject to restrictions, reservations and encumbrances of record and to any unpaid taxes or other municipal liens or assessments.",
@@ -7630,8 +7630,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1925_13_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1925_13_p2.jpg"
+            "title-trace/repair_4/1925_13_p1.jpg",
+            "title-trace/repair_4/1925_13_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Southerly25ft part155 next154; current is northerly part155 so this smaller conveyance not enough alone for exact strip benefit.",
@@ -7656,8 +7656,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1925_14_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1925_14_p2.jpg"
+            "title-trace/repair_4/1925_14_p1.jpg",
+            "title-trace/repair_4/1925_14_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Indexed Brockton City→Stubbert Miller Avenue lots4,9,10,11 is unrelated; top14 completes matching1925/13 smaller-strip deed.",
@@ -7684,11 +7684,11 @@
           "pages_read": 1,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1838_273_p1.jpg"
+            "title-trace/repair_4/1838_273_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1838_273_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/1838_273_p3.jpg"
+            "title-trace/repair_4/1838_273_p2.jpg",
+            "title-trace/repair_4/1838_273_p3.jpg"
           ],
           "lot_match": "Whole lot155 HamiltonBeach Hayward1915,53ft Plymouth Avenue/103ft to beach, encloses current northerly155 portion; match subject to exact split boundary verification.",
           "quote": "reserving, however to the grantor and its other grantees and to the public, the right to use the beach in front of said lot for bathing, boating, and passage in common with this grantee.",
@@ -7746,7 +7746,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/3807_633_p1.jpg"
+            "title-trace/repair_1/3807_633_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "LotB-5 QuasuetBluffs Sheet50F 17838sqft, matches current11Smith assessorB5.",
@@ -7772,8 +7772,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4022_47_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/4022_47_p2.jpg"
+            "title-trace/repair_11/4022_47_p1.jpg",
+            "title-trace/repair_11/4022_47_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "WebsterStreetassessorLots122/123/124Sheet3, notcurrentSmithB5Sheet50F.",
@@ -7822,7 +7822,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1503_303_p1.jpg"
+            "title-trace/repair_2/1503_303_p1.jpg"
           ],
           "lot_match": "Lot79cornerWorrall/Glen1915Hayward;matches1Glen.",
           "quote": "reserving however to the grantor and its other grantees and the public the right to use the beach for bathing, boating and passage in common with this grantee.",
@@ -7835,7 +7835,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 2,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1503_303_p2.jpg"
+            "title-trace/repair_2/1503_303_p2.jpg"
           ],
           "scans": [
             "title-trace/repair_2/1503_303_p1.jpg"
@@ -7848,8 +7848,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/58494_333_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/58494_333_p2.jpg"
+            "title-trace/repair_2/58494_333_p1.jpg",
+            "title-trace/repair_2/58494_333_p2.jpg"
           ],
           "lot_match": "Lot79Plan2/6401Glenmatches.",
           "quote": "Subject to the reservations and restrictions as set forth in a deed from the State Realty Corporation to William Hewitt dated Sept. 2, 1925, and recorded in Plymouth County Registry of Deeds, Book 1503, Page 303.",
@@ -7914,8 +7914,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/38661_285_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/38661_285_p2.jpg"
+            "title-trace/repair_3/38661_285_p1.jpg",
+            "title-trace/repair_3/38661_285_p2.jpg"
           ],
           "lot_match": "Lot112, Hayward1915 Plan2/640, east Mason;9 Surf Avenue; exact current parcel.",
           "quote": "Reserving however to The State Realty Corporation and its other grantees and to the public the right to use the beach for bathing, boating and passage in common with this grantee.",
@@ -7972,8 +7972,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/17257_332_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/17257_332_2.jpg"
+            "title-trace/gap-followup/scans/17257_332_1.jpg",
+            "title-trace/gap-followup/scans/17257_332_2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Exact Lot28, Plan3/511, stated 4 Algelo Avenue; Wheeler Investment Trust.",
@@ -7998,8 +7998,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/16746_86_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/16746_86_2.jpg"
+            "title-trace/gap-followup/scans/16746_86_1.jpg",
+            "title-trace/gap-followup/scans/16746_86_2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Exact Lot28,4 Algelo Avenue, Plan3/511.",
@@ -8023,8 +8023,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/14946_133_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/14946_133_2.jpg"
+            "title-trace/gap-followup/scans/14946_133_1.jpg",
+            "title-trace/gap-followup/scans/14946_133_2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Exact Lot28,4 Algelo Avenue, Plan3/511; Algelo boundary65feet.",
@@ -8048,7 +8048,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/14710_2_1.jpg"
+            "title-trace/gap-followup/scans/14710_2_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Exact Lot28, Plan3/511; southeastern boundary Algelo Avenue65feet.",
@@ -8083,10 +8083,10 @@
             442
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1700_442_1.jpg"
+            "scans/1700_442_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1700_442_2.jpg"
+            "scans/1700_442_2.jpg"
           ],
           "notes": "Original developer-to-lot conveyance found by a bounded Besse grantee/deed/Wareham search (1922 through August 21, 1939), not by guessing. State Realty deed begins mid/lower page 442 and ends on that page after acknowledgment and recording. Upper 442 separately contains National Bank's release of its State Realty mortgage on Lots 27 and 28 (1610/449); lower 442 begins Besse's bank mortgage, continued on upper 443. Image 2 is excluded from subject-deed evidence, not represented as an extra page of the warranty deed. The deed itself states no express beach-use grant or roadbed-fee allocation. Exact original lot conveyance reached, but mortgage interests, separate modern Lot 28 chain, probate and intervening/later conveyances still require review.",
           "next_refs": [],
@@ -8121,8 +8121,8 @@
             102
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1790_101_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1790_101_2.jpg"
+            "scans/1790_101_1.jpg",
+            "scans/1790_101_2.jpg"
           ],
           "excluded_images": [],
           "quote": "Said lots are hereby conveyed together with all rights, privileges and easements appurtenant thereto, and subject to conditions and restrictions of record so far as the same are in force and effect.",
@@ -8174,10 +8174,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1893_466_p1.jpg"
+            "title-trace/repair_1/1893_466_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/1893_466_p2.jpg"
+            "title-trace/repair_1/1893_466_p2.jpg"
           ],
           "lot_match": "Subject middle-page deed conveysLot22 HamiltonBeach ChurbuckMarch1924. Does NOT establish match to currentLot1050 about2.2acres. Following deed lower466/upper467 is separate quarter-acre saltmeadow; also not proven1050.",
           "quote": "Said lot is conveyed with the right to use the beach in front of other lots included in the tract in common with other grantees of State Realty Corporation and the public, for bathing, boating and passage.",
@@ -8200,7 +8200,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/4346_139_p1.jpg"
+            "title-trace/repair_1/4346_139_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Marshfield Tecumseh/Sekonnet Avenues,10000sqft; unrelated to Wareham currentLot1050.",
@@ -8224,7 +8224,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/4454_254_p1.jpg"
+            "title-trace/repair_1/4454_254_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "No parcel description; Lamar defendants,Glazer plaintiffs; not proven currentMonahanLot1050.",
@@ -8248,8 +8248,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1526_480_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1526_480_p2.jpg"
+            "title-trace/repair_11/1526_480_p1.jpg",
+            "title-trace/repair_11/1526_480_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot22HamiltonBeachChurbuckNovember1924;matches1893/466Lot22 but NOTverifiedcurrentLot1050about2.2acres.",
@@ -8299,9 +8299,9 @@
           "pages_total": 3,
           "pages_read": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/37479_347_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/37479_347_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/37479_347_p3.jpg"
+            "title-trace/repair_2/37479_347_p1.jpg",
+            "title-trace/repair_2/37479_347_p2.jpg",
+            "title-trace/repair_2/37479_347_p3.jpg"
           ],
           "lot_match": "Parcel1lot116,parcel2lot1001915Hayward;matches16Worrall.",
           "quote": null,
@@ -8330,8 +8330,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/2515_271_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/2515_271_p2.jpg"
+            "title-trace/repair_2/2515_271_p1.jpg",
+            "title-trace/repair_2/2515_271_p2.jpg"
           ],
           "lot_match": "Lot116northWorrall/Mason;matchesparcel1only.",
           "quote": null,
@@ -8357,8 +8357,8 @@
           "pages_total": 2,
           "pages_read": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3292_471_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3292_471_p2.jpg"
+            "title-trace/repair_2/3292_471_p1.jpg",
+            "title-trace/repair_2/3292_471_p2.jpg"
           ],
           "lot_match": "Lot100Worrall/Pearl1915Hayward;matchesparcel2only.",
           "quote": "Reserving to others who received or reserved similar grants, and to the public, the right to use the beach for bathing, boating, and passage in common with this grantee.",
@@ -8372,7 +8372,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 3,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/3292_471_p3.jpg"
+            "title-trace/repair_2/3292_471_p3.jpg"
           ],
           "scans": [
             "title-trace/repair_2/3292_471_p1.jpg",
@@ -8422,7 +8422,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/29669_225_p1.jpg"
+            "title-trace/repair_3/29669_225_p1.jpg"
           ],
           "lot_match": "Lot125 east Pilgrim south Algelo, Churbuck March1924;64 Pilgrim, exact current description.",
           "quote": "Being subject to the privileges and restrictions set forth in deed from the State Realty Corporation, dated September 11, 1926, duly recorded.",
@@ -8447,7 +8447,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_287_p1.jpg"
+            "title-trace/repair_13/14771_287_p1.jpg"
           ],
           "lot_match": "Lot125 eastPilgrim/southAlgelo,Churbuck1924;64Pilgrim exactcurrent.",
           "quote": "Being subject to the privileges and restrictions set forth in deed from the State Realty Corporation, dated September 11, 1926, duly recorded.",
@@ -8473,13 +8473,13 @@
           "pages_inspected": 7,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p4.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p5.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p6.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/14771_280_p7.jpg"
+            "title-trace/repair_13/14771_280_p1.jpg",
+            "title-trace/repair_13/14771_280_p2.jpg",
+            "title-trace/repair_13/14771_280_p3.jpg",
+            "title-trace/repair_13/14771_280_p4.jpg",
+            "title-trace/repair_13/14771_280_p5.jpg",
+            "title-trace/repair_13/14771_280_p6.jpg",
+            "title-trace/repair_13/14771_280_p7.jpg"
           ],
           "lot_match": "DoderoRealtyTrust,trusteesPatriciaR.Luce/CarolA.Sanford; no parcel-specific grant.",
           "quote": "During the term of this Trust, the beneficiaries shall have access to the real property of the Trust for their use and enjoyment in proportion to their beneficial interests",
@@ -8530,7 +8530,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3793_416_p1.jpg"
+            "title-trace/repair_4/3793_416_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot7,Worrall/Wequitt,Plan2/640 April1,1915; matches.",
@@ -8554,10 +8554,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/3576_497_p1.jpg"
+            "title-trace/repair_14/3576_497_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/3576_497_p2.jpg"
+            "title-trace/repair_14/3576_497_p2.jpg"
           ],
           "lot_match": "Lot7 Plan2/640 QuasuettIslandApril1,1915; matches25Worrall.",
           "quote": "Subject to restrictions of record.",
@@ -8605,8 +8605,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/24846_235_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/24846_235_p2.jpg"
+            "title-trace/repair_1/24846_235_p1.jpg",
+            "title-trace/repair_1/24846_235_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "LotQ28 ANR GeorgeE.JosephJune4 1991 Plan34/505; matches current52Pilgrim, not grantee367MiddleRoad locus (mail/property-address mismatch).",
@@ -8631,7 +8631,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/19114_78_p1.jpg"
+            "title-trace/repair_11/19114_78_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "LotQ28Plan34/505matchescurrent52Pilgrim.",
@@ -8680,8 +8680,8 @@
           "pages_total": 2,
           "pages_read": 0,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/1413_549.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/1413_550.jpg"
+            "title-trace/1413_549.jpg",
+            "title-trace/1413_550.jpg"
           ],
           "lot_match": "Parent conveyance: approximately 18-acre Quasuett Island, marsh tracts and buildings; expressly excludes lots 6, 166 and 167 previously deeded by Robert H. Montgomery and Manuel L. Sylvia et al., November 20, 1914, Book 1203/345–346.",
           "quote": "Together with all the privileges, appurtenances, ways, streets and riparian rights, set out, described and contained in a Plan of Shore Lots at Quasuett Island, Wareham, Mass., drawn by E. B. and L. S. Hayward, Civil Engineers dated April 1, 1915",
@@ -8710,7 +8710,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/27408_166_p1.jpg"
+            "title-trace/repair_2/27408_166_p1.jpg"
           ],
           "lot_match": "Assessor50Flots1040/104155800sqft;matches60671/304.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record and are hereby conveyed subject to any building and zoning law requirements which may be in force and applicable.",
@@ -8734,11 +8734,11 @@
           "pages_read": 2,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_14_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_14_p2.jpg"
+            "title-trace/repair_12/519_14_p1.jpg",
+            "title-trace/repair_12/519_14_p2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_14_p3.jpg"
+            "title-trace/repair_12/519_14_p3.jpg"
           ],
           "source_url": "https://titleview.org/plymouthdeeds/",
           "date": "1885-03-24 recorded;1885-03-04 executed",
@@ -8764,13 +8764,13 @@
           "pages_read": 4,
           "pages_inspected": 5,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_15_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_15_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_15_p3.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_15_p4.jpg"
+            "title-trace/repair_12/519_15_p1.jpg",
+            "title-trace/repair_12/519_15_p2.jpg",
+            "title-trace/repair_12/519_15_p3.jpg",
+            "title-trace/repair_12/519_15_p4.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/519_15_p5.jpg"
+            "title-trace/repair_12/519_15_p5.jpg"
           ],
           "source_url": "https://titleview.org/plymouthdeeds/",
           "date": "1885-03-24 recorded;1885-03-21 executed",
@@ -8828,8 +8828,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/23038_304_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/23038_304_p2.jpg"
+            "title-trace/repair_3/23038_304_p1.jpg",
+            "title-trace/repair_3/23038_304_p2.jpg"
           ],
           "lot_match": "Lot84 west Glen, Churbuck March1924;10 Glen Avenue, exact current boundaries.",
           "quote": "The above described premises are subject to all rights of way, easements, privileges and restrictions as contained in deed from Mary E. McNee to James L. Collins and Amy V. Collins, all of which are incorporated in this deed.",
@@ -8855,8 +8855,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4728_135_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/4728_135_p2.jpg"
+            "title-trace/repair_13/4728_135_p1.jpg",
+            "title-trace/repair_13/4728_135_p2.jpg"
           ],
           "lot_match": "Lot84 westGlen,Churbuck1924;10Glen exactcurrent.",
           "quote": "The above described premises are subject to all rights of way, easements, privileges and restrictions as contained in deed from Mary E. McNee to James L. Collins and Amy V. Collins, all of which are incorporated by reference in this deed.",
@@ -8905,8 +8905,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/34860_80_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/34860_80_p2.jpg"
+            "title-trace/repair_4/34860_80_p1.jpg",
+            "title-trace/repair_4/34860_80_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot27,60Pilgrim,Plan3/511 November1922 HamiltonBeach; matches.",
@@ -8931,9 +8931,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/33360_307_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/33360_307_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/33360_307_p3.jpg"
+            "title-trace/repair_14/33360_307_p1.jpg",
+            "title-trace/repair_14/33360_307_p2.jpg",
+            "title-trace/repair_14/33360_307_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot27,60Pilgrim,Plan3/511 HamiltonBeachNovember1922; matches.",
@@ -8976,7 +8976,7 @@
           "classification": "checked",
           "notes": "Complete single-page instrument including recording stamp and END OF INSTRUMENT. Prior deed of James Karem and Philip W. Hawley dated May 15, 1963, Book 3018 Page 155. Recites Joseph L. Riggi died January 22, 1997, but no death or estate record independently examined. Road wording is boundary-only: easterly Pilgrim Avenue, Broad Marsh and Algelo Avenue. No express roadbed-fee grant or beach-use grant observed. Life-estate reservation is not a roadbed reservation.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/18686_144_1.jpg"
+            "scans/18686_144_1.jpg"
           ],
           "excluded_images": [],
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -9012,8 +9012,8 @@
           "classification": "checked",
           "notes": "Target deed starts LOWER page 155, after an unrelated-to-this-conveyance Besse mortgage discharge, and ends page 156 before a separate Riggi mortgage. Both screenshots inspected in full; upper 155 discharge and lower 156 mortgage are not deed-chain evidence. The registry index/detail labels the opening discharge, but the visible lower-page deed independently matches the parties, date and exact Lot 27. Prior title separately cites Besse to James Karem et al., June 10, 1961, 2856/331, and Harvey B. Scribner to Philip W. Hawley, April 23, 1962, 2932/218. Those are separate acquisition references, not assumed to be one linear edge. No express roadway-fee reservation or affirmative beach-use clause observed.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/3018_155_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/3018_155_2.jpg"
+            "scans/3018_155_1.jpg",
+            "scans/3018_155_2.jpg"
           ],
           "excluded_images": [],
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -9050,10 +9050,10 @@
           "classification": "checked",
           "notes": "Entire target deed starts and ends on page 331. Separate Karem/Scribner-to-Besse mortgage begins lower 331 and continues on 332; the second screenshot is not part of this deed. Both supplied screenshots visually inspected; only first retained as subject evidence. Boundaries include Pilgrim Avenue, Broad Marsh and Algelo Avenue. No express roadbed-fee exclusion or beach-use clause observed. A mortgage recital or discharge is not treated as a new ownership transfer.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/2856_331_1.jpg"
+            "scans/2856_331_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/2856_331_2.jpg"
+            "scans/2856_331_2.jpg"
           ],
           "source_url": "https://titleview.org/plymouthdeeds/",
           "scans": [
@@ -9087,8 +9087,8 @@
           "classification": "checked",
           "notes": "Target deed starts LOWER 218 after a separate Besse attachment discharge and ends UPPER 219 before an unrelated Scituate Gegan/Hansman deed. Both screenshots visually reviewed. Registry detail labels the opening discharge, not the lower-page subject deed; the subject lot, parties and acknowledgment independently verify the deed. It cites Besse June 10, 1961 deed at 2856/331. Alta Scribner releases dower/homestead interests. This is a fractional-interest transfer, not a conveyance of the entire title. Road boundaries alone do not allocate roadbed ownership.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/2932_218_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/2932_218_2.jpg"
+            "scans/2932_218_1.jpg",
+            "scans/2932_218_2.jpg"
           ],
           "excluded_images": [],
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -9123,10 +9123,10 @@
           "classification": "checked",
           "notes": "Target deed starts LOWER page 306 after a separate Cochary mortgage ending, and is complete on that page with acknowledgment and May 15, 1947 recording at 9:00 A.M. Second screenshot is a separate Daly-to-Campello Cooperative Bank mortgage beginning on 307; not a continuation of the deed. Both full screenshots visually inspected. No prior-title book/page is supplied in this deed; a Katherine A. Conry acquisition name search is required. Exact Pilgrim, Broad Marsh and Algelo boundary continuity verified, but roadway fee ownership is not determined. The deed uses 'with the buildings thereon'; that wording is not independent proof of an original construction date and should not be used to certify the assessor's 1963 year.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/1955_306_1.jpg"
+            "scans/1955_306_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/1955_306_2.jpg"
+            "scans/1955_306_2.jpg"
           ],
           "source_url": "https://titleview.org/plymouthdeeds/",
           "scans": [
@@ -9161,10 +9161,10 @@
           "classification": "checked",
           "notes": "Complete target deed and acknowledgment/recording on page 332. Second viewer screenshot is page 333, a separate Benjamin Goodrich-to-Leonard Trust conveyance in Pembroke; excluded. Both screenshots visually inspected. The index spells grantor DAILEY; actual subject deed spells Henry J. Daly, which is preserved here. Pilgrim, Broad Marsh and Algelo are boundaries, not an express road-use or roadbed-fee grant.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/2513_332_1.jpg"
+            "scans/2513_332_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/2513_332_2.jpg"
+            "scans/2513_332_2.jpg"
           ],
           "source_url": "https://titleview.org/plymouthdeeds/",
           "scans": [
@@ -9192,10 +9192,10 @@
             442
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1700_442_1.jpg"
+            "scans/1700_442_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1700_442_2.jpg"
+            "scans/1700_442_2.jpg"
           ],
           "notes": "Original developer-to-lot conveyance found by a bounded Besse grantee/deed/Wareham search (1922 through August 21, 1939), not by guessing. State Realty deed begins mid/lower page 442 and ends on that page after acknowledgment and recording. Upper 442 separately contains National Bank's release of its State Realty mortgage on Lots 27 and 28 (1610/449); lower 442 begins Besse's bank mortgage, continued on upper 443. Image 2 is excluded from subject-deed evidence, not represented as an extra page of the warranty deed. The deed itself states no express beach-use grant or roadbed-fee allocation. Exact original lot conveyance reached, but mortgage interests, separate modern Lot 28 chain, probate and intervening/later conveyances still require review.",
           "next_refs": [],
@@ -9230,8 +9230,8 @@
             501
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1740_500_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1740_500_2.jpg"
+            "scans/1740_500_1.jpg",
+            "scans/1740_500_2.jpg"
           ],
           "excluded_images": [],
           "notes": "Full target Besse deed begins lower page 500 and ends mid-page 501. Although this deed contains an affirmative shared beach-use clause, it cannot be applied to Lot 27 merely because Besse was grantee. Preceding utility/conditional-sale material and following bank release are not subject deed evidence. Retained only as a rejected 60 Pilgrim acquisition candidate; other modern lot continuity not investigated here.",
@@ -9263,10 +9263,10 @@
             243
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1753_243_1.jpg"
+            "scans/1753_243_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1753_243_2.jpg"
+            "scans/1753_243_2.jpg"
           ],
           "notes": "Nichols-to-Besse deed begins lower page 243 and ends there with acknowledgment and recording. The index's Freitas-to-Costa Plymouth deed above it is unrelated. Page 244 contains a separate Besse mortgage and other instruments, not a continuation of the Nichols deed. Rejected as a demonstrated Lot 27 predecessor, not a conclusion that this land has no Hamilton Beach connection.",
           "next_refs": [],
@@ -9296,11 +9296,11 @@
             98
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1764_98_1.jpg"
+            "scans/1764_98_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1764_98_2.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1764_98_3.jpg"
+            "scans/1764_98_2.jpg",
+            "scans/1764_98_3.jpg"
           ],
           "notes": "Actual Rogers-to-Besse instrument begins mid-page 98 and ends there after recording. Lower 98 and page 99 concern a separate Pembroke Taylor-to-Bradford deed and mortgage; the third image repeats page 99. Rejected for this parcel despite matching grantee name.",
           "next_refs": [],
@@ -9331,8 +9331,8 @@
             102
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1790_101_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1790_101_2.jpg"
+            "scans/1790_101_1.jpg",
+            "scans/1790_101_2.jpg"
           ],
           "excluded_images": [],
           "quote": "Said lots are hereby conveyed together with all rights, privileges and easements appurtenant thereto, and subject to conditions and restrictions of record so far as the same are in force and effect.",
@@ -9369,10 +9369,10 @@
             478
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1919_478_1.jpg"
+            "scans/1919_478_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1919_478_2.jpg"
+            "scans/1919_478_2.jpg"
           ],
           "notes": "Complete subject deed visually read on page 478, including acknowledgment and recording. Conveys land with buildings and cites Andrew W. Besse's May 6, 1940 deed at 1790/101–102. Rolfe B. Chase releases curtesy interests. Unrelated discharge beginning below the deed and all of page 479 excluded. Street boundaries do not establish roadbed ownership; no affirmative beach-use or roadbed-fee clause observed.",
           "next_refs": [
@@ -9414,7 +9414,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/gap-followup/scans/5371_58_1.jpg"
+            "title-trace/gap-followup/scans/5371_58_1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "5 Glen Avenue stated as locus; no full lot description reproduced.",
@@ -9471,7 +9471,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3942_713_p1.jpg"
+            "title-trace/repair_4/3942_713_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot123, Mason now Surf Avenue, Hayward1915; one-third interest matches.",
@@ -9495,8 +9495,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3942_714_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/3942_714_p2.jpg"
+            "title-trace/repair_4/3942_714_p1.jpg",
+            "title-trace/repair_4/3942_714_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "ParcelI two-thirds lot123; ParcelII lot122; Hayward1915, matches both mapped lots.",
@@ -9522,9 +9522,9 @@
           "pages_read": 3,
           "pages_inspected": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46498_93_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46498_93_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/46498_93_p3.jpg"
+            "title-trace/repair_4/46498_93_p1.jpg",
+            "title-trace/repair_4/46498_93_p2.jpg",
+            "title-trace/repair_4/46498_93_p3.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots122 and123, 12/14 Surf, Plan2/640 and3/511; matches.",
@@ -9552,10 +9552,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/1852_572_p1.jpg"
+            "title-trace/repair_14/1852_572_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/1852_572_p2.jpg"
+            "title-trace/repair_14/1852_572_p2.jpg"
           ],
           "lot_match": "Lot123 only, Mason/Surf west side; lot122 not included in this deed.",
           "quote": "reserving however to the grantor and it other grantees and to the public the right to use the beach in front of said lot for bathing, boating and passage in common with these grantees",
@@ -9615,7 +9615,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1651_286_p1.jpg"
+            "title-trace/repair_2/1651_286_p1.jpg"
           ],
           "lot_match": "Lot2southWorrallNovember1922Plan3/511;35Worrallmatches.",
           "quote": "reserving, however, to the State Realty Corporation and its grantees and to the public the right to use the beach in front of said lot for bathing, boating and passage in common with this grantee, as described in deed from State Realty Corporation to Alma F. Lundgren, dated July 22, 1927, and recorded with Plymouth Deeds, Book 1532, Page 455.",
@@ -9629,7 +9629,7 @@
           "source_url": "https://titleview.org/plymouthdeeds/",
           "pages_inspected": 2,
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/1651_286_p2.jpg"
+            "title-trace/repair_2/1651_286_p2.jpg"
           ],
           "scans": [
             "title-trace/repair_2/1651_286_p1.jpg"
@@ -9642,9 +9642,9 @@
           "pages_total": 3,
           "pages_read": 3,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/10921_285_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/10921_285_p2.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/10921_285_p3.jpg"
+            "title-trace/repair_2/10921_285_p1.jpg",
+            "title-trace/repair_2/10921_285_p2.jpg",
+            "title-trace/repair_2/10921_285_p3.jpg"
           ],
           "lot_match": "Two parcels:lot79Plan2/640andlot2Plan3/511. Lot2matches58494/300;lot79matches58940/280only.",
           "quote": "Said lot is conveyed subject to the reservations and restrictions as set forth in the deed from Alma F. Lundgren et al to Edward B. Bailey et ux, dated September 15, 1933 and recorded with said Deeds, Book 1651, Page 286.",
@@ -9673,7 +9673,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/57963_309_p1.jpg"
+            "title-trace/repair_2/57963_309_p1.jpg"
           ],
           "lot_match": "HamiltonBeachRealtyTrustauthority;no landdescription.",
           "quote": null,
@@ -9734,7 +9734,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/4555_385_p1.jpg"
+            "title-trace/repair_3/4555_385_p1.jpg"
           ],
           "lot_match": "WRONG: Carver Lakenham Lot2 Floyd and Joan Thompson; not Wareham Lot25.",
           "quote": "has filed with this court a complaint for authority to foreclose said mortgage",
@@ -9757,7 +9757,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_13/3776_523_p1.jpg"
+            "title-trace/repair_13/3776_523_p1.jpg"
           ],
           "lot_match": "WRONG Brockton20BrookvilleAvenue,Lot3016BrookfieldHeights,notWarehamLot25.",
           "quote": "the right to use streets and ways as shown on said plan in common with others lawfully entitled thereto.",
@@ -9799,8 +9799,8 @@
           "classification": "checked",
           "notes": "Both distinct subject pages read, including acknowledgment and recording ending on page 384. Fresh rereading of current 19769/152 identifies its prior citation as 4555/383, not previously entered 4555/385. Matching parties and Lot 25 independently confirm this correction; unrelated Carver 4555/385 and Brockton 3776/523 are rejected, not part of this chain. The 1978 deed expressly cites Norfolk Deeds Book 2876 Page 53, dated August 23, 1961. That county-specific lead is unverified and is not assumed to be a Plymouth reference. Pilgrim Avenue appears as a boundary; no express roadbed-fee conveyance or affirmative beach-use grant observed.",
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/4555_383_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/research/scans/4555_383_2.jpg"
+            "scans/4555_383_1.jpg",
+            "scans/4555_383_2.jpg"
           ],
           "excluded_images": [],
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -9829,10 +9829,10 @@
             522
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1895_522_1.jpg"
+            "scans/1895_522_1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1895_522_2.jpg"
+            "scans/1895_522_2.jpg"
           ],
           "notes": "Subject deed begins mid-page 522 and ends there after acknowledgment and recording. The preceding Crapo instrument, following Hanover deed and all of page 523 are unrelated. Cites State Realty deed dated July 3, 1923 at 1463/292–293 and its restrictions. Pilgrim Avenue appears as a boundary; no roadbed-fee grant stated.",
           "next_refs": [
@@ -9864,11 +9864,11 @@
             293
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1463_292_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1463_292_2.jpg"
+            "scans/1463_292_1.jpg",
+            "scans/1463_292_2.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/1463_292_3.jpg"
+            "scans/1463_292_3.jpg"
           ],
           "quote": "with the right to use the beach in front of the other lots included in this tract in common with the other grantees of this grantor and the public for bathing, boating and passage",
           "clause_page": 292,
@@ -9904,8 +9904,8 @@
             54
           ],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/2876_53_1.jpg",
-            "/home/user/workspace/hamilton_beach_map/property-history/all-pass/parent/scans/2876_53_2.jpg"
+            "scans/2876_53_1.jpg",
+            "scans/2876_53_2.jpg"
           ],
           "excluded_images": [],
           "notes": "County correction independently verified, not inferred from numbers. Actual Plymouth deed matches the 1978 citation's book/page, parties, August 23, 1961 execution date and exact Lot 25. The 1978 deed's verbatim Norfolk citation is preserved as an erroneous county designation for this acquisition. Norfolk's unindexed response does not establish absence of a record. Subject begins lower page 53 and ends upper page 54; preceding bank instrument and following attachment discharge are not relied upon. Restrictions of record only; no explicit beach-use or roadbed-fee grant observed. Prior Charles H. Adams deed dated October 26, 1945 cited at 1895/522.",
@@ -9951,7 +9951,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/9192_175_p1.jpg"
+            "title-trace/repair_4/9192_175_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot130,74Pilgrim,HamiltonBeach,Hayward1915; matches.",
@@ -9975,7 +9975,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/4201_134_p1.jpg"
+            "title-trace/repair_14/4201_134_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot130 HamiltonBeach,Hayward1915, eastPilgrim; matches74Pilgrim.",
@@ -10025,8 +10025,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5175_230_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_1/5175_230_p2.jpg"
+            "title-trace/repair_1/5175_230_p1.jpg",
+            "title-trace/repair_1/5175_230_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot15 QuasuetBluffs July18 1945 Rowley,5075sqft. Current30587/226 audit saysLot14 and assessorQ15A. Continuity unresolved; adjacentLot14 boundary must not be mistaken subject.",
@@ -10053,10 +10053,10 @@
           "pages_read": 1,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1948_495_p1.jpg"
+            "title-trace/repair_11/1948_495_p1.jpg"
           ],
           "excluded_images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/1948_495_p2.jpg"
+            "title-trace/repair_11/1948_495_p2.jpg"
           ],
           "lot_match": "Lot15QuasuetBluffsRowleyJuly18 1945 Plan6/774;matchespredecessor5175/230Lot15, NOT currentauditLot14 withoutcorrection.",
           "quote": "No outside toilet shall be erected or maintained on said lot and all inside toilets shall be so connected to a cesspool as to prevent the escape of drainage onto the beach or into the sea.",
@@ -10081,8 +10081,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2107_265_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/2107_265_p2.jpg"
+            "title-trace/repair_11/2107_265_p1.jpg",
+            "title-trace/repair_11/2107_265_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "OnsetLot608Plan1/58, FifthStreet; unrelatedcurrentQuasuetBluffs41Pilgrim.",
@@ -10130,7 +10130,7 @@
           "pages_total": 1,
           "pages_read": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_2/42283_307_p1.jpg"
+            "title-trace/repair_2/42283_307_p1.jpg"
           ],
           "lot_match": "Lot133southAllen/westCloverHaywardplan;26Pilgrimmatches.",
           "quote": null,
@@ -10153,7 +10153,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_12/22207_346_p1.jpg"
+            "title-trace/repair_12/22207_346_p1.jpg"
           ],
           "excluded_images": [],
           "source_url": "https://titleview.org/plymouthdeeds/",
@@ -10205,8 +10205,8 @@
           "pages_inspected": 2,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/13603_331_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/13603_331_p2.jpg"
+            "title-trace/repair_3/13603_331_p1.jpg",
+            "title-trace/repair_3/13603_331_p2.jpg"
           ],
           "lot_match": "MATCH Hamilton Beach component Lots45/46, north Algelo, Hayward April1,1915 Plan2/640;40 Algelo.",
           "quote": "Together with all rights, privileges and easements connected therewith and subject to restrictions and easements of record",
@@ -10230,7 +10230,7 @@
           "pages_inspected": 1,
           "excluded_images": [],
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_3/13075_282_p1.jpg"
+            "title-trace/repair_3/13075_282_p1.jpg"
           ],
           "lot_match": "Only current ParcelTWO, Lot95 Agawam Lake January1947 Frances Freiberg plan; unrelated to Hamilton Beach mapped component.",
           "quote": "all of our right, title, and interest with QUITCLAIM COVENANTS",
@@ -10252,7 +10252,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_17/5149_491_p1.jpg"
+            "title-trace/repair_17/5149_491_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "MATCH HamiltonBeachLots45/46,northAlgelo,1915HaywardPlan2/640,4225+3405sqft;exactcurrentParcelONE.",
@@ -10300,7 +10300,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_4/16291_84_p1.jpg"
+            "title-trace/repair_4/16291_84_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot56,2Reynolds cornerWorrall,Plan3/511; matches. Printed plan November1992 retained.",
@@ -10324,7 +10324,7 @@
           "pages_read": 1,
           "pages_inspected": 1,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_14/14708_18_p1.jpg"
+            "title-trace/repair_14/14708_18_p1.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lot56,2Reynolds Plan3/511 HamiltonBeach, historicalplanNovember1922 (unlike later1992typo); matches.",
@@ -10374,8 +10374,8 @@
           "pages_read": 2,
           "pages_inspected": 2,
           "images": [
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/21651_51_p1.jpg",
-            "/home/user/workspace/hamilton_beach_map/title-trace/repair_11/21651_51_p2.jpg"
+            "title-trace/repair_11/21651_51_p1.jpg",
+            "title-trace/repair_11/21651_51_p2.jpg"
           ],
           "excluded_images": [],
           "lot_match": "Lots43and44HamiltonBeachHayward1915exactmatchcurrent36Algelo.",

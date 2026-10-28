@@ -1,29 +1,9 @@
-"""Internal LLM worker. The authenticated bridge supplies only authorized excerpts."""
+"""AI drafting for "Ask our documents". The caller (community-api.py /api/research) supplies only excerpts the
+signed-in member is already authorized to read."""
 import json
-import secrets
 import re
-from pathlib import Path
-from fastapi import FastAPI,Request,HTTPException
+from fastapi import HTTPException
 from openai import OpenAI
-
-ROOT=Path(__file__).parent
-keyfile=ROOT/"community-private-data/research-worker.key"
-if not keyfile.exists():
-    keyfile.write_text(secrets.token_urlsafe(40))
-    keyfile.chmod(0o600)
-KEY=keyfile.read_text().strip()
-app=FastAPI(docs_url=None,redoc_url=None,openapi_url=None)
-
-@app.get("/health")
-def health():
-    return {"service":"HBA internal research worker"}
-
-@app.post("/draft")
-async def draft(req:Request):
-    if not secrets.compare_digest(req.headers.get("x-hba-research-key",""),KEY):
-        raise HTTPException(403,"Internal worker access only.")
-    body=await req.json()
-    return generate_report(body)
 
 def generate_report(body):
     sources=body.get("sources",[])
@@ -45,9 +25,13 @@ an ID. Limit to six short paragraphs. These reports are drafts for human review.
     import os
     if not os.environ.get("OPENAI_API_KEY"):
         raise HTTPException(503,"AI drafting is not available on this published copy of the app. The document search above still works, and no report was saved.")
+    # "gpt_5_4" is not an OpenAI model name; it is kept as the default only because the Perplexity-hosted copy shipped
+    # with it (its credential proxy may map it). A direct OpenAI key needs a real
+    # OpenAI model name, so self-hosted copies set OPENAI_MODEL.
+    model=os.environ.get("OPENAI_MODEL","").strip() or "gpt_5_4"
     try:
         client=OpenAI(timeout=90,max_retries=0)
-        r=client.responses.create(model="gpt_5_4",instructions=instructions,
+        r=client.responses.create(model=model,instructions=instructions,
                                   input=json.dumps({"question":str(body.get("question",""))[:600],"sources":sources},ensure_ascii=False),
                                   max_output_tokens=2200)
         text=r.output_text.strip()
@@ -63,7 +47,7 @@ an ID. Limit to six short paragraphs. These reports are drafts for human review.
                 raise ValueError()
         if not isinstance(result.get("gaps",[]),list):
             raise ValueError()
-        return {"draft":result,"model":"gpt_5_4"}
+        return {"draft":result,"model":model}
     except Exception as exc:
         # Never log source excerpts, account data, credentials or provider bodies.
         print("HBA AI draft failure:",type(exc).__name__,"status",getattr(exc,"status_code",None),flush=True)

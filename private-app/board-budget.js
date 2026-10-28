@@ -86,7 +86,9 @@
       const t=targets[p.index]?.target,popup=t?.getPopup();if(!popup)continue;
       if(!baseContents.has(p.index))baseContents.set(p.index,popup.getContent());
     const s=loadedYear===year?labels[status(p.uid).status]:'Not loaded';
-      popup.setContent(`<div class="home-summary"><strong>${esc(p.address)}</strong><p>${esc(p.owner_name)}<br><small>${esc(p.owner_label)}</small></p>${window.HBACommunity?.isBoard()?`<p>${year} dues: <strong>${esc(s)}</strong></p>`:''}<div><button type="button" data-open-history="${p.index}">Property history</button> <button type="button" data-home-memory="${esc(p.uid)}">Household memories</button>${window.HBACommunity?.isBoard()?` <button type="button" data-open-dues="${esc(p.uid)}">Dues status</button>`:''}</div><details><summary>Detailed deed & rights evidence</summary>${baseContents.get(p.index)}</details></div>`);
+      // The parcel popup may be a function that builds it on opening (index.html); keep it one inside the summary.
+      const base=baseContents.get(p.index),BASE='\u0000',[head,tail]=`<div class="home-summary"><strong>${esc(p.address)}</strong><p>${esc(p.owner_name)}<br><small>${esc(p.owner_label)}</small></p>${window.HBACommunity?.isBoard()?`<p>${year} dues: <strong>${esc(s)}</strong></p>`:''}<div><button type="button" data-open-history="${p.index}">Property history</button> <button type="button" data-home-memory="${esc(p.uid)}">Household memories</button>${window.HBACommunity?.isBoard()?` <button type="button" data-open-dues="${esc(p.uid)}">Dues status</button>`:''}</div><details><summary>Detailed deed & rights evidence</summary>${BASE}</details></div>`.split(BASE);
+      popup.setContent(typeof base==='function'?layer=>head+base(layer)+tail:head+base+tail);
     }
   }
   function showDots(on){
@@ -138,6 +140,7 @@
     try{
       const p=await window.HBACommunity.api('/api/cleaning-plan');
       if(epoch!==planEpoch||!ready||!window.HBACommunity?.isBoard())return;
+      if(p.recorded===false){privatePlanLoaded=true;return;}// none recorded yet: the simulator keeps its estimate
       frame.contentWindow.postMessage({type:'hba-private-cleaning',annualAmount:p.annual_amount,firstYear:p.first_year},'*');
       privatePlanLoaded=true;
     }catch(e){$('#bb-load').hidden=false;$('#bb-load').textContent='Private cleaning allowance was not loaded: '+e.message;}
@@ -211,7 +214,7 @@
     if(window.HBACommunity?.isBoard()&&(loadedYear!==null||map.hasLayer(group)))loadStatuses();
   });
   dialog.querySelector('[data-bb-view="dues"]').hidden=!window.HBACommunity?.isBoard();
-  document.getElementById('history-dialog').addEventListener('close',()=>document.getElementById('history-dues-back')?.remove());
+  document.addEventListener('close',e=>{if(e.target?.id==='history-dialog')document.getElementById('history-dues-back')?.remove();},true);
   window.openBoardBudget=()=>open('simulator');
   window.openDuesRegistry=uid=>open('dues',uid);
   window.toggleDuesDots=async on=>{if(on&&!window.HBACommunity?.isBoard()){window.openHBACommunity();return;}try{await getSource();if(on&&loadedYear!==year)await loadStatuses();showDots(on);}catch(e){setMessage(e.message,true);}};
